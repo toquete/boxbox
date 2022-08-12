@@ -1,4 +1,4 @@
-package com.toquete.boxbox.standings.drivers.presentation
+package com.toquete.boxbox.standings.driver.presentation
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Column
@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.toquete.boxbox.standings.drivers.domain.model.DriverStanding
+import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
 import com.toquete.boxbox.ui.theme.BoxBoxTheme
 
 @Composable

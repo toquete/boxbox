@@ -1,4 +1,4 @@
-package com.toquete.boxbox.standings.drivers.domain.model
+package com.toquete.boxbox.standings.driver.domain.model
 
 data class DriverStanding(
     val position: Int,

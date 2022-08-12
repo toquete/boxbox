@@ -1,6 +1,6 @@
-package com.toquete.boxbox.standings.drivers.domain.usecase
+package com.toquete.boxbox.standings.driver.domain.usecase
 
-import com.toquete.boxbox.standings.drivers.domain.model.DriverStanding
+import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

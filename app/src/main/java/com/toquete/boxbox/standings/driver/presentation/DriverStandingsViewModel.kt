@@ -1,11 +1,11 @@
-package com.toquete.boxbox.standings.drivers.presentation
+package com.toquete.boxbox.standings.driver.presentation
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.standings.drivers.domain.usecase.GetDriverStandingsUseCase
+import com.toquete.boxbox.standings.driver.domain.usecase.GetDriverStandingsUseCase
 import kotlinx.coroutines.launch
 
 class DriverStandingsViewModel(
