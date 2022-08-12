@@ -12,7 +12,7 @@ class DriverStandingsViewModel(
     private val getDriverStandingsUseCase: GetDriverStandingsUseCase = GetDriverStandingsUseCase()
 ) : ViewModel() {
 
-    var state by mutableStateOf(DriversStandingState())
+    var state by mutableStateOf(DriverStandingsState())
         private set
 
     init {
