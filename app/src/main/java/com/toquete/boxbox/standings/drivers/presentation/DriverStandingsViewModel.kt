@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.standings.drivers.domain.usecase.GetDriversStandingUseCase
 import kotlinx.coroutines.launch
 
-class DriversStandingViewModel(
+class DriverStandingsViewModel(
     private val getDriversStandingUseCase: GetDriversStandingUseCase = GetDriversStandingUseCase()
 ) : ViewModel() {
 
