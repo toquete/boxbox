@@ -1,23 +1,21 @@
 package com.toquete.boxbox.standings.driver.data.repository
 
+import com.toquete.boxbox.standings.driver.data.source.DriverStandingsDataSource
+import com.toquete.boxbox.standings.driver.data.source.remote.DriverStandingsRemoteDataSource
 import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
 import com.toquete.boxbox.standings.driver.domain.repository.DriverStandingsRepository
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
 
-class DriverStandingsRepositoryImpl : DriverStandingsRepository {
+class DriverStandingsRepositoryImpl(
+    private val dataSource: DriverStandingsDataSource = DriverStandingsRemoteDataSource(),
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+) : DriverStandingsRepository {
 
     override fun getDriverStandings(): Flow<List<DriverStanding>> {
-        return flowOf(
-            listOf(
-                DriverStanding(
-                    position = 1,
-                    driver = "Max Verstappen",
-                    nationality = "NED",
-                    car = "Red Bull",
-                    points = 258
-                )
-            )
-        )
+        return dataSource.getDriverStandings()
+            .flowOn(dispatcher)
     }
 }

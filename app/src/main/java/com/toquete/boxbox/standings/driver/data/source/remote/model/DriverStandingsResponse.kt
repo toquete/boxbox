@@ -18,9 +18,9 @@ data class StandingResponse(
     @SerialName("points")
     val points: String,
     @SerialName("Driver")
-    val driver: DriverResponse?,
+    val driver: DriverResponse? = null,
     @SerialName("Constructors")
-    val constructors: List<ConstructorResponse>?,
+    val constructors: List<ConstructorResponse>? = null,
     @SerialName("Constructor")
-    val constructor: ConstructorResponse?
+    val constructor: ConstructorResponse? = null
 )

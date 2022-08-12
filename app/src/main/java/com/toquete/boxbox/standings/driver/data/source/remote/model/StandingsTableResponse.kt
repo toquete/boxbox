@@ -5,12 +5,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class StandingsTableResponse<T>(
-    @SerialName("StandingTable")
+    @SerialName("StandingsTable")
     val standingTable: T
 )
 
 @Serializable
 data class StandingsLists<T>(
-    @SerialName("StandingLists")
+    @SerialName("StandingsLists")
     val standingsLists: List<T>
 )
