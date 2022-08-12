@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.toquete.boxbox.R
-import com.toquete.boxbox.standings.drivers.presentation.DriversStandingScreen
+import com.toquete.boxbox.standings.drivers.presentation.DriverStandingsScreen
 import com.toquete.boxbox.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.ui.theme.primaryLightDark
 
@@ -47,7 +47,7 @@ fun Main() {
                 colorFilter = ColorFilter.tint(MaterialTheme.colors.primaryLightDark)
             )
         }
-        DriversStandingScreen()
+        DriverStandingsScreen()
     }
 }
 

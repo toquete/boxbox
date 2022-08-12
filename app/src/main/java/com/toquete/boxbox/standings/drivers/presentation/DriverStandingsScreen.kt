@@ -21,7 +21,7 @@ import com.toquete.boxbox.standings.drivers.domain.model.DriverStanding
 import com.toquete.boxbox.ui.theme.BoxBoxTheme
 
 @Composable
-fun DriversStandingScreen(viewModel: DriverStandingsViewModel = viewModel()) {
+fun DriverStandingsScreen(viewModel: DriverStandingsViewModel = viewModel()) {
     val state = viewModel.state
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(state.standings) { standing ->
