@@ -4,7 +4,7 @@ import com.toquete.boxbox.standings.drivers.domain.model.DriverStanding
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class GetDriversStandingUseCase {
+class GetDriverStandingsUseCase {
 
     operator fun invoke(): Flow<List<DriverStanding>> {
         return flowOf(
