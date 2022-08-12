@@ -4,24 +4,27 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.toquete.boxbox.standings.drivers.domain.model.DriverStanding
+import androidx.lifecycle.viewModelScope
+import com.toquete.boxbox.standings.drivers.domain.usecase.GetDriversStandingUseCase
+import kotlinx.coroutines.launch
 
-class DriversStandingViewModel : ViewModel() {
+class DriversStandingViewModel(
+    private val getDriversStandingUseCase: GetDriversStandingUseCase = GetDriversStandingUseCase()
+) : ViewModel() {
 
     var state by mutableStateOf(DriversStandingState())
         private set
 
     init {
-        state = state.copy(
-            standings = listOf(
-                DriverStanding(
-                    position = 1,
-                    driver = "Max Verstappen",
-                    nationality = "NED",
-                    car = "Red Bull",
-                    points = 258
-                )
-            )
-        )
+        getDriversStanding()
+    }
+
+    private fun getDriversStanding() {
+        viewModelScope.launch {
+            getDriversStandingUseCase()
+                .collect { standings ->
+                    state = state.copy(standings = standings)
+                }
+        }
     }
 }
