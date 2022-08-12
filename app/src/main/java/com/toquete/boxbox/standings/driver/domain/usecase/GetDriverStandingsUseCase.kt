@@ -1,22 +1,15 @@
 package com.toquete.boxbox.standings.driver.domain.usecase
 
+import com.toquete.boxbox.standings.driver.data.repository.DriverStandingsRepositoryImpl
 import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
+import com.toquete.boxbox.standings.driver.domain.repository.DriverStandingsRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
-class GetDriverStandingsUseCase {
+class GetDriverStandingsUseCase(
+    private val repository: DriverStandingsRepository = DriverStandingsRepositoryImpl()
+) {
 
     operator fun invoke(): Flow<List<DriverStanding>> {
-        return flowOf(
-            listOf(
-                DriverStanding(
-                    position = 1,
-                    driver = "Max Verstappen",
-                    nationality = "NED",
-                    car = "Red Bull",
-                    points = 258
-                )
-            )
-        )
+        return repository.getDriverStandings()
     }
 }
