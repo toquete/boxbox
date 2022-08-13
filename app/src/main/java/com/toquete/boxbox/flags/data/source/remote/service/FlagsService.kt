@@ -1,11 +1,11 @@
 package com.toquete.boxbox.flags.data.source.remote.service
 
 import com.toquete.boxbox.flags.data.source.remote.model.FlagsDataResponse
-import retrofit2.http.Field
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface FlagsService {
 
-    @GET("name/{name}?=fields=demonym,flags")
-    suspend fun getFlagInfoByName(@Field("name") name: String): List<FlagsDataResponse>
+    @GET("demonym/{name}?=fields=demonyms,flags")
+    suspend fun getFlagInfoByName(@Path("name") name: String): List<FlagsDataResponse>
 }
