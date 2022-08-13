@@ -21,10 +21,13 @@ class DriverStandingsViewModel(
 
     private fun getDriverStandings() {
         viewModelScope.launch {
+            state = state.copy(isLoading = true)
             runCatching {
-                val standings = getDriverStandingsUseCase()
-                state = state.copy(standings = standings)
+                getDriverStandingsUseCase()
+            }.onSuccess {
+                state = state.copy(standings = it)
             }
+            state = state.copy(isLoading = false)
         }
     }
 }
