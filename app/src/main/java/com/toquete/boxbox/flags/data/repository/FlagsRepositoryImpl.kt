@@ -6,9 +6,7 @@ import com.toquete.boxbox.flags.domain.model.Flag
 import com.toquete.boxbox.flags.domain.repository.FlagsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 
 class FlagsRepositoryImpl(
     private val dataSource: FlagsDataSource = FlagsRemoteDataSource(),
@@ -17,17 +15,16 @@ class FlagsRepositoryImpl(
 
     private val demonymRange = 0..2
 
-    override fun getFlagByDemonym(demonym: String): Flow<Flag> {
-        return dataSource.getFlagInfoByName(demonym.substring(demonymRange))
-            .map { data ->
-                data.first { it.demonym.englishDemonym.masculine == demonym }
-                    .run {
-                        Flag(
-                            png = flagsResponse.png,
-                            svg = flagsResponse.svg
-                        )
-                    }
-            }
-            .flowOn(dispatcher)
+    override suspend fun getFlagByDemonym(demonym: String) : Flag {
+        return withContext(dispatcher){
+            dataSource.getFlagInfoByName(demonym.substring(demonymRange))
+                .first { it.demonym.englishDemonym.masculine == demonym }
+                .run {
+                    Flag(
+                        png = flagsResponse.png,
+                        svg = flagsResponse.svg
+                    )
+                }
+        }
     }
 }
