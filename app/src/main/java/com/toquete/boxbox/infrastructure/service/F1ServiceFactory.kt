@@ -12,7 +12,7 @@ private const val BASE_URL = "https://ergast.com/api/f1/"
 private const val JSON_MEDIA_TYPE = "application/json"
 
 @OptIn(ExperimentalSerializationApi::class)
-object ServiceFactory {
+object F1ServiceFactory {
 
     private val json = Json { ignoreUnknownKeys = true }
 
