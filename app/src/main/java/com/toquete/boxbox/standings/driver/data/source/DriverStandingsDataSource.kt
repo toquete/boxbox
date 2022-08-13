@@ -1,9 +1,9 @@
 package com.toquete.boxbox.standings.driver.data.source
 
-import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
+import com.toquete.boxbox.standings.driver.data.source.remote.model.DriverStandingsWrapper
 import kotlinx.coroutines.flow.Flow
 
 interface DriverStandingsDataSource {
 
-    fun getDriverStandings(): Flow<List<DriverStanding>>
+    fun getDriverStandings(): Flow<DriverStandingsWrapper>
 }
