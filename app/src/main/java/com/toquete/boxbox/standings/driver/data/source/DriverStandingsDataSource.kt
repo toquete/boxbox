@@ -1,8 +1,8 @@
 package com.toquete.boxbox.standings.driver.data.source
 
-import com.toquete.boxbox.standings.driver.data.source.remote.model.DriverStandingsWrapper
+import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
 
 interface DriverStandingsDataSource {
 
-    suspend fun getDriverStandings(): DriverStandingsWrapper
+    suspend fun getDriverStandings(): List<DriverStanding>
 }
