@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
@@ -21,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.AsyncImage
 import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
 import com.toquete.boxbox.ui.theme.BoxBoxTheme
 
@@ -66,19 +64,10 @@ private fun DriverStandingItem(standing: DriverStanding) {
                 text = standing.driver,
                 style = MaterialTheme.typography.h4
             )
-            Row {
-                AsyncImage(
-                    modifier = Modifier
-                        .size(width = 50.dp, height = 20.dp)
-                        .padding(end = 8.dp),
-                    model = standing.nationality,
-                    contentDescription = null
-                )
-                Text(
-                    text = standing.car,
-                    style = MaterialTheme.typography.subtitle1
-                )
-            }
+            Text(
+                text = standing.car,
+                style = MaterialTheme.typography.subtitle1
+            )
         }
         Text(
             text = standing.points.toString(),
