@@ -5,7 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
 import com.toquete.boxbox.standings.driver.domain.usecase.GetDriverStandingsUseCase
+import com.toquete.boxbox.standings.driver.presentation.model.DriversStandingModel
+import com.toquete.boxbox.standings.driver.presentation.model.Nationality
 import kotlinx.coroutines.launch
 
 class DriverStandingsViewModel(
@@ -24,10 +27,17 @@ class DriverStandingsViewModel(
             state = state.copy(isLoading = true)
             runCatching {
                 getDriverStandingsUseCase()
-            }.onSuccess {
-                state = state.copy(standings = it)
+            }.onSuccess { standings ->
+                state = state.copy(standings = standings.map { it.toModel() })
             }
             state = state.copy(isLoading = false)
         }
+    }
+
+    private fun DriverStanding.toModel(): DriversStandingModel {
+        return DriversStandingModel(
+            standing = this,
+            nationality = Nationality.findByDemonym(nationality)
+        )
     }
 }
