@@ -28,9 +28,11 @@ class DriverStandingsViewModel(
             runCatching {
                 getDriverStandingsUseCase()
             }.onSuccess { standings ->
-                state = state.copy(standings = standings.map { it.toModel() })
+                state = state.copy(
+                    standings = standings.map { it.toModel() },
+                    isLoading = false
+                )
             }
-            state = state.copy(isLoading = false)
         }
     }
 
