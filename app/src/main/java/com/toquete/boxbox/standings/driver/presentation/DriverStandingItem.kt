@@ -39,7 +39,7 @@ fun DriverStandingItem(standing: DriversStandingModel) {
                 .padding(horizontal = 8.dp)
         ) {
             Text(
-                text = standing.standing.driver,
+                text = standing.standing.name,
                 style = MaterialTheme.typography.h4
             )
             Row {
@@ -74,7 +74,8 @@ private fun DriversStandingItemLightPreview() {
             standing = DriversStandingModel(
                 standing = DriverStanding(
                     position = "1",
-                    driver = "Max Verstappen",
+                    name = "Max",
+                    lastName = "Verstappen",
                     nationality = "NED",
                     car = "Red Bull",
                     points = "258"
@@ -94,7 +95,8 @@ private fun DriversStandingItemDarkPreview() {
                 standing = DriversStandingModel(
                     standing = DriverStanding(
                         position = "1",
-                        driver = "Max Verstappen",
+                        name = "Max",
+                        lastName = "Verstappen",
                         nationality = "NED",
                         car = "Red Bull",
                         points = "258"

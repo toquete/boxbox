@@ -55,7 +55,8 @@ private fun DriversStandingContentLightPreview() {
                     DriversStandingModel(
                         standing = DriverStanding(
                             position = "1",
-                            driver = "Max Verstappen",
+                            name = "Max",
+                            lastName = "Verstappen",
                             nationality = "NED",
                             car = "Red Bull",
                             points = "258"
@@ -79,7 +80,8 @@ private fun DriversStandingItemContentPreview() {
                         DriversStandingModel(
                             standing = DriverStanding(
                                 position = "1",
-                                driver = "Max Verstappen",
+                                name = "Max",
+                                lastName = "Verstappen",
                                 nationality = "NED",
                                 car = "Red Bull",
                                 points = "258"

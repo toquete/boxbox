@@ -23,9 +23,10 @@ class DriverStandingsRemoteDataSource(
     private fun StandingResponse.toDriverStanding(): DriverStanding {
         return DriverStanding(
             position = position,
-            driver = "${driver?.givenName} ${driver?.familyName}",
-            nationality = driver?.nationality ?: String(),
-            car = constructors?.first()?.name ?: String(),
+            name = driver?.givenName.orEmpty(),
+            lastName = driver?.familyName.orEmpty(),
+            nationality = driver?.nationality.orEmpty(),
+            car = constructors?.first()?.name.orEmpty(),
             points = points
         )
     }
