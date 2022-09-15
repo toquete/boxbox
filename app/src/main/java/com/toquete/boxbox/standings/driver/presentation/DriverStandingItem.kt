@@ -73,11 +73,11 @@ private fun DriversStandingItemLightPreview() {
         DriverStandingItem(
             standing = DriversStandingModel(
                 standing = DriverStanding(
-                    position = 1,
+                    position = "1",
                     driver = "Max Verstappen",
                     nationality = "NED",
                     car = "Red Bull",
-                    points = 258
+                    points = "258"
                 ),
                 nationality = Nationality.WORLD
             )
@@ -93,11 +93,11 @@ private fun DriversStandingItemDarkPreview() {
             DriverStandingItem(
                 standing = DriversStandingModel(
                     standing = DriverStanding(
-                        position = 1,
+                        position = "1",
                         driver = "Max Verstappen",
                         nationality = "NED",
                         car = "Red Bull",
-                        points = 258
+                        points = "258"
                     ),
                     nationality = Nationality.WORLD
                 )
