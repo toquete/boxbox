@@ -11,12 +11,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.toquete.boxbox.R
 import com.toquete.boxbox.standings.driver.domain.model.DriverStanding
 import com.toquete.boxbox.standings.driver.presentation.model.DriversStandingModel
 import com.toquete.boxbox.standings.driver.presentation.model.Nationality
@@ -30,38 +35,48 @@ fun DriverStandingItem(standing: DriversStandingModel) {
             .padding(8.dp)
     ) {
         Text(
-            text = "#${standing.standing.position}",
-            style = MaterialTheme.typography.h4
+            modifier = Modifier.align(Alignment.CenterVertically),
+            text = standing.standing.position,
+            style = MaterialTheme.typography.h6
+        )
+        Image(
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .size(width = 35.dp, height = 20.dp)
+                .padding(start = 8.dp),
+            contentScale = ContentScale.FillBounds,
+            painter = painterResource(standing.nationality.flagRes),
+            contentDescription = null,
+            colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface)
+                .takeIf { standing.nationality == Nationality.WORLD }
         )
         Column(
             modifier = Modifier
                 .weight(0.8f)
                 .padding(horizontal = 8.dp)
         ) {
-            Text(
-                text = standing.standing.name,
-                style = MaterialTheme.typography.h4
-            )
             Row {
-                Image(
-                    modifier = Modifier
-                        .size(width = 40.dp, height = 20.dp)
-                        .padding(end = 8.dp),
-                    contentScale = ContentScale.FillBounds,
-                    painter = painterResource(standing.nationality.flagRes),
-                    contentDescription = null,
-                    colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface)
-                        .takeIf { standing.nationality == Nationality.WORLD }
+                Text(
+                    text = standing.standing.name,
+                    style = MaterialTheme.typography.h6
                 )
                 Text(
-                    text = standing.standing.car,
-                    style = MaterialTheme.typography.subtitle1
+                    modifier = Modifier.padding(start = 4.dp),
+                    text = standing.standing.lastName,
+                    style = MaterialTheme.typography.h6,
+                    fontWeight = FontWeight.Bold
                 )
             }
+            Text(
+                text = standing.standing.car,
+                style = MaterialTheme.typography.subtitle1
+            )
         }
         Text(
-            text = standing.standing.points.toString(),
-            style = MaterialTheme.typography.h4
+            modifier = Modifier.align(Alignment.CenterVertically),
+            text = standing.standing.points,
+            style = MaterialTheme.typography.h6,
+            fontFamily = FontFamily(Font(R.font.formula_one_wide))
         )
     }
 }
