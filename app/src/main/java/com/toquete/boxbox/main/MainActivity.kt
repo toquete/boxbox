@@ -19,7 +19,9 @@ import com.toquete.boxbox.R
 import com.toquete.boxbox.standings.driver.presentation.DriverStandingsScreen
 import com.toquete.boxbox.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.ui.theme.primaryLightDark
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
