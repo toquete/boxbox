@@ -1,11 +1,11 @@
 package com.toquete.boxbox.infrastructure.di
 
 import com.toquete.boxbox.data.source.remote.service.DriverStandingsService
-import com.toquete.boxbox.data.source.remote.service.ServiceFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
@@ -14,7 +14,9 @@ object ServiceModule {
 
     @Singleton
     @Provides
-    fun providesService(): DriverStandingsService {
-        return ServiceFactory.create(DriverStandingsService::class.java)
+    fun providesDriverStandingsService(
+        retrofit: Retrofit
+    ): DriverStandingsService {
+        return retrofit.create(DriverStandingsService::class.java)
     }
 }
