@@ -9,10 +9,13 @@ import com.toquete.boxbox.domain.model.DriverStanding
 import com.toquete.boxbox.domain.usecase.GetDriverStandingsUseCase
 import com.toquete.boxbox.features.standings.driver.model.DriversStandingModel
 import com.toquete.boxbox.features.standings.driver.model.Nationality
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DriverStandingsViewModel(
-    private val getDriverStandingsUseCase: GetDriverStandingsUseCase = GetDriverStandingsUseCase()
+@HiltViewModel
+class DriverStandingsViewModel @Inject constructor(
+    private val getDriverStandingsUseCase: GetDriverStandingsUseCase
 ) : ViewModel() {
 
     var state by mutableStateOf(DriverStandingsState())

@@ -1,13 +1,13 @@
 package com.toquete.boxbox.data.source.remote
 
-import com.toquete.boxbox.data.source.remote.service.ServiceFactory
 import com.toquete.boxbox.data.source.DriverStandingsDataSource
 import com.toquete.boxbox.data.source.remote.model.StandingResponse
 import com.toquete.boxbox.data.source.remote.service.DriverStandingsService
 import com.toquete.boxbox.domain.model.DriverStanding
+import javax.inject.Inject
 
-class DriverStandingsRemoteDataSource(
-    private val service: DriverStandingsService = ServiceFactory.create(DriverStandingsService::class.java)
+class DriverStandingsRemoteDataSource @Inject constructor(
+    private val service: DriverStandingsService
 ) : DriverStandingsDataSource {
 
     override suspend fun getDriverStandings(): List<DriverStanding> {
