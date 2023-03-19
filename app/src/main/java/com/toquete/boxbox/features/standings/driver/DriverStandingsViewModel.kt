@@ -15,7 +15,7 @@ class DriverStandingsViewModel @Inject constructor(
     private val getDriverStandingsUseCase: GetDriverStandingsUseCase
 ) : ViewModel() {
 
-    var state by mutableStateOf(DriverStandingsState())
+    var state by mutableStateOf<DriverStandingsState>(DriverStandingsState.Loading)
         private set
 
     init {
@@ -24,14 +24,11 @@ class DriverStandingsViewModel @Inject constructor(
 
     private fun getDriverStandings() {
         viewModelScope.launch {
-            state = state.copy(isLoading = true)
+            state = DriverStandingsState.Loading
             runCatching {
                 getDriverStandingsUseCase()
             }.onSuccess { standings ->
-                state = state.copy(
-                    standings = standings,
-                    isLoading = false
-                )
+                state = DriverStandingsState.Success(standings)
             }
         }
     }

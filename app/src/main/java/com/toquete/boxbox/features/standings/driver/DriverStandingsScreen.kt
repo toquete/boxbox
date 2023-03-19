@@ -25,10 +25,13 @@ fun DriverStandingsScreen(viewModel: DriverStandingsViewModel = viewModel()) {
 @Composable
 private fun DriverStandingsContent(state: DriverStandingsState) {
     Box(modifier = Modifier.fillMaxSize()) {
-        if (state.isLoading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-        } else {
-            DriversStandingsList(state.standings)
+        when (state) {
+            DriverStandingsState.Loading -> {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
+            is DriverStandingsState.Success -> {
+                DriversStandingsList(state.standings)
+            }
         }
     }
 }
@@ -48,7 +51,7 @@ private fun DriversStandingsList(list: List<DriverStanding>) {
 private fun DriversStandingContentLightPreview() {
     BoxBoxTheme {
         DriverStandingsContent(
-            state = DriverStandingsState(
+            state = DriverStandingsState.Success(
                 standings = listOf(
                     DriverStanding(
                         position = "1",
@@ -70,7 +73,7 @@ private fun DriversStandingItemContentPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colors.background) {
             DriverStandingsContent(
-                state = DriverStandingsState(
+                state = DriverStandingsState.Success(
                     standings = listOf(
                         DriverStanding(
                             position = "1",
