@@ -1,12 +1,12 @@
 package com.toquete.boxbox.features.standings.driver
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.domain.usecase.GetDriverStandingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,8 +15,8 @@ class DriverStandingsViewModel @Inject constructor(
     private val getDriverStandingsUseCase: GetDriverStandingsUseCase
 ) : ViewModel() {
 
-    var state by mutableStateOf<DriverStandingsState>(DriverStandingsState.Loading)
-        private set
+    private val _newState = MutableStateFlow<DriverStandingsState>(DriverStandingsState.Loading)
+    val newState = _newState.asStateFlow()
 
     init {
         getDriverStandings()
@@ -24,11 +24,11 @@ class DriverStandingsViewModel @Inject constructor(
 
     private fun getDriverStandings() {
         viewModelScope.launch {
-            state = DriverStandingsState.Loading
+            _newState.update { DriverStandingsState.Loading }
             runCatching {
                 getDriverStandingsUseCase()
             }.onSuccess { standings ->
-                state = DriverStandingsState.Success(standings)
+                _newState.update { DriverStandingsState.Success(standings) }
             }
         }
     }
