@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
 private const val JSON_MEDIA_TYPE = "application/json"
@@ -25,8 +26,12 @@ object NetworkModule {
     fun providesNetworkInterceptorOkHttpClient(
         networkConnectionInterceptor: NetworkConnectionInterceptor
     ): OkHttpClient {
+        val logging = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
         return OkHttpClient.Builder()
             .addInterceptor(networkConnectionInterceptor)
+            .addInterceptor(logging)
             .build()
     }
 
