@@ -5,10 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.domain.model.DriverStanding
 import com.toquete.boxbox.domain.usecase.GetDriverStandingsUseCase
-import com.toquete.boxbox.features.standings.driver.model.DriversStandingModel
-import com.toquete.boxbox.features.standings.driver.model.Nationality
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,17 +29,10 @@ class DriverStandingsViewModel @Inject constructor(
                 getDriverStandingsUseCase()
             }.onSuccess { standings ->
                 state = state.copy(
-                    standings = standings.map { it.toModel() },
+                    standings = standings,
                     isLoading = false
                 )
             }
         }
-    }
-
-    private fun DriverStanding.toModel(): DriversStandingModel {
-        return DriversStandingModel(
-            standing = this,
-            nationality = Nationality.findByDemonym(nationality)
-        )
     }
 }

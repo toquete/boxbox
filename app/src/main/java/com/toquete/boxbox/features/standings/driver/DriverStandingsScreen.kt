@@ -15,8 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.domain.model.DriverStanding
-import com.toquete.boxbox.features.standings.driver.model.DriversStandingModel
-import com.toquete.boxbox.features.standings.driver.model.Nationality
 import com.toquete.boxbox.ui.theme.BoxBoxTheme
 
 @Composable
@@ -36,7 +34,7 @@ private fun DriverStandingsContent(state: DriverStandingsState) {
 }
 
 @Composable
-private fun DriversStandingsList(list: List<DriversStandingModel>) {
+private fun DriversStandingsList(list: List<DriverStanding>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(list) { standing ->
             DriverStandingItem(standing)
@@ -52,16 +50,13 @@ private fun DriversStandingContentLightPreview() {
         DriverStandingsContent(
             state = DriverStandingsState(
                 standings = listOf(
-                    DriversStandingModel(
-                        standing = DriverStanding(
-                            position = "1",
-                            name = "Max",
-                            lastName = "Verstappen",
-                            nationality = "NED",
-                            car = "Red Bull",
-                            points = "258"
-                        ),
-                        nationality = Nationality.WORLD
+                    DriverStanding(
+                        position = "1",
+                        name = "Max",
+                        lastName = "Verstappen",
+                        nationality = "NED",
+                        car = "Red Bull",
+                        points = "258"
                     )
                 )
             )
@@ -77,16 +72,13 @@ private fun DriversStandingItemContentPreview() {
             DriverStandingsContent(
                 state = DriverStandingsState(
                     standings = listOf(
-                        DriversStandingModel(
-                            standing = DriverStanding(
-                                position = "1",
-                                name = "Max",
-                                lastName = "Verstappen",
-                                nationality = "NED",
-                                car = "Red Bull",
-                                points = "258"
-                            ),
-                            nationality = Nationality.WORLD
+                        DriverStanding(
+                            position = "1",
+                            name = "Max",
+                            lastName = "Verstappen",
+                            nationality = "NED",
+                            car = "Red Bull",
+                            points = "258"
                         )
                     )
                 )

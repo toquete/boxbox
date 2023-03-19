@@ -1,8 +1,8 @@
 package com.toquete.boxbox.features.standings.driver
 
-import com.toquete.boxbox.features.standings.driver.model.DriversStandingModel
+import com.toquete.boxbox.domain.model.DriverStanding
 
 data class DriverStandingsState(
     val isLoading: Boolean = false,
-    val standings: List<DriversStandingModel> = emptyList()
+    val standings: List<DriverStanding> = emptyList()
 )
