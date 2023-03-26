@@ -38,5 +38,9 @@ gradlePlugin {
             id = "boxbox.android.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
+        register("androidRemoteData") {
+            id = "boxbox.android.remote"
+            implementationClass = "AndroidRemoteDataConventionPlugin"
+        }
     }
 }
