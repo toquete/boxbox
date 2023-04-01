@@ -1,9 +1,7 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
     id("boxbox.android.hilt")
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
