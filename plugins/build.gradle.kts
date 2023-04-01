@@ -42,5 +42,9 @@ gradlePlugin {
             id = "boxbox.android.remote"
             implementationClass = "AndroidRemoteDataConventionPlugin"
         }
+        register("androidRoom") {
+            id = "boxbox.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
+        }
     }
 }

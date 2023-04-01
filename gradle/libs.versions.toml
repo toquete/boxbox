@@ -22,6 +22,7 @@ junit-ext = "1.1.5"
 espresso = "3.5.1"
 desugar-jdk-libs = "1.2.2"
 koltinx-datetime = "0.4.0"
+room = "2.4.1"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -50,7 +51,10 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore-preferences"}
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref= "koltinx-datetime" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "koltinx-datetime" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compile", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
