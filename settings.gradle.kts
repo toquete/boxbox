@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "BoxBox"
 include(":app")
 include(":core:model")
+include(":data:driverstandings")
