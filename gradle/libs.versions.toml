@@ -20,6 +20,8 @@ coil = "2.1.0"
 junit = "4.13.2"
 junit-ext = "1.1.5"
 espresso = "3.5.1"
+desugar-jdk-libs = "1.2.2"
+koltinx-datetime = "0.4.0"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -47,6 +49,8 @@ junit-compose = { module = "androidx.compose.ui:ui-test-junit4" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore-preferences"}
+desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref= "koltinx-datetime" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }

@@ -3,7 +3,10 @@ package com.toquete.boxbox.plugins
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.ExtensionAware
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 /**
@@ -35,6 +38,13 @@ internal fun Project.configureKotlinAndroid(
 
             // Set JVM target to 11
             jvmTarget = JavaVersion.VERSION_11.toString()
+        }
+
+        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
+        dependencies {
+            add("coreLibraryDesugaring", libs.findLibrary("desugar.jdk.libs").get())
+            add("implementation", libs.findLibrary("kotlinx.datetime").get())
         }
     }
 }
