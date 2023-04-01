@@ -22,29 +22,29 @@ espresso = "3.5.1"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom"}
-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-ui" }
-compose-material = { module = "androidx.compose.material:material", version.ref = "compose-material" }
-compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-ui" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-material = { module = "androidx.compose.material:material" }
+compose-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity"}
-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit"}
-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization"}
-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp"}
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serialization-converter"}
-coil = { module = "io.coil-kt:coil", version.ref = "coil"}
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil"}
-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt"}
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt"}
-junit = { module = "junit:junit", version.ref = "junit"}
-junit-ext = { module = "androidx.test.ext:junit", version.ref = "junit-ext"}
-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso"}
-junit-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose-ui"}
-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-ui"}
-compose-ui-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose-ui"}
+serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serialization-converter" }
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+junit = { module = "junit:junit", version.ref = "junit" }
+junit-ext = { module = "androidx.test.ext:junit", version.ref = "junit-ext" }
+espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+junit-compose = { module = "androidx.compose.ui:ui-test-junit4" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-ui-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }

@@ -24,6 +24,10 @@ internal fun Project.configureAndroidCompose(
             val bom = libs.findLibrary("compose.bom").get()
             add("implementation", platform(bom))
             add("androidTestImplementation", platform(bom))
+
+            add("implementation", libs.findLibrary("compose.material").get())
+            add("implementation", libs.findLibrary("compose.preview").get())
+            add("debugImplementation", libs.findLibrary("compose.ui.manifest").get())
         }
     }
 }
