@@ -9,6 +9,7 @@ import com.toquete.boxbox.core.ui.R
 val FormulaOne = FontFamily(
     Font(R.font.formula_one_regular),
     Font(R.font.formula_one_bold, FontWeight.Bold),
+    Font(R.font.formula_one_wide, FontWeight.Medium)
 )
 
 // Set of Material typography styles to start with
