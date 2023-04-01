@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.toquete.boxbox.domain.model.DriverStanding
+import com.toquete.boxbox.model.DriverStanding
 import com.toquete.boxbox.ui.theme.BoxBoxTheme
 
 @Composable

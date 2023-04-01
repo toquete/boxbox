@@ -1,6 +1,6 @@
 package com.toquete.boxbox.features.standings.driver
 
-import com.toquete.boxbox.domain.model.DriverStanding
+import com.toquete.boxbox.model.DriverStanding
 
 sealed interface DriverStandingsState {
     object Loading : DriverStandingsState

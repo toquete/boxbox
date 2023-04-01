@@ -24,6 +24,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:model"))
+    implementation(project(":data:driverstandings"))
     implementation(libs.core.ktx)
     implementation(libs.bundles.compose)
     implementation(libs.compose.material)

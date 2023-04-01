@@ -1,7 +1,7 @@
 package com.toquete.boxbox.domain.usecase
 
-import com.toquete.boxbox.domain.model.DriverStanding
-import com.toquete.boxbox.domain.repository.DriverStandingsRepository
+import com.toquete.boxbox.model.DriverStanding
+import com.toquete.boxox.data.driverstandings.repository.DriverStandingsRepository
 import javax.inject.Inject
 
 class GetDriverStandingsUseCase @Inject constructor(

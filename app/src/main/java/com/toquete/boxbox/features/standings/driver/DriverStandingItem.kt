@@ -17,7 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toquete.boxbox.R
-import com.toquete.boxbox.domain.model.DriverStanding
+import com.toquete.boxbox.model.DriverStanding
 import com.toquete.boxbox.ui.theme.BoxBoxTheme
 
 @Composable
