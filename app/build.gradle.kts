@@ -24,21 +24,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:model"))
-    implementation(project(":domain:driverstandings"))
+    implementation(project(":core:ui"))
+    implementation(project(":feature:driverstandings"))
     implementation(libs.core.ktx)
-    implementation(libs.bundles.compose)
-    implementation(libs.compose.material)
-    implementation(libs.compose.preview)
-    implementation(libs.bundles.lifecycle)
-
-    implementation(libs.bundles.retrofit)
-    implementation(libs.bundles.coil)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.junit.ext)
-    androidTestImplementation(libs.espresso)
-    androidTestImplementation(libs.junit.compose)
-    debugImplementation(libs.compose.ui.tooling)
-    debugImplementation(libs.compose.ui.manifest)
+    implementation(libs.activity.compose)
 }

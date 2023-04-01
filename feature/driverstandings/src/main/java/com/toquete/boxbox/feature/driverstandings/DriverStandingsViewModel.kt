@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DriverStandingsViewModel @Inject constructor(
+internal class DriverStandingsViewModel @Inject constructor(
     private val getDriverStandingsUseCase: GetDriverStandingsUseCase
 ) : ViewModel() {
 

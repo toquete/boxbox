@@ -1,4 +1,4 @@
-package com.toquete.boxbox.infrastructure.di
+package com.toquete.boxbox.di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

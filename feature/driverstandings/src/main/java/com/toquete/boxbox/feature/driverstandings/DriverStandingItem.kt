@@ -37,7 +37,8 @@ fun DriverStandingItem(standing: DriverStanding) {
             Row {
                 Text(
                     text = standing.name,
-                    style = MaterialTheme.typography.h6
+                    style = MaterialTheme.typography.h6,
+                    fontWeight = FontWeight.Normal
                 )
                 Text(
                     modifier = Modifier.padding(start = 4.dp),

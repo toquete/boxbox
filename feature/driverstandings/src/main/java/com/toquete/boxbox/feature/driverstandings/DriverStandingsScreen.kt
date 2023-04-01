@@ -20,7 +20,8 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.model.DriverStanding
 
 @Composable
-fun DriverStandingsScreen(viewModel: DriverStandingsViewModel = viewModel()) {
+fun DriverStandingsScreen() {
+    val viewModel: DriverStandingsViewModel = viewModel()
     val state by viewModel.newState.collectAsStateWithLifecycle()
     DriverStandingsContent(state)
 }

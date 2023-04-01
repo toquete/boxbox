@@ -1,4 +1,4 @@
-package com.toquete.boxbox.features.main
+package com.toquete.boxbox
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
@@ -15,10 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.toquete.boxbox.R
-import com.toquete.boxbox.features.standings.driver.DriverStandingsScreen
-import com.toquete.boxbox.ui.theme.BoxBoxTheme
-import com.toquete.boxbox.ui.theme.primaryLightDark
+import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.core.ui.theme.primaryLightDark
+import com.toquete.boxbox.feature.driverstandings.DriverStandingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
