@@ -3,13 +3,11 @@ package com.toquete.boxbox.preferences.repository
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
-import com.toquete.boxbox.preferences.PreferencesKeys
+import com.toquete.boxbox.preferences.PreferencesKeys.DRIVER_STANDINGS_LAST_UPDATED_TIME
 import com.toquete.boxbox.preferences.model.UserPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
-import kotlinx.datetime.toInstant
 import javax.inject.Inject
 
 internal class UserPreferencesRepositoryImpl @Inject constructor(
@@ -17,17 +15,17 @@ internal class UserPreferencesRepositoryImpl @Inject constructor(
 ) : UserPreferencesRepository {
 
     override val userPreferences: Flow<UserPreferences> = dataStore.data.map { preferences ->
-        val driverStandingsLastUpdatedTime =
-            preferences[PreferencesKeys.DRIVER_STANDINGS_LAST_UPDATED_TIME] ?: Clock.System.now().toString()
+        val driverStandingsLastUpdatedTime = preferences[DRIVER_STANDINGS_LAST_UPDATED_TIME]
+            ?: Clock.System.now().toEpochMilliseconds()
 
         UserPreferences(
-            driverStandingsLastUpdatedTime = driverStandingsLastUpdatedTime.toInstant()
+            driverStandingsLastUpdatedTime = driverStandingsLastUpdatedTime
         )
     }
 
-    override suspend fun setDriverStandingsLastUpdatedTime(time: Instant) {
+    override suspend fun setDriverStandingsLastUpdatedTime(time: Long) {
         dataStore.edit { preferences ->
-            preferences[PreferencesKeys.DRIVER_STANDINGS_LAST_UPDATED_TIME] = time.toString()
+            preferences[DRIVER_STANDINGS_LAST_UPDATED_TIME] = time
         }
     }
 }
