@@ -27,7 +27,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("core.ktx").get())
                 add("implementation", libs.findBundle("compose").get())
                 add("implementation", libs.findBundle("coil").get())
-                add("implementation", libs.findBundle("lifecycle").get())
 
                 add("testImplementation", kotlin("test"))
                 add("testImplementation", libs.findLibrary("junit").get())

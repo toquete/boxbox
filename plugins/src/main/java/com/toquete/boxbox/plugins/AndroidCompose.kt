@@ -25,6 +25,7 @@ internal fun Project.configureAndroidCompose(
             add("implementation", platform(bom))
             add("androidTestImplementation", platform(bom))
 
+            add("implementation", libs.findBundle("lifecycle").get())
             add("implementation", libs.findBundle("accompanist").get())
             add("implementation", libs.findLibrary("compose.material3").get())
             add("implementation", libs.findLibrary("compose.preview").get())
