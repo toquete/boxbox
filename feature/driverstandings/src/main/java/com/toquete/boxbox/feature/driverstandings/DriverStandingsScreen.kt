@@ -2,9 +2,7 @@ package com.toquete.boxbox.feature.driverstandings
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
@@ -22,21 +20,17 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.model.DriverStanding
 
 @Composable
-fun DriverStandingsScreen(paddingValues: PaddingValues) {
+fun DriverStandingsScreen() {
     val viewModel: DriverStandingsViewModel = viewModel()
     val state by viewModel.newState.collectAsStateWithLifecycle()
-    DriverStandingsContent(state, paddingValues)
+    DriverStandingsContent(state)
 }
 
 @Composable
-private fun DriverStandingsContent(
-    state: DriverStandingsState,
-    paddingValues: PaddingValues = PaddingValues()
-) {
+private fun DriverStandingsContent(state: DriverStandingsState) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(paddingValues)
     ) {
         when (state) {
             DriverStandingsState.Loading -> {

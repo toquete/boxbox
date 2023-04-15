@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -14,16 +16,18 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -63,20 +67,26 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Main()
+                    MainScreen()
                 }
             }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Main(viewModel: MainViewModel = viewModel()) {
+fun MainScreen(viewModel: MainViewModel = viewModel()) {
     val isOnline by viewModel.isOnline.collectAsStateWithLifecycle()
+    MainScreenContent(isOnline)
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun MainScreenContent(isOnline: Boolean) {
     val snackbarHostState = remember { SnackbarHostState() }
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     val notConnectedMessage = stringResource(R.string.not_connected)
+    var selectedTabIndex by remember { mutableStateOf(0) }
+    val tabTitles = listOf("Drivers", "Teams")
 
     LaunchedEffect(isOnline) {
         if (!isOnline) {
@@ -88,11 +98,9 @@ fun Main(viewModel: MainViewModel = viewModel()) {
     }
 
     Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             CenterAlignedTopAppBar(
-                scrollBehavior = scrollBehavior,
                 title = {
                     Text(
                         text = stringResource(R.string.app_name),
@@ -104,7 +112,18 @@ fun Main(viewModel: MainViewModel = viewModel()) {
             )
         },
         content = { paddingValues ->
-            DriverStandingsScreen(paddingValues)
+            Column(modifier = Modifier.padding(paddingValues)) {
+                TabRow(selectedTabIndex = selectedTabIndex) {
+                    tabTitles.forEachIndexed { index, title ->
+                        Tab(
+                            selected = selectedTabIndex == index,
+                            onClick = { selectedTabIndex = index },
+                            text = { Text(title) }
+                        )
+                    }
+                }
+                DriverStandingsScreen()
+            }
         }
     )
 }
@@ -113,7 +132,7 @@ fun Main(viewModel: MainViewModel = viewModel()) {
 @Composable
 fun MainLightPreview() {
     BoxBoxTheme {
-        Main()
+        MainScreenContent(isOnline = true)
     }
 }
 
@@ -122,7 +141,7 @@ fun MainLightPreview() {
 fun MainDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            Main()
+            MainScreenContent(isOnline = true)
         }
     }
 }
