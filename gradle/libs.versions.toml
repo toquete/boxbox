@@ -5,7 +5,6 @@ kotlin-jvm = "1.8.0"
 hilt = "2.44.2"
 compose = "1.4.3"
 compose-ui = "1.3.3"
-compose-material = "1.3.1"
 compose-compiler = "1.4.3"
 compose-bom = "2023.01.00"
 core-ktx = "1.9.0"
@@ -28,7 +27,6 @@ room = "2.4.1"
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 compose-ui = { module = "androidx.compose.ui:ui" }
-compose-material = { module = "androidx.compose.material:material" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
@@ -61,7 +59,7 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [bundles]
-compose = ["compose-ui", "compose-material", "compose-preview", "activity-compose"]
+compose = ["compose-ui", "compose-preview", "activity-compose"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-runtime-compose"]
 retrofit = ["retrofit", "serialization", "okhttp", "serialization-converter", "logging"]
 coil = ["coil", "coil-compose"]
