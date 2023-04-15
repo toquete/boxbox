@@ -5,7 +5,7 @@ import com.toquete.boxbox.network.BoxBoxService
 import com.toquete.boxbox.network.model.toConstructorStanding
 import javax.inject.Inject
 
-class ConstructorStandingsRemoteDataSourceImpl @Inject constructor(
+internal class ConstructorStandingsRemoteDataSourceImpl @Inject constructor(
     private val service: BoxBoxService
 ) : ConstructorStandingsRemoteDataSource {
 
