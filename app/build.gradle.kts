@@ -26,4 +26,5 @@ dependencies {
     implementation(project(":feature:driverstandings"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
+    implementation(libs.splashscreen)
 }
