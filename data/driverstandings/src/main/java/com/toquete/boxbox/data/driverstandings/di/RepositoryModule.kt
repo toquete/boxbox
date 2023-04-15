@@ -1,7 +1,7 @@
-package com.toquete.boxox.data.driverstandings.di
+package com.toquete.boxbox.data.driverstandings.di
 
-import com.toquete.boxox.data.driverstandings.repository.DriverStandingsRepository
-import com.toquete.boxox.data.driverstandings.repository.DriverStandingsRepositoryImpl
+import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
+import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

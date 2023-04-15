@@ -1,4 +1,4 @@
-package com.toquete.boxox.data.driverstandings.source.local
+package com.toquete.boxbox.data.driverstandings.source.local
 
 import com.toquete.boxbox.database.dao.DriverStandingDao
 import com.toquete.boxbox.database.model.asDomain

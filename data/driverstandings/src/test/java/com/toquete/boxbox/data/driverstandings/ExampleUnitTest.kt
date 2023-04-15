@@ -1,4 +1,4 @@
-package com.toquete.boxox.data.driverstandings
+package com.toquete.boxbox.data.driverstandings
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

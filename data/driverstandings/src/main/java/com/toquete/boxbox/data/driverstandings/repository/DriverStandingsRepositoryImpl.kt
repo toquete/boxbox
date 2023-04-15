@@ -1,9 +1,9 @@
-package com.toquete.boxox.data.driverstandings.repository
+package com.toquete.boxbox.data.driverstandings.repository
 
+import com.toquete.boxbox.data.driverstandings.source.local.DriverStandingsLocalDataSource
+import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
 import com.toquete.boxbox.model.DriverStanding
 import com.toquete.boxbox.preferences.repository.UserPreferencesRepository
-import com.toquete.boxox.data.driverstandings.source.local.DriverStandingsLocalDataSource
-import com.toquete.boxox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.datetime.Clock
 import javax.inject.Inject

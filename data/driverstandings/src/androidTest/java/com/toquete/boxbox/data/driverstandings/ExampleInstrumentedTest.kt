@@ -1,4 +1,4 @@
-package com.toquete.boxox.data.driverstandings
+package com.toquete.boxbox.data.driverstandings
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
