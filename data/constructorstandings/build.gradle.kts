@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.data.driverstandings"
+    namespace = "com.toquete.boxbox.data.constructorstandings"
 }
 
 dependencies {
