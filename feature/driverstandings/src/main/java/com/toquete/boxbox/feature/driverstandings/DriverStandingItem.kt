@@ -34,7 +34,7 @@ fun DriverStandingItem(standing: DriverStanding) {
                 .weight(0.8f)
                 .padding(horizontal = 8.dp)
         ) {
-            Row {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = standing.name,
                     style = MaterialTheme.typography.titleLarge,
