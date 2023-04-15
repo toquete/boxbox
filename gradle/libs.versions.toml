@@ -22,6 +22,7 @@ espresso = "3.5.1"
 desugar-jdk-libs = "1.2.2"
 koltinx-datetime = "0.4.0"
 room = "2.4.1"
+accompanist = "0.31.0-alpha"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -54,6 +55,7 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist"}
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -63,6 +65,7 @@ compose = ["compose-ui", "compose-preview", "activity-compose"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-runtime-compose"]
 retrofit = ["retrofit", "serialization", "okhttp", "serialization-converter", "logging"]
 coil = ["coil", "coil-compose"]
+accompanist = ["accompanist-systemuicontroller"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
