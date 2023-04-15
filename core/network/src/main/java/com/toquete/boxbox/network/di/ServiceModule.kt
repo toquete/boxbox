@@ -1,6 +1,6 @@
 package com.toquete.boxbox.network.di
 
-import com.toquete.boxbox.network.DriverStandingsService
+import com.toquete.boxbox.network.BoxBoxService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,9 +14,9 @@ internal object ServiceModule {
 
     @Singleton
     @Provides
-    fun providesDriverStandingsService(
+    fun providesBoxBoxService(
         retrofit: Retrofit
-    ): DriverStandingsService {
-        return retrofit.create(DriverStandingsService::class.java)
+    ): BoxBoxService {
+        return retrofit.create(BoxBoxService::class.java)
     }
 }

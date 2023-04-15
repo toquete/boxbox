@@ -4,7 +4,7 @@ import com.toquete.boxbox.network.model.ConstructorStandingsWrapper
 import com.toquete.boxbox.network.model.DriverStandingsWrapper
 import retrofit2.http.GET
 
-interface DriverStandingsService {
+interface BoxBoxService {
 
     @GET("current/driverStandings.json")
     suspend fun getDriverStandings(): DriverStandingsWrapper

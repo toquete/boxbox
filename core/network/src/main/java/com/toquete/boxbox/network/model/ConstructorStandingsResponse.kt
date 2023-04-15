@@ -8,5 +8,5 @@ typealias ConstructorStandingsWrapper = DataResponse<StandingsTableResponse<Stan
 @Serializable
 data class ConstructorStandingsResponse(
     @SerialName("ConstructorStandings")
-    val constructorStandings: List<ConstructorResponse>
+    val constructorStandings: List<StandingResponse>
 )
