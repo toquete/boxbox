@@ -1,7 +1,6 @@
 package com.toquete.boxbox.network.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.toquete.boxbox.network.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,23 +20,19 @@ internal object NetworkModule {
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    @NetworkInterceptorOkHttpClient
     @Provides
-    fun providesNetworkInterceptorOkHttpClient(
-        networkConnectionInterceptor: NetworkConnectionInterceptor
-    ): OkHttpClient {
+    fun providesOkHttpClient(): OkHttpClient {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
         return OkHttpClient.Builder()
-            .addInterceptor(networkConnectionInterceptor)
             .addInterceptor(logging)
             .build()
     }
 
     @Provides
     fun providesRetrofit(
-        @NetworkInterceptorOkHttpClient okHttpClient: OkHttpClient
+        okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
