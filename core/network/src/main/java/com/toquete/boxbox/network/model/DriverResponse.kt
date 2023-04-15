@@ -1,10 +1,10 @@
-package com.toquete.boxox.data.driverstandings.source.remote.model
+package com.toquete.boxbox.network.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class DriverResponse(
+data class DriverResponse(
     @SerialName("givenName")
     val givenName: String,
     @SerialName("familyName")

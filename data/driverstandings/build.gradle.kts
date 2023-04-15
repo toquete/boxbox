@@ -1,7 +1,6 @@
 plugins {
     id("boxbox.android.library")
     id("boxbox.android.hilt")
-    id("boxbox.android.remote")
 }
 
 android {
@@ -12,4 +11,5 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:database"))
     implementation(project(":core:preferences"))
+    implementation(project(":core:network"))
 }

@@ -1,7 +1,7 @@
-package com.toquete.boxox.data.driverstandings.di
+package com.toquete.boxbox.network.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.toquete.boxox.data.driverstandings.source.remote.network.NetworkConnectionInterceptor
+import com.toquete.boxbox.network.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

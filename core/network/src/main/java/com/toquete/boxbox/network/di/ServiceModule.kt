@@ -1,6 +1,6 @@
-package com.toquete.boxox.data.driverstandings.di
+package com.toquete.boxbox.network.di
 
-import com.toquete.boxox.data.driverstandings.source.remote.service.DriverStandingsService
+import com.toquete.boxbox.network.DriverStandingsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

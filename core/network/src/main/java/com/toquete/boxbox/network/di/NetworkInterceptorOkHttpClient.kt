@@ -1,4 +1,4 @@
-package com.toquete.boxox.data.driverstandings.di
+package com.toquete.boxbox.network.di
 
 import javax.inject.Qualifier
 

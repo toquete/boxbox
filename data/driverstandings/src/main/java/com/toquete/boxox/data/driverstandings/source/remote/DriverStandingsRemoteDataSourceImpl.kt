@@ -1,8 +1,8 @@
 package com.toquete.boxox.data.driverstandings.source.remote
 
 import com.toquete.boxbox.model.DriverStanding
-import com.toquete.boxox.data.driverstandings.source.remote.model.StandingResponse
-import com.toquete.boxox.data.driverstandings.source.remote.service.DriverStandingsService
+import com.toquete.boxbox.network.DriverStandingsService
+import com.toquete.boxbox.network.model.StandingResponse
 import javax.inject.Inject
 
 internal class DriverStandingsRemoteDataSourceImpl @Inject constructor(

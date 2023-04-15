@@ -1,4 +1,4 @@
-package com.toquete.boxox.data.driverstandings.source.remote.network
+package com.toquete.boxbox.network
 
 import java.io.IOException
 
