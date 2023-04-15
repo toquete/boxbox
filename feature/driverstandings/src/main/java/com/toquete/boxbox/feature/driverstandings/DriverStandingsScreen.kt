@@ -2,13 +2,15 @@ package com.toquete.boxbox.feature.driverstandings
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -20,15 +22,22 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.model.DriverStanding
 
 @Composable
-fun DriverStandingsScreen() {
+fun DriverStandingsScreen(paddingValues: PaddingValues) {
     val viewModel: DriverStandingsViewModel = viewModel()
     val state by viewModel.newState.collectAsStateWithLifecycle()
-    DriverStandingsContent(state)
+    DriverStandingsContent(state, paddingValues)
 }
 
 @Composable
-private fun DriverStandingsContent(state: DriverStandingsState) {
-    Box(modifier = Modifier.fillMaxSize()) {
+private fun DriverStandingsContent(
+    state: DriverStandingsState,
+    paddingValues: PaddingValues = PaddingValues()
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+    ) {
         when (state) {
             DriverStandingsState.Loading -> {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
@@ -75,7 +84,7 @@ private fun DriversStandingContentLightPreview() {
 @Composable
 private fun DriversStandingItemContentPreview() {
     BoxBoxTheme {
-        Surface(color = MaterialTheme.colors.background) {
+        Surface(color = MaterialTheme.colorScheme.background) {
             DriverStandingsContent(
                 state = DriverStandingsState.Success(
                     standings = listOf(

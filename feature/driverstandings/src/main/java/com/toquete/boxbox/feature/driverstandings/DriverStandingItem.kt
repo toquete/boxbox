@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,7 +27,7 @@ fun DriverStandingItem(standing: DriverStanding) {
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
             text = standing.position,
-            style = MaterialTheme.typography.h6
+            style = MaterialTheme.typography.titleLarge
         )
         Column(
             modifier = Modifier
@@ -37,25 +37,25 @@ fun DriverStandingItem(standing: DriverStanding) {
             Row {
                 Text(
                     text = standing.name,
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Normal
                 )
                 Text(
                     modifier = Modifier.padding(start = 4.dp),
                     text = standing.lastName,
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             }
             Text(
                 text = standing.car,
-                style = MaterialTheme.typography.subtitle1
+                style = MaterialTheme.typography.titleMedium
             )
         }
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
             text = standing.points,
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Medium
         )
     }
@@ -82,7 +82,7 @@ private fun DriversStandingItemLightPreview() {
 @Composable
 private fun DriversStandingItemDarkPreview() {
     BoxBoxTheme {
-        Surface(color = MaterialTheme.colors.background) {
+        Surface(color = MaterialTheme.colorScheme.background) {
             DriverStandingItem(
                 standing = DriverStanding(
                     position = "1",
