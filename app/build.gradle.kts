@@ -24,6 +24,7 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":feature:driverstandings"))
+    implementation(project(":feature:constructorstandings"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)

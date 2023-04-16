@@ -17,7 +17,7 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.model.ConstructorStanding
 
 @Composable
-fun ConstructorStandingItem(standing: ConstructorStanding) {
+internal fun ConstructorStandingItem(standing: ConstructorStanding) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
