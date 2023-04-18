@@ -1,5 +1,6 @@
 package com.toquete.boxbox.database.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.toquete.boxbox.model.DriverStanding
@@ -9,7 +10,9 @@ data class DriverStandingEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val position: Int,
-    val name: String,
+    @ColumnInfo(name = "first_name")
+    val firstName: String,
+    @ColumnInfo(name = "last_name")
     val lastName: String,
     val nationality: String,
     val car: String,
@@ -19,7 +22,7 @@ data class DriverStandingEntity(
 fun DriverStandingEntity.asDomain(): DriverStanding {
     return DriverStanding(
         position = position.toString(),
-        name = name,
+        name = firstName,
         lastName = lastName,
         nationality = nationality,
         car = car,
@@ -30,7 +33,7 @@ fun DriverStandingEntity.asDomain(): DriverStanding {
 fun DriverStanding.asEntity(): DriverStandingEntity {
     return DriverStandingEntity(
         position = position.toInt(),
-        name = name,
+        firstName = name,
         lastName = lastName,
         nationality = nationality,
         car = car,
