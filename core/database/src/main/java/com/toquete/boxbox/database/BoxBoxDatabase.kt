@@ -2,11 +2,26 @@ package com.toquete.boxbox.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.toquete.boxbox.database.dao.ConstructorDao
+import com.toquete.boxbox.database.dao.DriverDao
 import com.toquete.boxbox.database.dao.DriverStandingDao
+import com.toquete.boxbox.database.model.ConstructorEntity
+import com.toquete.boxbox.database.model.DriverEntity
 import com.toquete.boxbox.database.model.DriverStandingEntity
 
-@Database(entities = [DriverStandingEntity::class], version = 1)
+@Database(
+    entities = [
+        DriverStandingEntity::class,
+        DriverEntity::class,
+        ConstructorEntity::class
+    ],
+    version = 1
+)
 internal abstract class BoxBoxDatabase : RoomDatabase() {
 
     abstract fun driverStandingDao(): DriverStandingDao
+
+    abstract fun driverDao(): DriverDao
+
+    abstract fun constructorDao(): ConstructorDao
 }
