@@ -19,10 +19,8 @@ internal object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): BoxBoxDatabase {
-        return Room.databaseBuilder(
-            context,
-            BoxBoxDatabase::class.java,
-            DATABASE
-        ).build()
+        return Room.databaseBuilder(context, BoxBoxDatabase::class.java, DATABASE)
+            .createFromAsset("database/boxbox.db")
+            .build()
     }
 }
