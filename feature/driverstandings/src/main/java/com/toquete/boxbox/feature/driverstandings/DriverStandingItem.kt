@@ -15,6 +15,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.model.Constructor
+import com.toquete.boxbox.model.Driver
 import com.toquete.boxbox.model.DriverStanding
 
 @Composable
@@ -26,7 +28,7 @@ fun DriverStandingItem(standing: DriverStanding) {
     ) {
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
-            text = standing.position,
+            text = standing.position.toString(),
             style = MaterialTheme.typography.titleLarge
         )
         Column(
@@ -36,19 +38,19 @@ fun DriverStandingItem(standing: DriverStanding) {
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = standing.name,
+                    text = standing.driver.firstName,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Normal
                 )
                 Text(
                     modifier = Modifier.padding(start = 4.dp),
-                    text = standing.lastName,
+                    text = standing.driver.lastName,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             }
             Text(
-                text = standing.car,
+                text = standing.constructor.name,
                 style = MaterialTheme.typography.titleMedium
             )
         }
@@ -67,12 +69,20 @@ private fun DriversStandingItemLightPreview() {
     BoxBoxTheme {
         DriverStandingItem(
             standing = DriverStanding(
-                position = "1",
-                name = "Max",
-                lastName = "Verstappen",
-                nationality = "NED",
-                car = "Red Bull",
-                points = "258"
+                position = 1,
+                points = "258",
+                driver = Driver(
+                    id = "max_verstappen",
+                    firstName = "Max",
+                    lastName = "Verstappen",
+                    imageUrl = null,
+                    flagUrl = null
+                ),
+                constructor = Constructor(
+                    id = "red_bull",
+                    name = "Red Bull",
+                    imageUrl = null
+                )
             )
         )
     }
@@ -85,12 +95,20 @@ private fun DriversStandingItemDarkPreview() {
         Surface(color = MaterialTheme.colorScheme.background) {
             DriverStandingItem(
                 standing = DriverStanding(
-                    position = "1",
-                    name = "Max",
-                    lastName = "Verstappen",
-                    nationality = "NED",
-                    car = "Red Bull",
-                    points = "258"
+                    position = 1,
+                    points = "258",
+                    driver = Driver(
+                        id = "max_verstappen",
+                        firstName = "Max",
+                        lastName = "Verstappen",
+                        imageUrl = null,
+                        flagUrl = null
+                    ),
+                    constructor = Constructor(
+                        id = "red_bull",
+                        name = "Red Bull",
+                        imageUrl = null
+                    )
                 )
             )
         }

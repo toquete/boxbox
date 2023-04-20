@@ -17,6 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.model.Constructor
+import com.toquete.boxbox.model.Driver
 import com.toquete.boxbox.model.DriverStanding
 
 @Composable
@@ -61,12 +63,20 @@ private fun DriversStandingContentLightPreview() {
             state = DriverStandingsState.Success(
                 standings = listOf(
                     DriverStanding(
-                        position = "1",
-                        name = "Max",
-                        lastName = "Verstappen",
-                        nationality = "NED",
-                        car = "Red Bull",
-                        points = "258"
+                        position = 1,
+                        points = "258",
+                        driver = Driver(
+                            id = "max_verstappen",
+                            firstName = "Max",
+                            lastName = "Verstappen",
+                            imageUrl = null,
+                            flagUrl = null
+                        ),
+                        constructor = Constructor(
+                            id = "red_bull",
+                            name = "Red Bull",
+                            imageUrl = null
+                        )
                     )
                 )
             )
@@ -83,12 +93,20 @@ private fun DriversStandingItemContentPreview() {
                 state = DriverStandingsState.Success(
                     standings = listOf(
                         DriverStanding(
-                            position = "1",
-                            name = "Max",
-                            lastName = "Verstappen",
-                            nationality = "NED",
-                            car = "Red Bull",
-                            points = "258"
+                            position = 1,
+                            points = "258",
+                            driver = Driver(
+                                id = "max_verstappen",
+                                firstName = "Max",
+                                lastName = "Verstappen",
+                                imageUrl = null,
+                                flagUrl = null
+                            ),
+                            constructor = Constructor(
+                                id = "red_bull",
+                                name = "Red Bull",
+                                imageUrl = null
+                            )
                         )
                     )
                 )

@@ -10,33 +10,18 @@ data class DriverStandingEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val position: Int,
-    @ColumnInfo(name = "first_name")
-    val firstName: String,
-    @ColumnInfo(name = "last_name")
-    val lastName: String,
-    val nationality: String,
-    val car: String,
-    val points: String
+    val points: String,
+    @ColumnInfo(name = "driver_id")
+    val driverId: String,
+    @ColumnInfo(name = "constructor_id")
+    val constructorId: String
 )
-
-fun DriverStandingEntity.asDomain(): DriverStanding {
-    return DriverStanding(
-        position = position.toString(),
-        name = firstName,
-        lastName = lastName,
-        nationality = nationality,
-        car = car,
-        points = points
-    )
-}
 
 fun DriverStanding.asEntity(): DriverStandingEntity {
     return DriverStandingEntity(
-        position = position.toInt(),
-        firstName = name,
-        lastName = lastName,
-        nationality = nationality,
-        car = car,
-        points = points
+        position = position,
+        points = points,
+        driverId = driver.id,
+        constructorId = constructor.id
     )
 }

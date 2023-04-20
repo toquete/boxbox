@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.ConstructorStanding
 
 @Composable
@@ -32,7 +33,7 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
             modifier = Modifier
                 .weight(0.8f)
                 .padding(horizontal = 8.dp),
-            text = standing.name,
+            text = standing.constructor.name,
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
         )
@@ -52,8 +53,12 @@ private fun ConstructorStandingItemLightPreview() {
         ConstructorStandingItem(
             standing = ConstructorStanding(
                 position = "1",
-                name = "Red Bull",
-                points = "258"
+                points = "258",
+                constructor = Constructor(
+                    id = "red_bull",
+                    name = "Red Bull",
+                    imageUrl = null
+                )
             )
         )
     }
@@ -67,8 +72,12 @@ private fun ConstructorStandingItemDarkPreview() {
             ConstructorStandingItem(
                 standing = ConstructorStanding(
                     position = "1",
-                    name = "Red Bull",
-                    points = "258"
+                    points = "258",
+                    constructor = Constructor(
+                        id = "red_bull",
+                        name = "Red Bull",
+                        imageUrl = null
+                    )
                 )
             )
         }

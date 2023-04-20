@@ -5,6 +5,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ConstructorResponse(
+    @SerialName("constructor_id")
+    val id: String,
+    @SerialName("url")
+    val url: String,
     @SerialName("name")
-    val name: String
+    val name: String,
+    @SerialName("nationality")
+    val nationality: String
 )
