@@ -4,14 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.data.fulldriverstandings"
+    namespace = "com.toquete.boxbox.data.fullconstructorstandings"
 }
 
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:database"))
     implementation(project(":core:network"))
-    implementation(project(":data:driverstandings"))
-    implementation(project(":data:drivers"))
-    implementation(project(":data:constructors"))
+    implementation(project(":data:constructorstandings"))
 }
