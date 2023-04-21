@@ -9,5 +9,5 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
-    implementation(project(":data:constructorstandings"))
+    implementation(project(":data:fullconstructorstandings"))
 }

@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.toquete.boxbox.model.ConstructorStanding
+import com.toquete.boxbox.model.FullConstructorStanding
 
 @Composable
 fun ConstructorStandingsScreen() {
@@ -43,7 +43,7 @@ private fun ConstructorStandingsContent(state: ConstructorStandingsState) {
 }
 
 @Composable
-private fun ConstructorStandingsList(list: List<ConstructorStanding>) {
+private fun ConstructorStandingsList(list: List<FullConstructorStanding>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(list) { standing ->
             ConstructorStandingItem(standing)

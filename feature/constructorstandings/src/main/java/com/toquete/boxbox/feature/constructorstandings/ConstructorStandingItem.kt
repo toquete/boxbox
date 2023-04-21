@@ -15,10 +15,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.model.Constructor
-import com.toquete.boxbox.model.ConstructorStanding
+import com.toquete.boxbox.model.FullConstructorStanding
 
 @Composable
-internal fun ConstructorStandingItem(standing: ConstructorStanding) {
+internal fun ConstructorStandingItem(standing: FullConstructorStanding) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -26,7 +26,7 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
     ) {
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
-            text = standing.position,
+            text = standing.position.toString(),
             style = MaterialTheme.typography.titleLarge
         )
         Text(
@@ -51,8 +51,8 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
 private fun ConstructorStandingItemLightPreview() {
     BoxBoxTheme {
         ConstructorStandingItem(
-            standing = ConstructorStanding(
-                position = "1",
+            standing = FullConstructorStanding(
+                position = 1,
                 points = "258",
                 constructor = Constructor(
                     id = "red_bull",
@@ -70,8 +70,8 @@ private fun ConstructorStandingItemDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             ConstructorStandingItem(
-                standing = ConstructorStanding(
-                    position = "1",
+                standing = FullConstructorStanding(
+                    position = 1,
                     points = "258",
                     constructor = Constructor(
                         id = "red_bull",
