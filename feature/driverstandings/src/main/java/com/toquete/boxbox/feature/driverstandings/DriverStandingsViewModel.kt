@@ -2,7 +2,7 @@ package com.toquete.boxbox.feature.driverstandings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.domain.driverstandings.GetDriverStandingsUseCase
+import com.toquete.boxbox.domain.fulldriverstandings.GetDriverStandingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,4 +1,4 @@
-package com.toquete.boxbox.domain.driverstandings
+package com.toquete.boxbox.domain.fulldriverstandings
 
 import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
 import com.toquete.boxbox.model.DriverStanding

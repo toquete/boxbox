@@ -1,4 +1,4 @@
-package com.toquete.boxbox.domain.driverstandings
+package com.toquete.boxbox.domain.fulldriverstandings
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
