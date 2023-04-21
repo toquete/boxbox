@@ -8,10 +8,6 @@ internal class DriversLocalDataSourceImpl @Inject constructor(
     private val driverDao: DriverDao
 ) : DriversLocalDataSource {
 
-    override suspend fun getDriverById(id: String): DriverEntity {
-        return driverDao.getDriverById(id)
-    }
-
     override suspend fun insertAll(drivers: List<DriverEntity>) {
         driverDao.insertAll(drivers)
     }

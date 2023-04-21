@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "drivers_images")
-data class DriverImage(
+data class DriverImageEntity(
     @PrimaryKey
     val id: String,
     @ColumnInfo(name = "image_url")

@@ -10,7 +10,7 @@ import com.toquete.boxbox.database.model.ConstructorEntity
 import com.toquete.boxbox.database.model.ConstructorImage
 import com.toquete.boxbox.database.model.CountryEntity
 import com.toquete.boxbox.database.model.DriverEntity
-import com.toquete.boxbox.database.model.DriverImage
+import com.toquete.boxbox.database.model.DriverImageEntity
 import com.toquete.boxbox.database.model.DriverStandingEntity
 
 @Database(
@@ -19,7 +19,7 @@ import com.toquete.boxbox.database.model.DriverStandingEntity
         DriverEntity::class,
         ConstructorEntity::class,
         CountryEntity::class,
-        DriverImage::class,
+        DriverImageEntity::class,
         ConstructorImage::class
     ],
     version = 1

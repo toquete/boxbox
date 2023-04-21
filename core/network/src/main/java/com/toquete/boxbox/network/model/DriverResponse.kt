@@ -11,6 +11,8 @@ data class DriverResponse(
     val number: String,
     @SerialName("code")
     val code: String,
+    @SerialName("url")
+    val url: String,
     @SerialName("givenName")
     val givenName: String,
     @SerialName("familyName")
