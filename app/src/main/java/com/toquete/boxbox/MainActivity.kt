@@ -39,7 +39,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.constructorstandings.ConstructorStandingsScreen
-import com.toquete.boxbox.feature.driverstandings.DriverStandingsScreen
+import com.toquete.boxbox.feature.driverstandings.FullDriverStandingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -124,7 +124,7 @@ private fun MainScreenContent(isOnline: Boolean) {
                     }
                 }
                 when (selectedTabIndex) {
-                    0 -> DriverStandingsScreen()
+                    0 -> FullDriverStandingsScreen()
                     1 -> ConstructorStandingsScreen()
                 }
             }

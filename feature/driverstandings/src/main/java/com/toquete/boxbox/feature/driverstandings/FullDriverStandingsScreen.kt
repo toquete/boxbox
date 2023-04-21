@@ -22,14 +22,14 @@ import com.toquete.boxbox.model.Driver
 import com.toquete.boxbox.model.FullDriverStanding
 
 @Composable
-fun DriverStandingsScreen() {
+fun FullDriverStandingsScreen() {
     val viewModel: FullDriverStandingsViewModel = viewModel()
     val state by viewModel.newState.collectAsStateWithLifecycle()
-    DriverStandingsContent(state)
+    FullDriverStandingsContent(state)
 }
 
 @Composable
-private fun DriverStandingsContent(state: FullDriverStandingsState) {
+private fun FullDriverStandingsContent(state: FullDriverStandingsState) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -39,17 +39,17 @@ private fun DriverStandingsContent(state: FullDriverStandingsState) {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
             is FullDriverStandingsState.Success -> {
-                DriversStandingsList(state.standings)
+                FullDriversStandingsList(state.standings)
             }
         }
     }
 }
 
 @Composable
-private fun DriversStandingsList(list: List<FullDriverStanding>) {
+private fun FullDriversStandingsList(list: List<FullDriverStanding>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(list) { standing ->
-            DriverStandingItem(standing)
+            FullDriverStandingItem(standing)
             Divider()
         }
     }
@@ -57,9 +57,9 @@ private fun DriversStandingsList(list: List<FullDriverStanding>) {
 
 @Preview(name = "Content Light", showBackground = true)
 @Composable
-private fun DriversStandingContentLightPreview() {
+private fun FullDriversStandingContentLightPreview() {
     BoxBoxTheme {
-        DriverStandingsContent(
+        FullDriverStandingsContent(
             state = FullDriverStandingsState.Success(
                 standings = listOf(
                     FullDriverStanding(
@@ -86,10 +86,10 @@ private fun DriversStandingContentLightPreview() {
 
 @Preview(name = "Content Dark", showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
-private fun DriversStandingItemContentPreview() {
+private fun FullDriversStandingItemContentPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            DriverStandingsContent(
+            FullDriverStandingsContent(
                 state = FullDriverStandingsState.Success(
                     standings = listOf(
                         FullDriverStanding(

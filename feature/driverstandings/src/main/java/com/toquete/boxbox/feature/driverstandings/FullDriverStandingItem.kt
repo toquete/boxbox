@@ -20,7 +20,7 @@ import com.toquete.boxbox.model.Driver
 import com.toquete.boxbox.model.FullDriverStanding
 
 @Composable
-fun DriverStandingItem(standing: FullDriverStanding) {
+fun FullDriverStandingItem(standing: FullDriverStanding) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -67,7 +67,7 @@ fun DriverStandingItem(standing: FullDriverStanding) {
 @Composable
 private fun DriversStandingItemLightPreview() {
     BoxBoxTheme {
-        DriverStandingItem(
+        FullDriverStandingItem(
             standing = FullDriverStanding(
                 position = 1,
                 points = "258",
@@ -93,7 +93,7 @@ private fun DriversStandingItemLightPreview() {
 private fun DriversStandingItemDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            DriverStandingItem(
+            FullDriverStandingItem(
                 standing = FullDriverStanding(
                     position = 1,
                     points = "258",
