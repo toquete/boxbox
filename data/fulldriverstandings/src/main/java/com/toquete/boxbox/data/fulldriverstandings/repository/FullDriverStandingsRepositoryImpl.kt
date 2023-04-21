@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.fulldriverstandings.repository
 
+import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
 import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
 import com.toquete.boxbox.data.fulldriverstandings.model.toDomain
 import com.toquete.boxbox.data.fulldriverstandings.model.toEntity
@@ -19,6 +20,7 @@ internal class FullDriverStandingsRepositoryImpl @Inject constructor(
     private val remoteDataSource: FullDriverStandingsRemoteDataSource,
     private val localDataSource: FullDriverStandingsLocalDataSource,
     private val driversLocalDataSource: DriversLocalDataSource,
+    private val constructorsLocalDataSource: ConstructorsLocalDataSource,
     private val userPreferencesRepository: UserPreferencesRepository
 ) : FullDriverStandingsRepository {
 
@@ -29,6 +31,7 @@ internal class FullDriverStandingsRepositoryImpl @Inject constructor(
             remoteDataSource.getFullDriverStandings()
                 .also { list ->
                     driversLocalDataSource.insertAll(list.map { it.driver.toEntity() })
+                    constructorsLocalDataSource.insertAll(list.map { it.constructors.first().toEntity() })
                 }
                 .map(DriverStandingResponse::toDomain)
         } else {

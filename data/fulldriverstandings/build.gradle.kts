@@ -14,4 +14,5 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":data:driverstandings"))
     implementation(project(":data:drivers"))
+    implementation(project(":data:constructors"))
 }
