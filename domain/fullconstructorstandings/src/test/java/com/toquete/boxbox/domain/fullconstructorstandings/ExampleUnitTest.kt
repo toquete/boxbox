@@ -1,4 +1,4 @@
-package com.toquete.boxbox.domain.constructorstandings
+package com.toquete.boxbox.domain.fullconstructorstandings
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

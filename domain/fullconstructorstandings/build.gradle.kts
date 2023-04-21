@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.domain.constructorstandings"
+    namespace = "com.toquete.boxbox.domain.fullconstructorstandings"
 }
 
 dependencies {

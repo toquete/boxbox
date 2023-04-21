@@ -12,5 +12,5 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:ui"))
-    implementation(project(":domain:constructorstandings"))
+    implementation(project(":domain:fullconstructorstandings"))
 }

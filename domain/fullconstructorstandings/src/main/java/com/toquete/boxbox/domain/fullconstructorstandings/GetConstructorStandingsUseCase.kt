@@ -1,4 +1,4 @@
-package com.toquete.boxbox.domain.constructorstandings
+package com.toquete.boxbox.domain.fullconstructorstandings
 
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
 import com.toquete.boxbox.model.ConstructorStanding

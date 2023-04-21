@@ -2,7 +2,7 @@ package com.toquete.boxbox.feature.constructorstandings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.domain.constructorstandings.GetConstructorStandingsUseCase
+import com.toquete.boxbox.domain.fullconstructorstandings.GetConstructorStandingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
