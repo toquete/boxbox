@@ -2,6 +2,7 @@ package com.toquete.boxbox.database.di
 
 import com.toquete.boxbox.database.BoxBoxDatabase
 import com.toquete.boxbox.database.dao.ConstructorDao
+import com.toquete.boxbox.database.dao.ConstructorStandingDao
 import com.toquete.boxbox.database.dao.DriverDao
 import com.toquete.boxbox.database.dao.DriverStandingDao
 import com.toquete.boxbox.database.dao.FullDriverStandingDao
@@ -32,5 +33,10 @@ internal object DaoModule {
     @Provides
     fun provideConstructorDao(database: BoxBoxDatabase): ConstructorDao {
         return database.constructorDao()
+    }
+
+    @Provides
+    fun provideConstructorStandingDao(database: BoxBoxDatabase): ConstructorStandingDao {
+        return database.constructorStandingDao()
     }
 }
