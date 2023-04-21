@@ -24,6 +24,7 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("hilt").get())
                 add("implementation", libs.findLibrary("hilt.work").get())
                 add("kapt", libs.findLibrary("hilt.compiler").get())
+                add("kapt", libs.findLibrary("hilt.work.compiler").get())
             }
         }
     }

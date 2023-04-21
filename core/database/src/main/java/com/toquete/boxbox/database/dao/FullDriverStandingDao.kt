@@ -3,6 +3,7 @@ package com.toquete.boxbox.database.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.toquete.boxbox.database.model.FullDriverStandingEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FullDriverStandingDao {
@@ -28,5 +29,5 @@ interface FullDriverStandingDao {
             "  AND standings.constructor_id = ci.id " +
             "  AND standings.driver_id = di.id " +
             "  AND drivers.nationality = countries.nationality")
-    suspend fun getFullDriverStandings(): List<FullDriverStandingEntity>
+    fun getFullDriverStandings(): Flow<List<FullDriverStandingEntity>>
 }

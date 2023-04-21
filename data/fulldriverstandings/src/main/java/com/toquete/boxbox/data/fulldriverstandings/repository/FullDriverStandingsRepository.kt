@@ -1,8 +1,11 @@
 package com.toquete.boxbox.data.fulldriverstandings.repository
 
 import com.toquete.boxbox.model.FullDriverStanding
+import kotlinx.coroutines.flow.Flow
 
 interface FullDriverStandingsRepository {
 
-    suspend fun getFullDriverStandings(): List<FullDriverStanding>
+    fun getFullDriverStandings(): Flow<List<FullDriverStanding>>
+
+    suspend fun sync(): Boolean
 }

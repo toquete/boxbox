@@ -24,7 +24,7 @@ import com.toquete.boxbox.model.FullDriverStanding
 @Composable
 fun FullDriverStandingsScreen() {
     val viewModel: FullDriverStandingsViewModel = viewModel()
-    val state by viewModel.newState.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
     FullDriverStandingsContent(state)
 }
 

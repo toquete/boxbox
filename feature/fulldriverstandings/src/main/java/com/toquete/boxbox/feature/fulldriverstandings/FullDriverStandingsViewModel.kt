@@ -1,35 +1,29 @@
 package com.toquete.boxbox.feature.fulldriverstandings
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.domain.fulldriverstandings.GetFullDriverStandingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 internal class FullDriverStandingsViewModel @Inject constructor(
-    private val getFullDriverStandingsUseCase: GetFullDriverStandingsUseCase
+    getFullDriverStandingsUseCase: GetFullDriverStandingsUseCase
 ) : ViewModel() {
 
-    private val _newState = MutableStateFlow<FullDriverStandingsState>(FullDriverStandingsState.Loading)
-    val newState = _newState.asStateFlow()
-
-    init {
-        getDriverStandings()
-    }
-
-    private fun getDriverStandings() {
-        viewModelScope.launch {
-            _newState.update { FullDriverStandingsState.Loading }
-            runCatching {
-                getFullDriverStandingsUseCase()
-            }.onSuccess { standings ->
-                _newState.update { FullDriverStandingsState.Success(standings) }
-            }
-        }
-    }
+    val state = getFullDriverStandingsUseCase()
+        .map { FullDriverStandingsState.Success(it) }
+        .onStart { FullDriverStandingsState.Loading }
+        .catch { Log.e("XABLAU", "ERRO", it) }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = FullDriverStandingsState.Loading
+        )
 }
