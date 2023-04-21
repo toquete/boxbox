@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.driverstandings
+package com.toquete.boxbox.feature.fulldriverstandings
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column

@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.driverstandings
+package com.toquete.boxbox.feature.fulldriverstandings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

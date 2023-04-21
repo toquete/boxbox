@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.driverstandings
+package com.toquete.boxbox.feature.fulldriverstandings
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
