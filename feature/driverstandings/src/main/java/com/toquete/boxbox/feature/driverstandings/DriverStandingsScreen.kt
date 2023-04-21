@@ -19,26 +19,26 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.Driver
-import com.toquete.boxbox.model.DriverStanding
+import com.toquete.boxbox.model.FullDriverStanding
 
 @Composable
 fun DriverStandingsScreen() {
-    val viewModel: DriverStandingsViewModel = viewModel()
+    val viewModel: FullDriverStandingsViewModel = viewModel()
     val state by viewModel.newState.collectAsStateWithLifecycle()
     DriverStandingsContent(state)
 }
 
 @Composable
-private fun DriverStandingsContent(state: DriverStandingsState) {
+private fun DriverStandingsContent(state: FullDriverStandingsState) {
     Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
         when (state) {
-            DriverStandingsState.Loading -> {
+            FullDriverStandingsState.Loading -> {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
-            is DriverStandingsState.Success -> {
+            is FullDriverStandingsState.Success -> {
                 DriversStandingsList(state.standings)
             }
         }
@@ -46,7 +46,7 @@ private fun DriverStandingsContent(state: DriverStandingsState) {
 }
 
 @Composable
-private fun DriversStandingsList(list: List<DriverStanding>) {
+private fun DriversStandingsList(list: List<FullDriverStanding>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(list) { standing ->
             DriverStandingItem(standing)
@@ -60,9 +60,9 @@ private fun DriversStandingsList(list: List<DriverStanding>) {
 private fun DriversStandingContentLightPreview() {
     BoxBoxTheme {
         DriverStandingsContent(
-            state = DriverStandingsState.Success(
+            state = FullDriverStandingsState.Success(
                 standings = listOf(
-                    DriverStanding(
+                    FullDriverStanding(
                         position = 1,
                         points = "258",
                         driver = Driver(
@@ -90,9 +90,9 @@ private fun DriversStandingItemContentPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             DriverStandingsContent(
-                state = DriverStandingsState.Success(
+                state = FullDriverStandingsState.Success(
                     standings = listOf(
-                        DriverStanding(
+                        FullDriverStanding(
                             position = 1,
                             points = "258",
                             driver = Driver(

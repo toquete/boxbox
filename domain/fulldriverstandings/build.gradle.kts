@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.domain.driverstandings"
+    namespace = "com.toquete.boxbox.domain.fulldriverstandings"
 }
 
 dependencies {
     implementation(project(":core:model"))
-    implementation(project(":data:driverstandings"))
+    implementation(project(":data:fulldriverstandings"))
 }
