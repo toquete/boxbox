@@ -4,7 +4,7 @@ import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.Driver
 import com.toquete.boxbox.model.DriverStanding
 
-data class DriverStandingQueryEntity(
+data class FullDriverStandingEntity(
     val position: Int,
     val points: String,
     val driverId: String,
@@ -17,7 +17,7 @@ data class DriverStandingQueryEntity(
     val constructorImageUrl: String
 )
 
-fun DriverStandingQueryEntity.asDomain(): DriverStanding {
+fun FullDriverStandingEntity.asDomain(): DriverStanding {
     return DriverStanding(
         position = position,
         points = points,

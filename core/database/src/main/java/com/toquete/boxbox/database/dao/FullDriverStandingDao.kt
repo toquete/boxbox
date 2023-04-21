@@ -2,10 +2,10 @@ package com.toquete.boxbox.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.toquete.boxbox.database.model.DriverStandingQueryEntity
+import com.toquete.boxbox.database.model.FullDriverStandingEntity
 
 @Dao
-interface DriverStandingQueryDao {
+interface FullDriverStandingDao {
 
     @Query("SELECT standings.position," +
             "      standings.points, " +
@@ -28,5 +28,5 @@ interface DriverStandingQueryDao {
             "  AND standings.constructor_id = ci.id " +
             "  AND standings.driver_id = di.id " +
             "  AND drivers.nationality = countries.nationality")
-    suspend fun getDriverStandings(): List<DriverStandingQueryEntity>
+    suspend fun getFullDriverStandings(): List<FullDriverStandingEntity>
 }

@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.toquete.boxbox.database.dao.ConstructorDao
 import com.toquete.boxbox.database.dao.DriverDao
 import com.toquete.boxbox.database.dao.DriverStandingDao
-import com.toquete.boxbox.database.dao.DriverStandingQueryDao
+import com.toquete.boxbox.database.dao.FullDriverStandingDao
 import com.toquete.boxbox.database.model.ConstructorEntity
 import com.toquete.boxbox.database.model.ConstructorImage
 import com.toquete.boxbox.database.model.CountryEntity
@@ -28,7 +28,7 @@ internal abstract class BoxBoxDatabase : RoomDatabase() {
 
     abstract fun driverStandingDao(): DriverStandingDao
 
-    abstract fun driverStandingQueryDao(): DriverStandingQueryDao
+    abstract fun fullDriverStandingDao(): FullDriverStandingDao
 
     abstract fun driverDao(): DriverDao
 
