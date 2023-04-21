@@ -23,7 +23,7 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
-    implementation(project(":feature:driverstandings"))
+    implementation(project(":feature:fulldriverstandings"))
     implementation(project(":feature:constructorstandings"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
