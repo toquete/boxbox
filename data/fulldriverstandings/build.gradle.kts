@@ -13,4 +13,5 @@ dependencies {
     implementation(project(":core:preferences"))
     implementation(project(":core:network"))
     implementation(project(":data:driverstandings"))
+    implementation(project(":data:drivers"))
 }

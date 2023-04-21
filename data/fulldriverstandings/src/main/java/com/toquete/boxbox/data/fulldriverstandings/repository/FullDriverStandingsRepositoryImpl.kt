@@ -1,6 +1,8 @@
 package com.toquete.boxbox.data.fulldriverstandings.repository
 
+import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
 import com.toquete.boxbox.data.fulldriverstandings.model.toDomain
+import com.toquete.boxbox.data.fulldriverstandings.model.toEntity
 import com.toquete.boxbox.data.fulldriverstandings.source.local.FullDriverStandingsLocalDataSource
 import com.toquete.boxbox.data.fulldriverstandings.source.remote.FullDriverStandingsRemoteDataSource
 import com.toquete.boxbox.database.model.FullDriverStandingEntity
@@ -16,6 +18,7 @@ import kotlin.time.Duration.Companion.hours
 internal class FullDriverStandingsRepositoryImpl @Inject constructor(
     private val remoteDataSource: FullDriverStandingsRemoteDataSource,
     private val localDataSource: FullDriverStandingsLocalDataSource,
+    private val driversLocalDataSource: DriversLocalDataSource,
     private val userPreferencesRepository: UserPreferencesRepository
 ) : FullDriverStandingsRepository {
 
@@ -24,6 +27,9 @@ internal class FullDriverStandingsRepositoryImpl @Inject constructor(
 
         return if (data.isEmpty() || isDataExpired()) {
             remoteDataSource.getFullDriverStandings()
+                .also { list ->
+                    driversLocalDataSource.insertAll(list.map { it.driver.toEntity() })
+                }
                 .map(DriverStandingResponse::toDomain)
         } else {
             data.map(FullDriverStandingEntity::asFullDomain)
