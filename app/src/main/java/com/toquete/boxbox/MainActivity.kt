@@ -78,12 +78,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(viewModel: MainViewModel = viewModel()) {
     val isOnline by viewModel.isOnline.collectAsStateWithLifecycle()
-    MainScreenContent(isOnline)
+    val isSyncing by viewModel.isSyncing.collectAsStateWithLifecycle()
+    MainScreenContent(isOnline, isSyncing)
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun MainScreenContent(isOnline: Boolean) {
+private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
     val snackbarHostState = remember { SnackbarHostState() }
     val notConnectedMessage = stringResource(R.string.not_connected)
     var selectedTabIndex by remember { mutableStateOf(0) }
@@ -124,7 +125,7 @@ private fun MainScreenContent(isOnline: Boolean) {
                     }
                 }
                 when (selectedTabIndex) {
-                    0 -> FullDriverStandingsScreen()
+                    0 -> FullDriverStandingsScreen(isSyncing)
                     1 -> ConstructorStandingsScreen()
                 }
             }
@@ -136,7 +137,7 @@ private fun MainScreenContent(isOnline: Boolean) {
 @Composable
 fun MainLightPreview() {
     BoxBoxTheme {
-        MainScreenContent(isOnline = true)
+        MainScreenContent(isOnline = true, isSyncing = false)
     }
 }
 
@@ -145,7 +146,7 @@ fun MainLightPreview() {
 fun MainDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            MainScreenContent(isOnline = true)
+            MainScreenContent(isOnline = true, isSyncing = false)
         }
     }
 }

@@ -22,23 +22,23 @@ import com.toquete.boxbox.model.Driver
 import com.toquete.boxbox.model.FullDriverStanding
 
 @Composable
-fun FullDriverStandingsScreen() {
+fun FullDriverStandingsScreen(isSyncing: Boolean) {
     val viewModel: FullDriverStandingsViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
-    FullDriverStandingsContent(state)
+    FullDriverStandingsContent(state, isSyncing)
 }
 
 @Composable
-private fun FullDriverStandingsContent(state: FullDriverStandingsState) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        when (state) {
-            FullDriverStandingsState.Loading -> {
+private fun FullDriverStandingsContent(
+    state: FullDriverStandingsState,
+    isSyncing: Boolean
+) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        when {
+            isSyncing || state is FullDriverStandingsState.Loading -> {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
-            is FullDriverStandingsState.Success -> {
+            state is FullDriverStandingsState.Success -> {
                 FullDriversStandingsList(state.standings)
             }
         }
@@ -79,7 +79,8 @@ private fun FullDriversStandingContentLightPreview() {
                         )
                     )
                 )
-            )
+            ),
+            isSyncing = false
         )
     }
 }
@@ -109,7 +110,8 @@ private fun FullDriversStandingItemContentPreview() {
                             )
                         )
                     )
-                )
+                ),
+                isSyncing = false
             )
         }
     }

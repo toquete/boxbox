@@ -9,7 +9,7 @@ import com.toquete.boxbox.worker.SyncWorker
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
-private const val SYNC_WORK_NAME = "SYNC_WORK_NAME"
+const val SYNC_WORK_NAME = "SYNC_WORK_NAME"
 
 @HiltAndroidApp
 class BoxBoxApplication : Application(), Configuration.Provider {
