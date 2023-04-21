@@ -5,9 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DriverResponse(
-    @SerialName("driver_id")
+    @SerialName("driverId")
     val id: String,
-    @SerialName("permanent_number")
+    @SerialName("permanentNumber")
     val number: String,
     @SerialName("code")
     val code: String,
