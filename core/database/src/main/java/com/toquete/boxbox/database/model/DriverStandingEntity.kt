@@ -17,11 +17,20 @@ data class DriverStandingEntity(
     val constructorId: String
 )
 
+fun DriverStandingEntity.asDomain(): DriverStanding {
+    return DriverStanding(
+        position = position,
+        points = points,
+        driverId = driverId,
+        constructorId = constructorId
+    )
+}
+
 fun DriverStanding.asEntity(): DriverStandingEntity {
     return DriverStandingEntity(
         position = position,
         points = points,
-        driverId = driver.id,
-        constructorId = constructor.id
+        driverId = driverId,
+        constructorId = constructorId
     )
 }

@@ -2,7 +2,6 @@ package com.toquete.boxbox.database.model
 
 import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.Driver
-import com.toquete.boxbox.model.DriverStanding
 import com.toquete.boxbox.model.FullDriverStanding
 
 data class FullDriverStandingEntity(
@@ -17,25 +16,6 @@ data class FullDriverStandingEntity(
     val constructorName: String,
     val constructorImageUrl: String
 )
-
-fun FullDriverStandingEntity.asDomain(): DriverStanding {
-    return DriverStanding(
-        position = position,
-        points = points,
-        driver = Driver(
-            id = driverId,
-            firstName = firstName,
-            lastName = lastName,
-            imageUrl = imageUrl,
-            flagUrl = flagUrl
-        ),
-        constructor = Constructor(
-            id = constructorId,
-            name = constructorName,
-            imageUrl = constructorImageUrl
-        )
-    )
-}
 
 fun FullDriverStandingEntity.asFullDomain(): FullDriverStanding {
     return FullDriverStanding(

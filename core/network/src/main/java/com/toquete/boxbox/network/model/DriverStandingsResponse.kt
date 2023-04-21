@@ -2,7 +2,6 @@ package com.toquete.boxbox.network.model
 
 import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.Driver
-import com.toquete.boxbox.model.DriverStanding
 import com.toquete.boxbox.model.FullDriverStanding
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -26,25 +25,6 @@ data class DriverStandingResponse(
     @SerialName("Constructors")
     val constructors: List<ConstructorResponse>,
 )
-
-fun DriverStandingResponse.toDriverStanding(): DriverStanding {
-    return DriverStanding(
-        position = position.toInt(),
-        points = points,
-        driver = Driver(
-            id = driver.id,
-            firstName = driver.givenName,
-            lastName = driver.familyName,
-            imageUrl = null,
-            flagUrl = null
-        ),
-        constructor = Constructor(
-            id = constructors.first().id,
-            name = constructors.first().name,
-            imageUrl = null
-        )
-    )
-}
 
 fun DriverStandingResponse.toFullDriverStanding(): FullDriverStanding {
     return FullDriverStanding(
