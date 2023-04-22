@@ -17,7 +17,7 @@ interface FullConstructorStandingDao {
         "  FROM constructor_standings AS standings, " +
         "       constructors, " +
         "       constructors_images AS ci " +
-        " WHERE standings.id = constructors.id " +
+        " WHERE standings.constructor_id = constructors.id " +
         "   AND ci.id = constructors.id"
     )
     fun getFullConstructorStandings(): Flow<List<FullConstructorStandingEntity>>

@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface FullConstructorStandingsRepository {
 
     fun getFullConstructorStandings(): Flow<List<FullConstructorStanding>>
+
+    suspend fun sync(): Boolean
 }

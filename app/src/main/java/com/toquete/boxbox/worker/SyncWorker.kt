@@ -7,9 +7,15 @@ import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
+import com.toquete.boxbox.core.common.dispatcher.IoDispatcher
+import com.toquete.boxbox.data.fullconstructorstandings.repository.FullConstructorStandingsRepository
 import com.toquete.boxbox.data.fulldriverstandings.repository.FullDriverStandingsRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.CoroutineContext
 
 private val syncConstraints = Constraints.Builder()
     .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -19,13 +25,18 @@ private val syncConstraints = Constraints.Builder()
 class SyncWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParameters: WorkerParameters,
-    private val repository: FullDriverStandingsRepository
+    @IoDispatcher private val dispatcher: CoroutineContext,
+    private val driverStandingsRepository: FullDriverStandingsRepository,
+    private val constructorsStandingsRepository: FullConstructorStandingsRepository
 ) : CoroutineWorker(appContext, workerParameters) {
 
-    override suspend fun doWork(): Result {
-        val isSuccess = repository.sync()
+    override suspend fun doWork(): Result = withContext(dispatcher) {
+        val isSuccess = awaitAll(
+            async { driverStandingsRepository.sync() },
+            async { constructorsStandingsRepository.sync() }
+        ).all { it }
 
-        return if (isSuccess) {
+        if (isSuccess) {
             Result.success()
         } else {
             Result.retry()
