@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BoxBox</string>
     <string name="not_connected">You are not connected to the internet!</string>
+    <string-array name="tab_titles">
+        <item>Drivers</item>
+        <item>Constructors</item>
+    </string-array>
 </resources>

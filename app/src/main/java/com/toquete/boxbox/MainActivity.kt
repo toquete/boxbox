@@ -28,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -88,7 +89,7 @@ private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
     val snackbarHostState = remember { SnackbarHostState() }
     val notConnectedMessage = stringResource(R.string.not_connected)
     var selectedTabIndex by remember { mutableStateOf(0) }
-    val tabTitles = listOf("Drivers", "Teams")
+    val tabTitles = stringArrayResource(R.array.tab_titles)
 
     LaunchedEffect(isOnline) {
         if (!isOnline) {
