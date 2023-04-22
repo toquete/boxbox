@@ -1,48 +1,123 @@
 package com.toquete.boxbox.feature.fullconstructorstandings
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.core.ui.theme.FormulaOne
+import com.toquete.boxbox.feature.constructorstandings.R
 import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.FullConstructorStanding
 
 @Composable
 internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
-    Row(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .wrapContentHeight()
+            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
     ) {
-        Text(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            text = standing.position.toString(),
-            style = MaterialTheme.typography.titleLarge
-        )
-        Text(
+        Row(
             modifier = Modifier
-                .weight(0.8f)
-                .padding(horizontal = 8.dp),
-            text = standing.constructor.name,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top
+        ) {
+            Column(
+                modifier = Modifier
+                    .weight(0.6f)
+                    .wrapContentHeight(unbounded = true),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = standing.position.toString(),
+                    style = MaterialTheme.typography.displaySmall.copy(
+                        fontFamily = FormulaOne
+                    )
+                )
+                Spacer(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(30.dp)
+                )
+                Text(
+                    text = standing.constructor.name,
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        fontFamily = FormulaOne
+                    ),
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Surface(
+                modifier = Modifier
+                    .size(120.dp)
+                    .weight(0.4f, fill = false),
+                shape = MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.inverseOnSurface
+            ) {
+                AsyncImage(
+                    modifier = Modifier.padding(8.dp),
+                    model = standing.constructor.imageUrl,
+                    contentDescription = null
+                )
+            }
+        }
+        Divider(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
-        Text(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            text = standing.points,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Medium
-        )
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Surface(
+                shape = MaterialTheme.shapes.extraLarge,
+                color = MaterialTheme.colorScheme.secondary
+            ) {
+                Text(
+                    modifier = Modifier.padding(6.dp),
+                    text = stringResource(R.string.points, standing.points),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = FormulaOne
+                    )
+                )
+            }
+            Surface(
+                shape = MaterialTheme.shapes.extraLarge,
+                color = MaterialTheme.colorScheme.secondary
+            ) {
+                Text(
+                    modifier = Modifier.padding(6.dp),
+                    text = standing.constructor.name,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = FormulaOne
+                    )
+                )
+            }
+        }
     }
 }
 

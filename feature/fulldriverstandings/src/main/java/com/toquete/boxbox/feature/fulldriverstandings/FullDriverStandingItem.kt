@@ -46,10 +46,10 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 .wrapContentHeight()
                 .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
-                modifier = Modifier.weight(0.5f),
+                modifier = Modifier.weight(0.6f),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
@@ -77,7 +77,9 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 }
             }
             Surface(
-                modifier = Modifier.size(120.dp),
+                modifier = Modifier
+                    .size(120.dp)
+                    .weight(0.4f, fill = false),
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {
