@@ -17,6 +17,8 @@ data class ConstructorStandingResponse(
     val position: String,
     @SerialName("points")
     val points: String,
+    @SerialName("wins")
+    val wins: String,
     @SerialName("Constructor")
     val constructor: ConstructorResponse
 )

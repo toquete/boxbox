@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -111,7 +112,7 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
             ) {
                 Text(
                     modifier = Modifier.padding(6.dp),
-                    text = standing.constructor.name,
+                    text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontFamily = FormulaOne
                     )
@@ -129,6 +130,7 @@ private fun ConstructorStandingItemLightPreview() {
             standing = FullConstructorStanding(
                 position = 1,
                 points = "258",
+                wins = "7",
                 constructor = Constructor(
                     id = "red_bull",
                     name = "Red Bull",
@@ -148,6 +150,7 @@ private fun ConstructorStandingItemDarkPreview() {
                 standing = FullConstructorStanding(
                     position = 1,
                     points = "258",
+                    wins = "7",
                     constructor = Constructor(
                         id = "red_bull",
                         name = "Red Bull",

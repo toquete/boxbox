@@ -11,6 +11,7 @@ interface FullConstructorStandingDao {
     @Query(
         "SELECT standings.position, " +
         "       standings.points, " +
+        "       standings.wins, " +
         "       constructors.id AS constructorId, " +
         "       constructors.name AS constructorName, " +
         "       ci.image_url AS imageUrl " +

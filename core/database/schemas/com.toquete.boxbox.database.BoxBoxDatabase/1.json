@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b788ac9bbc48eaec08422da78d7c1177",
+    "identityHash": "6b2a317a5cd8286c04c80f12e5a6b65c",
     "entities": [
       {
         "tableName": "driver_standings",
@@ -118,7 +118,7 @@
       },
       {
         "tableName": "constructor_standings",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `position` INTEGER NOT NULL, `points` TEXT NOT NULL, `constructor_id` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `position` INTEGER NOT NULL, `points` TEXT NOT NULL, `wins` TEXT NOT NULL, `constructor_id` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -135,6 +135,12 @@
           {
             "fieldPath": "points",
             "columnName": "points",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wins",
+            "columnName": "wins",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -286,7 +292,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b788ac9bbc48eaec08422da78d7c1177')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6b2a317a5cd8286c04c80f12e5a6b65c')"
     ]
   }
 }

@@ -10,6 +10,7 @@ internal fun ConstructorStandingResponse.toEntity(): ConstructorStandingEntity {
     return ConstructorStandingEntity(
         position = position.toInt(),
         points = points,
+        wins = wins,
         constructorId = constructor.id
     )
 }
@@ -18,6 +19,7 @@ internal fun FullConstructorStandingEntity.toDomain(): FullConstructorStanding {
     return FullConstructorStanding(
         position = position,
         points = points,
+        wins = wins,
         constructor = Constructor(
             id = constructorId,
             name = constructorName,

@@ -10,6 +10,7 @@ data class ConstructorStandingEntity(
     val id: Int? = null,
     val position: Int,
     val points: String,
+    val wins: String,
     @ColumnInfo(name = "constructor_id")
     val constructorId: String
 )
