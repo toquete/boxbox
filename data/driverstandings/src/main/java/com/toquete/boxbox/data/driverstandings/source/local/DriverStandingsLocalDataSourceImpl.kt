@@ -9,6 +9,6 @@ internal class DriverStandingsLocalDataSourceImpl @Inject constructor(
 ) : DriverStandingsLocalDataSource {
 
     override suspend fun insertAll(driverStandings: List<DriverStandingEntity>) {
-        driverStandingDao.insertAll(driverStandings)
+        driverStandingDao.deleteAndInsertInTransaction(driverStandings)
     }
 }
