@@ -16,26 +16,26 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.model.FullConstructorStanding
 
 @Composable
-fun ConstructorStandingsScreen() {
-    val viewModel: ConstructorStandingsViewModel = viewModel()
+fun FullConstructorStandingsScreen() {
+    val viewModel: FullConstructorStandingsViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
     ConstructorStandingsContent(state)
 }
 
 @Composable
-private fun ConstructorStandingsContent(state: ConstructorStandingsState) {
+private fun ConstructorStandingsContent(state: FullConstructorStandingsState) {
     Box(modifier = Modifier.fillMaxSize()) {
         when (state) {
-            ConstructorStandingsState.Error -> {
+            FullConstructorStandingsState.Error -> {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
                     text = "An error occurred"
                 )
             }
-            ConstructorStandingsState.Loading -> {
+            FullConstructorStandingsState.Loading -> {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
-            is ConstructorStandingsState.Success -> {
+            is FullConstructorStandingsState.Success -> {
                 ConstructorStandingsList(state.data)
             }
         }
@@ -46,7 +46,7 @@ private fun ConstructorStandingsContent(state: ConstructorStandingsState) {
 private fun ConstructorStandingsList(list: List<FullConstructorStanding>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(list) { standing ->
-            ConstructorStandingItem(standing)
+            FullConstructorStandingItem(standing)
             Divider()
         }
     }

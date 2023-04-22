@@ -12,17 +12,17 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-internal class ConstructorStandingsViewModel @Inject constructor(
+internal class FullConstructorStandingsViewModel @Inject constructor(
     getFullConstructorStandingsUseCase: GetFullConstructorStandingsUseCase
 ) : ViewModel() {
 
     val state = getFullConstructorStandingsUseCase()
-        .map { ConstructorStandingsState.Success(it) }
-        .onStart { ConstructorStandingsState.Loading }
-        .catch { ConstructorStandingsState.Error }
+        .map { FullConstructorStandingsState.Success(it) }
+        .onStart { FullConstructorStandingsState.Loading }
+        .catch { FullConstructorStandingsState.Error }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = ConstructorStandingsState.Loading
+            initialValue = FullConstructorStandingsState.Loading
         )
 }

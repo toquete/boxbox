@@ -18,7 +18,7 @@ import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.FullConstructorStanding
 
 @Composable
-internal fun ConstructorStandingItem(standing: FullConstructorStanding) {
+internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,7 +50,7 @@ internal fun ConstructorStandingItem(standing: FullConstructorStanding) {
 @Composable
 private fun ConstructorStandingItemLightPreview() {
     BoxBoxTheme {
-        ConstructorStandingItem(
+        FullConstructorStandingItem(
             standing = FullConstructorStanding(
                 position = 1,
                 points = "258",
@@ -69,7 +69,7 @@ private fun ConstructorStandingItemLightPreview() {
 private fun ConstructorStandingItemDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            ConstructorStandingItem(
+            FullConstructorStandingItem(
                 standing = FullConstructorStanding(
                     position = 1,
                     points = "258",
