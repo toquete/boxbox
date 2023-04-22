@@ -73,6 +73,7 @@ private fun FullDriversStandingContentLightPreview() {
                     FullDriverStanding(
                         position = 1,
                         points = "258",
+                        wins = "7",
                         driver = Driver(
                             id = "max_verstappen",
                             firstName = "Max",
@@ -104,6 +105,7 @@ private fun FullDriversStandingItemContentPreview() {
                         FullDriverStanding(
                             position = 1,
                             points = "258",
+                            wins = "7",
                             driver = Driver(
                                 id = "max_verstappen",
                                 firstName = "Max",

@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -116,6 +117,18 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
             ) {
                 Text(
                     modifier = Modifier.padding(6.dp),
+                    text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = FormulaOne
+                    )
+                )
+            }
+            Surface(
+                shape = MaterialTheme.shapes.extraLarge,
+                color = MaterialTheme.colorScheme.secondary
+            ) {
+                Text(
+                    modifier = Modifier.padding(6.dp),
                     text = standing.constructor.name,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontFamily = FormulaOne
@@ -150,6 +163,7 @@ private fun DriversStandingItemLightPreview() {
             standing = FullDriverStanding(
                 position = 1,
                 points = "258",
+                wins = "7",
                 driver = Driver(
                     id = "max_verstappen",
                     firstName = "Max",
@@ -176,6 +190,7 @@ private fun DriversStandingItemDarkPreview() {
                 standing = FullDriverStanding(
                     position = 1,
                     points = "258",
+                    wins = "7",
                     driver = Driver(
                         id = "max_verstappen",
                         firstName = "Max",

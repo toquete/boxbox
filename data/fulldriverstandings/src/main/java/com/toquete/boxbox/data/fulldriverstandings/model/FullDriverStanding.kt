@@ -11,6 +11,7 @@ internal fun DriverStandingResponse.toEntity(): DriverStandingEntity {
     return DriverStandingEntity(
         position = position.toInt(),
         points = points,
+        wins = wins,
         driverId = driver.id,
         constructorId = constructors.first().id
     )
@@ -20,6 +21,7 @@ internal fun FullDriverStandingEntity.toDomain(): FullDriverStanding {
     return FullDriverStanding(
         position = position,
         points = points,
+        wins = wins,
         driver = Driver(
             id = driverId,
             firstName = firstName,

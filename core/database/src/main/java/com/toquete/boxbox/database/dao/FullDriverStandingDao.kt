@@ -10,6 +10,7 @@ interface FullDriverStandingDao {
 
     @Query("SELECT standings.position," +
             "      standings.points, " +
+            "      standings.wins, " +
             "      drivers.id AS driverId, " +
             "      drivers.first_name AS firstName, " +
             "      drivers.last_name AS lastName, " +
