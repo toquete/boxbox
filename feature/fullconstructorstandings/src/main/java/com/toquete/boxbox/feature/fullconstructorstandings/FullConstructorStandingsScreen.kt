@@ -16,26 +16,29 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.model.FullConstructorStanding
 
 @Composable
-fun FullConstructorStandingsScreen() {
+fun FullConstructorStandingsScreen(isSyncing: Boolean) {
     val viewModel: FullConstructorStandingsViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
-    ConstructorStandingsContent(state)
+    ConstructorStandingsContent(state, isSyncing)
 }
 
 @Composable
-private fun ConstructorStandingsContent(state: FullConstructorStandingsState) {
+private fun ConstructorStandingsContent(
+    state: FullConstructorStandingsState,
+    isSyncing: Boolean
+) {
     Box(modifier = Modifier.fillMaxSize()) {
-        when (state) {
-            FullConstructorStandingsState.Error -> {
+        when {
+            state is FullConstructorStandingsState.Error -> {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
                     text = "An error occurred"
                 )
             }
-            FullConstructorStandingsState.Loading -> {
+            isSyncing || state is FullConstructorStandingsState.Loading -> {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
-            is FullConstructorStandingsState.Success -> {
+            state is FullConstructorStandingsState.Success -> {
                 ConstructorStandingsList(state.data)
             }
         }

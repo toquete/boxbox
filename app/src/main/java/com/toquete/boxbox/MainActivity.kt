@@ -126,7 +126,7 @@ private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
                 }
                 when (selectedTabIndex) {
                     0 -> FullDriverStandingsScreen(isSyncing)
-                    1 -> FullConstructorStandingsScreen()
+                    1 -> FullConstructorStandingsScreen(isSyncing)
                 }
             }
         }
