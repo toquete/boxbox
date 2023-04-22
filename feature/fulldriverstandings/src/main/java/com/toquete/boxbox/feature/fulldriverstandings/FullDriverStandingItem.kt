@@ -1,65 +1,142 @@
 package com.toquete.boxbox.feature.fulldriverstandings
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.Driver
 import com.toquete.boxbox.model.FullDriverStanding
 
 @Composable
 fun FullDriverStandingItem(standing: FullDriverStanding) {
-    Row(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .wrapContentHeight()
+            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
     ) {
-        Text(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            text = standing.position.toString(),
-            style = MaterialTheme.typography.titleLarge
-        )
-        Column(
+        Row(
             modifier = Modifier
-                .weight(0.8f)
-                .padding(horizontal = 8.dp)
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Column(
+                modifier = Modifier.weight(0.5f),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
-                    text = standing.driver.firstName,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Normal
+                    text = standing.position.toString(),
+                    style = MaterialTheme.typography.displaySmall.copy(
+                        fontFamily = FormulaOne
+                    )
                 )
-                Text(
-                    modifier = Modifier.padding(start = 4.dp),
-                    text = standing.driver.lastName,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
+                Column {
+                    Text(
+                        modifier = Modifier.padding(top = 4.dp),
+                        text = standing.driver.firstName,
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontFamily = FormulaOne
+                        ),
+                        fontWeight = FontWeight.Normal
+                    )
+                    Text(
+                        text = standing.driver.lastName,
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontFamily = FormulaOne
+                        ),
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+            Surface(
+                modifier = Modifier.size(120.dp),
+                shape = MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.inverseOnSurface
+            ) {
+                AsyncImage(
+                    model = standing.driver.imageUrl,
+                    contentDescription = null
                 )
             }
-            Text(
-                text = standing.constructor.name,
-                style = MaterialTheme.typography.titleMedium
-            )
         }
-        Text(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            text = standing.points,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Medium
+        Divider(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Surface(
+                shape = MaterialTheme.shapes.extraLarge,
+                color = MaterialTheme.colorScheme.secondary
+            ) {
+                Text(
+                    modifier = Modifier.padding(6.dp),
+                    text = stringResource(R.string.points, standing.points),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = FormulaOne
+                    )
+                )
+            }
+            Surface(
+                shape = MaterialTheme.shapes.extraLarge,
+                color = MaterialTheme.colorScheme.secondary
+            ) {
+                Text(
+                    modifier = Modifier.padding(6.dp),
+                    text = standing.constructor.name,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = FormulaOne
+                    )
+                )
+            }
+            Surface(
+                modifier = Modifier
+                    .width(50.dp)
+                    .height(30.dp),
+                shape = MaterialTheme.shapes.extraLarge,
+                color = MaterialTheme.colorScheme.secondary
+            ) {
+                AsyncImage(
+                    modifier = Modifier.padding(6.dp),
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(standing.driver.flagUrl)
+                        .decoderFactory(SvgDecoder.Factory())
+                        .build(),
+                    contentDescription = null
+                )
+            }
+        }
     }
 }
 

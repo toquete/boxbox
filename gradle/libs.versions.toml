@@ -15,7 +15,7 @@ retrofit = "2.9.0"
 serialization = "1.2.2"
 okhttp = "4.10.0"
 serialization-converter = "0.8.0"
-coil = "2.1.0"
+coil = "2.3.0"
 junit = "4.13.2"
 junit-ext = "1.1.5"
 espresso = "3.5.1"
@@ -45,6 +45,7 @@ logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "
 serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serialization-converter" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -72,7 +73,7 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 compose = ["compose-ui", "compose-preview", "activity-compose"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-runtime-compose", "lifecycle-livedata-ktx"]
 retrofit = ["retrofit", "serialization", "okhttp", "serialization-converter", "logging"]
-coil = ["coil", "coil-compose"]
+coil = ["coil", "coil-compose", "coil-svg"]
 accompanist = ["accompanist-systemuicontroller"]
 
 [plugins]

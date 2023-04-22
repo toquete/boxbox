@@ -30,8 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
@@ -39,6 +38,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.fullconstructorstandings.FullConstructorStandingsScreen
 import com.toquete.boxbox.feature.fulldriverstandings.FullDriverStandingsScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -108,7 +108,8 @@ private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
                     Text(
                         text = stringResource(R.string.app_name),
                         style = MaterialTheme.typography.titleLarge.copy(
-                            fontFamily = FontFamily(Font(R.font.formula_one_bold))
+                            fontFamily = FormulaOne,
+                            fontWeight = FontWeight.Bold
                         )
                     )
                 }
