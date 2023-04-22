@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.constructorstandings
+package com.toquete.boxbox.feature.fullconstructorstandings
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Row

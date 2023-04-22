@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.constructorstandings
+package com.toquete.boxbox.feature.fullconstructorstandings
 
 import com.toquete.boxbox.model.FullConstructorStanding
 

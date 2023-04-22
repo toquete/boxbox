@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.constructorstandings
+package com.toquete.boxbox.feature.fullconstructorstandings
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

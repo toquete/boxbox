@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.constructorstandings
+package com.toquete.boxbox.feature.fullconstructorstandings
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
