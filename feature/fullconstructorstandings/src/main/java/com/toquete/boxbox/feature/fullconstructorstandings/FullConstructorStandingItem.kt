@@ -4,9 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -36,7 +34,6 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
     ) {
         Row(
             modifier = Modifier
@@ -58,12 +55,8 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
                         fontFamily = FormulaOne
                     )
                 )
-                Spacer(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(30.dp)
-                )
                 Text(
+                    modifier = Modifier.padding(top = 4.dp),
                     text = standing.constructor.name,
                     style = MaterialTheme.typography.headlineMedium.copy(
                         fontFamily = FormulaOne

@@ -5,9 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.domain.fullconstructorstandings.GetFullConstructorStandingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
@@ -18,11 +16,9 @@ internal class FullConstructorStandingsViewModel @Inject constructor(
 
     val state = getFullConstructorStandingsUseCase()
         .map { FullConstructorStandingsState.Success(it) }
-        .onStart { FullConstructorStandingsState.Loading }
-        .catch { FullConstructorStandingsState.Error }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = FullConstructorStandingsState.Loading
+            initialValue = FullConstructorStandingsState.Success(emptyList())
         )
 }
