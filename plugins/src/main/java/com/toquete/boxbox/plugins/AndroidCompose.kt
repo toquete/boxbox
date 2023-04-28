@@ -29,6 +29,8 @@ internal fun Project.configureAndroidCompose(
             add("implementation", libs.findBundle("accompanist").get())
             add("implementation", libs.findLibrary("compose.material3").get())
             add("implementation", libs.findLibrary("compose.preview").get())
+            add("implementation", libs.findLibrary("compose.material.icons").get())
+            add("implementation", libs.findLibrary("compose.material.icons.extended").get())
             add("debugImplementation", libs.findLibrary("compose.ui.manifest").get())
         }
     }

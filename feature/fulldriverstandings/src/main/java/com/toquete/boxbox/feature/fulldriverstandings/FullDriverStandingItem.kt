@@ -39,7 +39,6 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
     ) {
         Row(
             modifier = Modifier
