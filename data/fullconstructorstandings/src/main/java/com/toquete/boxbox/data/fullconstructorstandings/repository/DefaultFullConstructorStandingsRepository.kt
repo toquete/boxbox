@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-internal class FullConstructorStandingsRepositoryImpl @Inject constructor(
+internal class DefaultFullConstructorStandingsRepository @Inject constructor(
     private val remoteDataSource: FullConstructorStandingsRemoteDataSource,
     private val localDataSource: FullConstructorStandingsLocalDataSource,
     private val constructorStandingsLocalDataSource: ConstructorStandingsLocalDataSource
