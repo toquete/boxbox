@@ -6,6 +6,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,10 +36,14 @@ internal object NetworkModule {
     fun providesRetrofit(
         okHttpClient: OkHttpClient
     ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+        return getRetrofitBuilder()
             .client(okHttpClient)
-            .addConverterFactory(json.asConverterFactory(JSON_MEDIA_TYPE.toMediaType()))
             .build()
+    }
+
+    fun getRetrofitBuilder(baseUrl: HttpUrl = BASE_URL.toHttpUrl()): Retrofit.Builder {
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(json.asConverterFactory(JSON_MEDIA_TYPE.toMediaType()))
     }
 }

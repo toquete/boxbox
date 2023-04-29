@@ -3,6 +3,7 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.kotlin
 
 class AndroidRemoteDataConventionPlugin : Plugin<Project> {
 
@@ -13,6 +14,9 @@ class AndroidRemoteDataConventionPlugin : Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
                 add("implementation", libs.findBundle("retrofit").get())
+                add("testImplementation", libs.findLibrary("junit").get())
+                add("testImplementation", kotlin("test"))
+                add("testImplementation", libs.findLibrary("coroutines.test").get())
             }
         }
     }

@@ -1,0 +1,45 @@
+{
+  "MRData": {
+    "xmlns": "http://ergast.com/mrd/1.5",
+    "series": "f1",
+    "url": "http://ergast.com/api/f1/current/driverstandings.json",
+    "limit": "30",
+    "offset": "0",
+    "total": "20",
+    "StandingsTable": {
+      "season": "2023",
+      "StandingsLists": [
+        {
+          "season": "2023",
+          "round": "3",
+          "DriverStandings": [
+            {
+              "position": "1",
+              "positionText": "1",
+              "points": "69",
+              "wins": "2",
+              "Driver": {
+                "driverId": "max_verstappen",
+                "permanentNumber": "33",
+                "code": "VER",
+                "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+                "givenName": "Max",
+                "familyName": "Verstappen",
+                "dateOfBirth": "1997-09-30",
+                "nationality": "Dutch"
+              },
+              "Constructors": [
+                {
+                  "constructorId": "red_bull",
+                  "url": "http://en.wikipedia.org/wiki/Red_Bull_Racing",
+                  "name": "Red Bull",
+                  "nationality": "Austrian"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

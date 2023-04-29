@@ -6,6 +6,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.kotlin
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
 
@@ -32,6 +33,12 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
                 add("implementation", libs.findLibrary("work.runtime").get())
+
+                add("testImplementation", kotlin("test"))
+                add("testImplementation", libs.findLibrary("coroutines.test").get())
+                add("testImplementation", libs.findLibrary("junit").get())
+                add("androidTestImplementation", kotlin("test"))
+                add("androidTestImplementation", libs.findLibrary("junit.ext").get())
             }
         }
     }

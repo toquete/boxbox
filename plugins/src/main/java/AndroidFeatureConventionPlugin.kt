@@ -29,6 +29,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findBundle("coil").get())
 
                 add("testImplementation", kotlin("test"))
+                add("testImplementation", libs.findLibrary("coroutines.test").get())
                 add("testImplementation", libs.findLibrary("junit").get())
 
                 add("androidTestImplementation", kotlin("test"))
