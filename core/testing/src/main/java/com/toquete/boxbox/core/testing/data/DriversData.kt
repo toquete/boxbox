@@ -4,7 +4,7 @@ import com.toquete.boxbox.database.model.DriverEntity
 
 val driverEntities = listOf(
     DriverEntity(
-        id = "max_versappen",
+        id = "max_verstappen",
         number = "33",
         code = "MAX",
         url = "http://verstappen.com",

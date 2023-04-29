@@ -15,4 +15,6 @@ dependencies {
     implementation(project(":data:driverstandings"))
     implementation(project(":data:drivers"))
     implementation(project(":data:constructors"))
+
+    testImplementation(project(":core:testing"))
 }

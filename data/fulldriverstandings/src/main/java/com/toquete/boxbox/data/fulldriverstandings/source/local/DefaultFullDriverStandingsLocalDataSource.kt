@@ -5,7 +5,7 @@ import com.toquete.boxbox.database.model.FullDriverStandingEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-internal class FullDriverStandingsLocalDataSourceImpl @Inject constructor(
+internal class DefaultFullDriverStandingsLocalDataSource @Inject constructor(
     private val fullDriverStandingDao: FullDriverStandingDao
 ) : FullDriverStandingsLocalDataSource {
 
