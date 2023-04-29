@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.driverstandings
 
+import com.toquete.boxbox.core.testing.data.driverStandingEntities
 import com.toquete.boxbox.data.driverstandings.source.local.DefaultDriverStandingsLocalDataSource
 import com.toquete.boxbox.database.dao.DriverStandingDao
 import io.mockk.coEvery
@@ -17,8 +18,8 @@ class DefaultDriverStandingsLocalDataSourceTest {
     fun `insertAll should insert driver standings when called`() = runTest {
         coEvery { driverStandingDao.insertAll(any()) } returns Unit
 
-        dataSource.insertAll(FakeLocalData.driverStandings)
+        dataSource.insertAll(driverStandingEntities)
 
-        coVerify { driverStandingDao.deleteAndInsertInTransaction(FakeLocalData.driverStandings) }
+        coVerify { driverStandingDao.deleteAndInsertInTransaction(driverStandingEntities) }
     }
 }
