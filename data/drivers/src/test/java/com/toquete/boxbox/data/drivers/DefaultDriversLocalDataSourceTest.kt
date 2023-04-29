@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.drivers
 
+import com.toquete.boxbox.core.testing.data.driverEntities
 import com.toquete.boxbox.data.drivers.source.local.DefaultDriversLocalDataSource
 import com.toquete.boxbox.database.dao.DriverDao
 import io.mockk.coEvery
@@ -17,8 +18,8 @@ class DefaultDriversLocalDataSourceTest {
     fun `insertAll should insert drivers when called`() = runTest {
         coEvery { driverDao.insertAll(any()) } returns Unit
 
-        dataSource.insertAll(FakeLocalData.drivers)
+        dataSource.insertAll(driverEntities)
 
-        coVerify { dataSource.insertAll(FakeLocalData.drivers) }
+        coVerify { dataSource.insertAll(driverEntities) }
     }
 }
