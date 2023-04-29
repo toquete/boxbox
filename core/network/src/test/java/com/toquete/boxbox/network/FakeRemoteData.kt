@@ -1,6 +1,9 @@
 package com.toquete.boxbox.network
 
 import com.toquete.boxbox.network.model.ConstructorResponse
+import com.toquete.boxbox.network.model.ConstructorStandingResponse
+import com.toquete.boxbox.network.model.ConstructorStandingsResponse
+import com.toquete.boxbox.network.model.ConstructorStandingsWrapper
 import com.toquete.boxbox.network.model.DriverResponse
 import com.toquete.boxbox.network.model.DriverStandingResponse
 import com.toquete.boxbox.network.model.DriverStandingsResponse
@@ -37,6 +40,30 @@ object FakeRemoteData {
                                         name = "Red Bull",
                                         nationality = "Austrian"
                                     )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+
+    val constructorStandingsResponse = ConstructorStandingsWrapper(
+        data = StandingsTableResponse(
+            standingTable = StandingsLists(
+                standingsLists = listOf(
+                    ConstructorStandingsResponse(
+                        constructorStandings = listOf(
+                            ConstructorStandingResponse(
+                                position = "1",
+                                points = "123",
+                                wins = "3",
+                                constructor = ConstructorResponse(
+                                    id = "red_bull",
+                                    url = "http://en.wikipedia.org/wiki/Red_Bull_Racing",
+                                    name = "Red Bull",
+                                    nationality = "Austrian"
                                 )
                             )
                         )

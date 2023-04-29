@@ -46,4 +46,30 @@ class BoxBoxServiceTest {
 
         assertEquals(expected, mockWebServer.takeRequest().path)
     }
+
+    @Test
+    fun `getConstructorStandings should return parsed data class on success`() = runTest {
+        val expected = FakeRemoteData.constructorStandingsResponse
+        MockResponse().apply {
+            setBody("constructor_standings.json".readPath())
+            mockWebServer.enqueue(this)
+        }
+
+        val result = service.getConstructorStandings()
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `getConstructorStandings should send correct request path when called`() = runTest {
+        val expected = "/current/constructorStandings.json"
+        MockResponse().apply {
+            setBody("constructor_standings.json".readPath())
+            mockWebServer.enqueue(this)
+        }
+
+        service.getConstructorStandings()
+
+        assertEquals(expected, mockWebServer.takeRequest().path)
+    }
 }

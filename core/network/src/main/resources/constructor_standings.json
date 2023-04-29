@@ -1,0 +1,33 @@
+{
+  "MRData": {
+    "xmlns": "http://ergast.com/mrd/1.5",
+    "series": "f1",
+    "url": "http://ergast.com/api/f1/current/constructorstandings.json",
+    "limit": "30",
+    "offset": "0",
+    "total": "10",
+    "StandingsTable": {
+      "season": "2023",
+      "StandingsLists": [
+        {
+          "season": "2023",
+          "round": "3",
+          "ConstructorStandings": [
+            {
+              "position": "1",
+              "positionText": "1",
+              "points": "123",
+              "wins": "3",
+              "Constructor": {
+                "constructorId": "red_bull",
+                "url": "http://en.wikipedia.org/wiki/Red_Bull_Racing",
+                "name": "Red Bull",
+                "nationality": "Austrian"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
