@@ -28,6 +28,7 @@ dependencies {
     implementation(project(":data:fullconstructorstandings"))
     implementation(project(":feature:fulldriverstandings"))
     implementation(project(":feature:fullconstructorstandings"))
+    implementation(project(":feature:standings"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
