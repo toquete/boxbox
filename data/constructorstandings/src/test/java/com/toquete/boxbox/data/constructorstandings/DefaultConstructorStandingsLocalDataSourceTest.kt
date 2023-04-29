@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.constructorstandings
 
+import com.toquete.boxbox.core.testing.data.constructorStandingEntities
 import com.toquete.boxbox.data.constructorstandings.source.local.DefaultConstructorStandingsLocalDataSource
 import com.toquete.boxbox.database.dao.ConstructorStandingDao
 import io.mockk.coEvery
@@ -17,10 +18,10 @@ class DefaultConstructorStandingsLocalDataSourceTest {
     fun `insertAll should insert standings when called`() = runTest {
         coEvery { constructorStandingDao.insertAll(any()) } returns Unit
 
-        dataSource.insertAll(FakeLocalData.constructorStandings)
+        dataSource.insertAll(constructorStandingEntities)
 
         coVerify {
-            constructorStandingDao.deleteAndInsertInTransaction(FakeLocalData.constructorStandings)
+            constructorStandingDao.deleteAndInsertInTransaction(constructorStandingEntities)
         }
     }
 }

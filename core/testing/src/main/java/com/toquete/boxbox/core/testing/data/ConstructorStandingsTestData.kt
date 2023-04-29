@@ -1,5 +1,6 @@
 package com.toquete.boxbox.core.testing.data
 
+import com.toquete.boxbox.database.model.ConstructorStandingEntity
 import com.toquete.boxbox.network.model.ConstructorResponse
 import com.toquete.boxbox.network.model.ConstructorStandingResponse
 import com.toquete.boxbox.network.model.ConstructorStandingsResponse
@@ -28,5 +29,14 @@ val constructorStandingsResponse = ConstructorStandingsWrapper(
                 )
             )
         )
+    )
+)
+
+val constructorStandingEntities = listOf(
+    ConstructorStandingEntity(
+        position = 1,
+        points = "100",
+        wins = "5",
+        constructorId = "red_bull"
     )
 )
