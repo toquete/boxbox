@@ -4,7 +4,7 @@ import com.toquete.boxbox.database.dao.DriverStandingDao
 import com.toquete.boxbox.database.model.DriverStandingEntity
 import javax.inject.Inject
 
-internal class DriverStandingsLocalDataSourceImpl @Inject constructor(
+internal class DefaultDriverStandingsLocalDataSource @Inject constructor(
     private val driverStandingDao: DriverStandingDao
 ) : DriverStandingsLocalDataSource {
 
