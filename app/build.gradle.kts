@@ -24,6 +24,9 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:common"))
+    implementation(project(":core:model"))
+    implementation(project(":domain:fulldriverstandings"))
+    implementation(project(":domain:fullconstructorstandings"))
     implementation(project(":data:fulldriverstandings"))
     implementation(project(":data:fullconstructorstandings"))
     implementation(project(":feature:fulldriverstandings"))

@@ -7,7 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,16 +20,12 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -44,8 +39,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
-import com.toquete.boxbox.feature.fullconstructorstandings.FullConstructorStandingsScreen
-import com.toquete.boxbox.feature.fulldriverstandings.FullDriverStandingsScreen
+import com.toquete.boxbox.feature.standings.StandingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -85,15 +79,19 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(viewModel: MainViewModel = viewModel()) {
     val isOnline by viewModel.isOnline.collectAsStateWithLifecycle()
     val isSyncing by viewModel.isSyncing.collectAsStateWithLifecycle()
-    MainScreenContent(isOnline, isSyncing)
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    MainScreenContent(isOnline, isSyncing, state)
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
+private fun MainScreenContent(
+    isOnline: Boolean,
+    isSyncing: Boolean,
+    state: MainState
+) {
     val snackbarHostState = remember { SnackbarHostState() }
     val notConnectedMessage = stringResource(R.string.not_connected)
-    var selectedTab by remember { mutableStateOf(StandingsTab.DRIVERS) }
 
     LaunchedEffect(isOnline) {
         if (!isOnline) {
@@ -121,20 +119,9 @@ private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
         },
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                Column {
-                    TabRow(selectedTabIndex = StandingsTab.values().indexOf(selectedTab)) {
-                        StandingsTab.values().forEach { standingsTab ->
-                            Tab(
-                                selected = selectedTab == standingsTab,
-                                onClick = { selectedTab = standingsTab },
-                                text = { Text(stringResource(standingsTab.titleId)) }
-                            )
-                        }
-                    }
-                    when (selectedTab) {
-                        StandingsTab.DRIVERS -> FullDriverStandingsScreen()
-                        StandingsTab.CONSTRUCTORS -> FullConstructorStandingsScreen()
-                    }
+                when (state) {
+                    is MainState.Loading -> Unit
+                    is MainState.Success -> StandingsScreen(state.drivers, state.constructors)
                 }
                 AnimatedVisibility(visible = isSyncing) {
                     LinearProgressIndicator(
@@ -152,7 +139,11 @@ private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
 @Composable
 fun MainLightPreview() {
     BoxBoxTheme {
-        MainScreenContent(isOnline = true, isSyncing = false)
+        MainScreenContent(
+            isOnline = true,
+            isSyncing = false,
+            state = MainState.Success(emptyList(), emptyList())
+        )
     }
 }
 
@@ -161,7 +152,11 @@ fun MainLightPreview() {
 fun MainDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            MainScreenContent(isOnline = true, isSyncing = false)
+            MainScreenContent(
+                isOnline = true,
+                isSyncing = false,
+                state = MainState.Success(emptyList(), emptyList())
+            )
         }
     }
 }
