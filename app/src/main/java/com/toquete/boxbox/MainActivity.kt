@@ -33,7 +33,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -94,8 +93,7 @@ fun MainScreen(viewModel: MainViewModel = viewModel()) {
 private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
     val snackbarHostState = remember { SnackbarHostState() }
     val notConnectedMessage = stringResource(R.string.not_connected)
-    var selectedTabIndex by remember { mutableStateOf(0) }
-    val tabTitles = stringArrayResource(R.array.tab_titles)
+    var selectedTab by remember { mutableStateOf(StandingsTab.DRIVERS) }
 
     LaunchedEffect(isOnline) {
         if (!isOnline) {
@@ -124,18 +122,18 @@ private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
                 Column {
-                    TabRow(selectedTabIndex = selectedTabIndex) {
-                        tabTitles.forEachIndexed { index, title ->
+                    TabRow(selectedTabIndex = StandingsTab.values().indexOf(selectedTab)) {
+                        StandingsTab.values().forEach { standingsTab ->
                             Tab(
-                                selected = selectedTabIndex == index,
-                                onClick = { selectedTabIndex = index },
-                                text = { Text(title) }
+                                selected = selectedTab == standingsTab,
+                                onClick = { selectedTab = standingsTab },
+                                text = { Text(stringResource(standingsTab.titleId)) }
                             )
                         }
                     }
-                    when (selectedTabIndex) {
-                        0 -> FullDriverStandingsScreen()
-                        1 -> FullConstructorStandingsScreen()
+                    when (selectedTab) {
+                        StandingsTab.DRIVERS -> FullDriverStandingsScreen()
+                        StandingsTab.CONSTRUCTORS -> FullConstructorStandingsScreen()
                     }
                 }
                 AnimatedVisibility(visible = isSyncing) {
