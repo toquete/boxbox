@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -121,26 +122,28 @@ private fun MainScreenContent(isOnline: Boolean, isSyncing: Boolean) {
             )
         },
         content = { paddingValues ->
-            Column(modifier = Modifier.padding(paddingValues)) {
+            Box(modifier = Modifier.padding(paddingValues)) {
+                Column {
+                    TabRow(selectedTabIndex = selectedTabIndex) {
+                        tabTitles.forEachIndexed { index, title ->
+                            Tab(
+                                selected = selectedTabIndex == index,
+                                onClick = { selectedTabIndex = index },
+                                text = { Text(title) }
+                            )
+                        }
+                    }
+                    when (selectedTabIndex) {
+                        0 -> FullDriverStandingsScreen()
+                        1 -> FullConstructorStandingsScreen()
+                    }
+                }
                 AnimatedVisibility(visible = isSyncing) {
                     LinearProgressIndicator(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(4.dp)
                     )
-                }
-                TabRow(selectedTabIndex = selectedTabIndex) {
-                    tabTitles.forEachIndexed { index, title ->
-                        Tab(
-                            selected = selectedTabIndex == index,
-                            onClick = { selectedTabIndex = index },
-                            text = { Text(title) }
-                        )
-                    }
-                }
-                when (selectedTabIndex) {
-                    0 -> FullDriverStandingsScreen()
-                    1 -> FullConstructorStandingsScreen()
                 }
             }
         }
