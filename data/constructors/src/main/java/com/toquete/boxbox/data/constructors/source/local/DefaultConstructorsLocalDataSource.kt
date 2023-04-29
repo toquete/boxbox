@@ -4,7 +4,7 @@ import com.toquete.boxbox.database.dao.ConstructorDao
 import com.toquete.boxbox.database.model.ConstructorEntity
 import javax.inject.Inject
 
-class ConstructorsLocalDataSourceImpl @Inject constructor(
+class DefaultConstructorsLocalDataSource @Inject constructor(
     private val constructorDao: ConstructorDao
 ) : ConstructorsLocalDataSource {
 
