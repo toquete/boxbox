@@ -11,4 +11,6 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(libs.mockwebserver)
+
+    testImplementation(project(":core:testing"))
 }

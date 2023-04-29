@@ -1,5 +1,7 @@
 package com.toquete.boxbox.network
 
+import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
+import com.toquete.boxbox.core.testing.data.driverStandingsResponse
 import com.toquete.boxbox.network.di.NetworkModule
 import com.toquete.boxbox.network.extension.readPath
 import kotlinx.coroutines.test.runTest
@@ -23,7 +25,7 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getDriverStandings should return parsed data class on success`() = runTest {
-        val expected = FakeRemoteData.driverStandingsResponse
+        val expected = driverStandingsResponse
         MockResponse().apply {
             setBody("driver_standings.json".readPath())
             mockWebServer.enqueue(this)
@@ -49,7 +51,7 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getConstructorStandings should return parsed data class on success`() = runTest {
-        val expected = FakeRemoteData.constructorStandingsResponse
+        val expected = constructorStandingsResponse
         MockResponse().apply {
             setBody("constructor_standings.json".readPath())
             mockWebServer.enqueue(this)
