@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.fulldriverstandings.di
 
+import com.toquete.boxbox.data.fulldriverstandings.source.remote.DefaultFullDriverStandingsRemoteDataSource
 import com.toquete.boxbox.data.fulldriverstandings.source.remote.FullDriverStandingsRemoteDataSource
-import com.toquete.boxbox.data.fulldriverstandings.source.remote.FullDriverStandingsRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ internal abstract class RemoteDataSourceModule {
 
     @Binds
     abstract fun bindsFullDriverStandingsRemoteDataSource(
-        driverStandingsRemoteDataSource: FullDriverStandingsRemoteDataSourceImpl
+        driverStandingsRemoteDataSource: DefaultFullDriverStandingsRemoteDataSource
     ): FullDriverStandingsRemoteDataSource
 }
