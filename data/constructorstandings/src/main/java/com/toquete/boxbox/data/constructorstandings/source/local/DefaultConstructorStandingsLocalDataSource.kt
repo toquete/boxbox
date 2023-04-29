@@ -4,7 +4,7 @@ import com.toquete.boxbox.database.dao.ConstructorStandingDao
 import com.toquete.boxbox.database.model.ConstructorStandingEntity
 import javax.inject.Inject
 
-class ConstructorStandingsLocalDataSourceImpl @Inject constructor(
+class DefaultConstructorStandingsLocalDataSource @Inject constructor(
     private val constructorStandingDao: ConstructorStandingDao
 ): ConstructorStandingsLocalDataSource {
 

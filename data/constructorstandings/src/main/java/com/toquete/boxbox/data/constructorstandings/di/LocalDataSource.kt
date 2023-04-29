@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.constructorstandings.di
 
 import com.toquete.boxbox.data.constructorstandings.source.local.ConstructorStandingsLocalDataSource
-import com.toquete.boxbox.data.constructorstandings.source.local.ConstructorStandingsLocalDataSourceImpl
+import com.toquete.boxbox.data.constructorstandings.source.local.DefaultConstructorStandingsLocalDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ abstract class LocalDataSource {
 
     @Binds
     abstract fun bindsConstructorStandingsLocalDataSource(
-        dataSourceImpl: ConstructorStandingsLocalDataSourceImpl
+        dataSourceImpl: DefaultConstructorStandingsLocalDataSource
     ): ConstructorStandingsLocalDataSource
 }
