@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.constructors
 
+import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.data.constructors.source.local.DefaultConstructorsLocalDataSource
 import com.toquete.boxbox.database.dao.ConstructorDao
 import io.mockk.coEvery
@@ -17,8 +18,8 @@ class DefaultConstructorsLocalDataSourceTest {
     fun `insertAll should insert constructors when called`() = runTest {
         coEvery { dataSource.insertAll(any()) } returns Unit
 
-        dataSource.insertAll(FakeLocalData.constructors)
+        dataSource.insertAll(constructorEntities)
 
-        coVerify { constructorDao.insertAll(FakeLocalData.constructors) }
+        coVerify { constructorDao.insertAll(constructorEntities) }
     }
 }
