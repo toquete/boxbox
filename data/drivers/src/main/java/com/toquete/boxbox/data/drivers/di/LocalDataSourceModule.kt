@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.drivers.di
 
+import com.toquete.boxbox.data.drivers.source.local.DefaultDriversLocalDataSource
 import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
-import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ internal abstract class LocalDataSourceModule {
 
     @Binds
     abstract fun bindsDriverLocalDataSource(
-        dataSourceImpl: DriversLocalDataSourceImpl
+        dataSourceImpl: DefaultDriversLocalDataSource
     ): DriversLocalDataSource
 }

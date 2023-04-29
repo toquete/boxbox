@@ -4,7 +4,7 @@ import com.toquete.boxbox.database.dao.DriverDao
 import com.toquete.boxbox.database.model.DriverEntity
 import javax.inject.Inject
 
-internal class DriversLocalDataSourceImpl @Inject constructor(
+internal class DefaultDriversLocalDataSource @Inject constructor(
     private val driverDao: DriverDao
 ) : DriversLocalDataSource {
 
