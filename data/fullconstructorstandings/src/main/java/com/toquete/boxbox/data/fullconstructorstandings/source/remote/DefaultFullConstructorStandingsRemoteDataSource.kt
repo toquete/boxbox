@@ -4,7 +4,7 @@ import com.toquete.boxbox.network.BoxBoxService
 import com.toquete.boxbox.network.model.ConstructorStandingResponse
 import javax.inject.Inject
 
-internal class FullConstructorStandingsRemoteDataSourceImpl @Inject constructor(
+internal class DefaultFullConstructorStandingsRemoteDataSource @Inject constructor(
     private val service: BoxBoxService
 ) : FullConstructorStandingsRemoteDataSource {
 

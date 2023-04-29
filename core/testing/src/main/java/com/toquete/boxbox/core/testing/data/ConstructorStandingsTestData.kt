@@ -8,24 +8,26 @@ import com.toquete.boxbox.network.model.ConstructorStandingsWrapper
 import com.toquete.boxbox.network.model.StandingsLists
 import com.toquete.boxbox.network.model.StandingsTableResponse
 
-val constructorStandingsResponse = ConstructorStandingsWrapper(
+val constructorStandingsResponse = listOf(
+    ConstructorStandingResponse(
+        position = "1",
+        points = "123",
+        wins = "3",
+        constructor = ConstructorResponse(
+            id = "red_bull",
+            url = "http://en.wikipedia.org/wiki/Red_Bull_Racing",
+            name = "Red Bull",
+            nationality = "Austrian"
+        )
+    )
+)
+
+val constructorStandingsWrapper = ConstructorStandingsWrapper(
     data = StandingsTableResponse(
         standingTable = StandingsLists(
             standingsLists = listOf(
                 ConstructorStandingsResponse(
-                    constructorStandings = listOf(
-                        ConstructorStandingResponse(
-                            position = "1",
-                            points = "123",
-                            wins = "3",
-                            constructor = ConstructorResponse(
-                                id = "red_bull",
-                                url = "http://en.wikipedia.org/wiki/Red_Bull_Racing",
-                                name = "Red Bull",
-                                nationality = "Austrian"
-                            )
-                        )
-                    )
+                    constructorStandings = constructorStandingsResponse
                 )
             )
         )

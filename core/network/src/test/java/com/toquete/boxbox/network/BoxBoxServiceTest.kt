@@ -1,6 +1,6 @@
 package com.toquete.boxbox.network
 
-import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
+import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
 import com.toquete.boxbox.core.testing.data.driverStandingsResponse
 import com.toquete.boxbox.network.di.NetworkModule
 import com.toquete.boxbox.network.extension.readPath
@@ -51,7 +51,7 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getConstructorStandings should return parsed data class on success`() = runTest {
-        val expected = constructorStandingsResponse
+        val expected = constructorStandingsWrapper
         MockResponse().apply {
             setBody("constructor_standings.json".readPath())
             mockWebServer.enqueue(this)
