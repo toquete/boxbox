@@ -13,4 +13,6 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:network"))
     implementation(project(":data:constructorstandings"))
+
+    testImplementation(project(":core:testing"))
 }

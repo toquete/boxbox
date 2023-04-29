@@ -5,7 +5,7 @@ import com.toquete.boxbox.database.model.FullConstructorStandingEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class FullConstructorStandingsLocalDataSourceImpl @Inject constructor(
+class DefaultFullConstructorStandingsLocalDataSource @Inject constructor(
     private val fullConstructorStandingDao: FullConstructorStandingDao
 ): FullConstructorStandingsLocalDataSource {
 
