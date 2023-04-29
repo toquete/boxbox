@@ -1,7 +1,6 @@
-package com.toquete.boxbox.data.fullconstructorstandings
+package com.toquete.boxbox.data.fullconstructorstandings.source.local
 
 import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
-import com.toquete.boxbox.data.fullconstructorstandings.source.local.DefaultFullConstructorStandingsLocalDataSource
 import com.toquete.boxbox.database.dao.FullConstructorStandingDao
 import io.mockk.coEvery
 import io.mockk.mockk
