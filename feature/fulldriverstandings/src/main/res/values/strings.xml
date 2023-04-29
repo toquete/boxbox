@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="points">%s PTS</string>
-    <plurals name="wins">
-        <item quantity="one">%s WIN</item>
-        <item quantity="other">%s WINS</item>
-    </plurals>
-</resources>
