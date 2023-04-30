@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":core:network"))
 
     api(libs.junit)
+    api(libs.junit.ext)
     api(kotlin("test"))
     api(libs.coroutines.test)
     api(libs.mockk)
