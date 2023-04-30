@@ -14,15 +14,22 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
+            applicationIdSuffix = ".release"
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         create("minified") {
             initWith(getByName("debug"))
+            applicationIdSuffix = ".minified"
+            versionNameSuffix = "-MINIFIED"
             matchingFallbacks.add("debug")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-DEBUG"
         }
     }
 }
