@@ -32,16 +32,17 @@ fun StandingsScreen(
     var selectedTab by remember { mutableStateOf(StandingsTab.DRIVERS) }
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
+    val pages = StandingsTab.values()
 
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { page ->
-            selectedTab = StandingsTab.values()[page]
+            selectedTab = pages[page]
         }
     }
 
     Column {
-        TabRow(selectedTabIndex = StandingsTab.values().indexOf(selectedTab)) {
-            StandingsTab.values().forEachIndexed { index, standingsTab ->
+        TabRow(selectedTabIndex = pages.indexOf(selectedTab)) {
+            pages.forEachIndexed { index, standingsTab ->
                 Tab(
                     selected = selectedTab == standingsTab,
                     onClick = {
@@ -54,14 +55,13 @@ fun StandingsScreen(
             }
         }
         HorizontalPager(
-            pageCount = StandingsTab.values().size,
+            pageCount = pages.size,
             state = pagerState
-        ) {
-            when (selectedTab) {
+        ) { page ->
+            when (pages[page]) {
                 StandingsTab.DRIVERS -> FullDriverStandingsScreen(driverStandings)
                 StandingsTab.CONSTRUCTORS -> FullConstructorStandingsScreen(constructorStandings)
             }
-
         }
     }
 }
