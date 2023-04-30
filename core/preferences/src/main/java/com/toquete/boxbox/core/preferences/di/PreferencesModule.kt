@@ -1,4 +1,4 @@
-package com.toquete.boxbox.preferences.di
+package com.toquete.boxbox.core.preferences.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore

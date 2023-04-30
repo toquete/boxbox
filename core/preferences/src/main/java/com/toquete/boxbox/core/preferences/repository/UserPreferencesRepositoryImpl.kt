@@ -1,10 +1,10 @@
-package com.toquete.boxbox.preferences.repository
+package com.toquete.boxbox.core.preferences.repository
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
-import com.toquete.boxbox.preferences.PreferencesKeys.DRIVER_STANDINGS_LAST_UPDATED_TIME
-import com.toquete.boxbox.preferences.model.UserPreferences
+import com.toquete.boxbox.core.preferences.PreferencesKeys.DRIVER_STANDINGS_LAST_UPDATED_TIME
+import com.toquete.boxbox.core.preferences.model.UserPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock

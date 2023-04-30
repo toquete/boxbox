@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.preferences"
+    namespace = "com.toquete.boxbox.core.preferences"
 }
 
 dependencies {

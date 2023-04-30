@@ -1,6 +1,6 @@
-package com.toquete.boxbox.preferences.repository
+package com.toquete.boxbox.core.preferences.repository
 
-import com.toquete.boxbox.preferences.model.UserPreferences
+import com.toquete.boxbox.core.preferences.model.UserPreferences
 import kotlinx.coroutines.flow.Flow
 
 interface UserPreferencesRepository {

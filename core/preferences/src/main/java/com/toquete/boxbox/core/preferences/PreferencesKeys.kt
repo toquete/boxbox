@@ -1,4 +1,4 @@
-package com.toquete.boxbox.preferences
+package com.toquete.boxbox.core.preferences
 
 import androidx.datastore.preferences.core.longPreferencesKey
 

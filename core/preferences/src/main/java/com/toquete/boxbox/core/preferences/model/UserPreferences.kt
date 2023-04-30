@@ -1,4 +1,4 @@
-package com.toquete.boxbox.preferences.model
+package com.toquete.boxbox.core.preferences.model
 
 data class UserPreferences(
     val driverStandingsLastUpdatedTime: Long
