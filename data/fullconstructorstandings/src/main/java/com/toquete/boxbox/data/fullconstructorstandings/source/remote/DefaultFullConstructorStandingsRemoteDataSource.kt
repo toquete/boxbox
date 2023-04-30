@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.fullconstructorstandings.source.remote
 
-import com.toquete.boxbox.network.BoxBoxService
-import com.toquete.boxbox.network.model.ConstructorStandingResponse
+import com.toquete.boxbox.core.network.BoxBoxService
+import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
 import javax.inject.Inject
 
 internal class DefaultFullConstructorStandingsRemoteDataSource @Inject constructor(

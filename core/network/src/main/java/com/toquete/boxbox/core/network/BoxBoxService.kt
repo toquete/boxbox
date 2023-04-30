@@ -1,7 +1,7 @@
-package com.toquete.boxbox.network
+package com.toquete.boxbox.core.network
 
-import com.toquete.boxbox.network.model.ConstructorStandingsWrapper
-import com.toquete.boxbox.network.model.DriverStandingsWrapper
+import com.toquete.boxbox.core.network.model.ConstructorStandingsWrapper
+import com.toquete.boxbox.core.network.model.DriverStandingsWrapper
 import retrofit2.http.GET
 
 interface BoxBoxService {

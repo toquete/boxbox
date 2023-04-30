@@ -1,4 +1,4 @@
-package com.toquete.boxbox.network.model
+package com.toquete.boxbox.core.network.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

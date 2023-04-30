@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.fulldriverstandings.source.remote
 
-import com.toquete.boxbox.network.BoxBoxService
-import com.toquete.boxbox.network.model.DriverStandingResponse
+import com.toquete.boxbox.core.network.BoxBoxService
+import com.toquete.boxbox.core.network.model.DriverStandingResponse
 import javax.inject.Inject
 
 internal class DefaultFullDriverStandingsRemoteDataSource @Inject constructor(

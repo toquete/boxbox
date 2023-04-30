@@ -2,12 +2,12 @@ package com.toquete.boxbox.data.fullconstructorstandings.repository
 
 import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
 import com.toquete.boxbox.core.model.FullConstructorStanding
+import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
 import com.toquete.boxbox.data.constructorstandings.source.local.ConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.fullconstructorstandings.model.toDomain
 import com.toquete.boxbox.data.fullconstructorstandings.model.toEntity
 import com.toquete.boxbox.data.fullconstructorstandings.source.local.FullConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.fullconstructorstandings.source.remote.FullConstructorStandingsRemoteDataSource
-import com.toquete.boxbox.network.model.ConstructorStandingResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

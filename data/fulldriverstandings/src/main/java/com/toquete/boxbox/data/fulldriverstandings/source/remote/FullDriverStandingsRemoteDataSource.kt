@@ -1,6 +1,6 @@
 package com.toquete.boxbox.data.fulldriverstandings.source.remote
 
-import com.toquete.boxbox.network.model.DriverStandingResponse
+import com.toquete.boxbox.core.network.model.DriverStandingResponse
 
 internal interface FullDriverStandingsRemoteDataSource {
 

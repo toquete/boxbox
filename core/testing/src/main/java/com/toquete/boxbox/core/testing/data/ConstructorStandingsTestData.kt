@@ -1,12 +1,12 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
-import com.toquete.boxbox.network.model.ConstructorResponse
-import com.toquete.boxbox.network.model.ConstructorStandingResponse
-import com.toquete.boxbox.network.model.ConstructorStandingsResponse
-import com.toquete.boxbox.network.model.ConstructorStandingsWrapper
-import com.toquete.boxbox.network.model.StandingsLists
-import com.toquete.boxbox.network.model.StandingsTableResponse
+import com.toquete.boxbox.core.network.model.ConstructorResponse
+import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
+import com.toquete.boxbox.core.network.model.ConstructorStandingsResponse
+import com.toquete.boxbox.core.network.model.ConstructorStandingsWrapper
+import com.toquete.boxbox.core.network.model.StandingsLists
+import com.toquete.boxbox.core.network.model.StandingsTableResponse
 
 val constructorStandingsResponse = listOf(
     ConstructorStandingResponse(

@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.fulldriverstandings.model
 
 import com.toquete.boxbox.core.database.model.ConstructorEntity
-import com.toquete.boxbox.network.model.ConstructorResponse
+import com.toquete.boxbox.core.network.model.ConstructorResponse
 
 internal fun ConstructorResponse.toEntity(): ConstructorEntity {
     return ConstructorEntity(

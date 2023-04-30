@@ -4,7 +4,7 @@ import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
 import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.FullConstructorStanding
-import com.toquete.boxbox.network.model.ConstructorStandingResponse
+import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
 
 internal fun ConstructorStandingResponse.toEntity(): ConstructorStandingEntity {
     return ConstructorStandingEntity(

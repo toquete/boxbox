@@ -1,4 +1,4 @@
-package com.toquete.boxbox.network.di
+package com.toquete.boxbox.core.network.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module

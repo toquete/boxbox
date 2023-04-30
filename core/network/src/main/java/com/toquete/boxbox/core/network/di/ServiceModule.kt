@@ -1,6 +1,6 @@
-package com.toquete.boxbox.network.di
+package com.toquete.boxbox.core.network.di
 
-import com.toquete.boxbox.network.BoxBoxService
+import com.toquete.boxbox.core.network.BoxBoxService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

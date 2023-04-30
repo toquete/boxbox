@@ -1,4 +1,4 @@
-package com.toquete.boxbox.network.extension
+package com.toquete.boxbox.core.network.extension
 
 import java.io.FileNotFoundException
 

@@ -1,13 +1,13 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.DriverStandingEntity
-import com.toquete.boxbox.network.model.ConstructorResponse
-import com.toquete.boxbox.network.model.DriverResponse
-import com.toquete.boxbox.network.model.DriverStandingResponse
-import com.toquete.boxbox.network.model.DriverStandingsResponse
-import com.toquete.boxbox.network.model.DriverStandingsWrapper
-import com.toquete.boxbox.network.model.StandingsLists
-import com.toquete.boxbox.network.model.StandingsTableResponse
+import com.toquete.boxbox.core.network.model.ConstructorResponse
+import com.toquete.boxbox.core.network.model.DriverResponse
+import com.toquete.boxbox.core.network.model.DriverStandingResponse
+import com.toquete.boxbox.core.network.model.DriverStandingsResponse
+import com.toquete.boxbox.core.network.model.DriverStandingsWrapper
+import com.toquete.boxbox.core.network.model.StandingsLists
+import com.toquete.boxbox.core.network.model.StandingsTableResponse
 
 val driverStandingsResponse = listOf(
     DriverStandingResponse(

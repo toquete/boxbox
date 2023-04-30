@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.network"
+    namespace = "com.toquete.boxbox.core.network"
 }
 
 dependencies {
