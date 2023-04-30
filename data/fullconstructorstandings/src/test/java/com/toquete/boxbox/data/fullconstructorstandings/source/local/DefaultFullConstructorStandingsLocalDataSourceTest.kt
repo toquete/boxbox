@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import kotlin.test.assertEquals
+import kotlin.test.assertContentEquals
 
 class DefaultFullConstructorStandingsLocalDataSourceTest {
 
@@ -23,6 +23,6 @@ class DefaultFullConstructorStandingsLocalDataSourceTest {
 
         val result = dataSource.getFullConstructorStandings()
 
-        assertEquals(fullConstructorStandingEntities, result.first())
+        assertContentEquals(fullConstructorStandingEntities, result.first())
     }
 }

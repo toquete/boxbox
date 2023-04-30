@@ -7,7 +7,7 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import kotlin.test.assertEquals
+import kotlin.test.assertContentEquals
 
 class DefaultFullConstructorStandingsRemoteDataSourceTest {
 
@@ -20,6 +20,6 @@ class DefaultFullConstructorStandingsRemoteDataSourceTest {
 
         val result = dataSource.getConstructorStandings()
 
-        assertEquals(constructorStandingsResponse, result)
+        assertContentEquals(constructorStandingsResponse, result)
     }
 }
