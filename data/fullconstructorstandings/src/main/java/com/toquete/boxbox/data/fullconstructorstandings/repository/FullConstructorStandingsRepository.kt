@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.fullconstructorstandings.repository
 
 import com.toquete.boxbox.core.common.Syncable
-import com.toquete.boxbox.model.FullConstructorStanding
+import com.toquete.boxbox.core.model.FullConstructorStanding
 import kotlinx.coroutines.flow.Flow
 
 interface FullConstructorStandingsRepository : Syncable {

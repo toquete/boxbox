@@ -2,9 +2,9 @@ package com.toquete.boxbox.data.fulldriverstandings.model
 
 import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
-import com.toquete.boxbox.model.Constructor
-import com.toquete.boxbox.model.Driver
-import com.toquete.boxbox.model.FullDriverStanding
+import com.toquete.boxbox.core.model.Constructor
+import com.toquete.boxbox.core.model.Driver
+import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.network.model.DriverStandingResponse
 
 internal fun DriverStandingResponse.toEntity(): DriverStandingEntity {

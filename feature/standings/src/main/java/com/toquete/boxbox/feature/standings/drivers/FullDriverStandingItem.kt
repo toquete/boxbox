@@ -27,12 +27,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
+import com.toquete.boxbox.core.model.Constructor
+import com.toquete.boxbox.core.model.Driver
+import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
-import com.toquete.boxbox.model.Constructor
-import com.toquete.boxbox.model.Driver
-import com.toquete.boxbox.model.FullDriverStanding
 
 @Composable
 fun FullDriverStandingItem(standing: FullDriverStanding) {

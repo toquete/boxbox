@@ -1,6 +1,7 @@
 package com.toquete.boxbox.data.fulldriverstandings.repository
 
 import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
+import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
 import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
 import com.toquete.boxbox.data.driverstandings.source.local.DriverStandingsLocalDataSource
@@ -8,7 +9,6 @@ import com.toquete.boxbox.data.fulldriverstandings.model.toDomain
 import com.toquete.boxbox.data.fulldriverstandings.model.toEntity
 import com.toquete.boxbox.data.fulldriverstandings.source.local.FullDriverStandingsLocalDataSource
 import com.toquete.boxbox.data.fulldriverstandings.source.remote.FullDriverStandingsRemoteDataSource
-import com.toquete.boxbox.model.FullDriverStanding
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

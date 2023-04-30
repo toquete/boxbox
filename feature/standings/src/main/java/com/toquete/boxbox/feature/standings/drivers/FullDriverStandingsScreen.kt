@@ -20,11 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.toquete.boxbox.core.model.Constructor
+import com.toquete.boxbox.core.model.Driver
+import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
-import com.toquete.boxbox.model.Constructor
-import com.toquete.boxbox.model.Driver
-import com.toquete.boxbox.model.FullDriverStanding
 import kotlinx.coroutines.launch
 
 @Composable

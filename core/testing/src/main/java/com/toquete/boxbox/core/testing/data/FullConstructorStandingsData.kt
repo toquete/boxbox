@@ -1,7 +1,7 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
-import com.toquete.boxbox.model.FullConstructorStanding
+import com.toquete.boxbox.core.model.FullConstructorStanding
 
 val fullConstructorStandingEntities = listOf(
     FullConstructorStandingEntity(

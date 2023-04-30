@@ -1,7 +1,7 @@
 package com.toquete.boxbox.domain.fullconstructorstandings
 
+import com.toquete.boxbox.core.model.FullConstructorStanding
 import com.toquete.boxbox.data.fullconstructorstandings.repository.FullConstructorStandingsRepository
-import com.toquete.boxbox.model.FullConstructorStanding
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

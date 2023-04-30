@@ -16,11 +16,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.res.stringResource
+import com.toquete.boxbox.core.model.FullConstructorStanding
+import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.feature.standings.constructors.FullConstructorStandingsScreen
 import com.toquete.boxbox.feature.standings.drivers.FullDriverStandingsScreen
 import com.toquete.boxbox.feature.standings.model.StandingsTab
-import com.toquete.boxbox.model.FullConstructorStanding
-import com.toquete.boxbox.model.FullDriverStanding
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)

@@ -1,7 +1,7 @@
 package com.toquete.boxbox.domain.fulldriverstandings
 
+import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.data.fulldriverstandings.repository.FullDriverStandingsRepository
-import com.toquete.boxbox.model.FullDriverStanding
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

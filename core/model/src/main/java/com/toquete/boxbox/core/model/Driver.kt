@@ -1,4 +1,4 @@
-package com.toquete.boxbox.model
+package com.toquete.boxbox.core.model
 
 data class Driver(
     val id: String,

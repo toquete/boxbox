@@ -22,11 +22,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.toquete.boxbox.core.model.Constructor
+import com.toquete.boxbox.core.model.FullConstructorStanding
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
-import com.toquete.boxbox.model.Constructor
-import com.toquete.boxbox.model.FullConstructorStanding
 
 @Composable
 internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {

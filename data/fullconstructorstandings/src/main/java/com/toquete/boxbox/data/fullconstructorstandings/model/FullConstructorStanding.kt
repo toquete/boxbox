@@ -2,8 +2,8 @@ package com.toquete.boxbox.data.fullconstructorstandings.model
 
 import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
 import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
-import com.toquete.boxbox.model.Constructor
-import com.toquete.boxbox.model.FullConstructorStanding
+import com.toquete.boxbox.core.model.Constructor
+import com.toquete.boxbox.core.model.FullConstructorStanding
 import com.toquete.boxbox.network.model.ConstructorStandingResponse
 
 internal fun ConstructorStandingResponse.toEntity(): ConstructorStandingEntity {

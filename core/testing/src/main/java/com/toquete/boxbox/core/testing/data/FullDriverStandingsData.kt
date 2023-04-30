@@ -1,7 +1,7 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
-import com.toquete.boxbox.model.FullDriverStanding
+import com.toquete.boxbox.core.model.FullDriverStanding
 
 val fullDriverStandingEntities = listOf(
     FullDriverStandingEntity(

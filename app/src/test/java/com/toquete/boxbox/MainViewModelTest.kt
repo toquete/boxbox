@@ -1,12 +1,12 @@
 package com.toquete.boxbox
 
+import com.toquete.boxbox.core.model.FullConstructorStanding
+import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.core.testing.data.fullConstructorStandings
 import com.toquete.boxbox.core.testing.data.fullDriverStandings
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.domain.fullconstructorstandings.GetFullConstructorStandingsUseCase
 import com.toquete.boxbox.domain.fulldriverstandings.GetFullDriverStandingsUseCase
-import com.toquete.boxbox.model.FullConstructorStanding
-import com.toquete.boxbox.model.FullDriverStanding
 import com.toquete.boxbox.util.NetworkMonitor
 import com.toquete.boxbox.util.SyncMonitor
 import io.mockk.coEvery
