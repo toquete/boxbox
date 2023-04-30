@@ -1,4 +1,5 @@
 import com.android.build.gradle.LibraryExtension
+import com.toquete.boxbox.plugins.configureBuildType
 import com.toquete.boxbox.plugins.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -15,6 +16,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
+                configureBuildType(this)
                 defaultConfig.targetSdk = 33
             }
         }

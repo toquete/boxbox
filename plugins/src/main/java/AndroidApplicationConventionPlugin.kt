@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.toquete.boxbox.plugins.configureBuildType
 import com.toquete.boxbox.plugins.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -18,6 +19,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
+                configureBuildType(this)
                 defaultConfig {
                     targetSdk = 33
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
