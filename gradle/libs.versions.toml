@@ -29,6 +29,9 @@ work = "2.8.1"
 hilt-work = "1.0.0"
 mockwebserver = "4.10.0"
 mockk = "1.13.5"
+test-core = "1.5.0"
+test-runner = "1.5.2"
+test-rules = "1.5.0"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -73,6 +76,9 @@ hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hi
 mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserver"}
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test"}
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+test-core = { module = "androidx.test:core", version.ref = "test-core" }
+test-runner = { module = "androidx.test:runner", version.ref = "test-runner" }
+test-rules = { module = "androidx.test:rules", version.ref = "test-rules" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
