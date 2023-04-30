@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-internal class FullDriverStandingsRepositoryImpl @Inject constructor(
+internal class DefaultFullDriverStandingsRepository @Inject constructor(
     private val remoteDataSource: FullDriverStandingsRemoteDataSource,
     private val localDataSource: FullDriverStandingsLocalDataSource,
     private val driverStandingsLocalDataSource: DriverStandingsLocalDataSource,

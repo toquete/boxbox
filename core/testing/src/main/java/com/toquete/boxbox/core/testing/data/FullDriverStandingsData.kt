@@ -1,6 +1,7 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.database.model.FullDriverStandingEntity
+import com.toquete.boxbox.model.FullDriverStanding
 
 val fullDriverStandingEntities = listOf(
     FullDriverStandingEntity(
@@ -15,5 +16,15 @@ val fullDriverStandingEntities = listOf(
         constructorId = "red_bull",
         constructorName = "Red Bull",
         constructorImageUrl = "http://constructor.com"
+    )
+)
+
+val fullDriverStandings = listOf(
+    FullDriverStanding(
+        position = 1,
+        points = "90",
+        wins = "5",
+        driver = driver,
+        constructor = constructor
     )
 )

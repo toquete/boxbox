@@ -49,8 +49,8 @@ val driverStandingsWrapper = DriverStandingsWrapper(
 val driverStandingEntities = listOf(
     DriverStandingEntity(
         position = 1,
-        points = "100",
-        wins = "5",
+        points = "69",
+        wins = "2",
         driverId = "max_verstappen",
         constructorId = "red_bull"
     )

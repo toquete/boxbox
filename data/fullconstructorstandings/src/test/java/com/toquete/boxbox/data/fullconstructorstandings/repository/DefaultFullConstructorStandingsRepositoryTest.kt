@@ -1,20 +1,23 @@
 package com.toquete.boxbox.data.fullconstructorstandings.repository
 
+import com.toquete.boxbox.core.testing.data.constructorStandingEntities
 import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
 import com.toquete.boxbox.core.testing.data.fullConstructorStandings
 import com.toquete.boxbox.data.constructorstandings.source.local.ConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.fullconstructorstandings.source.local.FullConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.fullconstructorstandings.source.remote.FullConstructorStandingsRemoteDataSource
+import com.toquete.boxbox.database.model.ConstructorStandingEntity
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import io.mockk.slot
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
-import kotlin.test.assertEquals
+import kotlin.test.assertContentEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -36,7 +39,7 @@ class DefaultFullConstructorStandingsRepositoryTest {
 
         val result = repository.getFullConstructorStandings()
 
-        assertEquals(fullConstructorStandings, result.first())
+        assertContentEquals(fullConstructorStandings, result.first())
     }
 
     @Test
@@ -46,9 +49,20 @@ class DefaultFullConstructorStandingsRepositoryTest {
 
         val result = repository.sync()
 
-        coVerify { constructorStandingsLocalDataSource.insertAll(any()) }
-
         assertTrue(result)
+    }
+
+    @Test
+    fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
+        val slot = slot<List<ConstructorStandingEntity>>()
+        coEvery { remoteDataSource.getConstructorStandings() } returns constructorStandingsResponse
+        coEvery { constructorStandingsLocalDataSource.insertAll(any()) } returns Unit
+
+        repository.sync()
+
+        coVerify { constructorStandingsLocalDataSource.insertAll(capture(slot)) }
+
+        assertContentEquals(constructorStandingEntities, slot.captured)
     }
 
     @Test
@@ -57,9 +71,16 @@ class DefaultFullConstructorStandingsRepositoryTest {
 
         val result = repository.sync()
 
-        coVerify(exactly = 0) { constructorStandingsLocalDataSource.insertAll(any()) }
-
         assertFalse(result)
+    }
+
+    @Test
+    fun `sync should not call local data source when remote data returns error`() = runTest {
+        coEvery { remoteDataSource.getConstructorStandings() } throws IOException()
+
+        repository.sync()
+
+        coVerify(exactly = 0) { constructorStandingsLocalDataSource.insertAll(any()) }
     }
 
     @Test

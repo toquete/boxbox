@@ -6,7 +6,7 @@ import com.toquete.boxbox.model.Constructor
 val constructorEntities = listOf(
     ConstructorEntity(
         id = "red_bull",
-        url = "http://redbull.com",
+        url = "http://en.wikipedia.org/wiki/Red_Bull_Racing",
         name = "Red Bull",
         nationality = "Austrian"
     )
@@ -15,5 +15,5 @@ val constructorEntities = listOf(
 val constructor = Constructor(
     id = "red_bull",
     name = "Red Bull",
-    imageUrl = "http://image.com"
+    imageUrl = "http://constructor.com"
 )

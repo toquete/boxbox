@@ -37,8 +37,8 @@ val constructorStandingsWrapper = ConstructorStandingsWrapper(
 val constructorStandingEntities = listOf(
     ConstructorStandingEntity(
         position = 1,
-        points = "100",
-        wins = "5",
+        points = "123",
+        wins = "3",
         constructorId = "red_bull"
     )
 )

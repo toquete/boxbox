@@ -1,16 +1,25 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.database.model.DriverEntity
+import com.toquete.boxbox.model.Driver
 
 val driverEntities = listOf(
     DriverEntity(
         id = "max_verstappen",
         number = "33",
-        code = "MAX",
-        url = "http://verstappen.com",
+        code = "VER",
+        url = "http://en.wikipedia.org/wiki/Max_Verstappen",
         firstName = "Max",
         lastName = "Verstappen",
-        dateOfBirth = "1997-08-09",
+        dateOfBirth = "1997-09-30",
         nationality = "Dutch"
     )
+)
+
+val driver = Driver(
+    id = "max_verstappen",
+    firstName = "Max",
+    lastName = "Verstappen",
+    imageUrl = "http://image.com",
+    flagUrl = "http://flag.com"
 )
