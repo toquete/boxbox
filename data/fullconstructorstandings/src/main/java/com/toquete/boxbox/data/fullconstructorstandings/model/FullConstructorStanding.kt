@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.fullconstructorstandings.model
 
-import com.toquete.boxbox.database.model.ConstructorStandingEntity
-import com.toquete.boxbox.database.model.FullConstructorStandingEntity
+import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
+import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
 import com.toquete.boxbox.model.Constructor
 import com.toquete.boxbox.model.FullConstructorStanding
 import com.toquete.boxbox.network.model.ConstructorStandingResponse

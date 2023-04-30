@@ -1,6 +1,6 @@
 package com.toquete.boxbox.core.testing.data
 
-import com.toquete.boxbox.database.model.ConstructorStandingEntity
+import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
 import com.toquete.boxbox.network.model.ConstructorResponse
 import com.toquete.boxbox.network.model.ConstructorStandingResponse
 import com.toquete.boxbox.network.model.ConstructorStandingsResponse

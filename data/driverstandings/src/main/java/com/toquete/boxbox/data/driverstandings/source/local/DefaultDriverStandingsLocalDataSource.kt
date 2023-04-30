@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.driverstandings.source.local
 
-import com.toquete.boxbox.database.dao.DriverStandingDao
-import com.toquete.boxbox.database.model.DriverStandingEntity
+import com.toquete.boxbox.core.database.dao.DriverStandingDao
+import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import javax.inject.Inject
 
 internal class DefaultDriverStandingsLocalDataSource @Inject constructor(

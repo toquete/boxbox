@@ -1,4 +1,4 @@
-package com.toquete.boxbox.database.model
+package com.toquete.boxbox.core.database.model
 
 data class FullDriverStandingEntity(
     val position: Int,

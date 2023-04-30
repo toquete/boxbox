@@ -1,6 +1,6 @@
 package com.toquete.boxbox.data.fulldriverstandings.model
 
-import com.toquete.boxbox.database.model.DriverEntity
+import com.toquete.boxbox.core.database.model.DriverEntity
 import com.toquete.boxbox.network.model.DriverResponse
 
 internal fun DriverResponse.toEntity(): DriverEntity {

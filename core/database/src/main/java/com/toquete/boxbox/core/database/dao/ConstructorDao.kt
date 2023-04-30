@@ -1,9 +1,9 @@
-package com.toquete.boxbox.database.dao
+package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.toquete.boxbox.database.model.ConstructorEntity
+import com.toquete.boxbox.core.database.model.ConstructorEntity
 
 @Dao
 interface ConstructorDao {

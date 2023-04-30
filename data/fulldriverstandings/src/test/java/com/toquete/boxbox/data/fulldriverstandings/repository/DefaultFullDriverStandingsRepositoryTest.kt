@@ -1,5 +1,8 @@
 package com.toquete.boxbox.data.fulldriverstandings.repository
 
+import com.toquete.boxbox.core.database.model.ConstructorEntity
+import com.toquete.boxbox.core.database.model.DriverEntity
+import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.driverEntities
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
@@ -11,9 +14,6 @@ import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
 import com.toquete.boxbox.data.driverstandings.source.local.DriverStandingsLocalDataSource
 import com.toquete.boxbox.data.fulldriverstandings.source.local.FullDriverStandingsLocalDataSource
 import com.toquete.boxbox.data.fulldriverstandings.source.remote.FullDriverStandingsRemoteDataSource
-import com.toquete.boxbox.database.model.ConstructorEntity
-import com.toquete.boxbox.database.model.DriverEntity
-import com.toquete.boxbox.database.model.DriverStandingEntity
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

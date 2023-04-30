@@ -1,6 +1,6 @@
 package com.toquete.boxbox.core.testing.data
 
-import com.toquete.boxbox.database.model.DriverStandingEntity
+import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.network.model.ConstructorResponse
 import com.toquete.boxbox.network.model.DriverResponse
 import com.toquete.boxbox.network.model.DriverStandingResponse

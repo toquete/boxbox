@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.database"
+    namespace = "com.toquete.boxbox.core.database"
 
     defaultConfig {
         javaCompileOptions {

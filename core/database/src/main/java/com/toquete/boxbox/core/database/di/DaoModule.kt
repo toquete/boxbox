@@ -1,12 +1,12 @@
-package com.toquete.boxbox.database.di
+package com.toquete.boxbox.core.database.di
 
-import com.toquete.boxbox.database.BoxBoxDatabase
-import com.toquete.boxbox.database.dao.ConstructorDao
-import com.toquete.boxbox.database.dao.ConstructorStandingDao
-import com.toquete.boxbox.database.dao.DriverDao
-import com.toquete.boxbox.database.dao.DriverStandingDao
-import com.toquete.boxbox.database.dao.FullConstructorStandingDao
-import com.toquete.boxbox.database.dao.FullDriverStandingDao
+import com.toquete.boxbox.core.database.BoxBoxDatabase
+import com.toquete.boxbox.core.database.dao.ConstructorDao
+import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
+import com.toquete.boxbox.core.database.dao.DriverDao
+import com.toquete.boxbox.core.database.dao.DriverStandingDao
+import com.toquete.boxbox.core.database.dao.FullConstructorStandingDao
+import com.toquete.boxbox.core.database.dao.FullDriverStandingDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

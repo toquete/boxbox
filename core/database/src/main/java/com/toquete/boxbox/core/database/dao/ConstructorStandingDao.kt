@@ -1,10 +1,10 @@
-package com.toquete.boxbox.database.dao
+package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import com.toquete.boxbox.database.model.ConstructorStandingEntity
+import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
 
 @Dao
 interface ConstructorStandingDao {

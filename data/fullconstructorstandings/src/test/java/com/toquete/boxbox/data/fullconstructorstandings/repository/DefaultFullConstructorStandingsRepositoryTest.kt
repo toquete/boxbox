@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.fullconstructorstandings.repository
 
+import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
 import com.toquete.boxbox.core.testing.data.constructorStandingEntities
 import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
@@ -7,7 +8,6 @@ import com.toquete.boxbox.core.testing.data.fullConstructorStandings
 import com.toquete.boxbox.data.constructorstandings.source.local.ConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.fullconstructorstandings.source.local.FullConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.fullconstructorstandings.source.remote.FullConstructorStandingsRemoteDataSource
-import com.toquete.boxbox.database.model.ConstructorStandingEntity
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

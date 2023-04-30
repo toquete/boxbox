@@ -1,9 +1,9 @@
-package com.toquete.boxbox.database.dao
+package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.toquete.boxbox.database.model.DriverEntity
+import com.toquete.boxbox.core.database.model.DriverEntity
 
 @Dao
 interface DriverDao {

@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.constructorstandings
 
+import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
 import com.toquete.boxbox.core.testing.data.constructorStandingEntities
 import com.toquete.boxbox.data.constructorstandings.source.local.DefaultConstructorStandingsLocalDataSource
-import com.toquete.boxbox.database.dao.ConstructorStandingDao
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

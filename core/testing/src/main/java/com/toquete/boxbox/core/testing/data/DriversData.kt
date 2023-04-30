@@ -1,6 +1,6 @@
 package com.toquete.boxbox.core.testing.data
 
-import com.toquete.boxbox.database.model.DriverEntity
+import com.toquete.boxbox.core.database.model.DriverEntity
 import com.toquete.boxbox.model.Driver
 
 val driverEntities = listOf(

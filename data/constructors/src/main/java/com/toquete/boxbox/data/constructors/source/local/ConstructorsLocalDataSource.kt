@@ -1,6 +1,6 @@
 package com.toquete.boxbox.data.constructors.source.local
 
-import com.toquete.boxbox.database.model.ConstructorEntity
+import com.toquete.boxbox.core.database.model.ConstructorEntity
 
 interface ConstructorsLocalDataSource {
 

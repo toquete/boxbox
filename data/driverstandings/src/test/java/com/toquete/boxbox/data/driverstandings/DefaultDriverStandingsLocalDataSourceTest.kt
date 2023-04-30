@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.driverstandings
 
+import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
 import com.toquete.boxbox.data.driverstandings.source.local.DefaultDriverStandingsLocalDataSource
-import com.toquete.boxbox.database.dao.DriverStandingDao
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

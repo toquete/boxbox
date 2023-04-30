@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.drivers
 
+import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.testing.data.driverEntities
 import com.toquete.boxbox.data.drivers.source.local.DefaultDriversLocalDataSource
-import com.toquete.boxbox.database.dao.DriverDao
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

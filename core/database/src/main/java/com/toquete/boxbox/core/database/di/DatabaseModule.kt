@@ -1,8 +1,8 @@
-package com.toquete.boxbox.database.di
+package com.toquete.boxbox.core.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.toquete.boxbox.database.BoxBoxDatabase
+import com.toquete.boxbox.core.database.BoxBoxDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.constructors
 
+import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.data.constructors.source.local.DefaultConstructorsLocalDataSource
-import com.toquete.boxbox.database.dao.ConstructorDao
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

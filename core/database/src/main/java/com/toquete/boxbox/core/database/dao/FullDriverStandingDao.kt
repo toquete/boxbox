@@ -1,8 +1,8 @@
-package com.toquete.boxbox.database.dao
+package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.toquete.boxbox.database.model.FullDriverStandingEntity
+import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

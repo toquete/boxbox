@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.fullconstructorstandings.source.local
 
+import com.toquete.boxbox.core.database.dao.FullConstructorStandingDao
 import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
-import com.toquete.boxbox.database.dao.FullConstructorStandingDao
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
