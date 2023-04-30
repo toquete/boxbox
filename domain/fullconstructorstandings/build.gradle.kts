@@ -11,4 +11,6 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:common"))
     implementation(project(":data:fullconstructorstandings"))
+
+    testImplementation(project(":core:testing"))
 }
