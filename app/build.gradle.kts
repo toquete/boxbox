@@ -1,3 +1,5 @@
+import com.toquete.boxbox.plugins.BoxBoxBuildType
+
 plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
@@ -15,21 +17,21 @@ android {
 
     buildTypes {
         release {
-            applicationIdSuffix = ".release"
+            applicationIdSuffix = BoxBoxBuildType.RELEASE.applicationIdSuffix
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         create("minified") {
             initWith(getByName("debug"))
-            applicationIdSuffix = ".minified"
-            versionNameSuffix = "-MINIFIED"
+            applicationIdSuffix = BoxBoxBuildType.MINIFIED.applicationIdSuffix
+            versionNameSuffix = BoxBoxBuildType.MINIFIED.versionNameSuffix
             matchingFallbacks.add("debug")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         debug {
-            applicationIdSuffix = ".debug"
-            versionNameSuffix = "-DEBUG"
+            applicationIdSuffix = BoxBoxBuildType.DEBUG.applicationIdSuffix
+            versionNameSuffix = BoxBoxBuildType.DEBUG.versionNameSuffix
         }
     }
 }
