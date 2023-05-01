@@ -16,4 +16,5 @@ dependencies {
     implementation(project(":domain:fullconstructorstandings"))
 
     testImplementation(project(":core:testing"))
+    androidTestImplementation(project(":core:testing"))
 }

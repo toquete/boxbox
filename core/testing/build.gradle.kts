@@ -21,4 +21,6 @@ dependencies {
     api(libs.test.core)
     api(libs.test.runner)
     api(libs.test.rules)
+    api(libs.junit.compose)
+    debugApi(libs.compose.ui.manifest)
 }

@@ -46,6 +46,9 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
+    implementation(libs.work.runtime)
+    implementation(libs.hilt.work)
+    kapt(libs.hilt.work.compiler)
 
     testImplementation(project(":core:testing"))
 }

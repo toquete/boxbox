@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,6 +53,7 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
+                    modifier = Modifier.testTag("Position"),
                     text = standing.position.toString(),
                     style = MaterialTheme.typography.displaySmall.copy(
                         fontFamily = FormulaOne
@@ -59,7 +61,9 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 )
                 Column {
                     Text(
-                        modifier = Modifier.padding(top = 4.dp),
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                            .testTag("First Name"),
                         text = standing.driver.firstName,
                         style = MaterialTheme.typography.headlineMedium.copy(
                             fontFamily = FormulaOne
@@ -67,6 +71,7 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                         fontWeight = FontWeight.Normal
                     )
                     Text(
+                        modifier = Modifier.testTag("Last Name"),
                         text = standing.driver.lastName,
                         style = MaterialTheme.typography.headlineMedium.copy(
                             fontFamily = FormulaOne
@@ -89,7 +94,9 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
             }
         }
         Divider(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .testTag("Divider"),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Row(
@@ -98,6 +105,7 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Surface(
+                modifier = Modifier.testTag("Points"),
                 shape = MaterialTheme.shapes.extraLarge,
                 color = MaterialTheme.colorScheme.secondary
             ) {
@@ -110,11 +118,13 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 )
             }
             Surface(
+                modifier = Modifier.testTag("Wins"),
                 shape = MaterialTheme.shapes.extraLarge,
                 color = MaterialTheme.colorScheme.secondary
             ) {
                 Text(
-                    modifier = Modifier.padding(6.dp),
+                    modifier = Modifier
+                        .padding(6.dp),
                     text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontFamily = FormulaOne
@@ -122,6 +132,7 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 )
             }
             Surface(
+                modifier = Modifier.testTag("Constructor"),
                 shape = MaterialTheme.shapes.extraLarge,
                 color = MaterialTheme.colorScheme.secondary
             ) {

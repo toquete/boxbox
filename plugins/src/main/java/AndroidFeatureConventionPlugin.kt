@@ -19,6 +19,15 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 defaultConfig {
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
+                packagingOptions {
+                    resources {
+                        excludes += listOf(
+                            "/META-INF/{AL2.0,LGPL2.1}",
+                            "META-INF/LICENSE.md",
+                            "META-INF/LICENSE-notice.md"
+                        )
+                    }
+                }
             }
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
@@ -27,10 +36,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findBundle("compose").get())
                 add("implementation", libs.findBundle("coil").get())
 
-                add("androidTestImplementation", libs.findLibrary("junit.compose").get())
-
                 add("debugImplementation", libs.findLibrary("compose.ui.tooling").get())
-                add("debugImplementation", libs.findLibrary("compose.ui.manifest").get())
             }
         }
     }
