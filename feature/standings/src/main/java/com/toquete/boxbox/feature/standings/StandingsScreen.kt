@@ -60,7 +60,7 @@ fun StandingsScreen(
         ) { page ->
             when (pages[page]) {
                 StandingsTab.DRIVERS -> FullDriverStandingsScreen()
-                StandingsTab.CONSTRUCTORS -> FullConstructorStandingsScreen(constructorStandings)
+                StandingsTab.CONSTRUCTORS -> FullConstructorStandingsScreen()
             }
         }
     }

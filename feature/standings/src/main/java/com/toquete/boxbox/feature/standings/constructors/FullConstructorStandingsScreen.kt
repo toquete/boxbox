@@ -20,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.FullConstructorStanding
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
@@ -27,51 +29,64 @@ import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
 
 @Composable
-fun FullConstructorStandingsScreen(list: List<FullConstructorStanding>) {
+fun FullConstructorStandingsScreen() {
+    val viewModel: FullConstructorStandingsViewModel = viewModel()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    FullConstructorStandingsContent(state)
+}
+@Composable
+private fun FullConstructorStandingsContent(state: FullConstructorStandingsState) {
     val lazyListState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     val showButton by remember {
         derivedStateOf { lazyListState.firstVisibleItemIndex > 0 }
     }
     Box(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            state = lazyListState
-        ) {
-            items(list) { standing ->
-                FullConstructorStandingItem(standing)
+        when (state) {
+            FullConstructorStandingsState.Loading -> Unit
+            is FullConstructorStandingsState.Success -> {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    state = lazyListState
+                ) {
+                    items(state.constructorStandings) { standing ->
+                        FullConstructorStandingItem(standing)
+                    }
+                }
+                ScrollToUpButton(
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(16.dp),
+                    visible = showButton,
+                    onClick = {
+                        coroutineScope.launch {
+                            lazyListState.animateScrollToItem(index = 0)
+                        }
+                    }
+                )
             }
         }
-        ScrollToUpButton(
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp),
-            visible = showButton,
-            onClick = {
-                coroutineScope.launch {
-                    lazyListState.animateScrollToItem(index = 0)
-                }
-            }
-        )
     }
 }
 
 @Preview(name = "Content Light", showBackground = true)
 @Composable
-private fun FullConstructorStandingsScreenLightPreview() {
+private fun FullConstructorStandingsContentLightPreview() {
     BoxBoxTheme {
-        FullConstructorStandingsScreen(
-            list = listOf(
-                FullConstructorStanding(
-                    position = 1,
-                    points = "258",
-                    wins = "7",
-                    constructor = Constructor(
-                        id = "red_bull",
-                        name = "Red Bull",
-                        imageUrl = null
+        FullConstructorStandingsContent(
+            state = FullConstructorStandingsState.Success(
+                constructorStandings = listOf(
+                    FullConstructorStanding(
+                        position = 1,
+                        points = "258",
+                        wins = "7",
+                        constructor = Constructor(
+                            id = "red_bull",
+                            name = "Red Bull",
+                            imageUrl = null
+                        )
                     )
                 )
             )
@@ -81,19 +96,21 @@ private fun FullConstructorStandingsScreenLightPreview() {
 
 @Preview(name = "Content Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun FullConstructorStandingsScreenDarkPreview() {
+private fun FullConstructorStandingsContentDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            FullConstructorStandingsScreen(
-                list = listOf(
-                    FullConstructorStanding(
-                        position = 1,
-                        points = "258",
-                        wins = "7",
-                        constructor = Constructor(
-                            id = "red_bull",
-                            name = "Red Bull",
-                            imageUrl = null
+            FullConstructorStandingsContent(
+                state = FullConstructorStandingsState.Success(
+                    constructorStandings = listOf(
+                        FullConstructorStanding(
+                            position = 1,
+                            points = "258",
+                            wins = "7",
+                            constructor = Constructor(
+                                id = "red_bull",
+                                name = "Red Bull",
+                                imageUrl = null
+                            )
                         )
                     )
                 )
