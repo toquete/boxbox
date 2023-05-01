@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "com.toquete.boxbox.core.ui"
 }
+
+dependencies {
+    implementation(libs.bundles.coil)
+}

@@ -18,18 +18,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
-import coil.request.ImageRequest
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.FullDriverStanding
+import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
@@ -84,8 +82,8 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {
-                AsyncImage(
-                    model = standing.driver.imageUrl,
+                BoxBoxAsyncImage(
+                    data = standing.driver.imageUrl,
                     contentDescription = null
                 )
             }
@@ -142,13 +140,11 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 shape = MaterialTheme.shapes.extraLarge,
                 color = MaterialTheme.colorScheme.secondary
             ) {
-                AsyncImage(
+                BoxBoxAsyncImage(
                     modifier = Modifier.padding(6.dp),
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(standing.driver.flagUrl)
-                        .decoderFactory(SvgDecoder.Factory())
-                        .build(),
-                    contentDescription = null
+                    data = standing.driver.flagUrl,
+                    contentDescription = null,
+                    decoder = SvgDecoder.Factory()
                 )
             }
         }

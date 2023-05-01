@@ -21,9 +21,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.FullConstructorStanding
+import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
@@ -71,9 +71,9 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {
-                AsyncImage(
+                BoxBoxAsyncImage(
                     modifier = Modifier.padding(8.dp),
-                    model = standing.constructor.imageUrl,
+                    data = standing.constructor.imageUrl,
                     contentDescription = null
                 )
             }
