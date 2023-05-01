@@ -79,16 +79,14 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(viewModel: MainViewModel = viewModel()) {
     val isOnline by viewModel.isOnline.collectAsStateWithLifecycle()
     val isSyncing by viewModel.isSyncing.collectAsStateWithLifecycle()
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    MainScreenContent(isOnline, isSyncing, state)
+    MainScreenContent(isOnline, isSyncing)
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun MainScreenContent(
     isOnline: Boolean,
-    isSyncing: Boolean,
-    state: MainState
+    isSyncing: Boolean
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val notConnectedMessage = stringResource(R.string.not_connected)
@@ -119,10 +117,7 @@ private fun MainScreenContent(
         },
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                when (state) {
-                    is MainState.Loading -> Unit
-                    is MainState.Success -> StandingsScreen(state.drivers, state.constructors)
-                }
+                StandingsScreen()
                 AnimatedVisibility(visible = isSyncing) {
                     LinearProgressIndicator(
                         modifier = Modifier
@@ -141,8 +136,7 @@ fun MainLightPreview() {
     BoxBoxTheme {
         MainScreenContent(
             isOnline = true,
-            isSyncing = false,
-            state = MainState.Success(emptyList(), emptyList())
+            isSyncing = false
         )
     }
 }
@@ -154,8 +148,7 @@ fun MainDarkPreview() {
         Surface(color = MaterialTheme.colorScheme.background) {
             MainScreenContent(
                 isOnline = true,
-                isSyncing = false,
-                state = MainState.Success(emptyList(), emptyList())
+                isSyncing = false
             )
         }
     }

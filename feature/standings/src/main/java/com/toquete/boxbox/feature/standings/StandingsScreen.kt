@@ -16,8 +16,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.res.stringResource
-import com.toquete.boxbox.core.model.FullConstructorStanding
-import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.feature.standings.constructors.FullConstructorStandingsScreen
 import com.toquete.boxbox.feature.standings.drivers.FullDriverStandingsScreen
 import com.toquete.boxbox.feature.standings.model.StandingsTab
@@ -25,10 +23,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun StandingsScreen(
-    driverStandings: List<FullDriverStanding>,
-    constructorStandings: List<FullConstructorStanding>
-) {
+fun StandingsScreen() {
     var selectedTab by remember { mutableStateOf(StandingsTab.DRIVERS) }
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
