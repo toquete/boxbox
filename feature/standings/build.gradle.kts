@@ -14,4 +14,6 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":domain:fulldriverstandings"))
     implementation(project(":domain:fullconstructorstandings"))
+
+    testImplementation(project(":core:testing"))
 }

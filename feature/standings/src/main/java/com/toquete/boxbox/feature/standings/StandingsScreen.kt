@@ -59,7 +59,7 @@ fun StandingsScreen(
             state = pagerState
         ) { page ->
             when (pages[page]) {
-                StandingsTab.DRIVERS -> FullDriverStandingsScreen(driverStandings)
+                StandingsTab.DRIVERS -> FullDriverStandingsScreen()
                 StandingsTab.CONSTRUCTORS -> FullConstructorStandingsScreen(constructorStandings)
             }
         }
