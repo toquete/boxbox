@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">BoxBox</string>
     <string name="not_connected">You are not connected to the internet!</string>
-    <string name="drivers">Drivers</string>
-    <string name="constructors">Constructors</string>
 </resources>
