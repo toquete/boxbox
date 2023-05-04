@@ -45,7 +45,7 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
         ) {
             Column(
                 modifier = Modifier
-                    .weight(0.6f)
+                    .weight(weight = 0.6f)
                     .wrapContentHeight(unbounded = true),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
@@ -67,7 +67,7 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
             Surface(
                 modifier = Modifier
                     .size(120.dp)
-                    .weight(0.4f, fill = false),
+                    .weight(weight = 0.4f, fill = false),
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {

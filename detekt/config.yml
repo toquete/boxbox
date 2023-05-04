@@ -2,10 +2,7 @@ naming:
   active: true
   FunctionNaming:
     active: true
-    ignoreAnnotated: ['@Composable', '@Test']
-  TopLevelPropertyNaming:
-    active: true
-    constantPattern: '[A-Z][A-Za-z0-9]*'
+    ignoreAnnotated: ['Composable']
 
 complexity:
   active: true
@@ -21,4 +18,4 @@ style:
     ignoreCompanionObjectPropertyDeclaration: true
   UnusedPrivateMember:
     active: true
-    ignoreAnnotated: ['@Preview']
+    ignoreAnnotated: ['Preview']

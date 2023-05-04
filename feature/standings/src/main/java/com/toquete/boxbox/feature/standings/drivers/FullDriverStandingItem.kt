@@ -49,7 +49,7 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
-                modifier = Modifier.weight(0.6f),
+                modifier = Modifier.weight(weight = 0.6f),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
@@ -83,7 +83,7 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
             Surface(
                 modifier = Modifier
                     .size(120.dp)
-                    .weight(0.4f, fill = false),
+                    .weight(weight = 0.4f, fill = false),
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {
