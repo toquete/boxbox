@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class DefaultFullConstructorStandingsLocalDataSource @Inject constructor(
     private val fullConstructorStandingDao: FullConstructorStandingDao
-): FullConstructorStandingsLocalDataSource {
+) : FullConstructorStandingsLocalDataSource {
 
     override fun getFullConstructorStandings(): Flow<List<FullConstructorStandingEntity>> {
         return fullConstructorStandingDao.getFullConstructorStandings()

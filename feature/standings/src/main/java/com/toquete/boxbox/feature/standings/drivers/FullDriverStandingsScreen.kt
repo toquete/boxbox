@@ -70,7 +70,6 @@ private fun FullDriverStandingsContent(state: FullDriversStandingsState) {
                 )
             }
         }
-
     }
 }
 

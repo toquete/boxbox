@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class DefaultConstructorStandingsLocalDataSource @Inject constructor(
     private val constructorStandingDao: ConstructorStandingDao
-): ConstructorStandingsLocalDataSource {
+) : ConstructorStandingsLocalDataSource {
 
     override suspend fun insertAll(constructorStandings: List<ConstructorStandingEntity>) {
         constructorStandingDao.deleteAndInsertInTransaction(constructorStandings)

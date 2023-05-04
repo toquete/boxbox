@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class WorkManagerSyncMonitor @Inject constructor(
     @ApplicationContext context: Context
-): SyncMonitor {
+) : SyncMonitor {
 
     override val isSyncing: Flow<Boolean> = WorkManager.getInstance(context)
         .getWorkInfosForUniqueWorkLiveData(SYNC_WORK_NAME)

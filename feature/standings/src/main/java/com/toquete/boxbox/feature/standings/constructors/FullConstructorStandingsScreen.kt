@@ -34,6 +34,7 @@ fun FullConstructorStandingsScreen() {
     val state by viewModel.state.collectAsStateWithLifecycle()
     FullConstructorStandingsContent(state)
 }
+
 @Composable
 private fun FullConstructorStandingsContent(state: FullConstructorStandingsState) {
     val lazyListState = rememberLazyListState()

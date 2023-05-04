@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class FullDriverStandingsViewModel @Inject constructor(
     getFullDriverStandingsUseCase: GetFullDriverStandingsUseCase
-): ViewModel() {
+) : ViewModel() {
 
     val state = getFullDriverStandingsUseCase()
         .map { FullDriversStandingsState.Success(it) }

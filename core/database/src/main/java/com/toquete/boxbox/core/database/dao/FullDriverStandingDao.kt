@@ -8,7 +8,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FullDriverStandingDao {
 
-    @Query("SELECT standings.position," +
+    @Query(
+        "SELECT standings.position," +
             "      standings.points, " +
             "      standings.wins, " +
             "      drivers.id AS driverId, " +
@@ -29,6 +30,7 @@ interface FullDriverStandingDao {
             "  AND standings.constructor_id = constructors.id " +
             "  AND standings.constructor_id = ci.id " +
             "  AND standings.driver_id = di.id " +
-            "  AND drivers.nationality = countries.nationality")
+            "  AND drivers.nationality = countries.nationality"
+    )
     fun getFullDriverStandings(): Flow<List<FullDriverStandingEntity>>
 }
