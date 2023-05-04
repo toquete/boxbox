@@ -10,6 +10,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
 import com.toquete.boxbox.core.testing.data.fullDriverStandings
+import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import org.junit.Rule
 import org.junit.Test
 
@@ -25,7 +26,9 @@ class FullDriverStandingsContentTest {
 
         with(composeTestRule) {
             setContent {
-                FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                BoxBoxTheme {
+                    FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                }
             }
 
             onNodeWithTag("Scroll Button").assertDoesNotExist()
@@ -39,7 +42,9 @@ class FullDriverStandingsContentTest {
 
         with(composeTestRule) {
             setContent {
-                FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                BoxBoxTheme {
+                    FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                }
             }
 
             onNodeWithTag("Driver Standings List").performScrollToIndex(1)
@@ -54,7 +59,9 @@ class FullDriverStandingsContentTest {
 
         with(composeTestRule) {
             setContent {
-                FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                BoxBoxTheme {
+                    FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                }
             }
 
             onNodeWithTag("Driver Standings List").performScrollToIndex(9)

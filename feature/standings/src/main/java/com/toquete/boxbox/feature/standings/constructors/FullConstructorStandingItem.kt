@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -51,11 +52,14 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
+                    modifier = Modifier.testTag("Position"),
                     text = standing.position.toString(),
                     style = MaterialTheme.typography.displaySmall.copy(fontFamily = FormulaOne)
                 )
                 Text(
-                    modifier = Modifier.padding(top = 4.dp),
+                    modifier = Modifier
+                        .padding(top = 4.dp)
+                        .testTag("Constructor Name"),
                     text = standing.constructor.name,
                     style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
                     fontWeight = FontWeight.Bold
@@ -76,7 +80,9 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
             }
         }
         Divider(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .testTag("Divider"),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Row(
@@ -86,14 +92,18 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
         ) {
             StandingInfoSurface {
                 Text(
-                    modifier = Modifier.padding(6.dp),
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .testTag("Points"),
                     text = stringResource(R.string.points, standing.points),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
             StandingInfoSurface {
                 Text(
-                    modifier = Modifier.padding(6.dp),
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .testTag("Wins"),
                     text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )

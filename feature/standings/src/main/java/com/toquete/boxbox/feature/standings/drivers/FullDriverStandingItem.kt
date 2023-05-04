@@ -97,23 +97,29 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            StandingInfoSurface(modifier = Modifier.testTag("Points")) {
+            StandingInfoSurface {
                 Text(
-                    modifier = Modifier.padding(6.dp),
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .testTag("Points"),
                     text = stringResource(R.string.points, standing.points),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
-            StandingInfoSurface(modifier = Modifier.testTag("Wins")) {
+            StandingInfoSurface {
                 Text(
-                    modifier = Modifier.padding(6.dp),
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .testTag("Wins"),
                     text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
-            StandingInfoSurface(modifier = Modifier.testTag("Constructor")) {
+            StandingInfoSurface {
                 Text(
-                    modifier = Modifier.padding(6.dp),
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .testTag("Constructor"),
                     text = standing.constructor.name,
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )

@@ -2,7 +2,6 @@ package com.toquete.boxbox.feature.standings.ui
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.material.icons.Icons
@@ -15,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun ScrollToUpButton(
     modifier: Modifier = Modifier,
