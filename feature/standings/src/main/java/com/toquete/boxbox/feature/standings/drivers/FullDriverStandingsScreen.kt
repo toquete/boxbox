@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -37,7 +38,7 @@ fun FullDriverStandingsScreen() {
 }
 
 @Composable
-private fun FullDriverStandingsContent(state: FullDriversStandingsState) {
+internal fun FullDriverStandingsContent(state: FullDriversStandingsState) {
     val lazyListState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     val showButton by remember {
@@ -48,7 +49,9 @@ private fun FullDriverStandingsContent(state: FullDriversStandingsState) {
             FullDriversStandingsState.Loading -> Unit
             is FullDriversStandingsState.Success -> {
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .testTag("Driver Standings List"),
                     contentPadding = PaddingValues(16.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     state = lazyListState
@@ -60,7 +63,8 @@ private fun FullDriverStandingsContent(state: FullDriversStandingsState) {
                 ScrollToUpButton(
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
-                        .padding(16.dp),
+                        .padding(16.dp)
+                        .testTag("Scroll Button"),
                     visible = showButton,
                     onClick = {
                         coroutineScope.launch {
