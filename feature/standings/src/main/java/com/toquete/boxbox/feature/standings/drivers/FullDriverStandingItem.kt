@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
@@ -32,6 +30,7 @@ import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
+import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
 
 @Composable
 fun FullDriverStandingItem(standing: FullDriverStanding) {
@@ -55,9 +54,7 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                 Text(
                     modifier = Modifier.testTag("Position"),
                     text = standing.position.toString(),
-                    style = MaterialTheme.typography.displaySmall.copy(
-                        fontFamily = FormulaOne
-                    )
+                    style = MaterialTheme.typography.displaySmall.copy(fontFamily = FormulaOne)
                 )
                 Column {
                     Text(
@@ -65,17 +62,13 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
                             .padding(top = 4.dp)
                             .testTag("First Name"),
                         text = standing.driver.firstName,
-                        style = MaterialTheme.typography.headlineMedium.copy(
-                            fontFamily = FormulaOne
-                        ),
+                        style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Normal
                     )
                     Text(
                         modifier = Modifier.testTag("Last Name"),
                         text = standing.driver.lastName,
-                        style = MaterialTheme.typography.headlineMedium.copy(
-                            fontFamily = FormulaOne
-                        ),
+                        style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -104,53 +97,28 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Surface(
-                modifier = Modifier.testTag("Points"),
-                shape = MaterialTheme.shapes.extraLarge,
-                color = MaterialTheme.colorScheme.secondary
-            ) {
+            StandingInfoSurface(modifier = Modifier.testTag("Points")) {
                 Text(
                     modifier = Modifier.padding(6.dp),
                     text = stringResource(R.string.points, standing.points),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontFamily = FormulaOne
-                    )
+                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
-            Surface(
-                modifier = Modifier.testTag("Wins"),
-                shape = MaterialTheme.shapes.extraLarge,
-                color = MaterialTheme.colorScheme.secondary
-            ) {
+            StandingInfoSurface(modifier = Modifier.testTag("Wins")) {
                 Text(
-                    modifier = Modifier
-                        .padding(6.dp),
+                    modifier = Modifier.padding(6.dp),
                     text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontFamily = FormulaOne
-                    )
+                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
-            Surface(
-                modifier = Modifier.testTag("Constructor"),
-                shape = MaterialTheme.shapes.extraLarge,
-                color = MaterialTheme.colorScheme.secondary
-            ) {
+            StandingInfoSurface(modifier = Modifier.testTag("Constructor")) {
                 Text(
                     modifier = Modifier.padding(6.dp),
                     text = standing.constructor.name,
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontFamily = FormulaOne
-                    )
+                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
-            Surface(
-                modifier = Modifier
-                    .width(50.dp)
-                    .height(30.dp),
-                shape = MaterialTheme.shapes.extraLarge,
-                color = MaterialTheme.colorScheme.secondary
-            ) {
+            StandingInfoSurface(modifier = Modifier.size(width = 50.dp, height = 30.dp)) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(6.dp),
                     data = standing.driver.flagUrl,

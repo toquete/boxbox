@@ -27,6 +27,7 @@ import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
+import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
 
 @Composable
 internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
@@ -51,16 +52,12 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
             ) {
                 Text(
                     text = standing.position.toString(),
-                    style = MaterialTheme.typography.displaySmall.copy(
-                        fontFamily = FormulaOne
-                    )
+                    style = MaterialTheme.typography.displaySmall.copy(fontFamily = FormulaOne)
                 )
                 Text(
                     modifier = Modifier.padding(top = 4.dp),
                     text = standing.constructor.name,
-                    style = MaterialTheme.typography.headlineMedium.copy(
-                        fontFamily = FormulaOne
-                    ),
+                    style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -87,28 +84,18 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Surface(
-                shape = MaterialTheme.shapes.extraLarge,
-                color = MaterialTheme.colorScheme.secondary
-            ) {
+            StandingInfoSurface {
                 Text(
                     modifier = Modifier.padding(6.dp),
                     text = stringResource(R.string.points, standing.points),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontFamily = FormulaOne
-                    )
+                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
-            Surface(
-                shape = MaterialTheme.shapes.extraLarge,
-                color = MaterialTheme.colorScheme.secondary
-            ) {
+            StandingInfoSurface {
                 Text(
                     modifier = Modifier.padding(6.dp),
                     text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontFamily = FormulaOne
-                    )
+                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
         }

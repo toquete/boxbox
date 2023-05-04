@@ -9,6 +9,9 @@ complexity:
   LongParameterList:
     active: true
     ignoreDefaultParameters: true
+  LongMethod:
+    active: true
+    threshold: 120
 
 style:
   active: true
