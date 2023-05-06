@@ -19,6 +19,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     targetSdk = 33
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
+                buildTypes {
+                    debug {
+                        enableUnitTestCoverage = true
+                    }
+                }
                 packagingOptions {
                     resources {
                         excludes += listOf(

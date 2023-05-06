@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class LocalDataSource {
+internal abstract class LocalDataSourceModule {
 
     @Binds
     abstract fun bindsConstructorStandingsLocalDataSource(

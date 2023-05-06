@@ -27,6 +27,7 @@ android {
             versionNameSuffix = BoxBoxBuildType.MINIFIED.versionNameSuffix
             matchingFallbacks.add("debug")
             isMinifyEnabled = true
+            enableUnitTestCoverage = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         debug {

@@ -11,6 +11,8 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.detekt)
+    alias(libs.plugins.test.aggregation.results)
+    alias(libs.plugins.test.aggregation.coverage)
 }
 
 tasks.register<Delete>("clean") {
@@ -43,5 +45,34 @@ allprojects {
 
     dependencies {
         detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.0-RC3")
+    }
+}
+
+testAggregation {
+    coverage {
+        exclude(
+            "**/BR.*",
+            "**/R.*",
+            "**/R$*.*",
+            "**/BuildConfig.*",
+            "**/Manifest*.*",
+            "**/*_MembersInjector.*",
+            "**/Dagger*Component.*",
+            "**/Dagger*Component\$Builder.*",
+            "**/*Module_*Factory.*",
+            "**/*Activity*.*",
+            "**/*Module*.*",
+            "**/*Database*.*",
+            "**/*Factory*.*",
+            "**/*Creator*.*",
+            "**/**/*serializer*.*",
+            "**/**/*Companion*.*",
+            "**/*Hilt*",
+            "**/_*",
+            "**/dagger.hilt*",
+            "**/*Dagger*",
+            "**/*Module*",
+            "**/*Application*"
+        )
     }
 }
