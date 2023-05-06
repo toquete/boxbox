@@ -16,6 +16,8 @@ class WorkManagerSyncMonitor @Inject constructor(
 
     override val isSyncing: Flow<Boolean> = WorkManager.getInstance(context)
         .getWorkInfosForUniqueWorkLiveData(SYNC_WORK_NAME)
-        .map { it.any { it.state == WorkInfo.State.RUNNING } }
+        .map { workInfos ->
+            workInfos.any { it.state == WorkInfo.State.RUNNING }
+        }
         .asFlow()
 }

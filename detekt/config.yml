@@ -22,3 +22,6 @@ style:
   UnusedPrivateMember:
     active: true
     ignoreAnnotated: ['Preview']
+  UnnecessaryAbstractClass:
+    active: true
+    ignoreAnnotated: ['Module']

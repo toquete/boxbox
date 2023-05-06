@@ -10,6 +10,7 @@ import kotlin.coroutines.CoroutineContext
 
 @Module
 @InstallIn(SingletonComponent::class)
+@Suppress("InjectDispatcher")
 internal object DispatcherModule {
 
     @Provides
