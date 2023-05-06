@@ -19,4 +19,4 @@ You can check the modules' dependencies on each module README file.
 
 ## Data
 
-The app is [offline-first](https://developer.android.com/topic/architecture/data-layer/offline-first). All data comes from the Ergast API and saved in the local database every time the app is opened.
+The app is [offline-first](https://developer.android.com/topic/architecture/data-layer/offline-first). All data comes from the [Ergast API](http://ergast.com/mrd) and saved in the local database every time the app is opened.
