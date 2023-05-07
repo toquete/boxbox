@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ConstructorStandingDao {
@@ -20,4 +21,7 @@ interface ConstructorStandingDao {
         deleteAll()
         insertAll(constructorStandings)
     }
+
+    @Query("SELECT * FROM constructor_standings")
+    fun getConstructorStandings(): Flow<List<ConstructorStandingEntity>>
 }
