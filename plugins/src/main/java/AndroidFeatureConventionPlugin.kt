@@ -19,15 +19,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 defaultConfig {
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
-                packagingOptions {
-                    resources {
-                        excludes += listOf(
-                            "/META-INF/{AL2.0,LGPL2.1}",
-                            "META-INF/LICENSE.md",
-                            "META-INF/LICENSE-notice.md"
-                        )
-                    }
-                }
             }
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")

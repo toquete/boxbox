@@ -8,6 +8,7 @@ android {
     namespace = "com.toquete.boxbox.core.database"
 
     defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
                 compilerArgumentProviders(
@@ -20,6 +21,7 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
+    androidTestImplementation(project(":core:testing"))
 }
 
 class RoomSchemaArgProvider(
