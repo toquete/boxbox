@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "constructors_images")
-data class ConstructorImage(
+data class ConstructorImageEntity(
     @PrimaryKey
     val id: String,
     @ColumnInfo(name = "image_url")
