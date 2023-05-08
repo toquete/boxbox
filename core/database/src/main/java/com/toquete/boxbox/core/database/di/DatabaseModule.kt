@@ -22,7 +22,6 @@ internal object DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context): BoxBoxDatabase {
         return Room.databaseBuilder(context, BoxBoxDatabase::class.java, DATABASE)
             .createFromAsset(DATABASE_FILE_PATH)
-            .fallbackToDestructiveMigration()
             .build()
     }
 }
