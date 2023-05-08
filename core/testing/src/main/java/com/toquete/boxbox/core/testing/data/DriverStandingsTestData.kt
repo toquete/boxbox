@@ -12,8 +12,8 @@ import com.toquete.boxbox.core.network.model.StandingsTableResponse
 val driverStandingsResponse = listOf(
     DriverStandingResponse(
         position = "1",
-        points = "69",
-        wins = "2",
+        points = "90",
+        wins = "5",
         driver = DriverResponse(
             id = "max_verstappen",
             number = "33",
@@ -49,8 +49,8 @@ val driverStandingsWrapper = DriverStandingsWrapper(
 val driverStandingEntities = listOf(
     DriverStandingEntity(
         position = 1,
-        points = "69",
-        wins = "2",
+        points = "90",
+        wins = "5",
         driverId = "max_verstappen",
         constructorId = "red_bull"
     )
