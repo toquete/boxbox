@@ -6,5 +6,6 @@ data class FullConstructorStandingEntity(
     val wins: String,
     val constructorId: String,
     val constructorName: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val flagUrl: String
 )

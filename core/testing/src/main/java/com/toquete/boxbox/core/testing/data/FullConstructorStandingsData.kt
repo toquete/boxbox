@@ -10,7 +10,8 @@ val fullConstructorStandingEntities = listOf(
         wins = "3",
         constructorId = "red_bull",
         constructorName = "Red Bull",
-        imageUrl = "http://constructor.com"
+        imageUrl = "http://constructor.com",
+        flagUrl = "http://flag.com"
     )
 )
 

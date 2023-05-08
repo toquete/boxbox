@@ -14,12 +14,15 @@ interface FullConstructorStandingDao {
             "       standings.wins, " +
             "       constructors.id AS constructorId, " +
             "       constructors.name AS constructorName, " +
-            "       ci.image_url AS imageUrl " +
+            "       ci.image_url AS imageUrl, " +
+            "       countries.flag_url AS flagUrl " +
             "  FROM constructor_standings AS standings, " +
             "       constructors, " +
-            "       constructors_images AS ci " +
+            "       constructors_images AS ci, " +
+            "       countries " +
             " WHERE standings.constructor_id = constructors.id " +
-            "   AND ci.id = constructors.id"
+            "   AND ci.id = constructors.id " +
+            "   AND countries.nationality = constructors.nationality"
     )
     fun getFullConstructorStandings(): Flow<List<FullConstructorStandingEntity>>
 }

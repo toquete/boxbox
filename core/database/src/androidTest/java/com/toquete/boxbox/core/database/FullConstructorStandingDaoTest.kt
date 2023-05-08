@@ -5,10 +5,12 @@ import androidx.test.core.app.ApplicationProvider
 import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
+import com.toquete.boxbox.core.database.dao.CountryDao
 import com.toquete.boxbox.core.database.dao.FullConstructorStandingDao
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.constructorImageEntities
 import com.toquete.boxbox.core.testing.data.constructorStandingEntities
+import com.toquete.boxbox.core.testing.data.countryEntities
 import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -23,6 +25,7 @@ class FullConstructorStandingDaoTest {
     private lateinit var constructorDao: ConstructorDao
     private lateinit var constructorStandingDao: ConstructorStandingDao
     private lateinit var constructorImageDao: ConstructorImageDao
+    private lateinit var countryDao: CountryDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -35,6 +38,7 @@ class FullConstructorStandingDaoTest {
         constructorDao = db.constructorDao()
         constructorStandingDao = db.constructorStandingDao()
         constructorImageDao = db.constructorImageDao()
+        countryDao = db.countryDao()
     }
 
     @After
@@ -47,6 +51,7 @@ class FullConstructorStandingDaoTest {
         constructorDao.insertAll(constructorEntities)
         constructorStandingDao.insertAll(constructorStandingEntities)
         constructorImageDao.insertAll(constructorImageEntities)
+        countryDao.insertAll(countryEntities)
 
         val result = dao.getFullConstructorStandings().first()
 

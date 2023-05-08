@@ -8,5 +8,11 @@ val countryEntities = listOf(
         name = "Netherlands",
         nationality = "Dutch",
         flagUrl = "http://flag.com"
+    ),
+    CountryEntity(
+        id = "AUT",
+        name = "Austria",
+        nationality = "Austrian",
+        flagUrl = "http://flag.com"
     )
 )
