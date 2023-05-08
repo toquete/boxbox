@@ -5,6 +5,6 @@ import com.toquete.boxbox.core.database.model.ConstructorImageEntity
 val constructorImageEntities = listOf(
     ConstructorImageEntity(
         id = "red_bull",
-        imageUrl = "http://image.com"
+        imageUrl = "http://constructor.com"
     )
 )

@@ -6,8 +6,8 @@ import com.toquete.boxbox.core.model.FullConstructorStanding
 val fullConstructorStandingEntities = listOf(
     FullConstructorStandingEntity(
         position = 1,
-        points = "100",
-        wins = "5",
+        points = "123",
+        wins = "3",
         constructorId = "red_bull",
         constructorName = "Red Bull",
         imageUrl = "http://constructor.com"
@@ -17,8 +17,8 @@ val fullConstructorStandingEntities = listOf(
 val fullConstructorStandings = listOf(
     FullConstructorStanding(
         position = 1,
-        points = "100",
-        wins = "5",
+        points = "123",
+        wins = "3",
         constructor = constructor
     )
 )
