@@ -155,7 +155,8 @@ private fun DriversStandingItemLightPreview() {
                 constructor = Constructor(
                     id = "red_bull",
                     name = "Red Bull",
-                    imageUrl = null
+                    imageUrl = null,
+                    flagUrl = null
                 )
             )
         )
@@ -182,7 +183,8 @@ private fun DriversStandingItemDarkPreview() {
                     constructor = Constructor(
                         id = "red_bull",
                         name = "Red Bull",
-                        imageUrl = null
+                        imageUrl = null,
+                        flagUrl = null
                     )
                 )
             )

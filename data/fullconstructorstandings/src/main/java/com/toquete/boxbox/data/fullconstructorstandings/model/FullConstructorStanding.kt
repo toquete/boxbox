@@ -23,7 +23,8 @@ internal fun FullConstructorStandingEntity.toDomain(): FullConstructorStanding {
         constructor = Constructor(
             id = constructorId,
             name = constructorName,
-            imageUrl = imageUrl
+            imageUrl = imageUrl,
+            flagUrl = flagUrl
         )
     )
 }

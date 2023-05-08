@@ -15,5 +15,6 @@ val constructorEntities = listOf(
 val constructor = Constructor(
     id = "red_bull",
     name = "Red Bull",
-    imageUrl = "http://constructor.com"
+    imageUrl = "http://constructor.com",
+    flagUrl = "http://flag.com"
 )

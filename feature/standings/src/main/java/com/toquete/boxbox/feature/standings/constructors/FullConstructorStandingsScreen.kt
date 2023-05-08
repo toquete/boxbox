@@ -90,7 +90,8 @@ private fun FullConstructorStandingsContentLightPreview() {
                         constructor = Constructor(
                             id = "red_bull",
                             name = "Red Bull",
-                            imageUrl = null
+                            imageUrl = null,
+                            flagUrl = null
                         )
                     )
                 )
@@ -114,7 +115,8 @@ private fun FullConstructorStandingsContentDarkPreview() {
                             constructor = Constructor(
                                 id = "red_bull",
                                 name = "Red Bull",
-                                imageUrl = null
+                                imageUrl = null,
+                                flagUrl = null
                             )
                         )
                     )

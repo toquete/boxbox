@@ -32,7 +32,8 @@ internal fun FullDriverStandingEntity.toDomain(): FullDriverStanding {
         constructor = Constructor(
             id = constructorId,
             name = constructorName,
-            imageUrl = constructorImageUrl
+            imageUrl = constructorImageUrl,
+            flagUrl = null
         )
     )
 }

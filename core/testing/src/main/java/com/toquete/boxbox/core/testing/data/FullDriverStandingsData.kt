@@ -25,6 +25,6 @@ val fullDriverStandings = listOf(
         points = "90",
         wins = "5",
         driver = driver,
-        constructor = constructor
+        constructor = constructor.copy(flagUrl = null)
     )
 )
