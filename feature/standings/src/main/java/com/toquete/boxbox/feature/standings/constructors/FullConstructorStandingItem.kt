@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.FullConstructorStanding
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
@@ -106,6 +107,14 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
                         .testTag("Wins"),
                     text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
+                )
+            }
+            StandingInfoSurface(modifier = Modifier.size(width = 50.dp, height = 30.dp)) {
+                BoxBoxAsyncImage(
+                    modifier = Modifier.padding(6.dp),
+                    data = standing.constructor.flagUrl,
+                    contentDescription = null,
+                    decoder = SvgDecoder.Factory()
                 )
             }
         }
