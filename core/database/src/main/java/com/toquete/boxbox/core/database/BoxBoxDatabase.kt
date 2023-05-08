@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
+import com.toquete.boxbox.core.database.dao.CountryDao
 import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
@@ -47,4 +48,6 @@ internal abstract class BoxBoxDatabase : RoomDatabase() {
     abstract fun constructorImageDao(): ConstructorImageDao
 
     abstract fun driverImageDao(): DriverImageDao
+
+    abstract fun countryDao(): CountryDao
 }
