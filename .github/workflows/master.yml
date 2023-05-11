@@ -49,12 +49,12 @@ jobs:
           arguments: lint
       - name: Saving lint results
         run: |
-          mkdir -p lint-results/
-          find . -type f -regex ".*/build/reports/lint-results.debug.html" -exec cp {} ~/lint-results/ \;
+          mkdir -p lint-results
+          find . -type f -regex ".*/build/reports/lint-results.debug.html" -exec cp {} lint-results \;
       - name: Uploading lint results
         uses: actions/upload-artifact@v3
         with:
-          path: /lint-results/
+          path: lint-results/
         
   detekt:
     runs-on: ubuntu-latest
