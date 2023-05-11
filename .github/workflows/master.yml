@@ -28,11 +28,12 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-          cache: 'gradle'
 
       # Runs a single command using the runners shell
       - name: Build APK
-        run: ./gradlew :app:assembleDebug
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: :app:assembleDebug
         
   lint:
     runs-on: ubuntu-latest
@@ -42,9 +43,10 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-          cache: 'gradle'
       - name: Lint
-        run: ./gradlew lint
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: lint
         
   detekt:
     runs-on: ubuntu-latest
@@ -54,9 +56,10 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-          cache: 'gradle'
       - name: Detekt
-        run: ./gradlew detektDebug
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: detektDebug
         
   test:
     runs-on: ubuntu-latest
@@ -66,8 +69,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-          cache: 'gradle'
       - name: Unit test and coverage
-        run: ./gradlew jacocoTestReport
-      
-      
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: jacocoTestReport
