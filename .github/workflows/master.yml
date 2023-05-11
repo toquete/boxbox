@@ -50,7 +50,7 @@ jobs:
       - name: Saving lint results
         run: |
           mkdir -p lint-results
-          root_directory="/boxbox"  # Caminho do diretório raiz onde a busca será realizada
+          root_directory="${{ github.workspace }}"  # Caminho do diretório raiz onde a busca será realizada
           search_file="lint-results-debug.html"  # Nome do arquivo a ser renomeado
 
           while IFS= read -r -d '' file; do
@@ -66,6 +66,7 @@ jobs:
       - name: Uploading lint results
         uses: actions/upload-artifact@v3
         with:
+          name: lint-reports
           path: lint-results/
         
   detekt:
