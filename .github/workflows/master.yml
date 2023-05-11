@@ -61,7 +61,7 @@ jobs:
               new_file_name="${file%$search_file}${relative_dir}-$search_file"
               mv "$file" "$new_file_name"
               echo "Arquivo renomeado: $new_file_name"
-          done < <(find "$root_directory" -type f -name "$search_file" -print0 -exec cp {} lint-results \)
+          done < <(find "$root_directory" -type f -name "$search_file" -print0 -exec cp {} lint-results \;)
 
       - name: Uploading lint results
         uses: actions/upload-artifact@v3
