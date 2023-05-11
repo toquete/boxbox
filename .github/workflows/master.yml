@@ -47,6 +47,10 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: lint
+      - name: Uploading lint results
+        uses: actions/upload-artifact@v3
+        with:
+          path: boxbox/*/build/reports/lint-results-debug.html
         
   detekt:
     runs-on: ubuntu-latest
