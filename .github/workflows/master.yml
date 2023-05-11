@@ -49,7 +49,6 @@ jobs:
           arguments: lint
       - name: Saving lint results
         run: |
-          mkdir -p lint-results
           root_directory="${{ github.workspace }}"  # Caminho do diretório raiz onde a busca será realizada
           search_file="lint-results-debug.html"  # Nome do arquivo a ser renomeado
 
@@ -61,13 +60,13 @@ jobs:
               new_file_name="${file%$search_file}${relative_dir}-$search_file"
               mv "$file" "$new_file_name"
               echo "Arquivo renomeado: $new_file_name"
-          done < <(find "$root_directory" -type f -name "$search_file" -print0 -exec cp {} lint-results \;)
+          done < <(find "$root_directory" -type f -name "$search_file" -print0)
 
       - name: Uploading lint results
         uses: actions/upload-artifact@v3
         with:
           name: lint-reports
-          path: lint-results/
+          path: '**/*-lint-results-debug.html'
         
   detekt:
     runs-on: ubuntu-latest
