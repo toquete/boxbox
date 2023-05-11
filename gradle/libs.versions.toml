@@ -34,6 +34,7 @@ test-runner = "1.5.2"
 test-rules = "1.5.0"
 detekt = "1.23.0-RC3"
 test-aggregation = "1.1.0"
+ksp = "1.8.10-1.0.9"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -104,3 +105,4 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 test-aggregation-results = { id = "io.github.gmazzo.test.aggregation.results", version.ref = "test-aggregation" }
 test-aggregation-coverage = { id = "io.github.gmazzo.test.aggregation.coverage", version.ref = "test-aggregation" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
