@@ -68,6 +68,6 @@ jobs:
           java-version: '11'
           cache: 'gradle'
       - name: Unit test and coverage
-        run: ./gradlew jacocoReport
+        run: ./gradlew jacocoTestReport
       
       
