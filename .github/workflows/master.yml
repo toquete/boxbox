@@ -47,10 +47,14 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: lint
+      - name: Saving lint results
+        run: |
+          mkdir -p lint-results/
+          find . -type f -regex ".*/build/reports/lint-results.debug.html" -exec cp {} ~/lint-results/ \;
       - name: Uploading lint results
         uses: actions/upload-artifact@v3
         with:
-          path: boxbox/**/build/reports/lint-results-debug.html
+          path: /lint-results/
         
   detekt:
     runs-on: ubuntu-latest
