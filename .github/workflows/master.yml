@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lint-reports
-          path: '**/*-lint-report.html'
+          path: '**/lint-results-*.html'
         
   detekt:
     runs-on: ubuntu-latest
