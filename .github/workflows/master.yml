@@ -65,6 +65,11 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: detektDebug
+      - name: Uploading detekt results
+        uses: actions/upload-artifact@v3
+        with:
+          name: detekt-reports
+          path: '**/detekt.html'
         
   test:
     runs-on: ubuntu-latest
