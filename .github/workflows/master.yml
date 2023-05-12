@@ -47,26 +47,11 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: lint
-      - name: Saving lint results
-        run: |
-          mkdir -p lint-results
-          root_directory="/boxbox"  # Caminho do diretório raiz onde a busca será realizada
-          search_file="lint-results-debug.html"  # Nome do arquivo a ser renomeado
-
-          while IFS= read -r -d '' file; do
-              relative_dir=${file%"$search_file"}  # Obter o caminho relativo ao diretório raiz
-              relative_dir=${relative_dir#"$root_directory"}  # Remover o diretório raiz do caminho relativo
-              relative_dir=${relative_dir#*/}  # Obter o primeiro diretório relativo
-              relative_dir=${relative_dir%%/*}  # Obter apenas o primeiro diretório relativo
-              new_file_name="${file%$search_file}${relative_dir}-$search_file"
-              mv "$file" "$new_file_name"
-              echo "Arquivo renomeado: $new_file_name"
-          done < <(find "$root_directory" -type f -name "$search_file" -print0 -exec cp {} lint-results \;)
-
       - name: Uploading lint results
         uses: actions/upload-artifact@v3
         with:
-          path: lint-results/
+          name: lint-reports
+          path: '**/*-lint-report.html'
         
   detekt:
     runs-on: ubuntu-latest
