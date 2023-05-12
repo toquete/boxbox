@@ -1,5 +1,8 @@
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
+import com.toquete.boxbox.plugins.configureGradleManagedDevices
 import com.toquete.boxbox.plugins.configureKotlinAndroid
+import com.toquete.boxbox.plugins.disableUnnecessaryAndroidTests
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -15,6 +18,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
+                configureGradleManagedDevices(this)
                 defaultConfig.targetSdk = 33
                 buildTypes {
                     debug {
@@ -30,6 +34,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                         )
                     }
                 }
+            }
+
+            extensions.configure<LibraryAndroidComponentsExtension> {
+                disableUnnecessaryAndroidTests(target)
             }
         }
     }

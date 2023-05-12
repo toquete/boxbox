@@ -26,8 +26,8 @@ class FullConstructorStandingItemTest {
             onNodeWithTag("Position").assertTextEquals("1")
             onNodeWithTag("Constructor Name").assertTextEquals("Red Bull")
             onNodeWithTag("Divider").assertIsDisplayed()
-            onNodeWithTag("Points").assertTextEquals("100 PTS")
-            onNodeWithTag("Wins").assertTextEquals("5 WINS")
+            onNodeWithTag("Points").assertTextEquals("123 PTS")
+            onNodeWithTag("Wins").assertTextEquals("3 WINS")
         }
     }
 }
