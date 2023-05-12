@@ -101,3 +101,28 @@ jobs:
         with:
           name: test-coverage-report
           path: '**/reports/jacoco/jacocoTestReport/html/'
+
+  android-test:
+    needs: build
+    runs-on: macOS-latest
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - name: Build AndroidTest app
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: packageDebug
+      - name: Run Instrumented Tests on GMD
+        run: ./gradlew pixel2api31DebugAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
+      - name: Upload Android test reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-test-reports
+          path: '**/build/reports/androidTests'
+    
