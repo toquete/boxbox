@@ -83,3 +83,13 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: jacocoTestReport
+      - name: Uploading test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: '**/reports/tests/testDebugUnitTest/'
+      - name: Uploading test coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-coverage-report
+          path: '**/reports/jacoco/jacocoTestReport/html/'
