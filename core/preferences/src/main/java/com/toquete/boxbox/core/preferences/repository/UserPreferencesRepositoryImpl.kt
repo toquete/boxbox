@@ -2,6 +2,7 @@ package com.toquete.boxbox.core.preferences.repository
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.PreferencesKeys.DARK_THEME_CONFIG
 import com.toquete.boxbox.core.preferences.model.UserPreferences
@@ -21,5 +22,11 @@ internal class UserPreferencesRepositoryImpl @Inject constructor(
         UserPreferences(
             darkThemeConfig = darkThemeConfig
         )
+    }
+
+    override suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig) {
+        dataStore.edit { preferences ->
+            preferences[DARK_THEME_CONFIG] = darkThemeConfig.ordinal
+        }
     }
 }
