@@ -48,4 +48,26 @@ class DefaultUserPreferencesRepositoryTest {
 
         assertEquals(expected, result)
     }
+
+    @Test
+    fun `darkThemeConfig should be DARK when set`() = testScope.runTest {
+        val expected = DarkThemeConfig.DARK
+
+        repository.setDarkThemeConfig(DarkThemeConfig.DARK)
+
+        val result = repository.userPreferences.first().darkThemeConfig
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `darkThemeConfig should be LIGHT when set`() = testScope.runTest {
+        val expected = DarkThemeConfig.LIGHT
+
+        repository.setDarkThemeConfig(DarkThemeConfig.LIGHT)
+
+        val result = repository.userPreferences.first().darkThemeConfig
+
+        assertEquals(expected, result)
+    }
 }
