@@ -1,7 +1,7 @@
 package com.toquete.boxbox.core.preferences.di
 
+import com.toquete.boxbox.core.preferences.repository.DefaultUserPreferencesRepository
 import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
-import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ internal abstract class PreferencesRepositoryModule {
 
     @Binds
     abstract fun bindUserPreferencesRepository(
-        repository: UserPreferencesRepositoryImpl
+        repository: DefaultUserPreferencesRepository
     ): UserPreferencesRepository
 }
