@@ -6,6 +6,4 @@ import kotlinx.coroutines.flow.Flow
 interface UserPreferencesRepository {
 
     val userPreferences: Flow<UserPreferences>
-
-    suspend fun setDriverStandingsLastUpdatedTime(time: Long)
 }
