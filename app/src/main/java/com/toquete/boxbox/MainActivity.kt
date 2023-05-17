@@ -14,10 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.WifiOff
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -49,6 +51,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
+import com.toquete.boxbox.feature.settings.SettingsScreen
 import com.toquete.boxbox.feature.standings.StandingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -85,6 +88,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val systemUiController = rememberSystemUiController()
             val isDarkTheme = shouldUseDarkTheme(uiState)
+            var showDialog by remember { mutableStateOf(false) }
 
             DisposableEffect(systemUiController, isDarkTheme) {
                 systemUiController.setSystemBarsColor(
@@ -94,13 +98,21 @@ class MainActivity : ComponentActivity() {
                 onDispose { }
             }
 
-            BoxBoxTheme {
+            BoxBoxTheme(darkTheme = isDarkTheme) {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen(uiState)
+                    if (showDialog) {
+                        SettingsScreen {
+                            showDialog = false
+                        }
+                    }
+                    MainScreen(
+                        uiState,
+                        onSettingsButtonClick = { showDialog = true }
+                    )
                 }
             }
         }
@@ -108,10 +120,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(state: MainState) {
+fun MainScreen(
+    state: MainState,
+    onSettingsButtonClick: () -> Unit
+) {
     when (state) {
         MainState.Loading -> Unit
-        is MainState.Success -> MainScreenContent(state.isOnline, state.isSyncing)
+        is MainState.Success -> MainScreenContent(state.isOnline, state.isSyncing, onSettingsButtonClick)
     }
 }
 
@@ -119,7 +134,8 @@ fun MainScreen(state: MainState) {
 @OptIn(ExperimentalMaterial3Api::class)
 private fun MainScreenContent(
     isOnline: Boolean,
-    isSyncing: Boolean
+    isSyncing: Boolean,
+    onSettingsButtonClick: () -> Unit
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val notConnectedMessage = stringResource(R.string.not_connected)
@@ -155,6 +171,13 @@ private fun MainScreenContent(
                         Icon(
                             modifier = Modifier.size(30.dp),
                             imageVector = Icons.Default.WifiOff,
+                            contentDescription = null
+                        )
+                    }
+                    IconButton(onClick = onSettingsButtonClick) {
+                        Icon(
+                            modifier = Modifier.size(30.dp),
+                            imageVector = Icons.Default.Settings,
                             contentDescription = null
                         )
                     }
@@ -194,7 +217,8 @@ fun MainLightPreview() {
     BoxBoxTheme {
         MainScreenContent(
             isOnline = true,
-            isSyncing = false
+            isSyncing = false,
+            onSettingsButtonClick = {}
         )
     }
 }
@@ -206,7 +230,8 @@ fun MainDarkPreview() {
         Surface(color = MaterialTheme.colorScheme.background) {
             MainScreenContent(
                 isOnline = true,
-                isSyncing = false
+                isSyncing = false,
+                onSettingsButtonClick = {}
             )
         }
     }
