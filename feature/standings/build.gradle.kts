@@ -13,7 +13,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:ui"))
     implementation(project(":core:common"))
-    implementation(project(":domain:fulldriverstandings"))
+    implementation(project(":data:fulldriverstandings"))
     implementation(project(":data:fullconstructorstandings"))
 
     testImplementation(project(":core:testing"))

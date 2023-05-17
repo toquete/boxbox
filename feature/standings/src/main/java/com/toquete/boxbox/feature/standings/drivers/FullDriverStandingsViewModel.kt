@@ -2,7 +2,7 @@ package com.toquete.boxbox.feature.standings.drivers
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.domain.fulldriverstandings.GetFullDriverStandingsUseCase
+import com.toquete.boxbox.data.fulldriverstandings.repository.FullDriverStandingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -11,10 +11,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class FullDriverStandingsViewModel @Inject constructor(
-    getFullDriverStandingsUseCase: GetFullDriverStandingsUseCase
+    repository: FullDriverStandingsRepository
 ) : ViewModel() {
 
-    val state = getFullDriverStandingsUseCase()
+    val state = repository.getFullDriverStandings()
         .map { FullDriversStandingsState.Success(it) }
         .stateIn(
             scope = viewModelScope,

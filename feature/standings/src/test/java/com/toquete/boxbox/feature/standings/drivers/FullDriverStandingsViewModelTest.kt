@@ -3,7 +3,7 @@ package com.toquete.boxbox.feature.standings.drivers
 import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.core.testing.data.fullDriverStandings
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
-import com.toquete.boxbox.domain.fulldriverstandings.GetFullDriverStandingsUseCase
+import com.toquete.boxbox.data.fulldriverstandings.repository.FullDriverStandingsRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
@@ -21,14 +21,14 @@ class FullDriverStandingsViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private val getFullDriverStandingsUseCase: GetFullDriverStandingsUseCase = mockk(relaxed = true)
+    private val repository: FullDriverStandingsRepository = mockk(relaxed = true)
 
     private lateinit var viewModel: FullDriverStandingsViewModel
 
     @Test
     fun `init should send success state when drivers standings are returned`() = runTest {
         val driversFlow = MutableSharedFlow<List<FullDriverStanding>>()
-        coEvery { getFullDriverStandingsUseCase() } returns driversFlow
+        coEvery { repository.getFullDriverStandings() } returns driversFlow
 
         setupViewModel()
 
@@ -45,6 +45,6 @@ class FullDriverStandingsViewModelTest {
     }
 
     private fun setupViewModel() {
-        viewModel = FullDriverStandingsViewModel(getFullDriverStandingsUseCase)
+        viewModel = FullDriverStandingsViewModel(repository)
     }
 }
