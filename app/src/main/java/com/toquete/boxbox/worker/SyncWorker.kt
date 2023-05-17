@@ -8,8 +8,8 @@ import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.toquete.boxbox.core.common.dispatcher.IoDispatcher
-import com.toquete.boxbox.domain.fullconstructorstandings.SyncFullConstructorStandingsUseCase
-import com.toquete.boxbox.domain.fulldriverstandings.SyncFullDriverStandingsUseCase
+import com.toquete.boxbox.data.fullconstructorstandings.repository.FullConstructorStandingsRepository
+import com.toquete.boxbox.data.fulldriverstandings.repository.FullDriverStandingsRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.async
@@ -26,14 +26,14 @@ class SyncWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParameters: WorkerParameters,
     @IoDispatcher private val dispatcher: CoroutineContext,
-    private val syncFullDriverStandingsUseCase: SyncFullDriverStandingsUseCase,
-    private val syncFullConstructorStandingsUseCase: SyncFullConstructorStandingsUseCase
+    private val fullDriverStandingsRepository: FullDriverStandingsRepository,
+    private val fullConstructorStandingsRepository: FullConstructorStandingsRepository
 ) : CoroutineWorker(appContext, workerParameters) {
 
     override suspend fun doWork(): Result = withContext(dispatcher) {
         val isSuccess = awaitAll(
-            async { syncFullDriverStandingsUseCase() },
-            async { syncFullConstructorStandingsUseCase() }
+            async { fullDriverStandingsRepository.sync() },
+            async { fullConstructorStandingsRepository.sync() }
         ).all { it }
 
         if (isSuccess) {
