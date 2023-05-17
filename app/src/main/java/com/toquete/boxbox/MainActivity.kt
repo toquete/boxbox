@@ -4,6 +4,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -41,25 +42,49 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.StandingsScreen
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        installSplashScreen()
+
+        var uiState: MainState by mutableStateOf(MainState.Loading)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.onEach {
+                    uiState = it
+                }.collect()
+            }
+        }
+
+        splashScreen.setKeepOnScreenCondition {
+            when (uiState) {
+                MainState.Loading -> true
+                is MainState.Success -> false
+            }
+        }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             val systemUiController = rememberSystemUiController()
-            val isDarkTheme = isSystemInDarkTheme()
+            val isDarkTheme = shouldUseDarkTheme(uiState)
 
             DisposableEffect(systemUiController, isDarkTheme) {
                 systemUiController.setSystemBarsColor(
@@ -75,7 +100,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    MainScreen(uiState)
                 }
             }
         }
@@ -83,10 +108,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(viewModel: MainViewModel = viewModel()) {
-    val isOnline by viewModel.isOnline.collectAsStateWithLifecycle()
-    val isSyncing by viewModel.isSyncing.collectAsStateWithLifecycle()
-    MainScreenContent(isOnline, isSyncing)
+fun MainScreen(state: MainState) {
+    when (state) {
+        MainState.Loading -> Unit
+        is MainState.Success -> MainScreenContent(state.isOnline, state.isSyncing)
+    }
 }
 
 @Composable
@@ -148,6 +174,18 @@ private fun MainScreenContent(
             }
         }
     )
+}
+
+@Composable
+private fun shouldUseDarkTheme(
+    uiState: MainState,
+): Boolean = when (uiState) {
+    MainState.Loading -> isSystemInDarkTheme()
+    is MainState.Success -> when (uiState.darkThemeConfig) {
+        DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
+        DarkThemeConfig.LIGHT -> false
+        DarkThemeConfig.DARK -> true
+    }
 }
 
 @Preview(name = "Main Light", showBackground = true)
