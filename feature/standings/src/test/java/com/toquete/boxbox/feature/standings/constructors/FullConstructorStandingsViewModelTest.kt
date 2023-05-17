@@ -3,7 +3,7 @@ package com.toquete.boxbox.feature.standings.constructors
 import com.toquete.boxbox.core.model.FullConstructorStanding
 import com.toquete.boxbox.core.testing.data.fullConstructorStandings
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
-import com.toquete.boxbox.domain.fullconstructorstandings.GetFullConstructorStandingsUseCase
+import com.toquete.boxbox.data.fullconstructorstandings.repository.FullConstructorStandingsRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
@@ -21,14 +21,14 @@ class FullConstructorStandingsViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private val getFullConstructorStandingsUseCase: GetFullConstructorStandingsUseCase = mockk(relaxed = true)
+    private val repository: FullConstructorStandingsRepository = mockk(relaxed = true)
 
     private lateinit var viewModel: FullConstructorStandingsViewModel
 
     @Test
     fun `init should send success state when constructors standings are returned`() = runTest {
         val constructorsFlow = MutableSharedFlow<List<FullConstructorStanding>>()
-        coEvery { getFullConstructorStandingsUseCase() } returns constructorsFlow
+        coEvery { repository.getFullConstructorStandings() } returns constructorsFlow
 
         setupViewModel()
 
@@ -45,6 +45,6 @@ class FullConstructorStandingsViewModelTest {
     }
 
     private fun setupViewModel() {
-        viewModel = FullConstructorStandingsViewModel(getFullConstructorStandingsUseCase)
+        viewModel = FullConstructorStandingsViewModel(repository)
     }
 }

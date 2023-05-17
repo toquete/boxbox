@@ -2,7 +2,7 @@ package com.toquete.boxbox.feature.standings.constructors
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.domain.fullconstructorstandings.GetFullConstructorStandingsUseCase
+import com.toquete.boxbox.data.fullconstructorstandings.repository.FullConstructorStandingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -11,10 +11,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class FullConstructorStandingsViewModel @Inject constructor(
-    getFullConstructorStandingsUseCase: GetFullConstructorStandingsUseCase
+    repository: FullConstructorStandingsRepository
 ) : ViewModel() {
 
-    val state = getFullConstructorStandingsUseCase()
+    val state = repository.getFullConstructorStandings()
         .map { FullConstructorStandingsState.Success(it) }
         .stateIn(
             scope = viewModelScope,
