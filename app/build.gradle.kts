@@ -43,8 +43,6 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":data:fulldriverstandings"))
     implementation(project(":data:fullconstructorstandings"))
-    implementation(project(":domain:fulldriverstandings"))
-    implementation(project(":domain:fullconstructorstandings"))
     implementation(project(":feature:standings"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
