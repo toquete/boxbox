@@ -2,8 +2,8 @@ package com.toquete.boxbox.data.constructorstandings.repository
 
 import com.toquete.boxbox.core.testing.data.constructorStandingEntities
 import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
+import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
 import com.toquete.boxbox.core.testing.data.fullConstructorStandings
-import com.toquete.boxbox.core.testing.data.newFullConstructorStandingEntities
 import com.toquete.boxbox.data.constructorstandings.source.local.ConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.constructorstandings.source.remote.ConstructorStandingsRemoteDataSource
 import io.mockk.coEvery
@@ -31,7 +31,7 @@ class DefaultFullConstructorStandingsRepositoryTest {
 
     @Test
     fun `getFullConstructorStandings should return mapped list when called`() = runTest {
-        every { localDataSource.getConstructorStandings() } returns flowOf(newFullConstructorStandingEntities)
+        every { localDataSource.getConstructorStandings() } returns flowOf(fullConstructorStandingEntities)
 
         val result = repository.getConstructorStandings()
 

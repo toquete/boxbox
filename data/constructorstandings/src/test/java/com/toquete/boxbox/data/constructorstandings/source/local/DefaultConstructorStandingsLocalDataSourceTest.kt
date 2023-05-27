@@ -2,7 +2,7 @@ package com.toquete.boxbox.data.constructorstandings.source.local
 
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
 import com.toquete.boxbox.core.testing.data.constructorStandingEntities
-import com.toquete.boxbox.core.testing.data.newFullConstructorStandingEntities
+import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -33,10 +33,10 @@ class DefaultConstructorStandingsLocalDataSourceTest {
     fun `getConstructorStandings should return constructor standings when called`() = runTest {
         every {
             constructorStandingDao.getFullConstructorStandings()
-        } returns flowOf(newFullConstructorStandingEntities)
+        } returns flowOf(fullConstructorStandingEntities)
 
         val result = dataSource.getConstructorStandings().first()
 
-        assertContentEquals(newFullConstructorStandingEntities, result)
+        assertContentEquals(fullConstructorStandingEntities, result)
     }
 }

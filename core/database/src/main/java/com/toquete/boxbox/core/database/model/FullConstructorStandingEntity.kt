@@ -3,7 +3,7 @@ package com.toquete.boxbox.core.database.model
 import androidx.room.Embedded
 import androidx.room.Relation
 
-data class NewFullConstructorStandingEntity(
+data class FullConstructorStandingEntity(
     @Embedded val standing: ConstructorStandingEntity,
     @Relation(
         entity = ConstructorEntity::class,

@@ -1,11 +1,11 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.ConstructorWithCountryFlagEntity
-import com.toquete.boxbox.core.database.model.NewFullConstructorStandingEntity
+import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
 import com.toquete.boxbox.core.model.FullConstructorStanding
 
-val newFullConstructorStandingEntities = listOf(
-    NewFullConstructorStandingEntity(
+val fullConstructorStandingEntities = listOf(
+    FullConstructorStandingEntity(
         constructorStandingEntities.first(),
         ConstructorWithCountryFlagEntity(
             constructorEntities.first(),

@@ -1,6 +1,6 @@
 package com.toquete.boxbox.data.constructorstandings.repository
 
-import com.toquete.boxbox.core.database.model.NewFullConstructorStandingEntity
+import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
 import com.toquete.boxbox.core.model.FullConstructorStanding
 import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
 import com.toquete.boxbox.data.constructorstandings.model.toDomain
@@ -18,7 +18,7 @@ internal class DefaultConstructorStandingsRepository @Inject constructor(
 
     override fun getConstructorStandings(): Flow<List<FullConstructorStanding>> {
         return localDataSource.getConstructorStandings()
-            .map { it.map(NewFullConstructorStandingEntity::toDomain) }
+            .map { it.map(FullConstructorStandingEntity::toDomain) }
     }
 
     override suspend fun sync(): Boolean {

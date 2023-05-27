@@ -10,7 +10,7 @@ import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.constructorImageEntities
 import com.toquete.boxbox.core.testing.data.constructorStandingEntities
 import com.toquete.boxbox.core.testing.data.countryEntities
-import com.toquete.boxbox.core.testing.data.newFullConstructorStandingEntities
+import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -94,6 +94,6 @@ class ConstructorStandingDaoTest {
 
         val result = dao.getFullConstructorStandings().first()
 
-        assertContentEquals(newFullConstructorStandingEntities, result)
+        assertContentEquals(fullConstructorStandingEntities, result)
     }
 }
