@@ -70,15 +70,12 @@ class ConstructorStandingDaoTest {
 
     @Test
     fun testConstructorStandingsDeleteAndInsertInTransaction() = runTest {
-        val newList = constructorStandingEntities.map { entity ->
+        val expectedList = constructorStandingEntities.map { entity ->
             entity.copy(points = "300")
-        }
-        val expectedList = newList.map { entity ->
-            entity.copy(id = 2)
         }
         dao.insertAll(constructorStandingEntities)
 
-        dao.deleteAndInsertInTransaction(newList)
+        dao.deleteAndInsertInTransaction(expectedList)
 
         val result = dao.getConstructorStandings().first()
 
