@@ -6,7 +6,6 @@ import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
 import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.dao.FullConstructorStandingDao
-import com.toquete.boxbox.core.database.dao.FullDriverStandingDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,11 +18,6 @@ internal object DaoModule {
     @Provides
     fun provideDriverStandingDao(database: BoxBoxDatabase): DriverStandingDao {
         return database.driverStandingDao()
-    }
-
-    @Provides
-    fun provideFullDriverStandingDao(database: BoxBoxDatabase): FullDriverStandingDao {
-        return database.fullDriverStandingDao()
     }
 
     @Provides
