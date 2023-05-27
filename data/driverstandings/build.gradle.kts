@@ -8,7 +8,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
     implementation(project(":core:model"))
     implementation(project(":core:database"))
+    implementation(project(":core:network"))
+    implementation(project(":data:drivers"))
+    implementation(project(":data:constructors"))
     testImplementation(project(":core:testing"))
 }
