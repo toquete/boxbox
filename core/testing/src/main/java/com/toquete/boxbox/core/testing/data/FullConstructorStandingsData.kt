@@ -1,6 +1,8 @@
 package com.toquete.boxbox.core.testing.data
 
+import com.toquete.boxbox.core.database.model.ConstructorWithCountryFlagEntity
 import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
+import com.toquete.boxbox.core.database.model.NewFullConstructorStandingEntity
 import com.toquete.boxbox.core.model.FullConstructorStanding
 
 val fullConstructorStandingEntities = listOf(
@@ -12,6 +14,17 @@ val fullConstructorStandingEntities = listOf(
         constructorName = "Red Bull",
         imageUrl = "http://constructor.com",
         flagUrl = "http://flag.com"
+    )
+)
+
+val newFullConstructorStandingEntities = listOf(
+    NewFullConstructorStandingEntity(
+        constructorStandingEntities.first(),
+        ConstructorWithCountryFlagEntity(
+            constructorEntities.first(),
+            countryEntities.last().flagUrl
+        ),
+        constructorImageEntities.first().imageUrl
     )
 )
 
