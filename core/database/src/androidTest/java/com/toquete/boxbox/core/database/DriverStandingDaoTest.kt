@@ -93,7 +93,7 @@ class DriverStandingDaoTest {
     @Test
     fun testFullDriverStandingSelect() = runTest {
         dao.insertAll(driverStandingEntities)
-        driverDao.insertAll(driverEntities)
+        driverDao.upsertAll(driverEntities)
         constructorDao.insertAll(constructorEntities)
         driverImageDao.insertAll(driverImageEntities)
         constructorImageDao.insertAll(constructorImageEntities)

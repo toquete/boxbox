@@ -16,7 +16,7 @@ class DefaultDriversLocalDataSourceTest {
 
     @Test
     fun `insertAll should insert drivers when called`() = runTest {
-        coEvery { driverDao.insertAll(any()) } returns Unit
+        coEvery { driverDao.upsertAll(any()) } returns Unit
 
         dataSource.insertAll(driverEntities)
 

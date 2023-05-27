@@ -9,6 +9,6 @@ internal class DefaultDriversLocalDataSource @Inject constructor(
 ) : DriversLocalDataSource {
 
     override suspend fun insertAll(drivers: List<DriverEntity>) {
-        driverDao.insertAll(drivers)
+        driverDao.upsertAll(drivers)
     }
 }

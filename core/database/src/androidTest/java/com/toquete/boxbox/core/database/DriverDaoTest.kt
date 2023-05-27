@@ -32,7 +32,7 @@ class DriverDaoTest {
 
     @Test
     fun testDriverInsert() = runTest {
-        dao.insertAll(driverEntities)
+        dao.upsertAll(driverEntities)
 
         val result = dao.getDrivers().first()
 
