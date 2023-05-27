@@ -9,7 +9,6 @@ import com.toquete.boxbox.core.database.dao.CountryDao
 import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
-import com.toquete.boxbox.core.database.dao.FullConstructorStandingDao
 import com.toquete.boxbox.core.database.model.ConstructorEntity
 import com.toquete.boxbox.core.database.model.ConstructorImageEntity
 import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
@@ -39,8 +38,6 @@ internal abstract class BoxBoxDatabase : RoomDatabase() {
     abstract fun constructorDao(): ConstructorDao
 
     abstract fun constructorStandingDao(): ConstructorStandingDao
-
-    abstract fun fullConstructorStandingDao(): FullConstructorStandingDao
 
     abstract fun constructorImageDao(): ConstructorImageDao
 
