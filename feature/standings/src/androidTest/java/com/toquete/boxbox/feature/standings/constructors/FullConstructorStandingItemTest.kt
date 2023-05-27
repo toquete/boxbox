@@ -4,7 +4,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import com.toquete.boxbox.core.testing.data.fullConstructorStandings
+import com.toquete.boxbox.core.testing.data.constructorStandings
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import org.junit.Rule
 import org.junit.Test
@@ -19,7 +19,7 @@ class FullConstructorStandingItemTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    FullConstructorStandingItem(fullConstructorStandings.first())
+                    FullConstructorStandingItem(constructorStandings.first())
                 }
             }
 

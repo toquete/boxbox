@@ -1,9 +1,9 @@
 package com.toquete.boxbox.data.constructorstandings.repository
 
 import com.toquete.boxbox.core.testing.data.constructorStandingEntities
+import com.toquete.boxbox.core.testing.data.constructorStandings
 import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
-import com.toquete.boxbox.core.testing.data.fullConstructorStandings
 import com.toquete.boxbox.data.constructorstandings.source.local.ConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.constructorstandings.source.remote.ConstructorStandingsRemoteDataSource
 import io.mockk.coEvery
@@ -19,7 +19,7 @@ import kotlin.test.assertContentEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class DefaultFullConstructorStandingsRepositoryTest {
+class DefaultConstructorStandingsRepositoryTest {
 
     private val remoteDataSource: ConstructorStandingsRemoteDataSource = mockk(relaxed = true)
     private val localDataSource: ConstructorStandingsLocalDataSource = mockk(relaxed = true)
@@ -35,7 +35,7 @@ class DefaultFullConstructorStandingsRepositoryTest {
 
         val result = repository.getConstructorStandings()
 
-        assertContentEquals(fullConstructorStandings, result.first())
+        assertContentEquals(constructorStandings, result.first())
     }
 
     @Test

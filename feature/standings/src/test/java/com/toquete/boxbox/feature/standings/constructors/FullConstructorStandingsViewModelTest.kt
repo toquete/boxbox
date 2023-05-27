@@ -1,7 +1,7 @@
 package com.toquete.boxbox.feature.standings.constructors
 
-import com.toquete.boxbox.core.model.FullConstructorStanding
-import com.toquete.boxbox.core.testing.data.fullConstructorStandings
+import com.toquete.boxbox.core.model.ConstructorStanding
+import com.toquete.boxbox.core.testing.data.constructorStandings
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
 import io.mockk.coEvery
@@ -27,7 +27,7 @@ class FullConstructorStandingsViewModelTest {
 
     @Test
     fun `init should send success state when constructors standings are returned`() = runTest {
-        val constructorsFlow = MutableSharedFlow<List<FullConstructorStanding>>()
+        val constructorsFlow = MutableSharedFlow<List<ConstructorStanding>>()
         coEvery { repository.getConstructorStandings() } returns constructorsFlow
 
         setupViewModel()
@@ -38,8 +38,8 @@ class FullConstructorStandingsViewModelTest {
 
         assertEquals(FullConstructorStandingsState.Loading, viewModel.state.value)
 
-        constructorsFlow.emit(fullConstructorStandings)
-        assertEquals(FullConstructorStandingsState.Success(fullConstructorStandings), viewModel.state.value)
+        constructorsFlow.emit(constructorStandings)
+        assertEquals(FullConstructorStandingsState.Success(constructorStandings), viewModel.state.value)
 
         backgroundScope.cancel()
     }

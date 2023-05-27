@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.Constructor
-import com.toquete.boxbox.core.model.FullConstructorStanding
+import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
@@ -83,7 +83,7 @@ private fun FullConstructorStandingsContentLightPreview() {
         FullConstructorStandingsContent(
             state = FullConstructorStandingsState.Success(
                 constructorStandings = listOf(
-                    FullConstructorStanding(
+                    ConstructorStanding(
                         position = 1,
                         points = "258",
                         wins = "7",
@@ -108,7 +108,7 @@ private fun FullConstructorStandingsContentDarkPreview() {
             FullConstructorStandingsContent(
                 state = FullConstructorStandingsState.Success(
                     constructorStandings = listOf(
-                        FullConstructorStanding(
+                        ConstructorStanding(
                             position = 1,
                             points = "258",
                             wins = "7",

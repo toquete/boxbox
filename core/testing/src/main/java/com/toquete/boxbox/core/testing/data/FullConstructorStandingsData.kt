@@ -2,7 +2,7 @@ package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.ConstructorWithCountryFlagEntity
 import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
-import com.toquete.boxbox.core.model.FullConstructorStanding
+import com.toquete.boxbox.core.model.ConstructorStanding
 
 val fullConstructorStandingEntities = listOf(
     FullConstructorStandingEntity(
@@ -15,8 +15,8 @@ val fullConstructorStandingEntities = listOf(
     )
 )
 
-val fullConstructorStandings = listOf(
-    FullConstructorStanding(
+val constructorStandings = listOf(
+    ConstructorStanding(
         position = 1,
         points = "123",
         wins = "3",

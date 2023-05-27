@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
-import com.toquete.boxbox.core.model.FullConstructorStanding
+import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
@@ -32,7 +32,7 @@ import com.toquete.boxbox.feature.standings.R
 import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
 
 @Composable
-internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
+internal fun FullConstructorStandingItem(standing: ConstructorStanding) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -126,7 +126,7 @@ internal fun FullConstructorStandingItem(standing: FullConstructorStanding) {
 private fun ConstructorStandingItemLightPreview() {
     BoxBoxTheme {
         FullConstructorStandingItem(
-            standing = FullConstructorStanding(
+            standing = ConstructorStanding(
                 position = 1,
                 points = "258",
                 wins = "7",
@@ -147,7 +147,7 @@ private fun ConstructorStandingItemDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             FullConstructorStandingItem(
-                standing = FullConstructorStanding(
+                standing = ConstructorStanding(
                     position = 1,
                     points = "258",
                     wins = "7",

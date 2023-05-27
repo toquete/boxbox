@@ -9,7 +9,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertContentEquals
 
-class DefaultFullConstructorStandingsRemoteDataSourceTest {
+class DefaultConstructorStandingsRemoteDataSourceTest {
 
     private val service: BoxBoxService = mockk(relaxed = true)
     private val dataSource = DefaultConstructorStandingsRemoteDataSource(service)

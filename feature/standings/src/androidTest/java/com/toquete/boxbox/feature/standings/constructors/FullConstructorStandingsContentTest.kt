@@ -9,7 +9,7 @@ import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
-import com.toquete.boxbox.core.testing.data.fullConstructorStandings
+import com.toquete.boxbox.core.testing.data.constructorStandings
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +21,7 @@ class FullConstructorStandingsContentTest {
 
     @Test
     fun validateScrollButtonIsNotVisibleWhenScreenStarts() {
-        val list = fullConstructorStandings.toMutableList()
+        val list = constructorStandings.toMutableList()
         (1..10).forEach { _ -> list.add(list.first().copy()) }
 
         with(composeTestRule) {
@@ -37,7 +37,7 @@ class FullConstructorStandingsContentTest {
 
     @Test
     fun validateScrollButtonIsVisibleWhenScreenIsScrolled() {
-        val list = fullConstructorStandings.toMutableList()
+        val list = constructorStandings.toMutableList()
         (1..10).forEach { _ -> list.add(list.first().copy()) }
 
         with(composeTestRule) {
@@ -54,7 +54,7 @@ class FullConstructorStandingsContentTest {
 
     @Test
     fun validateScrollButtonClick() {
-        val list = fullConstructorStandings.toMutableList()
+        val list = constructorStandings.toMutableList()
         (2..10).forEach { list.add(list.first().copy(position = it)) }
 
         with(composeTestRule) {
