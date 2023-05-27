@@ -1,6 +1,6 @@
 package com.toquete.boxbox.core.testing.data
 
-import com.toquete.boxbox.core.database.model.DriverWithCountryEntity
+import com.toquete.boxbox.core.database.model.DriverWithCountryFlagEntity
 import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
 import com.toquete.boxbox.core.database.model.NewFullDriverStandingEntity
 import com.toquete.boxbox.core.model.FullDriverStanding
@@ -24,14 +24,13 @@ val fullDriverStandingEntities = listOf(
 val newFullDriverStandingEntities = listOf(
     NewFullDriverStandingEntity(
         driverStandingEntities.first(),
-        driverEntities.first(),
-        constructorEntities.first(),
-        driverImageEntities.first(),
-        constructorImageEntities.first(),
-        DriverWithCountryEntity(
+        DriverWithCountryFlagEntity(
             driverEntities.first(),
-            countryEntities.first()
-        )
+            countryEntities.first().flagUrl
+        ),
+        constructorEntities.first(),
+        driverImageEntities.first().imageUrl,
+        constructorImageEntities.first().imageUrl
     )
 )
 
