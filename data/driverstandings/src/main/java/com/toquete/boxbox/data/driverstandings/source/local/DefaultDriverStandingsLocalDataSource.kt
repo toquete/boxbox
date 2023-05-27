@@ -2,7 +2,7 @@ package com.toquete.boxbox.data.driverstandings.source.local
 
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.model.DriverStandingEntity
-import com.toquete.boxbox.core.database.model.NewFullDriverStandingEntity
+import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ internal class DefaultDriverStandingsLocalDataSource @Inject constructor(
         driverStandingDao.deleteAndInsertInTransaction(driverStandings)
     }
 
-    override fun getDriverStandings(): Flow<List<NewFullDriverStandingEntity>> {
+    override fun getDriverStandings(): Flow<List<FullDriverStandingEntity>> {
         return driverStandingDao.getFullDriverStandings()
     }
 }

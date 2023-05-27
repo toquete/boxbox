@@ -4,8 +4,8 @@ import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.driverEntities
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
 import com.toquete.boxbox.core.testing.data.driverStandingsResponse
+import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
 import com.toquete.boxbox.core.testing.data.fullDriverStandings
-import com.toquete.boxbox.core.testing.data.newFullDriverStandingEntities
 import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
 import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
 import com.toquete.boxbox.data.driverstandings.repository.DefaultDriverStandingsRepository
@@ -39,7 +39,7 @@ class DefaultDriverStandingsRepositoryTest {
 
     @Test
     fun `getDriverStandings should return mapped list when called`() = runTest {
-        coEvery { localDataSource.getDriverStandings() } returns flowOf(newFullDriverStandingEntities)
+        coEvery { localDataSource.getDriverStandings() } returns flowOf(fullDriverStandingEntities)
 
         val result = repository.getDriverStandings()
 

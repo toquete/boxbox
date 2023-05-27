@@ -2,7 +2,7 @@ package com.toquete.boxbox.data.driverstandings.source.local
 
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
-import com.toquete.boxbox.core.testing.data.newFullDriverStandingEntities
+import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -28,10 +28,10 @@ class DefaultDriverStandingsLocalDataSourceTest {
 
     @Test
     fun `getDriverStandings should return driver standings when called`() = runTest {
-        coEvery { driverStandingDao.getFullDriverStandings() } returns flowOf(newFullDriverStandingEntities)
+        coEvery { driverStandingDao.getFullDriverStandings() } returns flowOf(fullDriverStandingEntities)
 
         val result = dataSource.getDriverStandings().first()
 
-        assertContentEquals(newFullDriverStandingEntities, result)
+        assertContentEquals(fullDriverStandingEntities, result)
     }
 }

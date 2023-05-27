@@ -1,6 +1,6 @@
 package com.toquete.boxbox.data.driverstandings.repository
 
-import com.toquete.boxbox.core.database.model.NewFullDriverStandingEntity
+import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
 import com.toquete.boxbox.core.model.FullDriverStanding
 import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
 import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
@@ -21,7 +21,7 @@ internal class DefaultDriverStandingsRepository @Inject constructor(
 
     override fun getDriverStandings(): Flow<List<FullDriverStanding>> {
         return localDataSource.getDriverStandings()
-            .map { it.map(NewFullDriverStandingEntity::toDomain) }
+            .map { it.map(FullDriverStandingEntity::toDomain) }
     }
 
     override suspend fun sync(): Boolean {

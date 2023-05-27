@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.driverstandings.model
 
 import com.toquete.boxbox.core.database.model.DriverStandingEntity
-import com.toquete.boxbox.core.database.model.NewFullDriverStandingEntity
+import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.FullDriverStanding
@@ -17,7 +17,7 @@ internal fun DriverStandingResponse.toEntity(): DriverStandingEntity {
     )
 }
 
-internal fun NewFullDriverStandingEntity.toDomain(): FullDriverStanding {
+internal fun FullDriverStandingEntity.toDomain(): FullDriverStanding {
     return FullDriverStanding(
         position = standingEntity.position,
         points = standingEntity.points,

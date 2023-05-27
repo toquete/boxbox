@@ -14,7 +14,7 @@ import com.toquete.boxbox.core.testing.data.countryEntities
 import com.toquete.boxbox.core.testing.data.driverEntities
 import com.toquete.boxbox.core.testing.data.driverImageEntities
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
-import com.toquete.boxbox.core.testing.data.newFullDriverStandingEntities
+import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -101,6 +101,6 @@ class DriverStandingDaoTest {
 
         val result = dao.getFullDriverStandings().first()
 
-        assertContentEquals(newFullDriverStandingEntities, result)
+        assertContentEquals(fullDriverStandingEntities, result)
     }
 }
