@@ -50,7 +50,7 @@ class ConstructorStandingDaoTest {
             entity.copy(id = index + 1)
         }
 
-        dao.insertAll(constructorStandingEntities)
+        dao.upsertAll(constructorStandingEntities)
 
         val result = dao.getConstructorStandings().first()
 
@@ -59,7 +59,7 @@ class ConstructorStandingDaoTest {
 
     @Test
     fun testConstructorStandingsDelete() = runTest {
-        dao.insertAll(constructorStandingEntities)
+        dao.upsertAll(constructorStandingEntities)
 
         dao.deleteAll()
 
@@ -69,22 +69,8 @@ class ConstructorStandingDaoTest {
     }
 
     @Test
-    fun testConstructorStandingsDeleteAndInsertInTransaction() = runTest {
-        val expectedList = constructorStandingEntities.map { entity ->
-            entity.copy(points = "300")
-        }
-        dao.insertAll(constructorStandingEntities)
-
-        dao.deleteAndInsertInTransaction(expectedList)
-
-        val result = dao.getConstructorStandings().first()
-
-        assertContentEquals(expectedList, result)
-    }
-
-    @Test
     fun testFullConstructorStandingSelect() = runTest {
-        dao.insertAll(constructorStandingEntities)
+        dao.upsertAll(constructorStandingEntities)
         constructorDao.upsertAll(constructorEntities)
         constructorImageDao.upsertAll(constructorImageEntities)
         countryDao.insertAll(countryEntities)
