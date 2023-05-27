@@ -32,7 +32,7 @@ class DriverImageDaoTest {
 
     @Test
     fun testDriverImageInsert() = runTest {
-        dao.insertAll(driverImageEntities)
+        dao.upsertAll(driverImageEntities)
 
         val result = dao.getDriverImageById(id = "max_verstappen").first()
 

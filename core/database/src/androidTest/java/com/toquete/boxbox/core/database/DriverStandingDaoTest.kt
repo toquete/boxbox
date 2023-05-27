@@ -95,7 +95,7 @@ class DriverStandingDaoTest {
         dao.insertAll(driverStandingEntities)
         driverDao.upsertAll(driverEntities)
         constructorDao.upsertAll(constructorEntities)
-        driverImageDao.insertAll(driverImageEntities)
+        driverImageDao.upsertAll(driverImageEntities)
         constructorImageDao.upsertAll(constructorImageEntities)
         countryDao.upsertAll(countryEntities)
 
