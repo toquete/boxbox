@@ -17,7 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.res.stringResource
 import com.toquete.boxbox.feature.standings.constructors.FullConstructorStandingsScreen
-import com.toquete.boxbox.feature.standings.drivers.FullDriverStandingsScreen
+import com.toquete.boxbox.feature.standings.drivers.DriverStandingsScreen
 import com.toquete.boxbox.feature.standings.model.StandingsTab
 import kotlinx.coroutines.launch
 
@@ -54,7 +54,7 @@ fun StandingsScreen() {
             state = pagerState
         ) { page ->
             when (pages[page]) {
-                StandingsTab.DRIVERS -> FullDriverStandingsScreen()
+                StandingsTab.DRIVERS -> DriverStandingsScreen()
                 StandingsTab.CONSTRUCTORS -> FullConstructorStandingsScreen()
             }
         }

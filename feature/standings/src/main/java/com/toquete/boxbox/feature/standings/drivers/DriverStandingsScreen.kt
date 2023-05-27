@@ -31,14 +31,14 @@ import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
 
 @Composable
-fun FullDriverStandingsScreen() {
-    val viewModel: FullDriverStandingsViewModel = viewModel()
+fun DriverStandingsScreen() {
+    val viewModel: DriverStandingsViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
-    FullDriverStandingsContent(state)
+    DriverStandingsContent(state)
 }
 
 @Composable
-internal fun FullDriverStandingsContent(state: FullDriversStandingsState) {
+internal fun DriverStandingsContent(state: DriverStandingsState) {
     val lazyListState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     val showButton by remember {
@@ -46,8 +46,8 @@ internal fun FullDriverStandingsContent(state: FullDriversStandingsState) {
     }
     Box(modifier = Modifier.fillMaxSize()) {
         when (state) {
-            FullDriversStandingsState.Loading -> Unit
-            is FullDriversStandingsState.Success -> {
+            DriverStandingsState.Loading -> Unit
+            is DriverStandingsState.Success -> {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
@@ -57,7 +57,7 @@ internal fun FullDriverStandingsContent(state: FullDriversStandingsState) {
                     state = lazyListState
                 ) {
                     items(state.driverStandings) { standing ->
-                        FullDriverStandingItem(standing)
+                        DriverStandingItem(standing)
                     }
                 }
                 ScrollToUpButton(
@@ -81,8 +81,8 @@ internal fun FullDriverStandingsContent(state: FullDriversStandingsState) {
 @Composable
 private fun FullDriverStandingsContentLightPreview() {
     BoxBoxTheme {
-        FullDriverStandingsContent(
-            state = FullDriversStandingsState.Success(
+        DriverStandingsContent(
+            state = DriverStandingsState.Success(
                 driverStandings = listOf(
                     DriverStanding(
                         position = 1,
@@ -113,8 +113,8 @@ private fun FullDriverStandingsContentLightPreview() {
 private fun FullDriverStandingsContentDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            FullDriverStandingsContent(
-                state = FullDriversStandingsState.Success(
+            DriverStandingsContent(
+                state = DriverStandingsState.Success(
                     driverStandings = listOf(
                         DriverStanding(
                             position = 1,

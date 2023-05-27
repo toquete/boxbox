@@ -33,7 +33,7 @@ import com.toquete.boxbox.feature.standings.R
 import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
 
 @Composable
-fun FullDriverStandingItem(standing: DriverStanding) {
+fun DriverStandingItem(standing: DriverStanding) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -138,9 +138,9 @@ fun FullDriverStandingItem(standing: DriverStanding) {
 
 @Preview(name = "Item Light", showBackground = true)
 @Composable
-private fun DriversStandingItemLightPreview() {
+private fun DriverStandingItemLightPreview() {
     BoxBoxTheme {
-        FullDriverStandingItem(
+        DriverStandingItem(
             standing = DriverStanding(
                 position = 1,
                 points = "258",
@@ -165,10 +165,10 @@ private fun DriversStandingItemLightPreview() {
 
 @Preview(name = "Item Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun DriversStandingItemDarkPreview() {
+private fun DriverStandingItemDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            FullDriverStandingItem(
+            DriverStandingItem(
                 standing = DriverStanding(
                     position = 1,
                     points = "258",

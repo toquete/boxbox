@@ -16,14 +16,14 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class FullDriverStandingsViewModelTest {
+class DriverStandingsViewModelTest {
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
     private val repository: DriverStandingsRepository = mockk(relaxed = true)
 
-    private lateinit var viewModel: FullDriverStandingsViewModel
+    private lateinit var viewModel: DriverStandingsViewModel
 
     @Test
     fun `init should send success state when drivers standings are returned`() = runTest {
@@ -36,15 +36,15 @@ class FullDriverStandingsViewModelTest {
             viewModel.state.collect()
         }
 
-        assertEquals(FullDriversStandingsState.Loading, viewModel.state.value)
+        assertEquals(DriverStandingsState.Loading, viewModel.state.value)
 
         driversFlow.emit(driverStandings)
-        assertEquals(FullDriversStandingsState.Success(driverStandings), viewModel.state.value)
+        assertEquals(DriverStandingsState.Success(driverStandings), viewModel.state.value)
 
         backgroundScope.cancel()
     }
 
     private fun setupViewModel() {
-        viewModel = FullDriverStandingsViewModel(repository)
+        viewModel = DriverStandingsViewModel(repository)
     }
 }

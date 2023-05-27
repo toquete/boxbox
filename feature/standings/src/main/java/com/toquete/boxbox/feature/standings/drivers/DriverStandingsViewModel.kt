@@ -10,15 +10,15 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-internal class FullDriverStandingsViewModel @Inject constructor(
+internal class DriverStandingsViewModel @Inject constructor(
     repository: DriverStandingsRepository
 ) : ViewModel() {
 
     val state = repository.getDriverStandings()
-        .map { FullDriversStandingsState.Success(it) }
+        .map { DriverStandingsState.Success(it) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = FullDriversStandingsState.Loading
+            initialValue = DriverStandingsState.Loading
         )
 }

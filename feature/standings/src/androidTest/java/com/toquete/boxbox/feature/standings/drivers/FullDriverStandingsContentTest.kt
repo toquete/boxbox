@@ -27,7 +27,7 @@ class FullDriverStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                    DriverStandingsContent(DriverStandingsState.Success(list))
                 }
             }
 
@@ -43,7 +43,7 @@ class FullDriverStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                    DriverStandingsContent(DriverStandingsState.Success(list))
                 }
             }
 
@@ -60,7 +60,7 @@ class FullDriverStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    FullDriverStandingsContent(FullDriversStandingsState.Success(list))
+                    DriverStandingsContent(DriverStandingsState.Success(list))
                 }
             }
 

@@ -19,7 +19,7 @@ class FullDriverStandingItemTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    FullDriverStandingItem(driverStandings.first())
+                    DriverStandingItem(driverStandings.first())
                 }
             }
 
