@@ -14,7 +14,6 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:common"))
     implementation(project(":data:driverstandings"))
-    implementation(project(":data:fulldriverstandings"))
     implementation(project(":data:fullconstructorstandings"))
 
     testImplementation(project(":core:testing"))
