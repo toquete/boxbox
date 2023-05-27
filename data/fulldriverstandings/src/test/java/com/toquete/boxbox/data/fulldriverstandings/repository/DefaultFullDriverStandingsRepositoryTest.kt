@@ -1,8 +1,5 @@
 package com.toquete.boxbox.data.fulldriverstandings.repository
 
-import com.toquete.boxbox.core.database.model.ConstructorEntity
-import com.toquete.boxbox.core.database.model.DriverEntity
-import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.driverEntities
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
@@ -17,7 +14,6 @@ import com.toquete.boxbox.data.fulldriverstandings.source.remote.FullDriverStand
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import io.mockk.slot
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -63,38 +59,30 @@ class DefaultFullDriverStandingsRepositoryTest {
 
     @Test
     fun `sync should insert driver data in database when remote data is gotten successfully`() = runTest {
-        val slot = slot<List<DriverEntity>>()
         coEvery { remoteDataSource.getFullDriverStandings() } returns driverStandingsResponse
 
         repository.sync()
 
-        coVerify { driversLocalDataSource.insertAll(capture(slot)) }
-
-        assertContentEquals(driverEntities, slot.captured)
+        coVerify { driversLocalDataSource.insertAll(driverEntities) }
     }
 
     @Test
     fun `sync should insert constructor data in database when remote data is gotten successfully`() = runTest {
-        val slot = slot<List<ConstructorEntity>>()
         coEvery { remoteDataSource.getFullDriverStandings() } returns driverStandingsResponse
 
         repository.sync()
 
-        coVerify { constructorsLocalDataSource.insertAll(capture(slot)) }
-
-        assertContentEquals(constructorEntities, slot.captured)
+        coVerify { constructorsLocalDataSource.insertAll(constructorEntities) }
     }
 
     @Test
     fun `sync should insert driver standings data in database when remote data is gotten successfully`() = runTest {
-        val slot = slot<List<DriverStandingEntity>>()
+        val expected = driverStandingEntities.map { it.copy(id = null) }
         coEvery { remoteDataSource.getFullDriverStandings() } returns driverStandingsResponse
 
         repository.sync()
 
-        coVerify { driverStandingsLocalDataSource.insertAll(capture(slot)) }
-
-        assertContentEquals(driverStandingEntities, slot.captured)
+        coVerify { driverStandingsLocalDataSource.insertAll(expected) }
     }
 
     @Test
