@@ -4,13 +4,13 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 data class FullDriverStandingEntity(
-    @Embedded val standingEntity: DriverStandingEntity,
+    @Embedded val standing: DriverStandingEntity,
     @Relation(
         entity = DriverEntity::class,
         parentColumn = "driver_id",
         entityColumn = "id"
     )
-    val driverWithCountryFlagEntity: DriverWithCountryFlagEntity,
+    val driverWithCountryFlag: DriverWithCountryFlagEntity,
     @Relation(
         parentColumn = "constructor_id",
         entityColumn = "id"

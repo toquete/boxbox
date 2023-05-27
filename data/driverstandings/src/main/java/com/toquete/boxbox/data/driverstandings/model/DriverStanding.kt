@@ -19,15 +19,15 @@ internal fun DriverStandingResponse.toEntity(): DriverStandingEntity {
 
 internal fun FullDriverStandingEntity.toDomain(): DriverStanding {
     return DriverStanding(
-        position = standingEntity.position,
-        points = standingEntity.points,
-        wins = standingEntity.wins,
+        position = standing.position,
+        points = standing.points,
+        wins = standing.wins,
         driver = Driver(
-            id = driverWithCountryFlagEntity.driver.id,
-            firstName = driverWithCountryFlagEntity.driver.firstName,
-            lastName = driverWithCountryFlagEntity.driver.lastName,
+            id = driverWithCountryFlag.driver.id,
+            firstName = driverWithCountryFlag.driver.firstName,
+            lastName = driverWithCountryFlag.driver.lastName,
             imageUrl = driverImageUrl,
-            flagUrl = driverWithCountryFlagEntity.flagUrl
+            flagUrl = driverWithCountryFlag.flagUrl
         ),
         constructor = Constructor(
             id = constructor.id,
