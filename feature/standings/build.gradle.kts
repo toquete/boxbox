@@ -15,7 +15,6 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":data:driverstandings"))
     implementation(project(":data:constructorstandings"))
-    implementation(project(":data:fullconstructorstandings"))
 
     testImplementation(project(":core:testing"))
     androidTestImplementation(project(":core:testing"))
