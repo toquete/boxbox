@@ -16,14 +16,14 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class FullConstructorStandingsViewModelTest {
+class ConstructorStandingsViewModelTest {
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
     private val repository: ConstructorStandingsRepository = mockk(relaxed = true)
 
-    private lateinit var viewModel: FullConstructorStandingsViewModel
+    private lateinit var viewModel: ConstructorStandingsViewModel
 
     @Test
     fun `init should send success state when constructors standings are returned`() = runTest {
@@ -36,15 +36,15 @@ class FullConstructorStandingsViewModelTest {
             viewModel.state.collect()
         }
 
-        assertEquals(FullConstructorStandingsState.Loading, viewModel.state.value)
+        assertEquals(ConstructorStandingsState.Loading, viewModel.state.value)
 
         constructorsFlow.emit(constructorStandings)
-        assertEquals(FullConstructorStandingsState.Success(constructorStandings), viewModel.state.value)
+        assertEquals(ConstructorStandingsState.Success(constructorStandings), viewModel.state.value)
 
         backgroundScope.cancel()
     }
 
     private fun setupViewModel() {
-        viewModel = FullConstructorStandingsViewModel(repository)
+        viewModel = ConstructorStandingsViewModel(repository)
     }
 }

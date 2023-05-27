@@ -16,7 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.res.stringResource
-import com.toquete.boxbox.feature.standings.constructors.FullConstructorStandingsScreen
+import com.toquete.boxbox.feature.standings.constructors.ConstructorStandingsScreen
 import com.toquete.boxbox.feature.standings.drivers.DriverStandingsScreen
 import com.toquete.boxbox.feature.standings.model.StandingsTab
 import kotlinx.coroutines.launch
@@ -55,7 +55,7 @@ fun StandingsScreen() {
         ) { page ->
             when (pages[page]) {
                 StandingsTab.DRIVERS -> DriverStandingsScreen()
-                StandingsTab.CONSTRUCTORS -> FullConstructorStandingsScreen()
+                StandingsTab.CONSTRUCTORS -> ConstructorStandingsScreen()
             }
         }
     }

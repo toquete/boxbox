@@ -14,7 +14,7 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import org.junit.Rule
 import org.junit.Test
 
-class FullDriverStandingsContentTest {
+class DriverStandingsContentTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()

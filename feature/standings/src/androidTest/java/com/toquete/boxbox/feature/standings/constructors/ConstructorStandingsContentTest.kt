@@ -14,7 +14,7 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import org.junit.Rule
 import org.junit.Test
 
-class FullConstructorStandingsContentTest {
+class ConstructorStandingsContentTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
@@ -27,7 +27,7 @@ class FullConstructorStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    FullConstructorStandingsContent(FullConstructorStandingsState.Success(list))
+                    ConstructorStandingsContent(ConstructorStandingsState.Success(list))
                 }
             }
 
@@ -43,7 +43,7 @@ class FullConstructorStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    FullConstructorStandingsContent(FullConstructorStandingsState.Success(list))
+                    ConstructorStandingsContent(ConstructorStandingsState.Success(list))
                 }
             }
 
@@ -60,7 +60,7 @@ class FullConstructorStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    FullConstructorStandingsContent(FullConstructorStandingsState.Success(list))
+                    ConstructorStandingsContent(ConstructorStandingsState.Success(list))
                 }
             }
 

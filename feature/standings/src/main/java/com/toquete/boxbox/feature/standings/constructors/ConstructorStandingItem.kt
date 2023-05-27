@@ -32,7 +32,7 @@ import com.toquete.boxbox.feature.standings.R
 import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
 
 @Composable
-internal fun FullConstructorStandingItem(standing: ConstructorStanding) {
+internal fun ConstructorStandingItem(standing: ConstructorStanding) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -125,7 +125,7 @@ internal fun FullConstructorStandingItem(standing: ConstructorStanding) {
 @Composable
 private fun ConstructorStandingItemLightPreview() {
     BoxBoxTheme {
-        FullConstructorStandingItem(
+        ConstructorStandingItem(
             standing = ConstructorStanding(
                 position = 1,
                 points = "258",
@@ -146,7 +146,7 @@ private fun ConstructorStandingItemLightPreview() {
 private fun ConstructorStandingItemDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            FullConstructorStandingItem(
+            ConstructorStandingItem(
                 standing = ConstructorStanding(
                     position = 1,
                     points = "258",

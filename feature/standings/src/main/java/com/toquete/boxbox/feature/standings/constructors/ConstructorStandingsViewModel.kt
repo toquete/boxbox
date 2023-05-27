@@ -10,15 +10,15 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-internal class FullConstructorStandingsViewModel @Inject constructor(
+internal class ConstructorStandingsViewModel @Inject constructor(
     repository: ConstructorStandingsRepository
 ) : ViewModel() {
 
     val state = repository.getConstructorStandings()
-        .map { FullConstructorStandingsState.Success(it) }
+        .map { ConstructorStandingsState.Success(it) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = FullConstructorStandingsState.Loading
+            initialValue = ConstructorStandingsState.Loading
         )
 }

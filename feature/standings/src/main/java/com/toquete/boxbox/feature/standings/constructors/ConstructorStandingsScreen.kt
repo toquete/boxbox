@@ -30,14 +30,14 @@ import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
 
 @Composable
-fun FullConstructorStandingsScreen() {
-    val viewModel: FullConstructorStandingsViewModel = viewModel()
+fun ConstructorStandingsScreen() {
+    val viewModel: ConstructorStandingsViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
-    FullConstructorStandingsContent(state)
+    ConstructorStandingsContent(state)
 }
 
 @Composable
-internal fun FullConstructorStandingsContent(state: FullConstructorStandingsState) {
+internal fun ConstructorStandingsContent(state: ConstructorStandingsState) {
     val lazyListState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     val showButton by remember {
@@ -45,8 +45,8 @@ internal fun FullConstructorStandingsContent(state: FullConstructorStandingsStat
     }
     Box(modifier = Modifier.fillMaxSize()) {
         when (state) {
-            FullConstructorStandingsState.Loading -> Unit
-            is FullConstructorStandingsState.Success -> {
+            ConstructorStandingsState.Loading -> Unit
+            is ConstructorStandingsState.Success -> {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
@@ -56,7 +56,7 @@ internal fun FullConstructorStandingsContent(state: FullConstructorStandingsStat
                     state = lazyListState
                 ) {
                     items(state.constructorStandings) { standing ->
-                        FullConstructorStandingItem(standing)
+                        ConstructorStandingItem(standing)
                     }
                 }
                 ScrollToUpButton(
@@ -80,8 +80,8 @@ internal fun FullConstructorStandingsContent(state: FullConstructorStandingsStat
 @Composable
 private fun FullConstructorStandingsContentLightPreview() {
     BoxBoxTheme {
-        FullConstructorStandingsContent(
-            state = FullConstructorStandingsState.Success(
+        ConstructorStandingsContent(
+            state = ConstructorStandingsState.Success(
                 constructorStandings = listOf(
                     ConstructorStanding(
                         position = 1,
@@ -105,8 +105,8 @@ private fun FullConstructorStandingsContentLightPreview() {
 private fun FullConstructorStandingsContentDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            FullConstructorStandingsContent(
-                state = FullConstructorStandingsState.Success(
+            ConstructorStandingsContent(
+                state = ConstructorStandingsState.Success(
                     constructorStandings = listOf(
                         ConstructorStanding(
                             position = 1,
