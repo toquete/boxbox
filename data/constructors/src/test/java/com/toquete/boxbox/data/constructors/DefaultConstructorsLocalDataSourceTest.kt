@@ -20,6 +20,6 @@ class DefaultConstructorsLocalDataSourceTest {
 
         dataSource.insertAll(constructorEntities)
 
-        coVerify { constructorDao.insertAll(constructorEntities) }
+        coVerify { constructorDao.upsertAll(constructorEntities) }
     }
 }

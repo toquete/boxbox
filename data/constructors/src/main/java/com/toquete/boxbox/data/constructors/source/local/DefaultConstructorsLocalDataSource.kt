@@ -9,6 +9,6 @@ class DefaultConstructorsLocalDataSource @Inject constructor(
 ) : ConstructorsLocalDataSource {
 
     override suspend fun insertAll(constructors: List<ConstructorEntity>) {
-        constructorDao.insertAll(constructors)
+        constructorDao.upsertAll(constructors)
     }
 }

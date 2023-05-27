@@ -32,7 +32,7 @@ class ConstructorDaoTest {
 
     @Test
     fun testConstructorsInsert() = runTest {
-        dao.insertAll(constructorEntities)
+        dao.upsertAll(constructorEntities)
 
         val result = dao.getConstructors().first()
 

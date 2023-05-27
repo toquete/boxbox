@@ -85,7 +85,7 @@ class ConstructorStandingDaoTest {
     @Test
     fun testFullConstructorStandingSelect() = runTest {
         dao.insertAll(constructorStandingEntities)
-        constructorDao.insertAll(constructorEntities)
+        constructorDao.upsertAll(constructorEntities)
         constructorImageDao.insertAll(constructorImageEntities)
         countryDao.insertAll(countryEntities)
 
