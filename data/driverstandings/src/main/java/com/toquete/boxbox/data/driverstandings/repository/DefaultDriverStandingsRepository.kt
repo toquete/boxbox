@@ -28,9 +28,9 @@ internal class DefaultDriverStandingsRepository @Inject constructor(
         return runCatching {
             remoteDataSource.getDriverStandings()
                 .also { list ->
-                    localDataSource.insertAll(list.map { it.toEntity() })
                     driversLocalDataSource.insertAll(list.map { it.driver.toEntity() })
                     constructorsLocalDataSource.insertAll(list.map { it.constructors.first().toEntity() })
+                    localDataSource.insertAll(list.map { it.toEntity() })
                 }
         }.isSuccess
     }

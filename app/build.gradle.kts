@@ -42,6 +42,7 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:model"))
     implementation(project(":core:preferences"))
+    implementation(project(":data:driverstandings"))
     implementation(project(":data:fulldriverstandings"))
     implementation(project(":data:fullconstructorstandings"))
     implementation(project(":feature:standings"))
