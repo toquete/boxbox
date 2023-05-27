@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ConstructorStandingsRepository : Syncable {
 
-    fun getFullConstructorStandings(): Flow<List<FullConstructorStanding>>
+    fun getConstructorStandings(): Flow<List<FullConstructorStanding>>
 }

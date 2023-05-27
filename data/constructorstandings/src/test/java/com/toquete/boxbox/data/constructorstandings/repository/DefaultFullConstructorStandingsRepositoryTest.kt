@@ -33,7 +33,7 @@ class DefaultFullConstructorStandingsRepositoryTest {
     fun `getFullConstructorStandings should return mapped list when called`() = runTest {
         every { localDataSource.getConstructorStandings() } returns flowOf(newFullConstructorStandingEntities)
 
-        val result = repository.getFullConstructorStandings()
+        val result = repository.getConstructorStandings()
 
         assertContentEquals(fullConstructorStandings, result.first())
     }

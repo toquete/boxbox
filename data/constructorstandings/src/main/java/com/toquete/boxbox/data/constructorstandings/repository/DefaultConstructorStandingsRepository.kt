@@ -16,7 +16,7 @@ internal class DefaultConstructorStandingsRepository @Inject constructor(
     private val localDataSource: ConstructorStandingsLocalDataSource
 ) : ConstructorStandingsRepository {
 
-    override fun getFullConstructorStandings(): Flow<List<FullConstructorStanding>> {
+    override fun getConstructorStandings(): Flow<List<FullConstructorStanding>> {
         return localDataSource.getConstructorStandings()
             .map { it.map(NewFullConstructorStandingEntity::toDomain) }
     }
