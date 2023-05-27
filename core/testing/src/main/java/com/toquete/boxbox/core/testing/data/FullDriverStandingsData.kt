@@ -2,7 +2,7 @@ package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.DriverWithCountryFlagEntity
 import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
-import com.toquete.boxbox.core.model.FullDriverStanding
+import com.toquete.boxbox.core.model.DriverStanding
 
 val fullDriverStandingEntities = listOf(
     FullDriverStandingEntity(
@@ -17,8 +17,8 @@ val fullDriverStandingEntities = listOf(
     )
 )
 
-val fullDriverStandings = listOf(
-    FullDriverStanding(
+val driverStandings = listOf(
+    DriverStanding(
         position = 1,
         points = "90",
         wins = "5",

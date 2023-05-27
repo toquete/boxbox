@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
-import com.toquete.boxbox.core.model.FullDriverStanding
+import com.toquete.boxbox.core.model.DriverStanding
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
@@ -33,7 +33,7 @@ import com.toquete.boxbox.feature.standings.R
 import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
 
 @Composable
-fun FullDriverStandingItem(standing: FullDriverStanding) {
+fun FullDriverStandingItem(standing: DriverStanding) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -141,7 +141,7 @@ fun FullDriverStandingItem(standing: FullDriverStanding) {
 private fun DriversStandingItemLightPreview() {
     BoxBoxTheme {
         FullDriverStandingItem(
-            standing = FullDriverStanding(
+            standing = DriverStanding(
                 position = 1,
                 points = "258",
                 wins = "7",
@@ -169,7 +169,7 @@ private fun DriversStandingItemDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             FullDriverStandingItem(
-                standing = FullDriverStanding(
+                standing = DriverStanding(
                     position = 1,
                     points = "258",
                     wins = "7",

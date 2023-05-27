@@ -3,9 +3,9 @@ package com.toquete.boxbox.data.driverstandings.source.repository
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.driverEntities
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
+import com.toquete.boxbox.core.testing.data.driverStandings
 import com.toquete.boxbox.core.testing.data.driverStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
-import com.toquete.boxbox.core.testing.data.fullDriverStandings
 import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
 import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
 import com.toquete.boxbox.data.driverstandings.repository.DefaultDriverStandingsRepository
@@ -43,7 +43,7 @@ class DefaultDriverStandingsRepositoryTest {
 
         val result = repository.getDriverStandings()
 
-        assertContentEquals(fullDriverStandings, result.first())
+        assertContentEquals(driverStandings, result.first())
     }
 
     @Test

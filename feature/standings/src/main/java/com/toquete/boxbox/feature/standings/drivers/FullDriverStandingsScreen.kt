@@ -25,7 +25,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
-import com.toquete.boxbox.core.model.FullDriverStanding
+import com.toquete.boxbox.core.model.DriverStanding
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
@@ -84,7 +84,7 @@ private fun FullDriverStandingsContentLightPreview() {
         FullDriverStandingsContent(
             state = FullDriversStandingsState.Success(
                 driverStandings = listOf(
-                    FullDriverStanding(
+                    DriverStanding(
                         position = 1,
                         points = "258",
                         wins = "7",
@@ -116,7 +116,7 @@ private fun FullDriverStandingsContentDarkPreview() {
             FullDriverStandingsContent(
                 state = FullDriversStandingsState.Success(
                     driverStandings = listOf(
-                        FullDriverStanding(
+                        DriverStanding(
                             position = 1,
                             points = "258",
                             wins = "7",

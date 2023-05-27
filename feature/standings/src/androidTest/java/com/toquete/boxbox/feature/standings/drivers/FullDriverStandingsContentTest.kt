@@ -9,7 +9,7 @@ import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
-import com.toquete.boxbox.core.testing.data.fullDriverStandings
+import com.toquete.boxbox.core.testing.data.driverStandings
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +21,7 @@ class FullDriverStandingsContentTest {
 
     @Test
     fun validateScrollButtonIsNotVisibleWhenScreenStarts() {
-        val list = fullDriverStandings.toMutableList()
+        val list = driverStandings.toMutableList()
         (1..10).forEach { _ -> list.add(list.first().copy()) }
 
         with(composeTestRule) {
@@ -37,7 +37,7 @@ class FullDriverStandingsContentTest {
 
     @Test
     fun validateScrollButtonIsVisibleWhenScreenIsScrolled() {
-        val list = fullDriverStandings.toMutableList()
+        val list = driverStandings.toMutableList()
         (1..10).forEach { _ -> list.add(list.first().copy()) }
 
         with(composeTestRule) {
@@ -54,7 +54,7 @@ class FullDriverStandingsContentTest {
 
     @Test
     fun validateScrollButtonClick() {
-        val list = fullDriverStandings.toMutableList()
+        val list = driverStandings.toMutableList()
         (2..10).forEach { list.add(list.first().copy(position = it)) }
 
         with(composeTestRule) {

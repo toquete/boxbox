@@ -1,7 +1,7 @@
 package com.toquete.boxbox.feature.standings.drivers
 
-import com.toquete.boxbox.core.model.FullDriverStanding
-import com.toquete.boxbox.core.testing.data.fullDriverStandings
+import com.toquete.boxbox.core.model.DriverStanding
+import com.toquete.boxbox.core.testing.data.driverStandings
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
 import io.mockk.coEvery
@@ -27,7 +27,7 @@ class FullDriverStandingsViewModelTest {
 
     @Test
     fun `init should send success state when drivers standings are returned`() = runTest {
-        val driversFlow = MutableSharedFlow<List<FullDriverStanding>>()
+        val driversFlow = MutableSharedFlow<List<DriverStanding>>()
         coEvery { repository.getDriverStandings() } returns driversFlow
 
         setupViewModel()
@@ -38,8 +38,8 @@ class FullDriverStandingsViewModelTest {
 
         assertEquals(FullDriversStandingsState.Loading, viewModel.state.value)
 
-        driversFlow.emit(fullDriverStandings)
-        assertEquals(FullDriversStandingsState.Success(fullDriverStandings), viewModel.state.value)
+        driversFlow.emit(driverStandings)
+        assertEquals(FullDriversStandingsState.Success(driverStandings), viewModel.state.value)
 
         backgroundScope.cancel()
     }

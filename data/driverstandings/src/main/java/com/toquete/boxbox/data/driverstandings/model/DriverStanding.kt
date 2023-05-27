@@ -4,7 +4,7 @@ import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
-import com.toquete.boxbox.core.model.FullDriverStanding
+import com.toquete.boxbox.core.model.DriverStanding
 import com.toquete.boxbox.core.network.model.DriverStandingResponse
 
 internal fun DriverStandingResponse.toEntity(): DriverStandingEntity {
@@ -17,8 +17,8 @@ internal fun DriverStandingResponse.toEntity(): DriverStandingEntity {
     )
 }
 
-internal fun FullDriverStandingEntity.toDomain(): FullDriverStanding {
-    return FullDriverStanding(
+internal fun FullDriverStandingEntity.toDomain(): DriverStanding {
+    return DriverStanding(
         position = standingEntity.position,
         points = standingEntity.points,
         wins = standingEntity.wins,
