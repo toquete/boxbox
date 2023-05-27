@@ -5,6 +5,7 @@ import com.toquete.boxbox.core.testing.data.driverStandingEntities
 import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
@@ -28,7 +29,7 @@ class DefaultDriverStandingsLocalDataSourceTest {
 
     @Test
     fun `getDriverStandings should return driver standings when called`() = runTest {
-        coEvery { driverStandingDao.getFullDriverStandings() } returns flowOf(fullDriverStandingEntities)
+        every { driverStandingDao.getFullDriverStandings() } returns flowOf(fullDriverStandingEntities)
 
         val result = dataSource.getDriverStandings().first()
 
