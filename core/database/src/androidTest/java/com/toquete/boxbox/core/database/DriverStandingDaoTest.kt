@@ -97,7 +97,7 @@ class DriverStandingDaoTest {
         constructorDao.upsertAll(constructorEntities)
         driverImageDao.insertAll(driverImageEntities)
         constructorImageDao.upsertAll(constructorImageEntities)
-        countryDao.insertAll(countryEntities)
+        countryDao.upsertAll(countryEntities)
 
         val result = dao.getFullDriverStandings().first()
 

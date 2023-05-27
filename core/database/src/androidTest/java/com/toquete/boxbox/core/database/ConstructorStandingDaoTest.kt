@@ -73,7 +73,7 @@ class ConstructorStandingDaoTest {
         dao.upsertAll(constructorStandingEntities)
         constructorDao.upsertAll(constructorEntities)
         constructorImageDao.upsertAll(constructorImageEntities)
-        countryDao.insertAll(countryEntities)
+        countryDao.upsertAll(countryEntities)
 
         val result = dao.getFullConstructorStandings().first()
 

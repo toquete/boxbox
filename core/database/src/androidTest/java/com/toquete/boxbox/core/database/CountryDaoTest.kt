@@ -32,7 +32,7 @@ class CountryDaoTest {
 
     @Test
     fun testCountryInsert() = runTest {
-        dao.insertAll(countryEntities)
+        dao.upsertAll(countryEntities)
 
         val result = dao.getCountryById(id = "NED").first()
 
