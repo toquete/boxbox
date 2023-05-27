@@ -2,8 +2,19 @@ package com.toquete.boxbox.core.database
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import com.toquete.boxbox.core.database.dao.ConstructorDao
+import com.toquete.boxbox.core.database.dao.ConstructorImageDao
+import com.toquete.boxbox.core.database.dao.CountryDao
+import com.toquete.boxbox.core.database.dao.DriverDao
+import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
+import com.toquete.boxbox.core.testing.data.constructorEntities
+import com.toquete.boxbox.core.testing.data.constructorImageEntities
+import com.toquete.boxbox.core.testing.data.countryEntities
+import com.toquete.boxbox.core.testing.data.driverEntities
+import com.toquete.boxbox.core.testing.data.driverImageEntities
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
+import com.toquete.boxbox.core.testing.data.newFullDriverStandingEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -15,6 +26,11 @@ import kotlin.test.assertEquals
 class DriverStandingDaoTest {
 
     private lateinit var dao: DriverStandingDao
+    private lateinit var driverDao: DriverDao
+    private lateinit var constructorDao: ConstructorDao
+    private lateinit var driverImageDao: DriverImageDao
+    private lateinit var constructorImageDao: ConstructorImageDao
+    private lateinit var countryDao: CountryDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -24,6 +40,11 @@ class DriverStandingDaoTest {
             BoxBoxDatabase::class.java
         ).build()
         dao = db.driverStandingDao()
+        driverDao = db.driverDao()
+        constructorDao = db.constructorDao()
+        driverImageDao = db.driverImageDao()
+        constructorImageDao = db.constructorImageDao()
+        countryDao = db.countryDao()
     }
 
     @After
@@ -57,18 +78,29 @@ class DriverStandingDaoTest {
 
     @Test
     fun testDriverStandingsDeleteAndInsertInTransaction() = runTest {
-        val newList = driverStandingEntities.map { entity ->
+        val expectedList = driverStandingEntities.map { entity ->
             entity.copy(points = "300")
-        }
-        val expectedList = newList.map { entity ->
-            entity.copy(id = 2)
         }
         dao.insertAll(driverStandingEntities)
 
-        dao.deleteAndInsertInTransaction(newList)
+        dao.deleteAndInsertInTransaction(expectedList)
 
         val result = dao.getDriverStandings().first()
 
         assertContentEquals(expectedList, result)
+    }
+
+    @Test
+    fun testFullDriverStandingSelect() = runTest {
+        dao.insertAll(driverStandingEntities)
+        driverDao.insertAll(driverEntities)
+        constructorDao.insertAll(constructorEntities)
+        driverImageDao.insertAll(driverImageEntities)
+        constructorImageDao.insertAll(constructorImageEntities)
+        countryDao.insertAll(countryEntities)
+
+        val result = dao.getFullDriverStandings().first()
+
+        assertContentEquals(newFullDriverStandingEntities, result)
     }
 }

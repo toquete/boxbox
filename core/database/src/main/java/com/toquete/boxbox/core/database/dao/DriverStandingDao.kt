@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import com.toquete.boxbox.core.database.model.DriverStandingEntity
+import com.toquete.boxbox.core.database.model.NewFullDriverStandingEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,4 +25,8 @@ interface DriverStandingDao {
 
     @Query("SELECT * FROM driver_standings")
     fun getDriverStandings(): Flow<List<DriverStandingEntity>>
+
+    @Transaction
+    @Query("SELECT * FROM driver_standings")
+    fun getFullDriverStandings(): Flow<List<NewFullDriverStandingEntity>>
 }

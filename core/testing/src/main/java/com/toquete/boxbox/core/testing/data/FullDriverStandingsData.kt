@@ -1,6 +1,8 @@
 package com.toquete.boxbox.core.testing.data
 
+import com.toquete.boxbox.core.database.model.DriverWithCountryEntity
 import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
+import com.toquete.boxbox.core.database.model.NewFullDriverStandingEntity
 import com.toquete.boxbox.core.model.FullDriverStanding
 
 val fullDriverStandingEntities = listOf(
@@ -16,6 +18,20 @@ val fullDriverStandingEntities = listOf(
         constructorId = "red_bull",
         constructorName = "Red Bull",
         constructorImageUrl = "http://constructor.com"
+    )
+)
+
+val newFullDriverStandingEntities = listOf(
+    NewFullDriverStandingEntity(
+        driverStandingEntities.first(),
+        driverEntities.first(),
+        constructorEntities.first(),
+        driverImageEntities.first(),
+        constructorImageEntities.first(),
+        DriverWithCountryEntity(
+            driverEntities.first(),
+            countryEntities.first()
+        )
     )
 )
 
