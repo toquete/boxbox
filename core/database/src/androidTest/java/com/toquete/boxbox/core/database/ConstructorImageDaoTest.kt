@@ -32,7 +32,7 @@ class ConstructorImageDaoTest {
 
     @Test
     fun testConstructorImageInsert() = runTest {
-        dao.insertAll(constructorImageEntities)
+        dao.upsertAll(constructorImageEntities)
 
         val result = dao.getConstructorImageById(id = "red_bull").first()
 
