@@ -75,12 +75,11 @@ class DefaultDriverStandingsRepositoryTest {
 
     @Test
     fun `sync should insert driver standings data in database when remote data is gotten successfully`() = runTest {
-        val expected = driverStandingEntities.map { it.copy(id = null) }
         coEvery { remoteDataSource.getDriverStandings() } returns driverStandingsResponse
 
         repository.sync()
 
-        coVerify { localDataSource.insertAll(expected) }
+        coVerify { localDataSource.insertAll(driverStandingEntities) }
     }
 
     @Test

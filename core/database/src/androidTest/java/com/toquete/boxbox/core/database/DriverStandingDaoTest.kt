@@ -54,20 +54,16 @@ class DriverStandingDaoTest {
 
     @Test
     fun testDriverStandingsInsert() = runTest {
-        val expectedList = driverStandingEntities.mapIndexed { index, entity ->
-            entity.copy(id = index + 1)
-        }
-
-        dao.insertAll(driverStandingEntities)
+        dao.upsertAll(driverStandingEntities)
 
         val result = dao.getDriverStandings().first()
 
-        assertContentEquals(expectedList, result)
+        assertContentEquals(driverStandingEntities, result)
     }
 
     @Test
     fun testDriverStandingsDelete() = runTest {
-        dao.insertAll(driverStandingEntities)
+        dao.upsertAll(driverStandingEntities)
 
         dao.deleteAll()
 
@@ -77,22 +73,8 @@ class DriverStandingDaoTest {
     }
 
     @Test
-    fun testDriverStandingsDeleteAndInsertInTransaction() = runTest {
-        val expectedList = driverStandingEntities.map { entity ->
-            entity.copy(points = "300")
-        }
-        dao.insertAll(driverStandingEntities)
-
-        dao.deleteAndInsertInTransaction(expectedList)
-
-        val result = dao.getDriverStandings().first()
-
-        assertContentEquals(expectedList, result)
-    }
-
-    @Test
     fun testFullDriverStandingSelect() = runTest {
-        dao.insertAll(driverStandingEntities)
+        dao.upsertAll(driverStandingEntities)
         driverDao.upsertAll(driverEntities)
         constructorDao.upsertAll(constructorEntities)
         driverImageDao.upsertAll(driverImageEntities)
