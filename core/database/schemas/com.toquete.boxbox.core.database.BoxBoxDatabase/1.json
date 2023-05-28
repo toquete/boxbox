@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b8215037ed21935c8a517facba7bc163",
+    "identityHash": "a1bd3eb462c8490aeecfdb20159b4966",
     "entities": [
       {
         "tableName": "driver_standings",
@@ -112,14 +112,8 @@
       },
       {
         "tableName": "constructor_standings",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `position` INTEGER NOT NULL, `points` TEXT NOT NULL, `wins` TEXT NOT NULL, `constructor_id` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`position` INTEGER NOT NULL, `points` TEXT NOT NULL, `wins` TEXT NOT NULL, `constructor_id` TEXT NOT NULL, PRIMARY KEY(`position`))",
         "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
           {
             "fieldPath": "position",
             "columnName": "position",
@@ -146,9 +140,9 @@
           }
         ],
         "primaryKey": {
-          "autoGenerate": true,
+          "autoGenerate": false,
           "columnNames": [
-            "id"
+            "position"
           ]
         },
         "indices": [],
@@ -286,7 +280,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b8215037ed21935c8a517facba7bc163')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a1bd3eb462c8490aeecfdb20159b4966')"
     ]
   }
 }

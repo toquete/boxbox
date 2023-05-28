@@ -17,10 +17,10 @@ interface DriverStandingDao {
     @Query("DELETE FROM driver_standings")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM driver_standings")
+    @Query("SELECT * FROM driver_standings ORDER BY position ASC")
     fun getDriverStandings(): Flow<List<DriverStandingEntity>>
 
     @Transaction
-    @Query("SELECT * FROM driver_standings")
+    @Query("SELECT * FROM driver_standings ORDER BY position ASC")
     fun getFullDriverStandings(): Flow<List<FullDriverStandingEntity>>
 }

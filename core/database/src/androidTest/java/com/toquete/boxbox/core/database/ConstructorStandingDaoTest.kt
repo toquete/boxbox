@@ -46,15 +46,11 @@ class ConstructorStandingDaoTest {
 
     @Test
     fun testConstructorStandingsInsert() = runTest {
-        val expectedList = constructorStandingEntities.mapIndexed { index, entity ->
-            entity.copy(id = index + 1)
-        }
-
         dao.upsertAll(constructorStandingEntities)
 
         val result = dao.getConstructorStandings().first()
 
-        assertContentEquals(expectedList, result)
+        assertContentEquals(constructorStandingEntities, result)
     }
 
     @Test

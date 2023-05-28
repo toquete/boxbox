@@ -6,8 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "constructor_standings")
 data class ConstructorStandingEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+    @PrimaryKey
     val position: Int,
     val points: String,
     val wins: String,

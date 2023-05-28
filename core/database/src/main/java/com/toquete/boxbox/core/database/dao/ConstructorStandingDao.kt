@@ -17,10 +17,10 @@ interface ConstructorStandingDao {
     @Query("DELETE FROM constructor_standings")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM constructor_standings")
+    @Query("SELECT * FROM constructor_standings ORDER BY position ASC")
     fun getConstructorStandings(): Flow<List<ConstructorStandingEntity>>
 
     @Transaction
-    @Query("SELECT * FROM constructor_standings")
+    @Query("SELECT * FROM constructor_standings ORDER BY position ASC")
     fun getFullConstructorStandings(): Flow<List<FullConstructorStandingEntity>>
 }
