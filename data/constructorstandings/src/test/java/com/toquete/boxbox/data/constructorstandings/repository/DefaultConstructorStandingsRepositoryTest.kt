@@ -50,13 +50,12 @@ class DefaultConstructorStandingsRepositoryTest {
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
-        val expected = constructorStandingEntities.map { it.copy(id = null) }
         coEvery { remoteDataSource.getConstructorStandings() } returns constructorStandingsResponse
         coEvery { localDataSource.insertAll(any()) } returns Unit
 
         repository.sync()
 
-        coVerify { localDataSource.insertAll(expected) }
+        coVerify { localDataSource.insertAll(constructorStandingEntities) }
     }
 
     @Test
