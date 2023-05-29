@@ -39,7 +39,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build APK
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: :app:assembleDebug
         
@@ -54,7 +54,7 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
       - name: Lint
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: lint
       - name: Uploading lint results
@@ -74,7 +74,7 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
       - name: Detekt
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: detektDebug
       - name: Uploading detekt results
@@ -94,7 +94,7 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
       - name: Unit test and coverage
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: jacocoTestReport
       - name: Uploading test results
@@ -122,7 +122,7 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
       - name: Build AndroidTest app
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: packageDebug
       - name: Run Instrumented Tests on GMD
