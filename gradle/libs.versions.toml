@@ -1,6 +1,6 @@
 [versions]
 gradle = "7.4.2"
-kotlin = "1.8.10"
+kotlin = "1.8.21"
 kotlin-jvm = "1.8.0"
 hilt = "2.44.2"
 compose = "1.4.3"
