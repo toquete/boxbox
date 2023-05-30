@@ -27,7 +27,7 @@ jobs:
       - name: Create Google Services JSON
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: touch ./boxbox/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ./boxbox/app/google-services.json
+        run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Build APK
         uses: gradle/gradle-build-action@v2.4.2
         with:
@@ -45,7 +45,7 @@ jobs:
       - name: Create Google Services JSON
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: touch ./boxbox/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ./boxbox/app/google-services.json
+        run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Lint
         uses: gradle/gradle-build-action@v2.4.2
         with:
@@ -68,7 +68,7 @@ jobs:
       - name: Create Google Services JSON
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: touch ./boxbox/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ./boxbox/app/google-services.json
+        run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Detekt
         uses: gradle/gradle-build-action@v2.4.2
         with:
@@ -91,7 +91,7 @@ jobs:
       - name: Create Google Services JSON
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: touch ./boxbox/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ./boxbox/app/google-services.json
+        run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Unit test and coverage
         uses: gradle/gradle-build-action@v2.4.2
         with:
@@ -121,7 +121,7 @@ jobs:
       - name: Create Google Services JSON
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: touch ./boxbox/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ./boxbox/app/google-services.json
+        run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Build AndroidTest app
         uses: gradle/gradle-build-action@v2.4.2
         with:
