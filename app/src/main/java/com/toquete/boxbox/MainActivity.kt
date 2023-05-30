@@ -126,7 +126,12 @@ fun MainScreen(
 ) {
     when (state) {
         MainState.Loading -> Unit
-        is MainState.Success -> MainScreenContent(state.isOnline, state.isSyncing, onSettingsButtonClick)
+        is MainState.Success -> MainScreenContent(
+            state.isOnline,
+            state.isSyncing,
+            state.hasFailed,
+            onSettingsButtonClick
+        )
     }
 }
 
@@ -135,17 +140,20 @@ fun MainScreen(
 private fun MainScreenContent(
     isOnline: Boolean,
     isSyncing: Boolean,
+    hasFailed: Boolean,
     onSettingsButtonClick: () -> Unit
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val notConnectedMessage = stringResource(R.string.not_connected)
+    val failedMessage = stringResource(R.string.fail_message)
     var isSnackbarDismissed by remember { mutableStateOf(false) }
-    val mustShowSnackbar = !(isOnline || isSnackbarDismissed)
+    val mustShowSnackbar = !isOnline || !isSnackbarDismissed || hasFailed
 
     LaunchedEffect(isOnline) {
         if (mustShowSnackbar) {
+            val message = if (!isOnline) notConnectedMessage else failedMessage
             val result = snackbarHostState.showSnackbar(
-                message = notConnectedMessage,
+                message = message,
                 duration = SnackbarDuration.Indefinite,
                 withDismissAction = true
             )
@@ -218,6 +226,7 @@ fun MainLightPreview() {
         MainScreenContent(
             isOnline = true,
             isSyncing = false,
+            hasFailed = false,
             onSettingsButtonClick = {}
         )
     }
@@ -231,6 +240,7 @@ fun MainDarkPreview() {
             MainScreenContent(
                 isOnline = true,
                 isSyncing = false,
+                hasFailed = false,
                 onSettingsButtonClick = {}
             )
         }

@@ -7,6 +7,7 @@ sealed interface MainState {
     data class Success(
         val isOnline: Boolean,
         val isSyncing: Boolean,
+        val hasFailed: Boolean,
         val darkThemeConfig: DarkThemeConfig
     ) : MainState
 }

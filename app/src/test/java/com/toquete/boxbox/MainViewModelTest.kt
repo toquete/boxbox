@@ -7,7 +7,7 @@ import com.toquete.boxbox.core.testing.data.userPreferences
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.util.NetworkMonitor
 import com.toquete.boxbox.util.SyncMonitor
-import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -34,10 +34,12 @@ class MainViewModelTest {
     fun `init should send success state`() = runTest {
         val isOnlineFlow = MutableSharedFlow<Boolean>()
         val isSyncingFlow = MutableSharedFlow<Boolean>()
+        val hasFailedFlow = MutableSharedFlow<Boolean>()
         val userPreferencesFlow = MutableSharedFlow<UserPreferences>()
-        coEvery { networkMonitor.isOnline } returns isOnlineFlow
-        coEvery { syncMonitor.isSyncing } returns isSyncingFlow
-        coEvery { preferencesRepository.userPreferences } returns userPreferencesFlow
+        every { networkMonitor.isOnline } returns isOnlineFlow
+        every { syncMonitor.isSyncing } returns isSyncingFlow
+        every { syncMonitor.hasFailed } returns hasFailedFlow
+        every { preferencesRepository.userPreferences } returns userPreferencesFlow
 
         setupViewModel()
 
@@ -49,9 +51,10 @@ class MainViewModelTest {
 
         isOnlineFlow.emit(true)
         isSyncingFlow.emit(true)
+        hasFailedFlow.emit(false)
         userPreferencesFlow.emit(userPreferences)
         assertEquals(
-            MainState.Success(isOnline = true, isSyncing = true, DarkThemeConfig.FOLLOW_SYSTEM),
+            MainState.Success(isOnline = true, isSyncing = true, hasFailed = false, DarkThemeConfig.FOLLOW_SYSTEM),
             viewModel.state.value
         )
 

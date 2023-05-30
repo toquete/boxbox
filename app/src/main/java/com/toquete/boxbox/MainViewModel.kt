@@ -22,9 +22,10 @@ class MainViewModel @Inject constructor(
     val state: StateFlow<MainState> = combine(
         networkMonitor.isOnline,
         syncMonitor.isSyncing,
+        syncMonitor.hasFailed,
         preferencesRepository.userPreferences
-    ) { isOnline, isSyncing, userPreferences ->
-        MainState.Success(isOnline, isSyncing, userPreferences.darkThemeConfig)
+    ) { isOnline, isSyncing, hasFailed, userPreferences ->
+        MainState.Success(isOnline, isSyncing, hasFailed, userPreferences.darkThemeConfig)
     }
         .stateIn(
             scope = viewModelScope,

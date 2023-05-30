@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BoxBox</string>
     <string name="not_connected">You are not connected to the internet!</string>
+    <string name="fail_message">Failed to update data from server!</string>
 </resources>
