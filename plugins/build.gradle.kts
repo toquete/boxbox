@@ -46,5 +46,9 @@ gradlePlugin {
             id = "boxbox.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
+        register("androidFirebase") {
+            id = "boxbox.android.firebase"
+            implementationClass = "AndroidFirebaseConventionPlugin"
+        }
     }
 }

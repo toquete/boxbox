@@ -37,6 +37,7 @@ test-aggregation = "1.1.0"
 ksp = "1.8.21-1.0.11"
 google-services = "4.3.15"
 firebase-bom = "32.1.0"
+crashlytics = "2.9.5"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -87,6 +88,7 @@ test-runner = { module = "androidx.test:runner", version.ref = "test-runner" }
 test-rules = { module = "androidx.test:rules", version.ref = "test-rules" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -111,3 +113,4 @@ test-aggregation-results = { id = "io.github.gmazzo.test.aggregation.results", v
 test-aggregation-coverage = { id = "io.github.gmazzo.test.aggregation.coverage", version.ref = "test-aggregation" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
+crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
