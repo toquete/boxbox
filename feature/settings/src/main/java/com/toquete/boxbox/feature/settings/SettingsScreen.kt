@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -51,15 +52,19 @@ private fun SettingsContent(
         properties = DialogProperties(usePlatformDefaultWidth = false),
         modifier = Modifier.widthIn(max = configuration.screenWidthDp.dp - 80.dp),
         onDismissRequest = onDismiss,
-        title = { Text(text = "Settings") },
+        title = { Text(stringResource(R.string.settings)) },
         text = {
             when (state) {
-                SettingsState.Loading -> Text(text = "Loading...")
+                SettingsState.Loading -> Text(stringResource(R.string.loading))
                 is SettingsState.Success -> {
                     Column(
                         modifier = Modifier.selectableGroup(),
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
+                        Text(
+                            text = stringResource(R.string.theme),
+                            style = MaterialTheme.typography.titleMedium
+                        )
                         SettingsRow(
                             text = stringResource(R.string.light),
                             isSelected = state.data.darkThemeConfig == DarkThemeConfig.LIGHT,
@@ -125,7 +130,7 @@ fun SettingsContentLightPreview() {
             state = SettingsState.Success(
                 UserPreferences(darkThemeConfig = DarkThemeConfig.LIGHT)
             ),
-            onDismiss = { /*TODO*/ },
+            onDismiss = {},
             onOptionSelected = {}
         )
     }
@@ -140,7 +145,7 @@ fun SettingsContentDarkPreview() {
                 state = SettingsState.Success(
                     UserPreferences(darkThemeConfig = DarkThemeConfig.LIGHT)
                 ),
-                onDismiss = { /*TODO*/ },
+                onDismiss = {},
                 onOptionSelected = {}
             )
         }
