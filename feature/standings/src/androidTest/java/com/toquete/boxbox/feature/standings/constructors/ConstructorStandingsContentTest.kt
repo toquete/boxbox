@@ -27,7 +27,7 @@ class ConstructorStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    ConstructorStandingsContent(ConstructorStandingsState.Success(list))
+                    ConstructorStandingsContent(ConstructorStandingsState(list))
                 }
             }
 
@@ -43,7 +43,7 @@ class ConstructorStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    ConstructorStandingsContent(ConstructorStandingsState.Success(list))
+                    ConstructorStandingsContent(ConstructorStandingsState(list))
                 }
             }
 
@@ -60,7 +60,7 @@ class ConstructorStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    ConstructorStandingsContent(ConstructorStandingsState.Success(list))
+                    ConstructorStandingsContent(ConstructorStandingsState(list))
                 }
             }
 

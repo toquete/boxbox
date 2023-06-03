@@ -44,35 +44,30 @@ internal fun ConstructorStandingsContent(state: ConstructorStandingsState) {
         derivedStateOf { lazyListState.firstVisibleItemIndex > 0 }
     }
     Box(modifier = Modifier.fillMaxSize()) {
-        when (state) {
-            ConstructorStandingsState.Loading -> Unit
-            is ConstructorStandingsState.Success -> {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .testTag("Constructor Standings List"),
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    state = lazyListState
-                ) {
-                    items(state.constructorStandings) { standing ->
-                        ConstructorStandingItem(standing)
-                    }
-                }
-                ScrollToUpButton(
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(16.dp)
-                        .testTag("Scroll Button"),
-                    visible = showButton,
-                    onClick = {
-                        coroutineScope.launch {
-                            lazyListState.animateScrollToItem(index = 0)
-                        }
-                    }
-                )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .testTag("Constructor Standings List"),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            state = lazyListState
+        ) {
+            items(state.standings) { standing ->
+                ConstructorStandingItem(standing)
             }
         }
+        ScrollToUpButton(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+                .testTag("Scroll Button"),
+            visible = showButton,
+            onClick = {
+                coroutineScope.launch {
+                    lazyListState.animateScrollToItem(index = 0)
+                }
+            }
+        )
     }
 }
 
@@ -81,8 +76,8 @@ internal fun ConstructorStandingsContent(state: ConstructorStandingsState) {
 private fun FullConstructorStandingsContentLightPreview() {
     BoxBoxTheme {
         ConstructorStandingsContent(
-            state = ConstructorStandingsState.Success(
-                constructorStandings = listOf(
+            state = ConstructorStandingsState(
+                standings = listOf(
                     ConstructorStanding(
                         position = 1,
                         points = "258",
@@ -106,8 +101,8 @@ private fun FullConstructorStandingsContentDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             ConstructorStandingsContent(
-                state = ConstructorStandingsState.Success(
-                    constructorStandings = listOf(
+                state = ConstructorStandingsState(
+                    standings = listOf(
                         ConstructorStanding(
                             position = 1,
                             points = "258",

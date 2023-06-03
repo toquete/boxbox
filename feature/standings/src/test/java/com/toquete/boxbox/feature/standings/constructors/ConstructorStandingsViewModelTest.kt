@@ -36,10 +36,10 @@ class ConstructorStandingsViewModelTest {
             viewModel.state.collect()
         }
 
-        assertEquals(ConstructorStandingsState.Loading, viewModel.state.value)
+        assertEquals(ConstructorStandingsState(), viewModel.state.value)
 
         constructorsFlow.emit(constructorStandings)
-        assertEquals(ConstructorStandingsState.Success(constructorStandings), viewModel.state.value)
+        assertEquals(ConstructorStandingsState(constructorStandings), viewModel.state.value)
 
         backgroundScope.cancel()
     }

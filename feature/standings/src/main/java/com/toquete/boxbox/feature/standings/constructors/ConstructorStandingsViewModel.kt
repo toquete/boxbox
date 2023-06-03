@@ -15,10 +15,10 @@ internal class ConstructorStandingsViewModel @Inject constructor(
 ) : ViewModel() {
 
     val state = repository.getConstructorStandings()
-        .map { ConstructorStandingsState.Success(it) }
+        .map { ConstructorStandingsState(it) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = ConstructorStandingsState.Loading
+            initialValue = ConstructorStandingsState()
         )
 }
