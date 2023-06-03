@@ -147,7 +147,7 @@ private fun MainScreenContent(
     val notConnectedMessage = stringResource(R.string.not_connected)
     val failedMessage = stringResource(R.string.fail_message)
     var isSnackbarDismissed by remember { mutableStateOf(false) }
-    val mustShowSnackbar = !isOnline || !isSnackbarDismissed || hasFailed
+    val mustShowSnackbar = !(isOnline || hasFailed || isSnackbarDismissed)
 
     LaunchedEffect(isOnline) {
         if (mustShowSnackbar) {
