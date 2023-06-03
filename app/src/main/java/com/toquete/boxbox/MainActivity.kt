@@ -1,6 +1,5 @@
 package com.toquete.boxbox
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -40,11 +39,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -53,15 +52,24 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.settings.SettingsScreen
 import com.toquete.boxbox.feature.standings.StandingsScreen
+import com.toquete.boxbox.util.NetworkMonitor
+import com.toquete.boxbox.util.SyncMonitor
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
+
+    @Inject
+    lateinit var networkMonitor: NetworkMonitor
+
+    @Inject
+    lateinit var syncMonitor: SyncMonitor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -76,7 +84,7 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        splashScreen.setKeepOnScreenCondition { uiState.isSyncing }
+        splashScreen.setKeepOnScreenCondition { uiState.isLoading }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -93,14 +101,18 @@ class MainActivity : ComponentActivity() {
             }
 
             BoxBoxTheme(darkTheme = isDarkTheme) {
-                MainScreen(uiState)
+                MainScreen(networkMonitor, syncMonitor)
             }
         }
     }
 }
 
 @Composable
-fun MainScreen(state: MainState) {
+fun MainScreen(
+    networkMonitor: NetworkMonitor,
+    syncMonitor: SyncMonitor
+) {
+    val mainAppState = rememberMainAppState(networkMonitor, syncMonitor)
     var showDialog by remember { mutableStateOf(false) }
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -112,7 +124,7 @@ fun MainScreen(state: MainState) {
             }
         }
         MainScreenContent(
-            state,
+            mainAppState,
             onSettingsButtonClick = { showDialog = true }
         )
     }
@@ -121,26 +133,15 @@ fun MainScreen(state: MainState) {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun MainScreenContent(
-    state: MainState,
+    mainAppState: MainAppState,
     onSettingsButtonClick: () -> Unit
 ) {
+    val isOffline by mainAppState.isOffline.collectAsStateWithLifecycle()
+    val hasFailed by mainAppState.hasFailed.collectAsStateWithLifecycle()
+    val isSyncing by mainAppState.isSyncing.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
-    val notConnectedMessage = stringResource(R.string.not_connected)
-    val failedMessage = stringResource(R.string.fail_message)
-    var isSnackbarDismissed by remember { mutableStateOf(false) }
-    val mustShowSnackbar = !(state.isOnline || state.hasFailed || isSnackbarDismissed)
 
-    LaunchedEffect(state.isOnline) {
-        if (mustShowSnackbar) {
-            val message = if (!state.isOnline) notConnectedMessage else failedMessage
-            val result = snackbarHostState.showSnackbar(
-                message = message,
-                duration = SnackbarDuration.Indefinite,
-                withDismissAction = true
-            )
-            isSnackbarDismissed = result == SnackbarResult.Dismissed
-        }
-    }
+    SnackbarMessage(isOffline, hasFailed, snackbarHostState)
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -156,7 +157,7 @@ private fun MainScreenContent(
                     )
                 },
                 actions = {
-                    if (!state.isOnline) {
+                    if (isOffline) {
                         Icon(
                             modifier = Modifier.size(30.dp),
                             imageVector = Icons.Default.WifiOff,
@@ -176,7 +177,7 @@ private fun MainScreenContent(
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
                 StandingsScreen()
-                AnimatedVisibility(visible = state.isSyncing) {
+                AnimatedVisibility(visible = isSyncing) {
                     LinearProgressIndicator(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -189,42 +190,31 @@ private fun MainScreenContent(
 }
 
 @Composable
+private fun SnackbarMessage(
+    isOffline: Boolean,
+    hasFailed: Boolean,
+    snackbarHostState: SnackbarHostState
+) {
+    val message = if (isOffline) stringResource(R.string.not_connected) else stringResource(R.string.fail_message)
+    var isSnackbarDismissed by remember { mutableStateOf(true) }
+
+    LaunchedEffect(isOffline, hasFailed) {
+        if (isOffline || hasFailed || !isSnackbarDismissed) {
+            val result = snackbarHostState.showSnackbar(
+                message = message,
+                duration = SnackbarDuration.Indefinite,
+                withDismissAction = true
+            )
+            isSnackbarDismissed = result == SnackbarResult.Dismissed
+        }
+    }
+}
+
+@Composable
 private fun shouldUseDarkTheme(uiState: MainState): Boolean {
     return when (uiState.darkThemeConfig) {
         DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
         DarkThemeConfig.LIGHT -> false
         DarkThemeConfig.DARK -> true
-    }
-}
-
-@Preview(name = "Main Light", showBackground = true)
-@Composable
-fun MainLightPreview() {
-    BoxBoxTheme {
-        MainScreenContent(
-            state = MainState(
-                isOnline = true,
-                isSyncing = false,
-                hasFailed = false,
-            ),
-            onSettingsButtonClick = {}
-        )
-    }
-}
-
-@Preview(name = "Main Dark", showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun MainDarkPreview() {
-    BoxBoxTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            MainScreenContent(
-                state = MainState(
-                    isOnline = true,
-                    isSyncing = false,
-                    hasFailed = false,
-                ),
-                onSettingsButtonClick = {}
-            )
-        }
     }
 }
