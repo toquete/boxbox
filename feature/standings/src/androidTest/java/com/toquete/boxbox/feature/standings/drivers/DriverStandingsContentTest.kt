@@ -27,7 +27,7 @@ class DriverStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    DriverStandingsContent(DriverStandingsState.Success(list))
+                    DriverStandingsContent(DriverStandingsState(list))
                 }
             }
 
@@ -43,7 +43,7 @@ class DriverStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    DriverStandingsContent(DriverStandingsState.Success(list))
+                    DriverStandingsContent(DriverStandingsState(list))
                 }
             }
 
@@ -60,7 +60,7 @@ class DriverStandingsContentTest {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {
-                    DriverStandingsContent(DriverStandingsState.Success(list))
+                    DriverStandingsContent(DriverStandingsState(list))
                 }
             }
 

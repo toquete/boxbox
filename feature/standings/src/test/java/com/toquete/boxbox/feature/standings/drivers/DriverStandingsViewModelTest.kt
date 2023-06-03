@@ -36,10 +36,10 @@ class DriverStandingsViewModelTest {
             viewModel.state.collect()
         }
 
-        assertEquals(DriverStandingsState.Loading, viewModel.state.value)
+        assertEquals(DriverStandingsState(), viewModel.state.value)
 
         driversFlow.emit(driverStandings)
-        assertEquals(DriverStandingsState.Success(driverStandings), viewModel.state.value)
+        assertEquals(DriverStandingsState(driverStandings), viewModel.state.value)
 
         backgroundScope.cancel()
     }

@@ -15,10 +15,10 @@ internal class DriverStandingsViewModel @Inject constructor(
 ) : ViewModel() {
 
     val state = repository.getDriverStandings()
-        .map { DriverStandingsState.Success(it) }
+        .map { DriverStandingsState(it) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = DriverStandingsState.Loading
+            initialValue = DriverStandingsState()
         )
 }

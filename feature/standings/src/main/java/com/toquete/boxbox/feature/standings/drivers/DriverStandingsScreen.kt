@@ -45,35 +45,30 @@ internal fun DriverStandingsContent(state: DriverStandingsState) {
         derivedStateOf { lazyListState.firstVisibleItemIndex > 0 }
     }
     Box(modifier = Modifier.fillMaxSize()) {
-        when (state) {
-            DriverStandingsState.Loading -> Unit
-            is DriverStandingsState.Success -> {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .testTag("Driver Standings List"),
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    state = lazyListState
-                ) {
-                    items(state.driverStandings) { standing ->
-                        DriverStandingItem(standing)
-                    }
-                }
-                ScrollToUpButton(
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(16.dp)
-                        .testTag("Scroll Button"),
-                    visible = showButton,
-                    onClick = {
-                        coroutineScope.launch {
-                            lazyListState.animateScrollToItem(index = 0)
-                        }
-                    }
-                )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .testTag("Driver Standings List"),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            state = lazyListState
+        ) {
+            items(state.standings) { standing ->
+                DriverStandingItem(standing)
             }
         }
+        ScrollToUpButton(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+                .testTag("Scroll Button"),
+            visible = showButton,
+            onClick = {
+                coroutineScope.launch {
+                    lazyListState.animateScrollToItem(index = 0)
+                }
+            }
+        )
     }
 }
 
@@ -82,8 +77,8 @@ internal fun DriverStandingsContent(state: DriverStandingsState) {
 private fun FullDriverStandingsContentLightPreview() {
     BoxBoxTheme {
         DriverStandingsContent(
-            state = DriverStandingsState.Success(
-                driverStandings = listOf(
+            state = DriverStandingsState(
+                standings = listOf(
                     DriverStanding(
                         position = 1,
                         points = "258",
@@ -114,8 +109,8 @@ private fun FullDriverStandingsContentDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             DriverStandingsContent(
-                state = DriverStandingsState.Success(
-                    driverStandings = listOf(
+                state = DriverStandingsState(
+                    standings = listOf(
                         DriverStanding(
                             position = 1,
                             points = "258",
