@@ -1,6 +1,6 @@
-package com.toquete.boxbox.core.common.dispatcher.di
+package com.toquete.boxbox.core.common.di
 
-import com.toquete.boxbox.core.common.dispatcher.IoDispatcher
+import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

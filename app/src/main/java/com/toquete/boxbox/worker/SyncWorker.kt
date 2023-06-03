@@ -7,7 +7,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
-import com.toquete.boxbox.core.common.dispatcher.IoDispatcher
+import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
 import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
 import dagger.assisted.Assisted

@@ -1,4 +1,4 @@
-package com.toquete.boxbox.core.common.dispatcher
+package com.toquete.boxbox.core.common.annotation
 
 import javax.inject.Qualifier
 

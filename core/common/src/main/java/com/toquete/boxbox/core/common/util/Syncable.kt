@@ -1,4 +1,4 @@
-package com.toquete.boxbox.core.common
+package com.toquete.boxbox.core.common.util
 
 interface Syncable {
 

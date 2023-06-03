@@ -1,4 +1,4 @@
-package com.toquete.boxbox.core.common.firebase.di
+package com.toquete.boxbox.core.common.di
 
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
