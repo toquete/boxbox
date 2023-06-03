@@ -25,11 +25,11 @@ class MainViewModel @Inject constructor(
         syncMonitor.hasFailed,
         preferencesRepository.userPreferences
     ) { isOnline, isSyncing, hasFailed, userPreferences ->
-        MainState.Success(isOnline, isSyncing, hasFailed, userPreferences.darkThemeConfig)
+        MainState(isOnline, isSyncing, hasFailed, userPreferences.darkThemeConfig)
     }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = MainState.Loading
+            initialValue = MainState()
         )
 }

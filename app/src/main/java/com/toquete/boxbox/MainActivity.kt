@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
 
-        var uiState: MainState by mutableStateOf(MainState.Loading)
+        var uiState: MainState by mutableStateOf(MainState())
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.onEach {
@@ -76,19 +76,13 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        splashScreen.setKeepOnScreenCondition {
-            when (uiState) {
-                MainState.Loading -> true
-                is MainState.Success -> false
-            }
-        }
+        splashScreen.setKeepOnScreenCondition { uiState.isSyncing }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             val systemUiController = rememberSystemUiController()
             val isDarkTheme = shouldUseDarkTheme(uiState)
-            var showDialog by remember { mutableStateOf(false) }
 
             DisposableEffect(systemUiController, isDarkTheme) {
                 systemUiController.setSystemBarsColor(
@@ -99,38 +93,27 @@ class MainActivity : ComponentActivity() {
             }
 
             BoxBoxTheme(darkTheme = isDarkTheme) {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    if (showDialog) {
-                        SettingsScreen {
-                            showDialog = false
-                        }
-                    }
-                    MainScreen(
-                        uiState,
-                        onSettingsButtonClick = { showDialog = true }
-                    )
-                }
+                MainScreen(uiState)
             }
         }
     }
 }
 
 @Composable
-fun MainScreen(
-    state: MainState,
-    onSettingsButtonClick: () -> Unit
-) {
-    when (state) {
-        MainState.Loading -> Unit
-        is MainState.Success -> MainScreenContent(
-            state.isOnline,
-            state.isSyncing,
-            state.hasFailed,
-            onSettingsButtonClick
+fun MainScreen(state: MainState) {
+    var showDialog by remember { mutableStateOf(false) }
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        if (showDialog) {
+            SettingsScreen {
+                showDialog = false
+            }
+        }
+        MainScreenContent(
+            state,
+            onSettingsButtonClick = { showDialog = true }
         )
     }
 }
@@ -138,20 +121,18 @@ fun MainScreen(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun MainScreenContent(
-    isOnline: Boolean,
-    isSyncing: Boolean,
-    hasFailed: Boolean,
+    state: MainState,
     onSettingsButtonClick: () -> Unit
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val notConnectedMessage = stringResource(R.string.not_connected)
     val failedMessage = stringResource(R.string.fail_message)
     var isSnackbarDismissed by remember { mutableStateOf(false) }
-    val mustShowSnackbar = !(isOnline || hasFailed || isSnackbarDismissed)
+    val mustShowSnackbar = !(state.isOnline || state.hasFailed || isSnackbarDismissed)
 
-    LaunchedEffect(isOnline) {
+    LaunchedEffect(state.isOnline) {
         if (mustShowSnackbar) {
-            val message = if (!isOnline) notConnectedMessage else failedMessage
+            val message = if (!state.isOnline) notConnectedMessage else failedMessage
             val result = snackbarHostState.showSnackbar(
                 message = message,
                 duration = SnackbarDuration.Indefinite,
@@ -175,7 +156,7 @@ private fun MainScreenContent(
                     )
                 },
                 actions = {
-                    if (!isOnline) {
+                    if (!state.isOnline) {
                         Icon(
                             modifier = Modifier.size(30.dp),
                             imageVector = Icons.Default.WifiOff,
@@ -195,7 +176,7 @@ private fun MainScreenContent(
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
                 StandingsScreen()
-                AnimatedVisibility(visible = isSyncing) {
+                AnimatedVisibility(visible = state.isSyncing) {
                     LinearProgressIndicator(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -208,11 +189,8 @@ private fun MainScreenContent(
 }
 
 @Composable
-private fun shouldUseDarkTheme(
-    uiState: MainState,
-): Boolean = when (uiState) {
-    MainState.Loading -> isSystemInDarkTheme()
-    is MainState.Success -> when (uiState.darkThemeConfig) {
+private fun shouldUseDarkTheme(uiState: MainState): Boolean {
+    return when (uiState.darkThemeConfig) {
         DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
         DarkThemeConfig.LIGHT -> false
         DarkThemeConfig.DARK -> true
@@ -224,9 +202,11 @@ private fun shouldUseDarkTheme(
 fun MainLightPreview() {
     BoxBoxTheme {
         MainScreenContent(
-            isOnline = true,
-            isSyncing = false,
-            hasFailed = false,
+            state = MainState(
+                isOnline = true,
+                isSyncing = false,
+                hasFailed = false,
+            ),
             onSettingsButtonClick = {}
         )
     }
@@ -238,9 +218,11 @@ fun MainDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             MainScreenContent(
-                isOnline = true,
-                isSyncing = false,
-                hasFailed = false,
+                state = MainState(
+                    isOnline = true,
+                    isSyncing = false,
+                    hasFailed = false,
+                ),
                 onSettingsButtonClick = {}
             )
         }

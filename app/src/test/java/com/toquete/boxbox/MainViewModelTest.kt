@@ -47,14 +47,14 @@ class MainViewModelTest {
             viewModel.state.collect()
         }
 
-        assertEquals(MainState.Loading, viewModel.state.value)
+        assertEquals(MainState(), viewModel.state.value)
 
         isOnlineFlow.emit(true)
         isSyncingFlow.emit(true)
         hasFailedFlow.emit(false)
         userPreferencesFlow.emit(userPreferences)
         assertEquals(
-            MainState.Success(isOnline = true, isSyncing = true, hasFailed = false, DarkThemeConfig.FOLLOW_SYSTEM),
+            MainState(isOnline = true, isSyncing = true, hasFailed = false, DarkThemeConfig.FOLLOW_SYSTEM),
             viewModel.state.value
         )
 
