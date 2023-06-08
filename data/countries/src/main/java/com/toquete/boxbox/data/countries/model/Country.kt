@@ -5,9 +5,9 @@ import com.toquete.boxbox.core.network.model.CountryResponse
 
 internal fun CountryResponse.toEntity(): CountryEntity {
     return CountryEntity(
-        id = id,
-        name = name,
-        nationality = nationality,
-        flagUrl = flagUrl
+        id = id.orEmpty(),
+        name = name.orEmpty(),
+        nationality = nationality.orEmpty(),
+        flagUrl = flagUrl.orEmpty()
     )
 }
