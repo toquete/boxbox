@@ -2,7 +2,6 @@ package com.toquete.boxbox.core.network.di
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.ktx.Firebase
 import com.toquete.boxbox.core.network.BoxBoxService
 import dagger.Module
@@ -27,11 +26,6 @@ internal object ServiceModule {
     @Singleton
     @Provides
     fun providesFirestore(): FirebaseFirestore {
-        return Firebase.firestore.apply {
-            useEmulator("10.0.2.2", 8080)
-            firestoreSettings = firestoreSettings {
-                isPersistenceEnabled = false
-            }
-        }
+        return Firebase.firestore
     }
 }
