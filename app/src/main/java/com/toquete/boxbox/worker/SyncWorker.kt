@@ -9,6 +9,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
+import com.toquete.boxbox.data.countries.repository.CountryRepository
 import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -27,11 +28,13 @@ class SyncWorker @AssistedInject constructor(
     @Assisted workerParameters: WorkerParameters,
     @IoDispatcher private val dispatcher: CoroutineContext,
     private val driverStandingsRepository: DriverStandingsRepository,
-    private val constructorStandingsRepository: ConstructorStandingsRepository
+    private val constructorStandingsRepository: ConstructorStandingsRepository,
+    private val countryRepository: CountryRepository
 ) : CoroutineWorker(appContext, workerParameters) {
 
     override suspend fun doWork(): Result = withContext(dispatcher) {
         val isSuccess = awaitAll(
+            async { countryRepository.sync() },
             async { driverStandingsRepository.sync() },
             async { constructorStandingsRepository.sync() }
         ).all { it }

@@ -1,18 +1,16 @@
 plugins {
     id("boxbox.android.library")
     id("boxbox.android.hilt")
-    id("boxbox.android.remote")
 }
 
 android {
-    namespace = "com.toquete.boxbox.core.network"
+    namespace = "com.toquete.boxbox.data.countries"
 }
 
 dependencies {
-    implementation(project(":core:model"))
     implementation(project(":core:common"))
-    implementation(libs.mockwebserver)
-    api(libs.firebase.firestore)
-
+    implementation(project(":core:model"))
+    implementation(project(":core:database"))
+    implementation(project(":core:network"))
     testImplementation(project(":core:testing"))
 }

@@ -11,5 +11,5 @@ data class DriverWithCountryFlagEntity(
         entity = CountryEntity::class,
         projection = ["flag_url"]
     )
-    val flagUrl: String
+    val flagUrl: String?
 )
