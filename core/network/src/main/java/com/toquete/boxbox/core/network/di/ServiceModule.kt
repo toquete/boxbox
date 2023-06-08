@@ -1,5 +1,8 @@
 package com.toquete.boxbox.core.network.di
 
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.toquete.boxbox.core.network.BoxBoxService
 import dagger.Module
 import dagger.Provides
@@ -18,5 +21,11 @@ internal object ServiceModule {
         retrofit: Retrofit
     ): BoxBoxService {
         return retrofit.create(BoxBoxService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesFirestore(): FirebaseFirestore {
+        return Firebase.firestore
     }
 }
