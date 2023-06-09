@@ -1,4 +1,4 @@
-package com.toquete.boxbox.data.constructorimages.source.di
+package com.toquete.boxbox.data.constructorimages.di
 
 import com.toquete.boxbox.data.constructorimages.source.remote.ConstructorImageRemoteDataSource
 import com.toquete.boxbox.data.constructorimages.source.remote.DefaultConstructorImageRemoteDataSource
