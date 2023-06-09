@@ -95,7 +95,7 @@ jobs:
       - name: Unit test and coverage
         uses: gradle/gradle-build-action@v2.4.2
         with:
-          arguments: jacocoTestReport
+          arguments: koverHtmlReport
       - name: Uploading test results
         uses: actions/upload-artifact@v3
         with:
@@ -105,7 +105,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-coverage-report
-          path: '**/reports/jacoco/jacocoTestReport/html/'
+          path: '**/reports/coverage/'
   android-test:
     needs: build
     if: '${{ inputs.runAndroidTests }}'
