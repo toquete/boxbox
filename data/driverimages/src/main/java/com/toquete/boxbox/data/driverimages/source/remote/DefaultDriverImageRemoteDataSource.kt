@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 private const val COLLECTION = "driver_image"
 
-class DefaultDriverImageRemoteDataSource @Inject constructor(
+internal class DefaultDriverImageRemoteDataSource @Inject constructor(
     private val remoteDatabase: BoxBoxRemoteDatabase
 ) : DriverImageRemoteDataSource {
 
