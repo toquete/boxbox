@@ -29,5 +29,5 @@ data class FullDriverStandingEntity(
         entityColumn = "id",
         projection = ["image_url"]
     )
-    val constructorImageUrl: String
+    val constructorImageUrl: String?
 )

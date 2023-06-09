@@ -1,5 +1,6 @@
 package com.toquete.boxbox.worker.repository
 
+import com.toquete.boxbox.data.constructorimages.repository.ConstructorImageRepository
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
 import com.toquete.boxbox.data.countries.repository.CountryRepository
 import com.toquete.boxbox.data.driverimages.repository.DriverImageRepository
@@ -19,11 +20,13 @@ class DefaultSyncRepositoryTest {
     private val constructorStandingsRepository: ConstructorStandingsRepository = mockk(relaxed = true)
     private val countryRepository: CountryRepository = mockk(relaxed = true)
     private val driverImageRepository: DriverImageRepository = mockk(relaxed = true)
+    private val constructorImageRepository: ConstructorImageRepository = mockk(relaxed = true)
     private val repository = DefaultSyncRepository(
         driverStandingsRepository,
         constructorStandingsRepository,
         countryRepository,
         driverImageRepository,
+        constructorImageRepository,
         dispatcher
     )
 
@@ -33,6 +36,7 @@ class DefaultSyncRepositoryTest {
         coEvery { constructorStandingsRepository.sync() } returns true
         coEvery { countryRepository.sync() } returns true
         coEvery { driverImageRepository.sync() } returns true
+        coEvery { constructorImageRepository.sync() } returns true
 
         val result = repository.sync()
 
@@ -45,6 +49,7 @@ class DefaultSyncRepositoryTest {
         coEvery { constructorStandingsRepository.sync() } returns true
         coEvery { countryRepository.sync() } returns true
         coEvery { driverImageRepository.sync() } returns true
+        coEvery { constructorImageRepository.sync() } returns true
 
         val result = repository.sync()
 

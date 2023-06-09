@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:preferences"))
     implementation(project(":data:driverimages"))
+    implementation(project(":data:constructorimages"))
     implementation(project(":data:countries"))
     implementation(project(":data:driverstandings"))
     implementation(project(":data:constructorstandings"))
