@@ -15,8 +15,6 @@ plugins {
     alias(libs.plugins.crashlytics) apply false
     alias(libs.plugins.kover) apply false
     alias(libs.plugins.detekt)
-    alias(libs.plugins.test.aggregation.results)
-    alias(libs.plugins.test.aggregation.coverage)
 }
 
 tasks.register<Delete>("clean") {
@@ -49,34 +47,5 @@ allprojects {
 
     dependencies {
         detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.0")
-    }
-}
-
-testAggregation {
-    coverage {
-        exclude(
-            "**/BR.*",
-            "**/R.*",
-            "**/R$*.*",
-            "**/BuildConfig.*",
-            "**/Manifest*.*",
-            "**/*_MembersInjector.*",
-            "**/Dagger*Component.*",
-            "**/Dagger*Component\$Builder.*",
-            "**/*Module_*Factory.*",
-            "**/*Activity*.*",
-            "**/*Module*.*",
-            "**/*Database*.*",
-            "**/*Factory*.*",
-            "**/*Creator*.*",
-            "**/**/*serializer*.*",
-            "**/**/*Companion*.*",
-            "**/*Hilt*",
-            "**/_*",
-            "**/dagger.hilt*",
-            "**/*Dagger*",
-            "**/*Module*",
-            "**/*Application*"
-        )
     }
 }
