@@ -77,6 +77,11 @@ dependencies {
 koverReport {
     defaults {
         mergeWith("debug")
+        html {
+            title = "BoxBox"
+            onCheck = false
+            setReportDir(layout.buildDirectory.dir("reports/coverage"))
+        }
     }
     filters {
         excludes {
