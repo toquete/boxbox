@@ -38,6 +38,7 @@ ksp = "1.8.21-1.0.11"
 google-services = "4.3.15"
 firebase-bom = "32.1.0"
 crashlytics = "2.9.5"
+kover = "0.7.1"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -115,3 +116,4 @@ test-aggregation-coverage = { id = "io.github.gmazzo.test.aggregation.coverage",
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}

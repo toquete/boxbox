@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.crashlytics) apply false
+    alias(libs.plugins.kover) apply false
     alias(libs.plugins.detekt)
     alias(libs.plugins.test.aggregation.results)
     alias(libs.plugins.test.aggregation.coverage)

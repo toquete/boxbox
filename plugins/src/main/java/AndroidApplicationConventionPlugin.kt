@@ -12,6 +12,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
+                apply("org.jetbrains.kotlinx.kover")
                 apply("com.google.gms.google-services")
                 apply("boxbox.android.firebase")
             }
