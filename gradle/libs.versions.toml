@@ -39,6 +39,7 @@ google-services = "4.3.15"
 firebase-bom = "32.1.0"
 crashlytics = "2.9.5"
 kover = "0.7.1"
+timber = "5.0.1"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -91,6 +92,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore-ktx" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
