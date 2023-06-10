@@ -1,7 +1,7 @@
 package com.toquete.boxbox.di
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.toquete.boxbox.util.CrashlyticsReportingTree
+import com.toquete.boxbox.util.log.CrashlyticsReportingTree
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

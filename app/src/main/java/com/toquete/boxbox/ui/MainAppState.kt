@@ -1,12 +1,12 @@
-package com.toquete.boxbox
+package com.toquete.boxbox.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.toquete.boxbox.core.common.STATE_FLOW_STOP_TIMEOUT
-import com.toquete.boxbox.util.NetworkMonitor
-import com.toquete.boxbox.util.SyncMonitor
+import com.toquete.boxbox.util.monitor.NetworkMonitor
+import com.toquete.boxbox.util.monitor.SyncMonitor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map

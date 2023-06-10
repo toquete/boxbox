@@ -1,4 +1,4 @@
-package com.toquete.boxbox
+package com.toquete.boxbox.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -47,13 +47,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.toquete.boxbox.R
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.settings.SettingsScreen
 import com.toquete.boxbox.feature.standings.StandingsScreen
-import com.toquete.boxbox.util.NetworkMonitor
-import com.toquete.boxbox.util.SyncMonitor
+import com.toquete.boxbox.util.monitor.NetworkMonitor
+import com.toquete.boxbox.util.monitor.SyncMonitor
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach

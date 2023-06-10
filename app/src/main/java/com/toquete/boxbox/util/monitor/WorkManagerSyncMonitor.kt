@@ -1,10 +1,10 @@
-package com.toquete.boxbox.util
+package com.toquete.boxbox.util.monitor
 
 import android.content.Context
 import androidx.lifecycle.asFlow
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import com.toquete.boxbox.di.SYNC_WORK_NAME
+import com.toquete.boxbox.SYNC_WORK_NAME
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

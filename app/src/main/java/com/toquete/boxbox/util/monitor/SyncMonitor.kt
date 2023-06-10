@@ -1,4 +1,4 @@
-package com.toquete.boxbox.util
+package com.toquete.boxbox.util.monitor
 
 import kotlinx.coroutines.flow.Flow
 

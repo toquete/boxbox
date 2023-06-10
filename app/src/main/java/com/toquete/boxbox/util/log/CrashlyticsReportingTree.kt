@@ -1,4 +1,4 @@
-package com.toquete.boxbox.util
+package com.toquete.boxbox.util.log
 
 import android.util.Log
 import com.google.firebase.crashlytics.FirebaseCrashlytics
