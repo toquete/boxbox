@@ -1,23 +1,24 @@
 package com.toquete.boxbox.core.network.interceptor
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.toquete.boxbox.core.testing.util.TestTimberRule
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.slot
-import io.mockk.verify
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
+import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 
 class NetworkErrorInterceptorTest {
 
-    private val crashlytics: FirebaseCrashlytics = mockk(relaxed = true)
-    private val interceptor = NetworkErrorInterceptor(crashlytics)
+    @get:Rule
+    val timberRule = TestTimberRule()
+
+    private val interceptor = NetworkErrorInterceptor()
 
     @Test
     fun `intercept should send error to crashlytics when response is not successful`() {
@@ -35,15 +36,14 @@ class NetworkErrorInterceptorTest {
             every { request() } returns request
             every { proceed(request) } returns response
         }
-        val slot = slot<NetworkException>()
-        val expected = "Network error with \"${response.message}\" message and ${response.code} status code. \n" +
+        val message = "Network error with \"${response.message}\" message and ${response.code} status code. \n" +
             "Request: ${response.request} \n " +
             "Response: ${response.body}"
 
         interceptor.intercept(chain)
 
-        verify { crashlytics.recordException(capture(slot)) }
-        assertIs<NetworkException>(slot.captured)
-        assertEquals(expected, slot.captured.message)
+        val log = timberRule.testTree.logs.last()
+        assertIs<NetworkException>(log.t)
+        assertEquals(message, (log.t as NetworkException).message)
     }
 }

@@ -1,8 +1,7 @@
 package com.toquete.boxbox.core.network.di
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.toquete.boxbox.core.network.BuildConfig
+import com.toquete.boxbox.core.network.interceptor.HttpLogger
 import com.toquete.boxbox.core.network.interceptor.NetworkErrorInterceptor
 import dagger.Module
 import dagger.Provides
@@ -26,18 +25,14 @@ internal object NetworkModule {
     private val json = Json { ignoreUnknownKeys = true }
 
     @Provides
-    fun providesOkHttpClient(crashlytics: FirebaseCrashlytics): OkHttpClient {
-        val builder = OkHttpClient.Builder()
-        val logging = HttpLoggingInterceptor().apply {
+    fun providesOkHttpClient(): OkHttpClient {
+        val logging = HttpLoggingInterceptor(logger = HttpLogger()).apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
-        if (BuildConfig.DEBUG) {
-            builder.addInterceptor(logging)
-        }
-
-        return builder
-            .addInterceptor(NetworkErrorInterceptor(crashlytics))
+        return OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .addInterceptor(NetworkErrorInterceptor())
             .build()
     }
 
