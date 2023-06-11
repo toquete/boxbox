@@ -10,6 +10,7 @@ import androidx.work.WorkerParameters
 import com.toquete.boxbox.worker.repository.SyncRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import timber.log.Timber
 
 private val syncConstraints = Constraints.Builder()
     .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -23,11 +24,14 @@ class SyncWorker @AssistedInject constructor(
 ) : CoroutineWorker(appContext, workerParameters) {
 
     override suspend fun doWork(): Result {
-        return if (syncRepository.sync()) {
-            Result.success()
-        } else {
-            Result.retry()
-        }
+        return runCatching {
+            syncRepository.sync()
+        }.onFailure {
+            Timber.e(it)
+        }.fold(
+            onSuccess = { Result.success() },
+            onFailure = { Result.retry() }
+        )
     }
 
     companion object {

@@ -21,15 +21,15 @@ class DefaultSyncRepository @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineContext
 ) : SyncRepository {
 
-    override suspend fun sync(): Boolean {
-        return withContext(dispatcher) {
+    override suspend fun sync() {
+        withContext(dispatcher) {
             awaitAll(
                 async { driverImageRepository.sync() },
                 async { constructorImageRepository.sync() },
                 async { countryRepository.sync() },
                 async { driverStandingsRepository.sync() },
                 async { constructorStandingsRepository.sync() }
-            ).all { it }
+            )
         }
     }
 }

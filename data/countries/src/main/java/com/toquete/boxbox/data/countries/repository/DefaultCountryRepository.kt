@@ -11,12 +11,10 @@ internal class DefaultCountryRepository @Inject constructor(
     private val localDataSource: CountryLocalDataSource
 ) : CountryRepository {
 
-    override suspend fun sync(): Boolean {
-        return runCatching {
-            remoteDataSource.getCountries()
-                .also { list ->
-                    localDataSource.insertAll(list.map(CountryResponse::toEntity))
-                }
-        }.isSuccess
+    override suspend fun sync() {
+        remoteDataSource.getCountries()
+            .also { list ->
+                localDataSource.insertAll(list.map(CountryResponse::toEntity))
+            }
     }
 }

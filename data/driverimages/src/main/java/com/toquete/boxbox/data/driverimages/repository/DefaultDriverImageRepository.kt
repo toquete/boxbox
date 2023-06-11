@@ -11,12 +11,10 @@ internal class DefaultDriverImageRepository @Inject constructor(
     private val localDataSource: DriverImageLocalDataSource
 ) : DriverImageRepository {
 
-    override suspend fun sync(): Boolean {
-        return runCatching {
-            remoteDataSource.getDriversImages()
-                .also { list ->
-                    localDataSource.insertAll(list.map(DriverImageResponse::toEntity))
-                }
-        }.isSuccess
+    override suspend fun sync() {
+        remoteDataSource.getDriversImages()
+            .also { list ->
+                localDataSource.insertAll(list.map(DriverImageResponse::toEntity))
+            }
     }
 }

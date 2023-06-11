@@ -21,12 +21,10 @@ internal class DefaultConstructorStandingsRepository @Inject constructor(
             .map { it.map(FullConstructorStandingEntity::toDomain) }
     }
 
-    override suspend fun sync(): Boolean {
-        return runCatching {
-            remoteDataSource.getConstructorStandings()
-                .also { list ->
-                    localDataSource.insertAll(list.map(ConstructorStandingResponse::toEntity))
-                }
-        }.isSuccess
+    override suspend fun sync() {
+        remoteDataSource.getConstructorStandings()
+            .also { list ->
+                localDataSource.insertAll(list.map(ConstructorStandingResponse::toEntity))
+            }
     }
 }

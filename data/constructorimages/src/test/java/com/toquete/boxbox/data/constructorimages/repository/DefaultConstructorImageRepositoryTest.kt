@@ -10,8 +10,6 @@ import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class DefaultConstructorImageRepositoryTest {
 
@@ -20,32 +18,16 @@ class DefaultConstructorImageRepositoryTest {
     private val repository = DefaultConstructorImageRepository(remoteDataSource, localDataSource)
 
     @Test
-    fun `sync should return true when remote data is saved in database`() = runTest {
-        coEvery { remoteDataSource.getConstructorsImages() } returns constructorImageResponses
-        coEvery { localDataSource.insertAll(any()) } returns Unit
-
-        val result = repository.sync()
-
-        assertTrue(result)
-    }
-
-    @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
         coEvery { remoteDataSource.getConstructorsImages() } returns constructorImageResponses
         coEvery { localDataSource.insertAll(any()) } returns Unit
 
         repository.sync()
 
-        coVerify { localDataSource.insertAll(constructorImageEntities) }
-    }
-
-    @Test
-    fun `sync should return false when remote data returns error`() = runTest {
-        coEvery { remoteDataSource.getConstructorsImages() } throws IOException()
-
-        val result = repository.sync()
-
-        assertFalse(result)
+        coVerify {
+            remoteDataSource.getConstructorsImages()
+            localDataSource.insertAll(constructorImageEntities)
+        }
     }
 
     @Test
@@ -55,15 +37,5 @@ class DefaultConstructorImageRepositoryTest {
         repository.sync()
 
         coVerify(exactly = 0) { localDataSource.insertAll(any()) }
-    }
-
-    @Test
-    fun `sync should return false when local data insertion returns error`() = runTest {
-        coEvery { remoteDataSource.getConstructorsImages() } returns constructorImageResponses
-        coEvery { localDataSource.insertAll(any()) } throws IOException()
-
-        val result = repository.sync()
-
-        assertFalse(result)
     }
 }

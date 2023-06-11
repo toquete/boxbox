@@ -11,12 +11,10 @@ internal class DefaultConstructorImageRepository @Inject constructor(
     private val localDataSource: ConstructorImageLocalDataSource
 ) : ConstructorImageRepository {
 
-    override suspend fun sync(): Boolean {
-        return runCatching {
-            remoteDataSource.getConstructorsImages()
-                .also { list ->
-                    localDataSource.insertAll(list.map(ConstructorImageResponse::toEntity))
-                }
-        }.isSuccess
+    override suspend fun sync() {
+        remoteDataSource.getConstructorsImages()
+            .also { list ->
+                localDataSource.insertAll(list.map(ConstructorImageResponse::toEntity))
+            }
     }
 }
