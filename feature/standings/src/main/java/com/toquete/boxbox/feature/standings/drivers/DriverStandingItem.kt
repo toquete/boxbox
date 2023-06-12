@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -80,10 +81,7 @@ fun DriverStandingItem(standing: DriverStanding) {
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {
-                BoxBoxAsyncImage(
-                    data = standing.driver.imageUrl,
-                    contentDescription = null
-                )
+                BoxBoxAsyncImage(data = standing.driver.imageUrl)
             }
         }
         Divider(
@@ -128,7 +126,9 @@ fun DriverStandingItem(standing: DriverStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(6.dp),
                     data = standing.driver.flagUrl,
-                    contentDescription = null,
+                    placeholder = R.drawable.ic_public,
+                    error = R.drawable.ic_public,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
                     decoder = SvgDecoder.Factory()
                 )
             }
