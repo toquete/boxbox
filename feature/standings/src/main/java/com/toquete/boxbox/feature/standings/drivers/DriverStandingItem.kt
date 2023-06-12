@@ -81,7 +81,12 @@ fun DriverStandingItem(standing: DriverStanding) {
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {
-                BoxBoxAsyncImage(data = standing.driver.imageUrl)
+                BoxBoxAsyncImage(
+                    data = standing.driver.imageUrl,
+                    placeholder = R.drawable.ic_person,
+                    error = R.drawable.ic_person,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
+                )
             }
         }
         Divider(
