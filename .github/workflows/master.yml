@@ -29,7 +29,7 @@ jobs:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Build APK
-        uses: gradle/gradle-build-action@v2.4.2
+        uses: gradle/gradle-build-action@v2.5.1
         with:
           arguments: ':app:assembleDebug'
   lint:
@@ -47,7 +47,7 @@ jobs:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Lint
-        uses: gradle/gradle-build-action@v2.4.2
+        uses: gradle/gradle-build-action@v2.5.1
         with:
           arguments: lint
       - name: Uploading lint results
@@ -70,7 +70,7 @@ jobs:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Detekt
-        uses: gradle/gradle-build-action@v2.4.2
+        uses: gradle/gradle-build-action@v2.5.1
         with:
           arguments: detektDebug
       - name: Uploading detekt results
@@ -93,9 +93,9 @@ jobs:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Unit test and coverage
-        uses: gradle/gradle-build-action@v2.4.2
+        uses: gradle/gradle-build-action@v2.5.1
         with:
-          arguments: jacocoTestReport
+          arguments: koverHtmlReport
       - name: Uploading test results
         uses: actions/upload-artifact@v3
         with:
@@ -105,7 +105,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-coverage-report
-          path: '**/reports/jacoco/jacocoTestReport/html/'
+          path: '**/reports/coverage/'
   android-test:
     needs: build
     if: '${{ inputs.runAndroidTests }}'
@@ -123,7 +123,7 @@ jobs:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: touch ${{ github.workspace }}/app/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/google-services.json
       - name: Build AndroidTest app
-        uses: gradle/gradle-build-action@v2.4.2
+        uses: gradle/gradle-build-action@v2.5.1
         with:
           arguments: packageDebug
       - name: Run Instrumented Tests on GMD

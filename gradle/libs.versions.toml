@@ -8,7 +8,7 @@ compose-ui = "1.3.3"
 compose-compiler = "1.4.7"
 compose-bom = "2023.01.00"
 core-ktx = "1.9.0"
-kotlinxCoroutines = "1.7.1"
+kotlinxCoroutines = "1.7.2"
 datastore-preferences = "1.0.0"
 lifecycle = "2.6.1"
 activity = "1.6.1"
@@ -33,11 +33,13 @@ test-core = "1.5.0"
 test-runner = "1.5.2"
 test-rules = "1.5.0"
 detekt = "1.23.0"
-test-aggregation = "1.1.0"
+test-aggregation = "1.1.1"
 ksp = "1.8.21-1.0.11"
 google-services = "4.3.15"
 firebase-bom = "32.1.0"
 crashlytics = "2.9.5"
+kover = "0.7.2"
+timber = "5.0.1"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -90,6 +92,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore-ktx" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -115,3 +118,4 @@ test-aggregation-coverage = { id = "io.github.gmazzo.test.aggregation.coverage",
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}

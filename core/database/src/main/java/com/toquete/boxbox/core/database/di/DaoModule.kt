@@ -2,9 +2,11 @@ package com.toquete.boxbox.core.database.di
 
 import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.database.dao.ConstructorDao
+import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
 import com.toquete.boxbox.core.database.dao.CountryDao
 import com.toquete.boxbox.core.database.dao.DriverDao
+import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import dagger.Module
 import dagger.Provides
@@ -38,5 +40,15 @@ internal object DaoModule {
     @Provides
     fun providesCountryDao(database: BoxBoxDatabase): CountryDao {
         return database.countryDao()
+    }
+
+    @Provides
+    fun providesDriverImageDao(database: BoxBoxDatabase): DriverImageDao {
+        return database.driverImageDao()
+    }
+
+    @Provides
+    fun providesConstructorImageDao(database: BoxBoxDatabase): ConstructorImageDao {
+        return database.constructorImageDao()
     }
 }

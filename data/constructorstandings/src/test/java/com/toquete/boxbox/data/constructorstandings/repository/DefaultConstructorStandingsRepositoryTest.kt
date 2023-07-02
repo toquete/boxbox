@@ -16,8 +16,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
 import kotlin.test.assertContentEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class DefaultConstructorStandingsRepositoryTest {
 
@@ -39,50 +37,24 @@ class DefaultConstructorStandingsRepositoryTest {
     }
 
     @Test
-    fun `sync should return true when remote data is saved in database`() = runTest {
-        coEvery { remoteDataSource.getConstructorStandings() } returns constructorStandingsResponse
-        coEvery { localDataSource.insertAll(any()) } returns Unit
-
-        val result = repository.sync()
-
-        assertTrue(result)
-    }
-
-    @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
         coEvery { remoteDataSource.getConstructorStandings() } returns constructorStandingsResponse
         coEvery { localDataSource.insertAll(any()) } returns Unit
 
         repository.sync()
 
-        coVerify { localDataSource.insertAll(constructorStandingEntities) }
+        coVerify {
+            remoteDataSource.getConstructorStandings()
+            localDataSource.insertAll(constructorStandingEntities)
+        }
     }
 
-    @Test
-    fun `sync should return false when remote data returns error`() = runTest {
-        coEvery { remoteDataSource.getConstructorStandings() } throws IOException()
-
-        val result = repository.sync()
-
-        assertFalse(result)
-    }
-
-    @Test
+    @Test(expected = IOException::class)
     fun `sync should not call local data source when remote data returns error`() = runTest {
         coEvery { remoteDataSource.getConstructorStandings() } throws IOException()
 
         repository.sync()
 
         coVerify(exactly = 0) { localDataSource.insertAll(any()) }
-    }
-
-    @Test
-    fun `sync should return false when local data insertion returns error`() = runTest {
-        coEvery { remoteDataSource.getConstructorStandings() } returns constructorStandingsResponse
-        coEvery { localDataSource.insertAll(any()) } throws IOException()
-
-        val result = repository.sync()
-
-        assertFalse(result)
     }
 }

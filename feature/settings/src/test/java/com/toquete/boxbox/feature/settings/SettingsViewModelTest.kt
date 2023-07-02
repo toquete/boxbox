@@ -1,10 +1,12 @@
 package com.toquete.boxbox.feature.settings
 
+import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
 import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
 import com.toquete.boxbox.core.testing.data.userPreferences
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -42,6 +44,16 @@ class SettingsViewModelTest {
         assertEquals(SettingsState.Success(userPreferences), viewModel.state.value)
 
         backgroundScope.cancel()
+    }
+
+    @Test
+    fun `onSettingsItemClick should set selected dark theme config`() = runTest {
+        val config = DarkThemeConfig.DARK
+        setupViewModel()
+
+        viewModel.onSettingsItemClick(config)
+
+        coVerify { userPreferencesRepository.setDarkThemeConfig(config) }
     }
 
     private fun setupViewModel() {

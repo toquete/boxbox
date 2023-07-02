@@ -20,8 +20,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
 import kotlin.test.assertContentEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class DefaultDriverStandingsRepositoryTest {
 
@@ -44,15 +42,6 @@ class DefaultDriverStandingsRepositoryTest {
         val result = repository.getDriverStandings()
 
         assertContentEquals(driverStandings, result.first())
-    }
-
-    @Test
-    fun `sync should return true when remote data is saved in database`() = runTest {
-        coEvery { remoteDataSource.getDriverStandings() } returns driverStandingsResponse
-
-        val result = repository.sync()
-
-        assertTrue(result)
     }
 
     @Test
@@ -82,16 +71,7 @@ class DefaultDriverStandingsRepositoryTest {
         coVerify { localDataSource.insertAll(driverStandingEntities) }
     }
 
-    @Test
-    fun `sync should return false when remote data returns error`() = runTest {
-        coEvery { remoteDataSource.getDriverStandings() } throws IOException()
-
-        val result = repository.sync()
-
-        assertFalse(result)
-    }
-
-    @Test
+    @Test(expected = IOException::class)
     fun `sync should not call local data sources when remote data returns error`() = runTest {
         coEvery { remoteDataSource.getDriverStandings() } throws IOException()
 
@@ -102,35 +82,5 @@ class DefaultDriverStandingsRepositoryTest {
             localDataSource.insertAll(any())
             constructorsLocalDataSource.insertAll(any())
         }
-    }
-
-    @Test
-    fun `sync should return false when drivers local data insertion returns error`() = runTest {
-        coEvery { remoteDataSource.getDriverStandings() } returns driverStandingsResponse
-        coEvery { driversLocalDataSource.insertAll(any()) } throws IOException()
-
-        val result = repository.sync()
-
-        assertFalse(result)
-    }
-
-    @Test
-    fun `sync should return false when constructors local data insertion returns error`() = runTest {
-        coEvery { remoteDataSource.getDriverStandings() } returns driverStandingsResponse
-        coEvery { driversLocalDataSource.insertAll(any()) } throws IOException()
-
-        val result = repository.sync()
-
-        assertFalse(result)
-    }
-
-    @Test
-    fun `sync should return false when drivers standings local data insertion returns error`() = runTest {
-        coEvery { remoteDataSource.getDriverStandings() } returns driverStandingsResponse
-        coEvery { localDataSource.insertAll(any()) } throws IOException()
-
-        val result = repository.sync()
-
-        assertFalse(result)
     }
 }

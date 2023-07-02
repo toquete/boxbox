@@ -24,14 +24,12 @@ internal class DefaultDriverStandingsRepository @Inject constructor(
             .map { it.map(FullDriverStandingEntity::toDomain) }
     }
 
-    override suspend fun sync(): Boolean {
-        return runCatching {
-            remoteDataSource.getDriverStandings()
-                .also { list ->
-                    driversLocalDataSource.insertAll(list.map { it.driver.toEntity() })
-                    constructorsLocalDataSource.insertAll(list.map { it.constructors.first().toEntity() })
-                    localDataSource.insertAll(list.map { it.toEntity() })
-                }
-        }.isSuccess
+    override suspend fun sync() {
+        remoteDataSource.getDriverStandings()
+            .also { list ->
+                driversLocalDataSource.insertAll(list.map { it.driver.toEntity() })
+                constructorsLocalDataSource.insertAll(list.map { it.constructors.first().toEntity() })
+                localDataSource.insertAll(list.map { it.toEntity() })
+            }
     }
 }

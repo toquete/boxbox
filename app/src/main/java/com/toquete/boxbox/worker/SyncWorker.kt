@@ -7,16 +7,10 @@ import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
-import com.toquete.boxbox.core.common.annotation.IoDispatcher
-import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
-import com.toquete.boxbox.data.countries.repository.CountryRepository
-import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
+import com.toquete.boxbox.worker.repository.SyncRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.CoroutineContext
+import timber.log.Timber
 
 private val syncConstraints = Constraints.Builder()
     .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -26,24 +20,18 @@ private val syncConstraints = Constraints.Builder()
 class SyncWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParameters: WorkerParameters,
-    @IoDispatcher private val dispatcher: CoroutineContext,
-    private val driverStandingsRepository: DriverStandingsRepository,
-    private val constructorStandingsRepository: ConstructorStandingsRepository,
-    private val countryRepository: CountryRepository
+    private val syncRepository: SyncRepository
 ) : CoroutineWorker(appContext, workerParameters) {
 
-    override suspend fun doWork(): Result = withContext(dispatcher) {
-        val isSuccess = awaitAll(
-            async { countryRepository.sync() },
-            async { driverStandingsRepository.sync() },
-            async { constructorStandingsRepository.sync() }
-        ).all { it }
-
-        if (isSuccess) {
-            Result.success()
-        } else {
-            Result.retry()
-        }
+    override suspend fun doWork(): Result {
+        return runCatching {
+            syncRepository.sync()
+        }.onFailure {
+            Timber.e(it)
+        }.fold(
+            onSuccess = { Result.success() },
+            onFailure = { Result.retry() }
+        )
     }
 
     companion object {

@@ -22,12 +22,12 @@ data class FullDriverStandingEntity(
         entityColumn = "id",
         projection = ["image_url"]
     )
-    val driverImageUrl: String,
+    val driverImageUrl: String?,
     @Relation(
         entity = ConstructorImageEntity::class,
         parentColumn = "constructor_id",
         entityColumn = "id",
         projection = ["image_url"]
     )
-    val constructorImageUrl: String
+    val constructorImageUrl: String?
 )

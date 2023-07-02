@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -76,7 +77,9 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(8.dp),
                     data = standing.constructor.imageUrl,
-                    contentDescription = null
+                    placeholder = R.drawable.ic_construction,
+                    error = R.drawable.ic_construction,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
                 )
             }
         }
@@ -113,7 +116,9 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(6.dp),
                     data = standing.constructor.flagUrl,
-                    contentDescription = null,
+                    placeholder = R.drawable.ic_public,
+                    error = R.drawable.ic_public,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
                     decoder = SvgDecoder.Factory()
                 )
             }

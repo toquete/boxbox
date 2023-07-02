@@ -1,13 +1,10 @@
 package com.toquete.boxbox.core.network.interceptor
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
+import timber.log.Timber
 
-internal class NetworkErrorInterceptor @Inject constructor(
-    private val crashlytics: FirebaseCrashlytics
-) : Interceptor {
+internal class NetworkErrorInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())
@@ -20,6 +17,6 @@ internal class NetworkErrorInterceptor @Inject constructor(
     }
 
     private fun sendError(response: Response) {
-        crashlytics.recordException(NetworkException(response))
+        Timber.e(NetworkException(response))
     }
 }
