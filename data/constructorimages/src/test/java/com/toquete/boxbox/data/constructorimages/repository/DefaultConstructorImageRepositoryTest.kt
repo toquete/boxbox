@@ -30,7 +30,7 @@ class DefaultConstructorImageRepositoryTest {
         }
     }
 
-    @Test
+    @Test(expected = IOException::class)
     fun `sync should not call local data source when remote data returns error`() = runTest {
         coEvery { remoteDataSource.getConstructorsImages() } throws IOException()
 
