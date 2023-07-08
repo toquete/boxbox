@@ -78,7 +78,7 @@ dependencies {
 
 koverReport {
     defaults {
-        mergeWith("debug")
+        mergeWith("prodDebug")
         html {
             title = "BoxBox"
             onCheck = false

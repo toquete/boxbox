@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.toquete.boxbox.plugins.configureFlavors
 import com.toquete.boxbox.plugins.configureGradleManagedDevices
 import com.toquete.boxbox.plugins.configureKotlinAndroid
 import org.gradle.api.Plugin
@@ -20,6 +21,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
                 configureGradleManagedDevices(this)
+                configureFlavors(this)
                 defaultConfig {
                     targetSdk = 33
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
