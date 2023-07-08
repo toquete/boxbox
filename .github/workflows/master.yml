@@ -31,7 +31,7 @@ jobs:
       - name: Build APK
         uses: gradle/gradle-build-action@v2.5.1
         with:
-          arguments: ':app:assembleDebug'
+          arguments: ':app:assembleProdDebug'
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -72,7 +72,7 @@ jobs:
       - name: Detekt
         uses: gradle/gradle-build-action@v2.5.1
         with:
-          arguments: detektDebug
+          arguments: detektProdDebug
       - name: Uploading detekt results
         uses: actions/upload-artifact@v3
         with:
@@ -125,7 +125,7 @@ jobs:
       - name: Build AndroidTest app
         uses: gradle/gradle-build-action@v2.5.1
         with:
-          arguments: packageDebug
+          arguments: packageProdDebug
       - name: Run Instrumented Tests on GMD
         run: >-
           ./gradlew pixel2api31DebugAndroidTest
