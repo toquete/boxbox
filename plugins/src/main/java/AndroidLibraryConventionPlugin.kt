@@ -29,7 +29,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                         enableUnitTestCoverage = true
                     }
                 }
-                packagingOptions {
+                packaging {
                     resources {
                         excludes += listOf(
                             "/META-INF/{AL2.0,LGPL2.1}",

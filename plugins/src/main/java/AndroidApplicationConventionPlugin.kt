@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.toquete.boxbox.plugins.configureFirebase
 import com.toquete.boxbox.plugins.configureFlavors
 import com.toquete.boxbox.plugins.configureGradleManagedDevices
 import com.toquete.boxbox.plugins.configureKotlinAndroid
@@ -22,6 +23,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 configureGradleManagedDevices(this)
                 configureFlavors(this)
+                configureFirebase(this)
                 defaultConfig {
                     targetSdk = 33
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -31,7 +33,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                         enableUnitTestCoverage = true
                     }
                 }
-                packagingOptions {
+                packaging {
                     resources {
                         excludes += listOf(
                             "/META-INF/{AL2.0,LGPL2.1}",

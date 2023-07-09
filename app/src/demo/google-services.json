@@ -61,63 +61,6 @@
           "other_platform_oauth_client": []
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "Your:App:Id",
-        "android_client_info": {
-          "package_name": "com.google.samples.apps.nowinandroid.benchmark"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "APlaceholderAPIKeyWith-ThirtyNineCharsX"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "Your:App:Id",
-        "android_client_info": {
-          "package_name": "com.google.samples.apps.nowinandroid.debug"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "APlaceholderAPIKeyWith-ThirtyNineCharsX"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "Your:App:Id",
-        "android_client_info": {
-          "package_name": "com.google.samples.apps.nowinandroid.demo"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "APlaceholderAPIKeyWith-ThirtyNineCharsX"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
     }
   ],
 

@@ -19,7 +19,7 @@ class BoxBoxApplication : Application(), Configuration.Provider {
     lateinit var workerFactory: HiltWorkerFactory
 
     @Inject
-    lateinit var crashlyticsReportingTree: Timber.Tree
+    lateinit var timberTree: Timber.Tree
 
     override fun onCreate() {
         super.onCreate()
@@ -37,11 +37,7 @@ class BoxBoxApplication : Application(), Configuration.Provider {
     }
 
     private fun setupTimber() {
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        } else {
-            Timber.plant(crashlyticsReportingTree)
-        }
+        Timber.plant(timberTree)
     }
 
     override fun getWorkManagerConfiguration(): Configuration {

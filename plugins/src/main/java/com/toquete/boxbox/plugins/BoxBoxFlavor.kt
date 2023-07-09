@@ -15,7 +15,7 @@ enum class BoxBoxFlavor(
     PROD
 }
 
-fun configureFlavors(commonExtension: CommonExtension<*, *, *, *>) {
+internal fun configureFlavors(commonExtension: CommonExtension<*, *, *, *>) {
     commonExtension.apply {
         flavorDimensions += "version"
         productFlavors {

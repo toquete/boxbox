@@ -1,5 +1,5 @@
 [versions]
-gradle = "7.4.2"
+gradle = "8.0.2"
 kotlin = "1.8.22"
 kotlin-jvm = "1.8.0"
 hilt = "2.46.1"
@@ -38,6 +38,7 @@ ksp = "1.8.22-1.0.11"
 google-services = "4.3.15"
 firebase-bom = "32.1.0"
 crashlytics = "2.9.5"
+crashlytics-gradle = "2.9.6"
 kover = "0.7.2"
 timber = "5.0.1"
 
@@ -96,6 +97,7 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "crashlytics-gradle" }
 
 [bundles]
 compose = ["compose-ui", "compose-preview", "activity-compose"]
