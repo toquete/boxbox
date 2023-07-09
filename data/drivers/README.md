@@ -1,1 +1,16 @@
-[![](https://mermaid.ink/img/pako:eNp1UV1rgzAU_StyQXxxJX7VGuiga8sY9APUvazuIdW0DatJiXFbJ_73pdrB2Giewjn3nnPvuQ3koqCAwTQbxpnCRmOpAy2pha2CyDerbU0z47uj-MgPRCpjEWfc0K-qt3tJTgcD50LSHptN0snDJJlvcEEU2ZKKvvbEcj2bLza41FbHK5TOk_Rp9bjBilaK8f0Vprz4q3_R6rHpepWk8fM0XceJ9pDsncrqd-P_MmM8vu_tb3DXOW6wPxuBDSWVJWGFjqq5FGfQxZQB1t9LUhlkvNV1pFYiOfMcsJI1taE-6QXojBG9Tgl4R46VRk-EA27gE7DreIMo9B00ROHQ90PPhjPgu5E7QCMHOWEQBUGEXKe14UsIreBowvXdELmB57so8hwbaMGUkMv-lN1FO4uXrqGzbL8BafaSuA?type=png)](https://mermaid.live/edit#pako:eNp1UV1rgzAU_StyQXxxJX7VGuiga8sY9APUvazuIdW0DatJiXFbJ_73pdrB2Giewjn3nnPvuQ3koqCAwTQbxpnCRmOpAy2pha2CyDerbU0z47uj-MgPRCpjEWfc0K-qt3tJTgcD50LSHptN0snDJJlvcEEU2ZKKvvbEcj2bLza41FbHK5TOk_Rp9bjBilaK8f0Vprz4q3_R6rHpepWk8fM0XceJ9pDsncrqd-P_MmM8vu_tb3DXOW6wPxuBDSWVJWGFjqq5FGfQxZQB1t9LUhlkvNV1pFYiOfMcsJI1taE-6QXojBG9Tgl4R46VRk-EA27gE7DreIMo9B00ROHQ90PPhjPgu5E7QCMHOWEQBUGEXKe14UsIreBowvXdELmB57so8hwbaMGUkMv-lN1FO4uXrqGzbL8BafaSuA)
+```mermaid
+%%{init: {'theme':'dark'}}%%
+flowchart LR
+    DRIVERS ==> DATABASE
+    DRIVERS ==> MODEL
+    DRIVERS ==> TESTING
+    subgraph :core
+        direction LR
+        MODEL[:model]
+        TESTING[:testing]
+        DATABASE[:database]
+    end
+    subgraph :data
+        DRIVERS[:drivers]
+    end
+```
