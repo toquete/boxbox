@@ -1,1 +1,20 @@
-[![](https://mermaid.ink/img/pako:eNp1UV1vgjAU_SvkJoQXZmgBkSYucWqWJX4kwl4Ge6i0Kpm0Bko2R_jvVnAvLvapOefec-49t4FMMg4ETLPJRa6I0VjqwAtuEYvR8stqW9NMxe4ov7MDLZWx2KTC0K-qt_uSng4GyWTJe2w2iScvk2ieEEYV3dKKf_bEcj2bLxJSaKvjDYrnUfy2ek2I4pXKxf4Gc8Hu9a9aPTZdr6J48z6N15so0b6iUmWdKVlWigp2J_K_xRiPn_tRHnC3mR6wf9uBDQUvC5ozHVtzLU6hiywFor_X1FJIRavraK1kdBYZED0ot6E-6WX4LKd6tQLIjh4rjZ6oANLADxCM3EEYeMgZOsHQ8wLXhjOQpxEeOCPkoMAPfT90MGpt-JVSKyBNYA8HDvZdDzuhi2zgLNeRLPuzdtftLD66hs6yvQBjPpfX?type=png)](https://mermaid.live/edit#pako:eNp1UV1vgjAU_SvkJoQXZmgBkSYucWqWJX4kwl4Ge6i0Kpm0Bko2R_jvVnAvLvapOefec-49t4FMMg4ETLPJRa6I0VjqwAtuEYvR8stqW9NMxe4ov7MDLZWx2KTC0K-qt_uSng4GyWTJe2w2iScvk2ieEEYV3dKKf_bEcj2bLxJSaKvjDYrnUfy2ek2I4pXKxf4Gc8Hu9a9aPTZdr6J48z6N15so0b6iUmWdKVlWigp2J_K_xRiPn_tRHnC3mR6wf9uBDQUvC5ozHVtzLU6hiywFor_X1FJIRavraK1kdBYZED0ot6E-6WX4LKd6tQLIjh4rjZ6oANLADxCM3EEYeMgZOsHQ8wLXhjOQpxEeOCPkoMAPfT90MGpt-JVSKyBNYA8HDvZdDzuhi2zgLNeRLPuzdtftLD66hs6yvQBjPpfX)
+```mermaid
+%%{init: {'theme':'dark'}}%%
+flowchart LR
+    CONSTRUCTOR_STANDINGS ==> DATABASE
+    CONSTRUCTOR_STANDINGS ==> COMMON
+    CONSTRUCTOR_STANDINGS ==> MODEL
+    CONSTRUCTOR_STANDINGS ==> TESTING
+    CONSTRUCTOR_STANDINGS ==> NETWORK
+    subgraph :core
+        direction LR
+        MODEL[:model]
+        TESTING[:testing]
+        DATABASE[:database]
+        COMMON[:common]
+        NETWORK[:network]
+    end
+    subgraph :data
+        CONSTRUCTOR_STANDINGS[:constructorstandings]
+    end
+```
