@@ -1,1 +1,35 @@
-[![](https://mermaid.ink/img/pako:eNp1kt1uozAQhV8FjRTlhq2AkNJYSqUoZFeRCkSB7sVCVbnYadCCjYzpH-Ld6wJblWzDBcLf-MzYh9NAygkFBJNJk7FMIq2ZyiMt6BRNCRZ_p207mSTskPPn9IiF1G72CdPUU9UPjwKXRw2lXNCe3W5jVGd3_WIdeF7gx6pcFJwN0AvczU2MCjUzH1C0CaOt_ytGklYyY48DpoycDjpQLOt_s35uVtF9GK18V4nDGFUSM6Lk1Xk94QXOWE_dwFtt_Xt3v_292X_tc6jznIjsiYrTjoNkHfhhtL9dR8F_upSzSoo6lVycPU7_Xu12McJleactl9fKt0_arXvrxqxzbowG58Zw7Mu4dubS32769pqgQ0GFcpGoxDQfugS6tCSA1OdHYBJIWKv24Vry8JWlgJQjVIe6JFhSN8PqZxSADjivFC0xA9TACyDLnF0sHNs0Lg3n0radmQ6vgH5cWRfGlWmYznwxny8My2x1eONcdTBVwbItx7DmM9syFjNTB0oy5b3XJ7oLdjfiTyfoRrbvkIXioQ?type=png)](https://mermaid.live/edit#pako:eNp1kt1uozAQhV8FjRTlhq2AkNJYSqUoZFeRCkSB7sVCVbnYadCCjYzpH-Ld6wJblWzDBcLf-MzYh9NAygkFBJNJk7FMIq2ZyiMt6BRNCRZ_p207mSTskPPn9IiF1G72CdPUU9UPjwKXRw2lXNCe3W5jVGd3_WIdeF7gx6pcFJwN0AvczU2MCjUzH1C0CaOt_ytGklYyY48DpoycDjpQLOt_s35uVtF9GK18V4nDGFUSM6Lk1Xk94QXOWE_dwFtt_Xt3v_292X_tc6jznIjsiYrTjoNkHfhhtL9dR8F_upSzSoo6lVycPU7_Xu12McJleactl9fKt0_arXvrxqxzbowG58Zw7Mu4dubS32769pqgQ0GFcpGoxDQfugS6tCSA1OdHYBJIWKv24Vry8JWlgJQjVIe6JFhSN8PqZxSADjivFC0xA9TACyDLnF0sHNs0Lg3n0radmQ6vgH5cWRfGlWmYznwxny8My2x1eONcdTBVwbItx7DmM9syFjNTB0oy5b3XJ7oLdjfiTyfoRrbvkIXioQ)
+```mermaid
+%%{init: {'theme':'dark'}}%%
+flowchart LR
+    APP[:app] ==> UI
+    APP ==> COMMON
+    APP ==> MODEL
+    APP ==> TESTING
+    APP ==> PREFERENCES
+    APP ==> DRIVER_STANDINGS
+    APP ==> DRIVER_IMAGES
+    APP ==> CONSTRUCTOR_STANDINGS
+    APP ==> CONSTRUCTOR_IMAGES
+    APP ==> COUNTRIES
+    APP ==> STANDINGS
+    APP ==> SETTINGS
+    subgraph :core
+        direction LR
+        MODEL[:model]
+        TESTING[:testing]
+        UI[:ui]
+        COMMON[:common]
+        PREFERENCES[:preferences]
+    end
+    subgraph :data
+        DRIVER_STANDINGS[:driverstandings]
+        DRIVER_IMAGES[:driverimages]
+        CONSTRUCTOR_STANDINGS[:constructorstandings]
+        CONSTRUCTOR_IMAGES[:constructorimages]
+        COUNTRIES[:countries]
+    end
+    subgraph :feature
+        STANDINGS[:standings]
+        SETTINGS[:settings]
+    end
+```
