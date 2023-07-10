@@ -127,7 +127,7 @@ jobs:
         with:
           arguments: packageProdDebug
       - name: Run Instrumented Tests on GMD
-        run: ./gradlew pixel2api31ProdDebugAndroidTest -Dorg.gradle.workers.max=2 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
+        run: ./gradlew cleanManagedDevices --unused-only && ./gradlew pixel2api31ProdDebugAndroidTest -Dorg.gradle.workers.max=2 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
       - name: Upload Android test reports
         uses: actions/upload-artifact@v3
         with:
