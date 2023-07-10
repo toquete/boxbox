@@ -1,5 +1,6 @@
 package com.toquete.boxbox.plugins
 
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Project
 
@@ -14,6 +15,11 @@ import org.gradle.api.Project
 internal fun LibraryAndroidComponentsExtension.disableUnnecessaryAndroidTests(
     project: Project,
 ) = beforeVariants {
-    it.enableAndroidTest = it.enableAndroidTest &&
-        project.projectDir.resolve("src/androidTest").exists()
+    it.enableAndroidTest = it.enableAndroidTest && project.projectDir.resolve("src/androidTest").exists()
+}
+
+internal fun ApplicationAndroidComponentsExtension.disableUnnecessaryAndroidTests(
+    project: Project,
+) = beforeVariants {
+    it.enableAndroidTest = it.enableAndroidTest && project.projectDir.resolve("src/androidTest").exists()
 }

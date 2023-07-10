@@ -1,8 +1,10 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.toquete.boxbox.plugins.configureFirebase
 import com.toquete.boxbox.plugins.configureFlavors
 import com.toquete.boxbox.plugins.configureGradleManagedDevices
 import com.toquete.boxbox.plugins.configureKotlinAndroid
+import com.toquete.boxbox.plugins.disableUnnecessaryAndroidTests
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -41,6 +43,10 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                             "META-INF/LICENSE-notice.md"
                         )
                     }
+                }
+
+                extensions.configure<ApplicationAndroidComponentsExtension> {
+                    disableUnnecessaryAndroidTests(target)
                 }
             }
         }
