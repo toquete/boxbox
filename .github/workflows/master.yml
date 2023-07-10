@@ -118,6 +118,8 @@ jobs:
         with:
           distribution: zulu
           java-version: '17'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2.0.10
       - name: Create Google Services JSON
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
@@ -127,7 +129,7 @@ jobs:
         with:
           arguments: packageProdDebug
       - name: Run Instrumented Tests on GMD
-        run: ./gradlew cleanManagedDevices --unused-only && ./gradlew pixel2api31ProdDebugAndroidTest -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
+        run: ./gradlew cleanManagedDevices --unused-only && ./gradlew pixel2api30ProdDebugAndroidTest -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=1 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
       - name: Upload Android test reports
         uses: actions/upload-artifact@v3
         with:

@@ -10,10 +10,10 @@ internal fun configureGradleManagedDevices(
     commonExtension.testOptions {
         managedDevices {
             devices {
-                maybeCreate("pixel2api31", ManagedVirtualDevice::class.java).apply {
+                maybeCreate("pixel2api30", ManagedVirtualDevice::class.java).apply {
                     device = "Pixel 2"
-                    apiLevel = 31
-                    systemImageSource = "aosp"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
                 }
             }
         }
