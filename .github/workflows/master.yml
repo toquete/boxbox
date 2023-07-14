@@ -130,7 +130,7 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           touch ${{ github.workspace }}/app/src/prod/google-services.json
-          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build AndroidTest app
         uses: gradle/gradle-build-action@v2.5.1
         with:
