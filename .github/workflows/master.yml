@@ -27,7 +27,10 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create Google Services JSON
-        run: mkdir ${{ github.workspace }}/app/src/prod && touch ${{ github.workspace }}/app/src/prod/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: |
+          mkdir ${{ github.workspace }}/app/src/prod
+          touch ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build APK
         uses: gradle/gradle-build-action@v2.5.1
         with:
@@ -43,7 +46,10 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create Google Services JSON
-        run: mkdir ${{ github.workspace }}/app/src/prod && touch ${{ github.workspace }}/app/src/prod/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: |
+          mkdir ${{ github.workspace }}/app/src/prod
+          touch ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Lint
         uses: gradle/gradle-build-action@v2.5.1
         with:
@@ -64,7 +70,10 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create Google Services JSON
-        run: mkdir ${{ github.workspace }}/app/src/prod && touch ${{ github.workspace }}/app/src/prod/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: |
+          mkdir ${{ github.workspace }}/app/src/prod
+          touch ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Detekt
         uses: gradle/gradle-build-action@v2.5.1
         with:
@@ -85,7 +94,10 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create Google Services JSON
-        run: mkdir ${{ github.workspace }}/app/src/prod && touch ${{ github.workspace }}/app/src/prod/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: |
+          mkdir ${{ github.workspace }}/app/src/prod
+          touch ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Unit test and coverage
         uses: gradle/gradle-build-action@v2.5.1
         with:
@@ -115,7 +127,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2.0.10
       - name: Create Google Services JSON
-        run: mkdir ${{ github.workspace }}/app/src/prod && touch ${{ github.workspace }}/app/src/prod/google-services.json && echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: |
+          mkdir ${{ github.workspace }}/app/src/prod
+          touch ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build AndroidTest app
         uses: gradle/gradle-build-action@v2.5.1
         with:
