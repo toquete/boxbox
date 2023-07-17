@@ -35,11 +35,11 @@ jobs:
           touch ${{ github.workspace }}/app/src/prod/google-services.json
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build release APK
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: ':app:assembleProdRelease'
       - name: Build release bundle
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: ':app:bundleProdRelease'
       - name: Upload Release Build to Artifacts

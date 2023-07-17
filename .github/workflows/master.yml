@@ -32,7 +32,7 @@ jobs:
           touch ${{ github.workspace }}/app/src/prod/google-services.json
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build APK
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: ':app:assembleProdDebug'
   lint:
@@ -51,7 +51,7 @@ jobs:
           touch ${{ github.workspace }}/app/src/prod/google-services.json
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Lint
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: lint
       - name: Uploading lint results
@@ -75,7 +75,7 @@ jobs:
           touch ${{ github.workspace }}/app/src/prod/google-services.json
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Detekt
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: detektProdDebug
       - name: Uploading detekt results
@@ -99,7 +99,7 @@ jobs:
           touch ${{ github.workspace }}/app/src/prod/google-services.json
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Unit test and coverage
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: koverHtmlReport
       - name: Uploading test results
@@ -132,7 +132,7 @@ jobs:
           touch ${{ github.workspace }}/app/src/prod/google-services.json
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build AndroidTest app
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: packageProdDebug
       - name: Run Instrumented Tests on GMD
