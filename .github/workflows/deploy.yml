@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: zulu
-          java-version: '17.0.6+0-17.0.6b802.4-9586694'
+          java-version: '17'
       - name: Create keystore file
         run: |
           touch ${{ github.workspace }}/app/release.keystore
