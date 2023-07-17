@@ -23,7 +23,7 @@ jobs:
           java-version: '17'
       - name: Create keystore file
         run: |
-          touch ${{ github.workspace }}/release-keystore.jks
+          touch ${{ github.workspace }}/app/release-keystore.jks
           echo $KEYSTORE_FILE | base64 -di > ${{ github.workspace }}/release-keystore.jks
       - name: Create keystore.properties file
         run: |
