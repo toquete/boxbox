@@ -19,7 +19,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          distribution: oracle
+          distribution: zulu
           java-version: '11'
       - name: Create keystore file
         run: |
