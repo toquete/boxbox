@@ -11,7 +11,7 @@ env:
   KEYSTORE_PROPERTIES: ${{ secrets.KEYSTORE_PROPERTIES }}
 jobs:
   release:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout
@@ -23,17 +23,17 @@ jobs:
           java-version: '17'
       - name: Create keystore file
         run: |
-          touch ${{ github.workspace }}/app/release.keystore
-          echo $KEYSTORE_FILE | base64 -d > ${{ github.workspace }}/release.keystore
+          touch ${{ github.workspace }}/app/release.jks
+          echo $KEYSTORE_FILE | base64 -di > ${{ github.workspace }}/release.jks
       - name: Create keystore.properties file
         run: |
           touch ${{ github.workspace }}/keystore.properties
-          echo $KEYSTORE_PROPERTIES | base64 -d > ${{ github.workspace }}/keystore.properties
+          echo $KEYSTORE_PROPERTIES | base64 -di > ${{ github.workspace }}/keystore.properties
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           touch ${{ github.workspace }}/app/src/prod/google-services.json
-          echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build release APK
         uses: gradle/gradle-build-action@v2.6.1
         with:
