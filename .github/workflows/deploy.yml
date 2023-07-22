@@ -1,0 +1,51 @@
+name: CD
+'on':
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+env:
+  GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+  KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
+  KEYSTORE_PROPERTIES: ${{ secrets.KEYSTORE_PROPERTIES }}
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: '19'
+      - name: Create keystore file
+        run: |
+          touch ${{ github.workspace }}/app/release.keystore
+          echo $KEYSTORE_FILE | base64 -di > ${{ github.workspace }}/release.keystore
+      - name: Create keystore.properties file
+        run: |
+          touch ${{ github.workspace }}/keystore.properties
+          echo $KEYSTORE_PROPERTIES | base64 -di > ${{ github.workspace }}/keystore.properties
+      - name: Create Google Services JSON
+        run: |
+          mkdir ${{ github.workspace }}/app/src/prod
+          touch ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+      - name: Build release APK
+        uses: gradle/gradle-build-action@v2.5.1
+        with:
+          arguments: ':app:assembleProdRelease'
+      - name: Build release bundle
+        uses: gradle/gradle-build-action@v2.5.1
+        with:
+          arguments: ':app:bundleProdRelease'
+      - name: Upload Release Build to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifacts
+          paths: |
+            app/build/outputs/apk/prodRelease/
+            app/build/outputs/bundle/prodRelease/

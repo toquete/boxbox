@@ -1,9 +1,18 @@
 import com.toquete.boxbox.plugins.BoxBoxBuildType
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
     id("boxbox.android.hilt")
+}
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        load(FileInputStream(keystorePropertiesFile))
+    }
 }
 
 android {
@@ -12,13 +21,24 @@ android {
     defaultConfig {
         applicationId = "com.toquete.boxbox"
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = keystoreProperties.getProperty("storeFile")?.let { file(it) }
+            storePassword = keystoreProperties.getProperty("storePassword")
+            keyAlias = keystoreProperties.getProperty("keyAlias")
+            keyPassword = keystoreProperties.getProperty("keyPassword")
+        }
     }
 
     buildTypes {
         release {
             applicationIdSuffix = BoxBoxBuildType.RELEASE.applicationIdSuffix
             isMinifyEnabled = true
+            isDebuggable = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         create("minified") {
@@ -33,6 +53,8 @@ android {
         debug {
             applicationIdSuffix = BoxBoxBuildType.DEBUG.applicationIdSuffix
             versionNameSuffix = BoxBoxBuildType.DEBUG.versionNameSuffix
+            isMinifyEnabled = false
+            isDebuggable = true
         }
     }
 }
