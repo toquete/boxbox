@@ -56,7 +56,7 @@ jobs:
       - name: Upload app to Google Play
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJsonPlainText: ${{ github.workspace }}/service-account.json
+          serviceAccountJson: ${{ github.workspace }}/service-account.json
           packageName: com.toquete.boxbox
           track: internal
           releaseFiles: app/build/outputs/bundle/prodRelease/app-prod-release.aab
