@@ -42,5 +42,5 @@ jobs:
         with:
           name: release-artifacts
           path: |
-            app/build/outputs/apk/prodRelease/
+            app/build/outputs/apk/prod/release/
             app/build/outputs/bundle/prodRelease/
