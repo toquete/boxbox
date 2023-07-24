@@ -59,4 +59,5 @@ jobs:
           serviceAccountJson: ${{ github.workspace }}/service-account.json
           packageName: com.toquete.boxbox
           track: internal
+          status: draft
           releaseFiles: app/build/outputs/bundle/prodRelease/app-prod-release.aab
