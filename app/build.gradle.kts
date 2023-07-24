@@ -20,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0.0"
     }
 
