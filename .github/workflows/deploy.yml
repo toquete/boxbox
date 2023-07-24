@@ -22,13 +22,13 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create keystore file
-        run: echo $KEYSTORE_FILE | openssl base64 -A -d > ${{ github.workspace }}/app/release.jks
+        run: echo $KEYSTORE_FILE | base64 -di > ${{ github.workspace }}/app/release.jks
       - name: Create keystore.properties file
-        run: echo $KEYSTORE_PROPERTIES | openssl base64 -A -d > ${{ github.workspace }}/keystore.properties
+        run: echo $KEYSTORE_PROPERTIES | base64 -di > ${{ github.workspace }}/keystore.properties
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
-          echo $GOOGLE_SERVICES_JSON | openssl base64 -A -d > ${{ github.workspace }}/app/src/prod/google-services.json
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build release APK
         uses: gradle/gradle-build-action@v2.6.1
         with:
@@ -41,6 +41,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: release-artifacts
-          paths: |
+          path: |
             app/build/outputs/apk/prodRelease/
             app/build/outputs/bundle/prodRelease/
