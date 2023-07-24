@@ -22,7 +22,7 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create keystore file
-        run: echo $KEYSTORE_FILE | openssl base64 -A -d > ${{ github.workspace }}/release.jks
+        run: echo $KEYSTORE_FILE | openssl base64 -A -d > ${{ github.workspace }}/app/release.jks
       - name: Create keystore.properties file
         run: echo $KEYSTORE_PROPERTIES | openssl base64 -A -d > ${{ github.workspace }}/keystore.properties
       - name: Create Google Services JSON
