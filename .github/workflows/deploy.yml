@@ -9,6 +9,7 @@ env:
   GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
   KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
   KEYSTORE_PROPERTIES: ${{ secrets.KEYSTORE_PROPERTIES }}
+  SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -44,3 +45,16 @@ jobs:
           path: |
             app/build/outputs/apk/prod/release/
             app/build/outputs/bundle/prodRelease/
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: app/build/outputs/apk/prod/release/app-prod-release.apk
+          generate_release_notes: true
+      - name: Upload app to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: com.toquete.boxbox
+          track: internal
+          release_files: app/build/outputs/bundle/prodRelease/app-prod-release.aab
