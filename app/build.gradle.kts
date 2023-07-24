@@ -35,7 +35,6 @@ android {
 
     buildTypes {
         release {
-            applicationIdSuffix = BoxBoxBuildType.RELEASE.applicationIdSuffix
             isMinifyEnabled = true
             isDebuggable = false
             signingConfig = signingConfigs.getByName("release")

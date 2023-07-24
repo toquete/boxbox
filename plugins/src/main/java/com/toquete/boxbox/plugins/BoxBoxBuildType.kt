@@ -1,10 +1,10 @@
 package com.toquete.boxbox.plugins
 
 enum class BoxBoxBuildType(
-    val applicationIdSuffix: String,
+    val applicationIdSuffix: String? = null,
     val versionNameSuffix: String? = null
 ) {
-    RELEASE(applicationIdSuffix = ".release"),
+    RELEASE,
     MINIFIED(
         applicationIdSuffix = ".minified",
         versionNameSuffix = "-MINIFIED"
