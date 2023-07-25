@@ -17,5 +17,5 @@ data class FullConstructorStandingEntity(
         entityColumn = "id",
         projection = ["image_url"]
     )
-    val constructorImageUrl: String
+    val constructorImageUrl: String?
 )
