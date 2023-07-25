@@ -13,6 +13,8 @@ name: CI
         required: true
         default: false
         type: boolean
+permissions:
+  contents: write
 env:
   GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
 jobs:
@@ -33,6 +35,7 @@ jobs:
       - name: Build APK
         uses: gradle/gradle-build-action@v2.7.0
         with:
+          dependency-graph: generate-and-submit
           arguments: ':app:assembleProdDebug'
   lint:
     runs-on: ubuntu-latest
