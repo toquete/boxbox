@@ -13,6 +13,8 @@ name: CI
         required: true
         default: false
         type: boolean
+permissions:
+  contents: write
 env:
   GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
 jobs:
@@ -31,8 +33,9 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build APK
-        uses: gradle/gradle-build-action@v2.6.1
+        uses: gradle/gradle-build-action@v2.7.0
         with:
+          dependency-graph: generate-and-submit
           arguments: ':app:assembleProdDebug'
   lint:
     runs-on: ubuntu-latest
@@ -49,7 +52,7 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Lint
-        uses: gradle/gradle-build-action@v2.6.1
+        uses: gradle/gradle-build-action@v2.7.0
         with:
           arguments: lint
       - name: Uploading lint results
@@ -72,7 +75,7 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Detekt
-        uses: gradle/gradle-build-action@v2.6.1
+        uses: gradle/gradle-build-action@v2.7.0
         with:
           arguments: detektProdDebug
       - name: Uploading detekt results
@@ -95,7 +98,7 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Unit test and coverage
-        uses: gradle/gradle-build-action@v2.6.1
+        uses: gradle/gradle-build-action@v2.7.0
         with:
           arguments: koverHtmlReport
       - name: Uploading test results
@@ -127,7 +130,7 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build AndroidTest app
-        uses: gradle/gradle-build-action@v2.6.1
+        uses: gradle/gradle-build-action@v2.7.0
         with:
           arguments: packageProdDebug
       - name: Run Instrumented Tests on GMD
