@@ -13,8 +13,8 @@ Welcome to BoxBox, the ultimate app designed exclusively for Formula 1 fans. Whe
 
 ### Screenshots
 
-<img src="https://github.com/toquete/boxbox/assets/10223062/c3cf3113-84c1-4fe2-b56b-82efdcea7f45" width=500 height=1166.67>
-<img src="https://github.com/toquete/boxbox/assets/10223062/6fc73dad-12d6-4154-aa4b-b7d3b2fe0fd2" width=500 height=1166.67>
+<img src="https://github.com/toquete/boxbox/assets/10223062/c3cf3113-84c1-4fe2-b56b-82efdcea7f45" width=300 height=700>
+<img src="https://github.com/toquete/boxbox/assets/10223062/6fc73dad-12d6-4154-aa4b-b7d3b2fe0fd2" width=300 height=700>
 
 
 ## How to Build
