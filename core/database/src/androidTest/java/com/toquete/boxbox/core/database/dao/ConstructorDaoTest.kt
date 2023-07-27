@@ -1,9 +1,9 @@
-package com.toquete.boxbox.core.database
+package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.toquete.boxbox.core.database.dao.DriverDao
-import com.toquete.boxbox.core.testing.data.driverEntities
+import com.toquete.boxbox.core.database.BoxBoxDatabase
+import com.toquete.boxbox.core.testing.data.constructorEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -11,9 +11,9 @@ import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertContentEquals
 
-class DriverDaoTest {
+class ConstructorDaoTest {
 
-    private lateinit var dao: DriverDao
+    private lateinit var dao: ConstructorDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -22,7 +22,7 @@ class DriverDaoTest {
             ApplicationProvider.getApplicationContext(),
             BoxBoxDatabase::class.java
         ).build()
-        dao = db.driverDao()
+        dao = db.constructorDao()
     }
 
     @After
@@ -31,11 +31,11 @@ class DriverDaoTest {
     }
 
     @Test
-    fun testDriverInsert() = runTest {
-        dao.upsertAll(driverEntities)
+    fun testConstructorsInsert() = runTest {
+        dao.upsertAll(constructorEntities)
 
-        val result = dao.getDrivers().first()
+        val result = dao.getConstructors().first()
 
-        assertContentEquals(driverEntities, result)
+        assertContentEquals(constructorEntities, result)
     }
 }
