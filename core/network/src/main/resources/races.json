@@ -1,0 +1,50 @@
+{
+  "MRData": {
+    "xmlns": "http://ergast.com/mrd/1.5",
+    "series": "f1",
+    "url": "http://ergast.com/api/f1/current.json",
+    "limit": "30",
+    "offset": "0",
+    "total": "22",
+    "RaceTable": {
+      "season": "2023",
+      "Races": [
+        {
+          "season": "2023",
+          "round": "1",
+          "url": "https://en.wikipedia.org/wiki/2023_Bahrain_Grand_Prix",
+          "raceName": "Bahrain Grand Prix",
+          "Circuit": {
+            "circuitId": "bahrain",
+            "url": "http://en.wikipedia.org/wiki/Bahrain_International_Circuit",
+            "circuitName": "Bahrain International Circuit",
+            "Location": {
+              "lat": "26.0325",
+              "long": "50.5106",
+              "locality": "Sakhir",
+              "country": "Bahrain"
+            }
+          },
+          "date": "2023-03-05",
+          "time": "15:00:00Z",
+          "FirstPractice": {
+            "date": "2023-03-03",
+            "time": "11:30:00Z"
+          },
+          "SecondPractice": {
+            "date": "2023-03-03",
+            "time": "15:00:00Z"
+          },
+          "ThirdPractice": {
+            "date": "2023-03-04",
+            "time": "11:30:00Z"
+          },
+          "Qualifying": {
+            "date": "2023-03-04",
+            "time": "15:00:00Z"
+          }
+        }
+      ]
+    }
+  }
+}

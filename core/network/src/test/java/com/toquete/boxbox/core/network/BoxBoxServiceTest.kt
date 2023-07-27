@@ -4,6 +4,7 @@ import com.toquete.boxbox.core.network.di.NetworkModule
 import com.toquete.boxbox.core.network.extension.readPath
 import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
 import com.toquete.boxbox.core.testing.data.driverStandingsWrapper
+import com.toquete.boxbox.core.testing.data.racesWrapper
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -71,6 +72,32 @@ class BoxBoxServiceTest {
         }
 
         service.getConstructorStandings()
+
+        assertEquals(expected, mockWebServer.takeRequest().path)
+    }
+
+    @Test
+    fun `getRaces should return parsed data class on success`() = runTest {
+        val expected = racesWrapper
+        MockResponse().apply {
+            setBody("races.json".readPath())
+            mockWebServer.enqueue(this)
+        }
+
+        val result = service.getRaces()
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `getRaces should send correct request path when called`() = runTest {
+        val expected = "/current.json"
+        MockResponse().apply {
+            setBody("races.json".readPath())
+            mockWebServer.enqueue(this)
+        }
+
+        service.getRaces()
 
         assertEquals(expected, mockWebServer.takeRequest().path)
     }
