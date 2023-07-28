@@ -6,7 +6,7 @@ import androidx.room.Entity
 @Entity(tableName = "races", primaryKeys = ["season", "round"])
 data class RaceEntity(
     val season: String,
-    val round: String,
+    val round: Int,
     val url: String,
     val name: String,
     val date: String,

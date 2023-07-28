@@ -35,7 +35,7 @@ val racesResponse = listOf(
 val raceEntities = listOf(
     RaceEntity(
         season = "2023",
-        round = "1",
+        round = 1,
         url = "https://en.wikipedia.org/wiki/2023_Bahrain_Grand_Prix",
         name = "Bahrain Grand Prix",
         circuitId = "bahrain",
