@@ -10,7 +10,7 @@ private const val RACES_JSON = "races.json"
 internal class DefaultRaceRemoteDataSource @Inject constructor() : RaceRemoteDataSource {
 
     override suspend fun getRaces(): List<RaceResponse> {
-        val response = RACES_JSON.readPath()
+        val response = readPath(RACES_JSON)
         return Json.decodeFromString(response)
     }
 }
