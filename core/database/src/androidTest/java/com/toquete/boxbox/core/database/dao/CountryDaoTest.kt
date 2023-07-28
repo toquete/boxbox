@@ -1,8 +1,8 @@
-package com.toquete.boxbox.core.database
+package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.toquete.boxbox.core.database.dao.CountryDao
+import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.testing.data.countryEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest

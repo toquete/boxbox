@@ -1,13 +1,8 @@
-package com.toquete.boxbox.core.database
+package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.toquete.boxbox.core.database.dao.ConstructorDao
-import com.toquete.boxbox.core.database.dao.ConstructorImageDao
-import com.toquete.boxbox.core.database.dao.CountryDao
-import com.toquete.boxbox.core.database.dao.DriverDao
-import com.toquete.boxbox.core.database.dao.DriverImageDao
-import com.toquete.boxbox.core.database.dao.DriverStandingDao
+import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.constructorImageEntities
 import com.toquete.boxbox.core.testing.data.countryEntities
