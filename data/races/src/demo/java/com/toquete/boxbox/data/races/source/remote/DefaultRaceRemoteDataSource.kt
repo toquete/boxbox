@@ -7,10 +7,12 @@ import javax.inject.Inject
 
 private const val RACES_JSON = "races.json"
 
-internal class DefaultRaceRemoteDataSource @Inject constructor() : RaceRemoteDataSource {
+internal class DefaultRaceRemoteDataSource @Inject constructor(
+    private val json: Json
+) : RaceRemoteDataSource {
 
     override suspend fun getRaces(): List<RaceResponse> {
         val response = readPath(RACES_JSON)
-        return Json.decodeFromString(response)
+        return json.decodeFromString(response)
     }
 }
