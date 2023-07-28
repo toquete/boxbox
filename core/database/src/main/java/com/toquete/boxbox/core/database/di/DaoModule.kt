@@ -1,6 +1,7 @@
 package com.toquete.boxbox.core.database.di
 
 import com.toquete.boxbox.core.database.BoxBoxDatabase
+import com.toquete.boxbox.core.database.dao.CircuitDao
 import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
@@ -56,5 +57,10 @@ internal object DaoModule {
     @Provides
     fun providesRaceDao(database: BoxBoxDatabase): RaceDao {
         return database.raceDao()
+    }
+
+    @Provides
+    fun providesCircuitDao(database: BoxBoxDatabase): CircuitDao {
+        return database.circuitDao()
     }
 }
