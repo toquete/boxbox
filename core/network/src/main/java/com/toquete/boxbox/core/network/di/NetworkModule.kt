@@ -22,7 +22,10 @@ private const val BASE_URL = "https://ergast.com/api/f1/"
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
 
-    private val json = Json { ignoreUnknownKeys = true }
+    @Provides
+    fun providesJson(): Json {
+        return Json { ignoreUnknownKeys = true }
+    }
 
     @Provides
     fun providesOkHttpClient(): OkHttpClient {
@@ -38,14 +41,18 @@ internal object NetworkModule {
 
     @Provides
     fun providesRetrofit(
-        okHttpClient: OkHttpClient
+        okHttpClient: OkHttpClient,
+        json: Json
     ): Retrofit {
-        return getRetrofitBuilder()
+        return getRetrofitBuilder(json)
             .client(okHttpClient)
             .build()
     }
 
-    fun getRetrofitBuilder(baseUrl: HttpUrl = BASE_URL.toHttpUrl()): Retrofit.Builder {
+    fun getRetrofitBuilder(
+        json: Json,
+        baseUrl: HttpUrl = BASE_URL.toHttpUrl()
+    ): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(json.asConverterFactory(JSON_MEDIA_TYPE.toMediaType()))
