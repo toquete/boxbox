@@ -1,8 +1,7 @@
-package com.toquete.boxbox.data.source.remote
+package com.toquete.boxbox.data.races.source.remote
 
 import com.toquete.boxbox.core.common.extension.readPath
 import com.toquete.boxbox.core.network.model.RaceResponse
-import com.toquete.boxbox.data.races.source.remote.RaceRemoteDataSource
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
