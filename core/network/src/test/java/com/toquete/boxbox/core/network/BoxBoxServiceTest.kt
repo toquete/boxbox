@@ -1,7 +1,7 @@
 package com.toquete.boxbox.core.network
 
+import com.toquete.boxbox.core.common.extension.readPath
 import com.toquete.boxbox.core.network.di.NetworkModule
-import com.toquete.boxbox.core.network.extension.readPath
 import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
 import com.toquete.boxbox.core.testing.data.driverStandingsWrapper
 import com.toquete.boxbox.core.testing.data.racesWrapper
