@@ -1,4 +1,4 @@
-package com.toquete.boxbox.data.driverstandings.source.repository
+package com.toquete.boxbox.data.driverstandings.repository
 
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.driverEntities
@@ -8,7 +8,6 @@ import com.toquete.boxbox.core.testing.data.driverStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
 import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
 import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
-import com.toquete.boxbox.data.driverstandings.repository.DefaultDriverStandingsRepository
 import com.toquete.boxbox.data.driverstandings.source.local.DriverStandingsLocalDataSource
 import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
 import io.mockk.coEvery
