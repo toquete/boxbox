@@ -7,11 +7,12 @@ import javax.inject.Inject
 
 private const val CONSTRUCTOR_STANDINGS_JSON = "constructor_standings.json"
 
-internal class DefaultConstructorStandingsRemoteDataSource @Inject constructor() :
-    ConstructorStandingsRemoteDataSource {
+internal class DefaultConstructorStandingsRemoteDataSource @Inject constructor(
+    private val json: Json
+) : ConstructorStandingsRemoteDataSource {
 
     override suspend fun getConstructorStandings(): List<ConstructorStandingResponse> {
-        val response = CONSTRUCTOR_STANDINGS_JSON.readPath()
-        return Json.decodeFromString(response)
+        val response = readPath(CONSTRUCTOR_STANDINGS_JSON)
+        return json.decodeFromString(response)
     }
 }

@@ -2,8 +2,8 @@ package com.toquete.boxbox.core.common.extension
 
 import java.io.FileNotFoundException
 
-fun String.readPath(): String {
-    return ClassLoader.getSystemResource(this)
+fun Any.readPath(path: String): String {
+    return javaClass.classLoader.getResource(path)
         ?.readText()
         ?: throw FileNotFoundException("File was not found in $this")
 }

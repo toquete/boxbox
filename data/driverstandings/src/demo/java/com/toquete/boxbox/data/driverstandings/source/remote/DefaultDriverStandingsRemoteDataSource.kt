@@ -7,10 +7,12 @@ import javax.inject.Inject
 
 private const val DRIVER_STANDINGS_JSON = "driver_standings.json"
 
-internal class DefaultDriverStandingsRemoteDataSource @Inject constructor() : DriverStandingsRemoteDataSource {
+internal class DefaultDriverStandingsRemoteDataSource @Inject constructor(
+    private val json: Json
+) : DriverStandingsRemoteDataSource {
 
     override suspend fun getDriverStandings(): List<DriverStandingResponse> {
-        val response = DRIVER_STANDINGS_JSON.readPath()
-        return Json.decodeFromString(response)
+        val response = readPath(DRIVER_STANDINGS_JSON)
+        return json.decodeFromString(response)
     }
 }
