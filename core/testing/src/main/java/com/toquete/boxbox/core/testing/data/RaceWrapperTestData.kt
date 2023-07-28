@@ -8,7 +8,7 @@ val racesWrapper = RacesWrapper(
     data = RaceTableResponse(
         raceTable = RaceDataResponse(
             season = "2023",
-            races = listOf(raceResponse)
+            races = racesResponse
         )
     )
 )
