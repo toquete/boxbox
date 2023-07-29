@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:database"))
     implementation(project(":core:network"))
+    implementation(project(":data:circuits"))
     demoImplementation(libs.serialization)
     testImplementation(project(":core:testing"))
 }

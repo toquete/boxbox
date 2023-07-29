@@ -15,6 +15,18 @@ val countryEntities = listOf(
         name = "Austria",
         nationality = "Austrian",
         flagUrl = "http://flag.com"
+    ),
+    CountryEntity(
+        id = "USA",
+        name = "United States of America",
+        nationality = "American",
+        flagUrl = "http://america.com"
+    ),
+    CountryEntity(
+        id = "BAH",
+        name = "Bahrain",
+        nationality = "Bahraini",
+        flagUrl = "http://bahrain.com"
     )
 )
 
@@ -30,5 +42,17 @@ val countryResponses = listOf(
         name = "Austria",
         nationality = "Austrian",
         flagUrl = "http://flag.com"
+    ),
+    CountryResponse(
+        id = "USA",
+        name = "United States of America",
+        nationality = "American",
+        flagUrl = "http://america.com"
+    ),
+    CountryResponse(
+        id = "BAH",
+        name = "Bahrain",
+        nationality = "Bahraini",
+        flagUrl = "http://bahrain.com"
     )
 )

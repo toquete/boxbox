@@ -24,7 +24,9 @@ data class RaceResponse(
     @SerialName("SecondPractice")
     val secondPractice: PracticeResponse,
     @SerialName("ThirdPractice")
-    val thirdPractice: PracticeResponse,
+    val thirdPractice: PracticeResponse?,
     @SerialName("Qualifying")
-    val qualifying: PracticeResponse
+    val qualifying: PracticeResponse,
+    @SerialName("Sprint")
+    val sprint: PracticeResponse?
 )

@@ -11,6 +11,7 @@ data class Race(
     val dateTime: LocalDateTime,
     val firstPracticeDateTime: LocalDateTime,
     val secondPracticeDateTime: LocalDateTime,
-    val thirdPracticeDateTime: LocalDateTime,
-    val qualifyingDateTime: LocalDateTime
+    val thirdPracticeDateTime: LocalDateTime?,
+    val qualifyingDateTime: LocalDateTime,
+    val sprintDateTime: LocalDateTime?
 )

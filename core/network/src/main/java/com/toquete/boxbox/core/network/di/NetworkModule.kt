@@ -24,7 +24,10 @@ internal object NetworkModule {
 
     @Provides
     fun providesJson(): Json {
-        return Json { ignoreUnknownKeys = true }
+        return Json {
+            ignoreUnknownKeys = true
+            explicitNulls = false
+        }
     }
 
     @Provides

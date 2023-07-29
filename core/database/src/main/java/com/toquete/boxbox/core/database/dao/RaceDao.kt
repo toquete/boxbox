@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
 import com.toquete.boxbox.core.database.model.RaceEntity
+import com.toquete.boxbox.core.database.model.RaceWithCircuitEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -15,8 +16,17 @@ interface RaceDao {
      *
      * @param season the year of the season
      */
-    @Query("SELECT * FROM races WHERE season = :season")
-    fun getRacesBySeason(season: String): Flow<List<RaceEntity>>
+    @Query(
+        "SELECT race.*, circuit.*, country.flag_url AS flagUrl " +
+            "FROM races AS race " +
+            "INNER JOIN circuits AS circuit " +
+            "ON race.circuit_id = circuit.id " +
+            "LEFT JOIN countries AS country " +
+            "ON country.name LIKE '%' || circuit.country || '%' " +
+            "OR country.id = circuit.country " +
+            "WHERE race.season = :season "
+    )
+    fun getRacesBySeason(season: String): Flow<List<RaceWithCircuitEntity>>
 
     @Upsert
     suspend fun upsertAll(races: List<RaceEntity>)
