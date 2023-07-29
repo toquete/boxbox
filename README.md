@@ -1,4 +1,6 @@
 # BoxBox 🏎️ - Your Ultimate Formula 1 Companion!
+<a href='https://play.google.com/store/apps/details?id=com.toquete.boxbox&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="70"/></a>
+
 Welcome to BoxBox, the ultimate app designed exclusively for Formula 1 fans. Whether you're a die-hard follower or a casual enthusiast, BoxBox provides a comprehensive and immersive experience, keeping you up-to-date with all things F1!
 
 ## What's Inside
