@@ -25,6 +25,9 @@ android {
     }
 
     signingConfigs {
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+        }
         create("release") {
             storeFile = keystoreProperties.getProperty("storeFile")?.let { file(it) }
             storePassword = keystoreProperties.getProperty("storePassword")
@@ -74,6 +77,8 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
     implementation(libs.work.runtime)
+    implementation(libs.firebase.appcheck)
+    implementation(libs.firebase.appcheck.ktx)
     implementation(libs.hilt.work)
     kapt(libs.hilt.work.compiler)
 

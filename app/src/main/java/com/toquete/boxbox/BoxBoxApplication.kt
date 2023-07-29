@@ -5,6 +5,10 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
+import com.google.firebase.appcheck.ktx.appCheck
+import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.initialize
 import com.toquete.boxbox.worker.SyncWorker
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
@@ -23,8 +27,15 @@ class BoxBoxApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        setupAppCheck()
         setupSyncWork()
         setupTimber()
+    }
+
+    override fun getWorkManagerConfiguration(): Configuration {
+        return Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
     }
 
     private fun setupSyncWork() {
@@ -40,9 +51,10 @@ class BoxBoxApplication : Application(), Configuration.Provider {
         Timber.plant(timberTree)
     }
 
-    override fun getWorkManagerConfiguration(): Configuration {
-        return Configuration.Builder()
-            .setWorkerFactory(workerFactory)
-            .build()
+    private fun setupAppCheck() {
+        Firebase.initialize(this)
+        Firebase.appCheck.installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance()
+        )
     }
 }
