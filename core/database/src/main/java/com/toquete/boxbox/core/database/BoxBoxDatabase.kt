@@ -3,6 +3,7 @@ package com.toquete.boxbox.core.database
 import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.toquete.boxbox.core.database.dao.CircuitDao
 import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
@@ -55,4 +56,6 @@ internal abstract class BoxBoxDatabase : RoomDatabase() {
     abstract fun countryDao(): CountryDao
 
     abstract fun raceDao(): RaceDao
+
+    abstract fun circuitDao(): CircuitDao
 }
