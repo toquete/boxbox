@@ -9,7 +9,7 @@ val fullConstructorStandingEntities = listOf(
         constructorStandingEntities.first(),
         ConstructorWithCountryFlagEntity(
             constructorEntities.first(),
-            countryEntities.last().flagUrl
+            countryEntities[1].flagUrl
         ),
         constructorImageEntities.first().imageUrl
     )

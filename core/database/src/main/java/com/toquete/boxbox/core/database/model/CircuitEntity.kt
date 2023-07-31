@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 data class CircuitEntity(
     @PrimaryKey
     val id: String,
-    val url: String,
-    val name: String,
+    val circuitUrl: String,
+    val circuitName: String,
     val latitude: String,
     val longitude: String,
     val locality: String,

@@ -17,7 +17,10 @@ class BoxBoxServiceTest {
 
     private val mockWebServer = MockWebServer()
     private val service = NetworkModule.getRetrofitBuilder(
-        json = Json { ignoreUnknownKeys = true },
+        json = Json {
+            ignoreUnknownKeys = true
+            explicitNulls = false
+        },
         baseUrl = mockWebServer.url("")
     )
         .build()

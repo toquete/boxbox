@@ -6,9 +6,9 @@ import androidx.room.Entity
 @Entity(tableName = "races", primaryKeys = ["season", "round"])
 data class RaceEntity(
     val season: String,
-    val round: String,
-    val url: String,
-    val name: String,
+    val round: Int,
+    val raceUrl: String,
+    val raceName: String,
     val date: String,
     val time: String,
     @ColumnInfo(name = "circuit_id")
@@ -22,11 +22,15 @@ data class RaceEntity(
     @ColumnInfo(name = "second_practice_time")
     val secondPracticeTime: String,
     @ColumnInfo(name = "third_practice_date")
-    val thirdPracticeDate: String,
+    val thirdPracticeDate: String?,
     @ColumnInfo(name = "third_practice_time")
-    val thirdPracticeTime: String,
+    val thirdPracticeTime: String?,
     @ColumnInfo(name = "qualifying_date")
     val qualifyingDate: String,
     @ColumnInfo(name = "qualifying_time")
-    val qualifyingTime: String
+    val qualifyingTime: String,
+    @ColumnInfo(name = "sprint_date")
+    val sprintDate: String?,
+    @ColumnInfo(name = "sprint_time")
+    val sprintTime: String?
 )
