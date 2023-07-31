@@ -1,6 +1,8 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.CircuitEntity
+import com.toquete.boxbox.core.model.Circuit
+import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.network.model.CircuitResponse
 import com.toquete.boxbox.core.network.model.LocationResponse
 
@@ -34,5 +36,32 @@ val circuitEntities = listOf(
         longitude = "-97.6411",
         locality = "Austin",
         country = "USA"
+    )
+)
+
+val circuits = listOf(
+    Circuit(
+        id = "bahrain",
+        url = "http://en.wikipedia.org/wiki/Bahrain_International_Circuit",
+        name = "Bahrain International Circuit",
+        location = Location(
+            latitude = "26.0325",
+            longitude = "50.5106"
+        ),
+        locality = "Sakhir",
+        country = "Bahrain",
+        flagUrl = "http://bahrain.com"
+    ),
+    Circuit(
+        id = "americas",
+        url = "http://en.wikipedia.org/wiki/Circuit_of_the_Americas",
+        name = "Circuit of the Americas",
+        location = Location(
+            latitude = "30.1328",
+            longitude = "-97.6411"
+        ),
+        locality = "Austin",
+        country = "USA",
+        flagUrl = "http://america.com"
     )
 )
