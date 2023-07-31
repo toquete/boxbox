@@ -20,8 +20,8 @@ android {
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
-        versionCode = 3
-        versionName = "1.0.0"
+        versionCode = 4
+        versionName = "1.0.1"
     }
 
     signingConfigs {
