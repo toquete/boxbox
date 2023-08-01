@@ -1,12 +1,10 @@
-package com.toquete.boxbox
+package com.toquete.boxbox.ui
 
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
 import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
 import com.toquete.boxbox.core.testing.data.userPreferences
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
-import com.toquete.boxbox.ui.MainState
-import com.toquete.boxbox.ui.MainViewModel
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
