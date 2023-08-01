@@ -1,11 +1,8 @@
 package com.toquete.boxbox.worker.repository
 
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
-import com.toquete.boxbox.data.constructorimages.repository.ConstructorImageRepository
-import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
-import com.toquete.boxbox.data.countries.repository.CountryRepository
-import com.toquete.boxbox.data.driverimages.repository.DriverImageRepository
-import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
+import com.toquete.boxbox.core.common.util.Syncable
+import com.toquete.boxbox.data.races.repository.RaceRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
@@ -13,22 +10,18 @@ import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 class DefaultSyncRepository @Inject constructor(
-    private val driverStandingsRepository: DriverStandingsRepository,
-    private val constructorStandingsRepository: ConstructorStandingsRepository,
-    private val countryRepository: CountryRepository,
-    private val driverImageRepository: DriverImageRepository,
-    private val constructorImageRepository: ConstructorImageRepository,
+    private val standingsRepository: StandingsRepository,
+    private val imagesRepository: ImagesRepository,
+    private val raceRepository: RaceRepository,
     @IoDispatcher private val dispatcher: CoroutineContext
-) : SyncRepository {
+) : Syncable {
 
     override suspend fun sync() {
         withContext(dispatcher) {
             awaitAll(
-                async { driverImageRepository.sync() },
-                async { constructorImageRepository.sync() },
-                async { countryRepository.sync() },
-                async { driverStandingsRepository.sync() },
-                async { constructorStandingsRepository.sync() }
+                async { standingsRepository.sync(this) },
+                async { imagesRepository.sync(this) },
+                async { raceRepository.sync() }
             )
         }
     }
