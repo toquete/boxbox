@@ -1,5 +1,8 @@
 package com.toquete.boxbox.worker.repository
 
-import com.toquete.boxbox.core.common.util.Syncable
+import kotlinx.coroutines.CoroutineScope
 
-interface SyncRepository : Syncable
+interface SyncRepository {
+
+    suspend fun sync(scope: CoroutineScope)
+}

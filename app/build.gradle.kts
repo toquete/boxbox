@@ -71,6 +71,7 @@ dependencies {
     implementation(project(":data:countries"))
     implementation(project(":data:driverstandings"))
     implementation(project(":data:constructorstandings"))
+    implementation(project(":data:races"))
     implementation(project(":feature:standings"))
     implementation(project(":feature:settings"))
     implementation(libs.core.ktx)

@@ -7,7 +7,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
-import com.toquete.boxbox.worker.repository.SyncRepository
+import com.toquete.boxbox.core.common.util.Syncable
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import timber.log.Timber
@@ -20,7 +20,7 @@ private val syncConstraints = Constraints.Builder()
 class SyncWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParameters: WorkerParameters,
-    private val syncRepository: SyncRepository
+    private val syncRepository: Syncable
 ) : CoroutineWorker(appContext, workerParameters) {
 
     override suspend fun doWork(): Result {
