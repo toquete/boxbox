@@ -29,4 +29,14 @@ class AutoMigrationTest {
 
         helper.runMigrationsAndValidate(testDb, 2, true)
     }
+
+    @Test
+    @Throws(IOException::class)
+    fun migrateFrom2To3() {
+        helper.createDatabase(testDb, 2).apply {
+            close()
+        }
+
+        helper.runMigrationsAndValidate(testDb, 3, true)
+    }
 }

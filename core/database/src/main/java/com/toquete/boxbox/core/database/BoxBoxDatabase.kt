@@ -25,7 +25,7 @@ import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.core.database.model.RaceEntity
 
 @Database(
-    version = 2,
+    version = 3,
     entities = [
         DriverStandingEntity::class,
         DriverEntity::class,
@@ -39,7 +39,8 @@ import com.toquete.boxbox.core.database.model.RaceEntity
         CircuitImageEntity::class
     ],
     autoMigrations = [
-        AutoMigration(from = 1, to = 2)
+        AutoMigration(from = 1, to = 2),
+        AutoMigration(from = 2, to = 3)
     ]
 )
 internal abstract class BoxBoxDatabase : RoomDatabase() {
