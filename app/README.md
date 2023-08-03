@@ -14,6 +14,7 @@ flowchart LR
     APP ==> STANDINGS
     APP ==> SETTINGS
     APP ==> RACES
+    APP ==> CIRCUIT_IMAGES
     subgraph :core
         direction LR
         MODEL[:model]
@@ -29,6 +30,7 @@ flowchart LR
         CONSTRUCTOR_IMAGES[:constructorimages]
         COUNTRIES[:countries]
         RACES[:races]
+        CIRCUIT_IMAGES[:circuitimages]
     end
     subgraph :feature
         STANDINGS[:standings]

@@ -68,6 +68,7 @@ dependencies {
     implementation(project(":core:preferences"))
     implementation(project(":data:driverimages"))
     implementation(project(":data:constructorimages"))
+    implementation(project(":data:circuitimages"))
     implementation(project(":data:countries"))
     implementation(project(":data:driverstandings"))
     implementation(project(":data:constructorstandings"))
@@ -103,6 +104,7 @@ dependencies {
     kover(project(":data:constructorimages"))
     kover(project(":data:races"))
     kover(project(":data:circuits"))
+    kover(project(":data:circuitimages"))
     kover(project(":feature:standings"))
     kover(project(":feature:settings"))
 }

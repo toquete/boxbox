@@ -1,5 +1,6 @@
 package com.toquete.boxbox.worker.repository
 
+import com.toquete.boxbox.data.circuitimages.repository.CircuitImageRepository
 import com.toquete.boxbox.data.constructorimages.repository.ConstructorImageRepository
 import com.toquete.boxbox.data.countries.repository.CountryRepository
 import com.toquete.boxbox.data.driverimages.repository.DriverImageRepository
@@ -13,6 +14,7 @@ class DefaultImagesRepository @Inject constructor(
     private val countryRepository: CountryRepository,
     private val driverImageRepository: DriverImageRepository,
     private val constructorImageRepository: ConstructorImageRepository,
+    private val circuitImageRepository: CircuitImageRepository
 ) : ImagesRepository {
 
     override suspend fun sync(scope: CoroutineScope) {
@@ -20,7 +22,8 @@ class DefaultImagesRepository @Inject constructor(
             awaitAll(
                 async { countryRepository.sync() },
                 async { driverImageRepository.sync() },
-                async { constructorImageRepository.sync() }
+                async { constructorImageRepository.sync() },
+                async { circuitImageRepository.sync() }
             )
         }
     }
