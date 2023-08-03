@@ -7,5 +7,6 @@ data class Circuit(
     val location: Location,
     val locality: String,
     val country: String,
-    val flagUrl: String?
+    val flagUrl: String?,
+    val imageUrl: String?
 )

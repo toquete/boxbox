@@ -6,11 +6,13 @@ val racesWithCircuits = listOf(
     RaceWithCircuitEntity(
         race = raceEntities.first(),
         circuit = circuitEntities.first(),
-        flagUrl = "http://bahrain.com"
+        flagUrl = "http://bahrain.com",
+        circuitImageUrl = "http://image.com"
     ),
     RaceWithCircuitEntity(
         race = raceEntities.last(),
         circuit = circuitEntities.last(),
-        flagUrl = "http://america.com"
+        flagUrl = "http://america.com",
+        circuitImageUrl = "http://image.com"
     )
 )

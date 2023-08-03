@@ -50,7 +50,8 @@ val circuits = listOf(
         ),
         locality = "Sakhir",
         country = "Bahrain",
-        flagUrl = "http://bahrain.com"
+        flagUrl = "http://bahrain.com",
+        imageUrl = "http://image.com"
     ),
     Circuit(
         id = "americas",
@@ -62,6 +63,7 @@ val circuits = listOf(
         ),
         locality = "Austin",
         country = "USA",
-        flagUrl = "http://america.com"
+        flagUrl = "http://america.com",
+        imageUrl = "http://image.com"
     )
 )
