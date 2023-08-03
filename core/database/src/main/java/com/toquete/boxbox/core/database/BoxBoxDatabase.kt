@@ -4,6 +4,7 @@ import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.toquete.boxbox.core.database.dao.CircuitDao
+import com.toquete.boxbox.core.database.dao.CircuitImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
@@ -13,6 +14,7 @@ import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.dao.RaceDao
 import com.toquete.boxbox.core.database.model.CircuitEntity
+import com.toquete.boxbox.core.database.model.CircuitImageEntity
 import com.toquete.boxbox.core.database.model.ConstructorEntity
 import com.toquete.boxbox.core.database.model.ConstructorImageEntity
 import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
@@ -33,7 +35,8 @@ import com.toquete.boxbox.core.database.model.RaceEntity
         DriverImageEntity::class,
         ConstructorImageEntity::class,
         CircuitEntity::class,
-        RaceEntity::class
+        RaceEntity::class,
+        CircuitImageEntity::class
     ],
     autoMigrations = [
         AutoMigration(from = 1, to = 2)
@@ -58,4 +61,6 @@ internal abstract class BoxBoxDatabase : RoomDatabase() {
     abstract fun raceDao(): RaceDao
 
     abstract fun circuitDao(): CircuitDao
+
+    abstract fun circuitImageDao(): CircuitImageDao
 }

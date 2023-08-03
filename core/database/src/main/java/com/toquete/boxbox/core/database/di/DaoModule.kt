@@ -2,6 +2,7 @@ package com.toquete.boxbox.core.database.di
 
 import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.database.dao.CircuitDao
+import com.toquete.boxbox.core.database.dao.CircuitImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
@@ -62,5 +63,10 @@ internal object DaoModule {
     @Provides
     fun providesCircuitDao(database: BoxBoxDatabase): CircuitDao {
         return database.circuitDao()
+    }
+
+    @Provides
+    fun providesCircuitImageDao(database: BoxBoxDatabase): CircuitImageDao {
+        return database.circuitImageDao()
     }
 }
