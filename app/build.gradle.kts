@@ -105,6 +105,7 @@ dependencies {
     kover(project(":data:races"))
     kover(project(":data:circuits"))
     kover(project(":data:circuitimages"))
+    kover(project(":domain:common"))
     kover(project(":feature:standings"))
     kover(project(":feature:settings"))
 }
