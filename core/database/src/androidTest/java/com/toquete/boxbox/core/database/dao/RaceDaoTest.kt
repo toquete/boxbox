@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.testing.data.circuitEntities
+import com.toquete.boxbox.core.testing.data.circuitImageEntities
 import com.toquete.boxbox.core.testing.data.countryEntities
 import com.toquete.boxbox.core.testing.data.raceEntities
 import com.toquete.boxbox.core.testing.data.racesWithCircuits
@@ -19,6 +20,7 @@ class RaceDaoTest {
     private lateinit var dao: RaceDao
     private lateinit var circuitDao: CircuitDao
     private lateinit var countryDao: CountryDao
+    private lateinit var circuitImageDao: CircuitImageDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -30,6 +32,7 @@ class RaceDaoTest {
         dao = db.raceDao()
         circuitDao = db.circuitDao()
         countryDao = db.countryDao()
+        circuitImageDao = db.circuitImageDao()
     }
 
     @After
@@ -41,6 +44,7 @@ class RaceDaoTest {
     fun testRaceInsert() = runTest {
         countryDao.upsertAll(countryEntities)
         circuitDao.upsertAll(circuitEntities)
+        circuitImageDao.upsertAll(circuitImageEntities)
         dao.upsertAll(raceEntities)
 
         val result = dao.getRacesBySeason(season = "2023").first()

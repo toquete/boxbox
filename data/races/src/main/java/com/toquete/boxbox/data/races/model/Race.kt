@@ -46,7 +46,8 @@ internal fun RaceWithCircuitEntity.toDomain(): Race {
             ),
             locality = circuit.locality,
             country = circuit.country,
-            flagUrl = flagUrl
+            flagUrl = flagUrl,
+            imageUrl = circuitImageUrl
         ),
         dateTime = dateAndTimeToInstant(race.date, race.time),
         firstPracticeDateTime = dateAndTimeToInstant(race.firstPracticeDate, race.firstPracticeTime),
