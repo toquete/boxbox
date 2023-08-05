@@ -5,7 +5,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.todayIn
 import javax.inject.Inject
 
-class GetTodayLocalDate @Inject constructor(private val clock: Clock) {
+class GetTodayLocalDateUseCase @Inject constructor(private val clock: Clock) {
 
     operator fun invoke() = clock.todayIn(TimeZone.currentSystemDefault())
 }

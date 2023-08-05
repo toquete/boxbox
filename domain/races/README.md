@@ -5,11 +5,16 @@ flowchart LR
     RACES ===> MODEL
     RACES ==> TESTING
     RACES ==> COMMON
+    RACES ===> DATA_RACES
     subgraph :core
         direction LR
         MODEL[:model]
         TESTING[:testing]
         COMMON[:common]
+    end
+    subgraph :data
+        direction LR
+        DATA_RACES[:races]
     end
     subgraph :domain
         DOMAIN_COMMON[:common]

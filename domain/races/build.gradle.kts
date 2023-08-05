@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:common"))
+    implementation(project(":data:races"))
     implementation(project(":domain:common"))
 
     testImplementation(project(":core:testing"))
