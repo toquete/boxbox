@@ -7,7 +7,7 @@ import kotlinx.datetime.toInstant
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class GetTodayLocalDateTimeTest {
+class GetTodayLocalDateUseCaseTest {
 
     private val now = LocalDateTime(
         year = 2023,
@@ -19,7 +19,7 @@ class GetTodayLocalDateTimeTest {
     )
     private val instant = now.toInstant(TimeZone.currentSystemDefault())
     private val clock = FixedClock(instant)
-    private val useCase = GetTodayLocalDate(clock)
+    private val useCase = GetTodayLocalDateUseCase(clock)
 
     @Test
     fun `invoke should return today's date`() {
