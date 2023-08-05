@@ -10,14 +10,24 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.model.Race
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import kotlinx.datetime.toInstant
+
+@Composable
+fun RacesScreen() {
+    val viewModel: RacesViewModel = viewModel()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    RacesContent(state)
+}
 
 @Composable
 internal fun RacesContent(state: RacesState) {
