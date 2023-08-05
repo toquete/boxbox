@@ -15,6 +15,7 @@ flowchart LR
     APP ==> SETTINGS
     APP ==> RACES
     APP ==> CIRCUIT_IMAGES
+    APP ==> RACES_FEATURE
     subgraph :core
         direction LR
         MODEL[:model]
@@ -35,5 +36,6 @@ flowchart LR
     subgraph :feature
         STANDINGS[:standings]
         SETTINGS[:settings]
+        RACES_FEATURE[:races]
     end
 ```

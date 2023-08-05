@@ -13,7 +13,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:ui"))
     implementation(project(":core:common"))
-    implementation(project(":data:races"))
+    implementation(project(":domain:races"))
 
     testImplementation(project(":core:testing"))
     androidTestImplementation(project(":core:testing"))

@@ -13,7 +13,7 @@ flowchart LR
         UI[:ui]
         COMMON[:common]
     end
-    subgraph :data
+    subgraph :domain
         RACES_DATA[:races]
     end
     subgraph :feature
