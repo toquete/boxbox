@@ -24,10 +24,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
                 add("implementation", libs.findLibrary("core.ktx").get())
-                add("implementation", libs.findBundle("compose").get())
                 add("implementation", libs.findBundle("coil").get())
-
-                add("debugImplementation", libs.findLibrary("compose.ui.tooling").get())
             }
         }
     }

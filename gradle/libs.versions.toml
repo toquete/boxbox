@@ -41,6 +41,7 @@ crashlytics = "2.9.5"
 crashlytics-gradle = "2.9.7"
 kover = "0.7.3"
 timber = "5.0.1"
+navigation = "2.6.0"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -50,6 +51,7 @@ compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-core" }
 compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 compose-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
