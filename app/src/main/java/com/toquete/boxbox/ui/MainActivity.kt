@@ -21,6 +21,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -46,6 +48,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.toquete.boxbox.R
 import com.toquete.boxbox.core.model.DarkThemeConfig
@@ -53,6 +57,7 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.settings.SettingsScreen
 import com.toquete.boxbox.navigation.BoxBoxNavHost
+import com.toquete.boxbox.navigation.TopLevelDestination
 import com.toquete.boxbox.util.monitor.NetworkMonitor
 import com.toquete.boxbox.util.monitor.SyncMonitor
 import dagger.hilt.android.AndroidEntryPoint
@@ -147,33 +152,54 @@ private fun MainScreenContent(
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(R.string.app_name),
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontFamily = FormulaOne,
-                            fontWeight = FontWeight.Bold
+            val destination = mainAppState.currentTopLevelDestination
+            if (destination != null) {
+                CenterAlignedTopAppBar(
+                    title = {
+                        Text(
+                            text = stringResource(destination.titleTextId),
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                fontFamily = FormulaOne,
+                                fontWeight = FontWeight.Bold
+                            )
                         )
+                    },
+                    actions = {
+                        if (isOffline) {
+                            Icon(
+                                modifier = Modifier.size(30.dp),
+                                imageVector = Icons.Default.WifiOff,
+                                contentDescription = null
+                            )
+                        }
+                        IconButton(onClick = onSettingsButtonClick) {
+                            Icon(
+                                modifier = Modifier.size(30.dp),
+                                imageVector = Icons.Default.Settings,
+                                contentDescription = null
+                            )
+                        }
+                    }
+                )
+            }
+        },
+        bottomBar = {
+            NavigationBar {
+                mainAppState.topLevelDestinations.forEach { destination ->
+                    val selected = mainAppState.currentDestination.isTopLevelDestinationInHierarchy(destination)
+                    NavigationBarItem(
+                        selected = selected,
+                        onClick = { mainAppState.navigateToTopLevelDestination(destination) },
+                        icon = {
+                            Icon(
+                                imageVector = if (selected) destination.selectedIcon else destination.unselectedIcon,
+                                contentDescription = null
+                            )
+                        },
+                        label = { Text(stringResource(destination.iconTextId)) }
                     )
-                },
-                actions = {
-                    if (isOffline) {
-                        Icon(
-                            modifier = Modifier.size(30.dp),
-                            imageVector = Icons.Default.WifiOff,
-                            contentDescription = null
-                        )
-                    }
-                    IconButton(onClick = onSettingsButtonClick) {
-                        Icon(
-                            modifier = Modifier.size(30.dp),
-                            imageVector = Icons.Default.Settings,
-                            contentDescription = null
-                        )
-                    }
                 }
-            )
+            }
         },
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
@@ -219,3 +245,8 @@ private fun shouldUseDarkTheme(uiState: MainState): Boolean {
         DarkThemeConfig.DARK -> true
     }
 }
+
+private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
+    this?.hierarchy?.any {
+        it.route?.contains(destination.name, true) ?: false
+    } ?: false

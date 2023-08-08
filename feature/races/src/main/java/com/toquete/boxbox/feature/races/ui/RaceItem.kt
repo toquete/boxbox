@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.model.Race
@@ -47,7 +48,7 @@ internal fun RaceItem(race: Race) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
-                data = race.circuit.flagUrl,
+                data = race.circuit.imageUrl,
                 placeholder = uiR.drawable.ic_turn_sharp_right,
                 error = uiR.drawable.ic_turn_sharp_right,
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
@@ -61,12 +62,16 @@ internal fun RaceItem(race: Race) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.weight(weight = 0.6f)) {
+            Column(
+                modifier = Modifier.weight(weight = 0.6f),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
+                        modifier = Modifier.weight(weight = 0.6f, fill = false),
                         text = race.circuit.country,
                         style = MaterialTheme.typography.headlineLarge.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Bold
@@ -78,7 +83,8 @@ internal fun RaceItem(race: Race) {
                         data = race.circuit.flagUrl,
                         placeholder = uiR.drawable.ic_public,
                         error = uiR.drawable.ic_public,
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant)
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
+                        decoder = SvgDecoder.Factory()
                     )
                 }
                 Text(
@@ -88,6 +94,7 @@ internal fun RaceItem(race: Race) {
                 )
             }
             Surface(
+                modifier = Modifier.weight(0.4f, fill = false),
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.secondary
             ) {
