@@ -31,6 +31,7 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
 import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
+import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
 internal fun ConstructorStandingItem(standing: ConstructorStanding) {
@@ -77,8 +78,8 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(8.dp),
                     data = standing.constructor.imageUrl,
-                    placeholder = R.drawable.ic_construction,
-                    error = R.drawable.ic_construction,
+                    placeholder = uiR.drawable.ic_construction,
+                    error = uiR.drawable.ic_construction,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
                 )
             }
@@ -116,8 +117,8 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(6.dp),
                     data = standing.constructor.flagUrl,
-                    placeholder = R.drawable.ic_public,
-                    error = R.drawable.ic_public,
+                    placeholder = uiR.drawable.ic_public,
+                    error = uiR.drawable.ic_public,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
                     decoder = SvgDecoder.Factory()
                 )

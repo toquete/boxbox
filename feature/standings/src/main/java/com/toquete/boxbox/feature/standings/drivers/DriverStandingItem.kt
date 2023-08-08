@@ -32,6 +32,7 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
 import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
+import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
 fun DriverStandingItem(standing: DriverStanding) {
@@ -83,8 +84,8 @@ fun DriverStandingItem(standing: DriverStanding) {
             ) {
                 BoxBoxAsyncImage(
                     data = standing.driver.imageUrl,
-                    placeholder = R.drawable.ic_person,
-                    error = R.drawable.ic_person,
+                    placeholder = uiR.drawable.ic_person,
+                    error = uiR.drawable.ic_person,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
                 )
             }
@@ -131,8 +132,8 @@ fun DriverStandingItem(standing: DriverStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(6.dp),
                     data = standing.driver.flagUrl,
-                    placeholder = R.drawable.ic_public,
-                    error = R.drawable.ic_public,
+                    placeholder = uiR.drawable.ic_public,
+                    error = uiR.drawable.ic_public,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
                     decoder = SvgDecoder.Factory()
                 )

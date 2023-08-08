@@ -26,8 +26,8 @@ import com.toquete.boxbox.core.model.Race
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
-import com.toquete.boxbox.feature.races.R
 import kotlinx.datetime.toInstant
+import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
 internal fun RaceItem(race: Race) {
@@ -48,8 +48,8 @@ internal fun RaceItem(race: Race) {
                     .fillMaxWidth()
                     .height(200.dp),
                 data = race.circuit.flagUrl,
-                placeholder = R.drawable.ic_turn_sharp_right,
-                error = R.drawable.ic_turn_sharp_right,
+                placeholder = uiR.drawable.ic_turn_sharp_right,
+                error = uiR.drawable.ic_turn_sharp_right,
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
             )
         }
@@ -76,8 +76,8 @@ internal fun RaceItem(race: Race) {
                             .size(width = 40.dp, height = 30.dp)
                             .padding(start = 8.dp),
                         data = race.circuit.flagUrl,
-                        placeholder = R.drawable.ic_public,
-                        error = R.drawable.ic_public,
+                        placeholder = uiR.drawable.ic_public,
+                        error = uiR.drawable.ic_public,
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant)
                     )
                 }
