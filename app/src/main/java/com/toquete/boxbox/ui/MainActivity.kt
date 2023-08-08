@@ -52,7 +52,7 @@ import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.settings.SettingsScreen
-import com.toquete.boxbox.feature.standings.StandingsScreen
+import com.toquete.boxbox.navigation.BoxBoxNavHost
 import com.toquete.boxbox.util.monitor.NetworkMonitor
 import com.toquete.boxbox.util.monitor.SyncMonitor
 import dagger.hilt.android.AndroidEntryPoint
@@ -177,7 +177,7 @@ private fun MainScreenContent(
         },
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                StandingsScreen()
+                BoxBoxNavHost(appState = mainAppState)
                 AnimatedVisibility(visible = isSyncing) {
                     LinearProgressIndicator(
                         modifier = Modifier

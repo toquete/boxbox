@@ -21,8 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
@@ -30,14 +30,15 @@ import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
 
 @Composable
-fun ConstructorStandingsScreen() {
-    val viewModel: ConstructorStandingsViewModel = viewModel()
+internal fun ConstructorStandingsRoute(
+    viewModel: ConstructorStandingsViewModel = hiltViewModel()
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    ConstructorStandingsContent(state)
+    ConstructorStandingsScreen(state)
 }
 
 @Composable
-internal fun ConstructorStandingsContent(state: ConstructorStandingsState) {
+internal fun ConstructorStandingsScreen(state: ConstructorStandingsState) {
     val lazyListState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     val showButton by remember {
@@ -75,7 +76,7 @@ internal fun ConstructorStandingsContent(state: ConstructorStandingsState) {
 @Composable
 private fun FullConstructorStandingsContentLightPreview() {
     BoxBoxTheme {
-        ConstructorStandingsContent(
+        ConstructorStandingsScreen(
             state = ConstructorStandingsState(
                 standings = listOf(
                     ConstructorStanding(
@@ -100,7 +101,7 @@ private fun FullConstructorStandingsContentLightPreview() {
 private fun FullConstructorStandingsContentDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            ConstructorStandingsContent(
+            ConstructorStandingsScreen(
                 state = ConstructorStandingsState(
                     standings = listOf(
                         ConstructorStanding(
