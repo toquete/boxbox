@@ -5,8 +5,8 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
+import com.google.firebase.appcheck.AppCheckProviderFactory
 import com.google.firebase.appcheck.ktx.appCheck
-import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.toquete.boxbox.worker.SyncWorker
@@ -24,6 +24,9 @@ class BoxBoxApplication : Application(), Configuration.Provider {
 
     @Inject
     lateinit var timberTree: Timber.Tree
+
+    @Inject
+    lateinit var appCheckProviderFactory: AppCheckProviderFactory
 
     override fun onCreate() {
         super.onCreate()
@@ -53,8 +56,6 @@ class BoxBoxApplication : Application(), Configuration.Provider {
 
     private fun setupAppCheck() {
         Firebase.initialize(this)
-        Firebase.appCheck.installAppCheckProviderFactory(
-            PlayIntegrityAppCheckProviderFactory.getInstance()
-        )
+        Firebase.appCheck.installAppCheckProviderFactory(appCheckProviderFactory)
     }
 }
