@@ -96,6 +96,7 @@ firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx"
 firebase-firestore = { module = "com.google.firebase:firebase-firestore-ktx" }
 firebase-appcheck = { module = "com.google.firebase:firebase-appcheck-playintegrity" }
 firebase-appcheck-ktx = { module = "com.google.firebase:firebase-appcheck-ktx" }
+firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }

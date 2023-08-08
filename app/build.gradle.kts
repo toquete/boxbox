@@ -82,6 +82,7 @@ dependencies {
     implementation(libs.work.runtime)
     implementation(libs.firebase.appcheck)
     implementation(libs.firebase.appcheck.ktx)
+    implementation(libs.firebase.appcheck.debug)
     implementation(libs.hilt.work)
     kapt(libs.hilt.work.compiler)
 
