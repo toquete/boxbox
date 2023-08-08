@@ -21,8 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.DriverStanding
@@ -31,14 +31,15 @@ import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
 
 @Composable
-fun DriverStandingsScreen() {
-    val viewModel: DriverStandingsViewModel = viewModel()
+internal fun DriverStandingsRoute(
+    viewModel: DriverStandingsViewModel = hiltViewModel()
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    DriverStandingsContent(state)
+    DriverStandingsScreen(state)
 }
 
 @Composable
-internal fun DriverStandingsContent(state: DriverStandingsState) {
+internal fun DriverStandingsScreen(state: DriverStandingsState) {
     val lazyListState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     val showButton by remember {
@@ -76,7 +77,7 @@ internal fun DriverStandingsContent(state: DriverStandingsState) {
 @Composable
 private fun FullDriverStandingsContentLightPreview() {
     BoxBoxTheme {
-        DriverStandingsContent(
+        DriverStandingsScreen(
             state = DriverStandingsState(
                 standings = listOf(
                     DriverStanding(
@@ -108,7 +109,7 @@ private fun FullDriverStandingsContentLightPreview() {
 private fun FullDriverStandingsContentDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            DriverStandingsContent(
+            DriverStandingsScreen(
                 state = DriverStandingsState(
                     standings = listOf(
                         DriverStanding(

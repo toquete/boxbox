@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.toquete.boxbox.core.common.STATE_FLOW_STOP_TIMEOUT
 import com.toquete.boxbox.util.monitor.NetworkMonitor
 import com.toquete.boxbox.util.monitor.SyncMonitor
@@ -16,16 +18,18 @@ import kotlinx.coroutines.flow.stateIn
 fun rememberMainAppState(
     networkMonitor: NetworkMonitor,
     syncMonitor: SyncMonitor,
-    coroutineScope: CoroutineScope = rememberCoroutineScope()
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    navController: NavHostController = rememberNavController()
 ) = remember(networkMonitor, syncMonitor, coroutineScope) {
-    MainAppState(networkMonitor, syncMonitor, coroutineScope)
+    MainAppState(networkMonitor, syncMonitor, coroutineScope, navController)
 }
 
 @Stable
 class MainAppState(
     networkMonitor: NetworkMonitor,
     syncMonitor: SyncMonitor,
-    coroutineScope: CoroutineScope
+    coroutineScope: CoroutineScope,
+    val navController: NavHostController
 ) {
 
     val isOffline = networkMonitor.isOnline

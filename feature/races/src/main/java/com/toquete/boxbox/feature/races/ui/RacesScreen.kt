@@ -14,8 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.model.Race
@@ -23,14 +23,15 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import kotlinx.datetime.toInstant
 
 @Composable
-fun RacesScreen() {
-    val viewModel: RacesViewModel = viewModel()
+internal fun RacesRoute(
+    viewModel: RacesViewModel = hiltViewModel()
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    RacesContent(state)
+    RacesScreen(state)
 }
 
 @Composable
-internal fun RacesContent(state: RacesState) {
+internal fun RacesScreen(state: RacesState) {
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -48,7 +49,7 @@ internal fun RacesContent(state: RacesState) {
 @Composable
 private fun RacesContentLightPreview() {
     BoxBoxTheme {
-        RacesContent(
+        RacesScreen(
             state = RacesState(
                 races = listOf(
                     Race(
@@ -87,7 +88,7 @@ private fun RacesContentLightPreview() {
 private fun RacesContentDarkPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            RacesContent(
+            RacesScreen(
                 state = RacesState(
                     races = listOf(
                         Race(
