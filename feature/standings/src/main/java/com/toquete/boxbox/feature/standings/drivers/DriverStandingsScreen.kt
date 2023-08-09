@@ -74,7 +74,7 @@ internal fun DriverStandingsScreen(state: DriverStandingsState) {
 
 @UiModePreviews
 @Composable
-private fun FullDriverStandingsScreenPreview() {
+internal fun FullDriverStandingsScreenPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             DriverStandingsScreen(

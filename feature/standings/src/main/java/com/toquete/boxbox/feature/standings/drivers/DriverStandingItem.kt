@@ -143,7 +143,7 @@ fun DriverStandingItem(standing: DriverStanding) {
 
 @UiModePreviews
 @Composable
-private fun DriverStandingItemPreview() {
+internal fun DriverStandingItemPreview() {
     BoxBoxTheme {
         DriverStandingItem(
             standing = DriverStanding(

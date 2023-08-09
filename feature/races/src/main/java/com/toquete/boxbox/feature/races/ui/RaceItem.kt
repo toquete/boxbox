@@ -1,6 +1,5 @@
 package com.toquete.boxbox.feature.races.ui
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,12 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.model.Race
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
@@ -74,7 +73,7 @@ internal fun RaceItem(race: Race) {
                     Text(
                         modifier = Modifier.weight(weight = 0.6f, fill = false),
                         text = race.circuit.country,
-                        style = MaterialTheme.typography.headlineLarge.copy(fontFamily = FormulaOne),
+                        style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Bold
                     )
                     BoxBoxAsyncImage(
@@ -119,43 +118,9 @@ internal fun RaceItem(race: Race) {
     }
 }
 
-@Preview(name = "Item Light", showBackground = true)
+@UiModePreviews
 @Composable
-private fun RaceItemLightPreview() {
-    BoxBoxTheme {
-        RaceItem(
-            race = Race(
-                season = "2023",
-                round = 1,
-                url = "https://en.wikipedia.org/wiki/2023_Bahrain_Grand_Prix",
-                name = "Bahrain Grand Prix",
-                circuit = Circuit(
-                    id = "bahrain",
-                    url = "http://en.wikipedia.org/wiki/Bahrain_International_Circuit",
-                    name = "Bahrain International Circuit",
-                    location = Location(
-                        latitude = "26.0325",
-                        longitude = "50.5106"
-                    ),
-                    locality = "Sakhir",
-                    country = "Bahrain",
-                    flagUrl = null,
-                    imageUrl = null
-                ),
-                dateTime = "2023-03-05T15:00:00Z".toInstant(),
-                firstPracticeDateTime = "2023-03-03T11:30:00Z".toInstant(),
-                secondPracticeDateTime = "2023-03-03T15:00:00Z".toInstant(),
-                thirdPracticeDateTime = "2023-03-04T11:30:00Z".toInstant(),
-                qualifyingDateTime = "2023-03-04T15:00:00Z".toInstant(),
-                sprintDateTime = null
-            )
-        )
-    }
-}
-
-@Preview(name = "Item Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun RaceItemDarkPreview() {
+internal fun RaceItemPreview() {
     BoxBoxTheme {
         RaceItem(
             race = Race(

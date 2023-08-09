@@ -73,7 +73,7 @@ internal fun ConstructorStandingsScreen(state: ConstructorStandingsState) {
 
 @UiModePreviews
 @Composable
-private fun FullConstructorStandingsScreenPreview() {
+internal fun FullConstructorStandingsScreenPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             ConstructorStandingsScreen(

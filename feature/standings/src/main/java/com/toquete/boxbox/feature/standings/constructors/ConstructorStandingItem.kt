@@ -128,7 +128,7 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
 
 @UiModePreviews
 @Composable
-private fun ConstructorStandingItemPreview() {
+internal fun ConstructorStandingItemPreview() {
     BoxBoxTheme {
         ConstructorStandingItem(
             standing = ConstructorStanding(

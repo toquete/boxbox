@@ -122,7 +122,7 @@ private fun SettingsRow(
 
 @UiModePreviews
 @Composable
-private fun SettingsContentPreview() {
+internal fun SettingsContentPreview() {
     BoxBoxTheme {
         SettingsContent(
             state = SettingsState.Success(
