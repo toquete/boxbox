@@ -1,6 +1,5 @@
 package com.toquete.boxbox.feature.standings.drivers
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,17 +20,18 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.DriverStanding
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
 import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
+import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
 fun DriverStandingItem(standing: DriverStanding) {
@@ -83,8 +83,8 @@ fun DriverStandingItem(standing: DriverStanding) {
             ) {
                 BoxBoxAsyncImage(
                     data = standing.driver.imageUrl,
-                    placeholder = R.drawable.ic_person,
-                    error = R.drawable.ic_person,
+                    placeholder = uiR.drawable.ic_person,
+                    error = uiR.drawable.ic_person,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
                 )
             }
@@ -131,8 +131,8 @@ fun DriverStandingItem(standing: DriverStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(6.dp),
                     data = standing.driver.flagUrl,
-                    placeholder = R.drawable.ic_public,
-                    error = R.drawable.ic_public,
+                    placeholder = uiR.drawable.ic_public,
+                    error = uiR.drawable.ic_public,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
                     decoder = SvgDecoder.Factory()
                 )
@@ -141,9 +141,9 @@ fun DriverStandingItem(standing: DriverStanding) {
     }
 }
 
-@Preview(name = "Item Light", showBackground = true)
+@UiModePreviews
 @Composable
-private fun DriverStandingItemLightPreview() {
+internal fun DriverStandingItemPreview() {
     BoxBoxTheme {
         DriverStandingItem(
             standing = DriverStanding(
@@ -165,34 +165,5 @@ private fun DriverStandingItemLightPreview() {
                 )
             )
         )
-    }
-}
-
-@Preview(name = "Item Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun DriverStandingItemDarkPreview() {
-    BoxBoxTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            DriverStandingItem(
-                standing = DriverStanding(
-                    position = 1,
-                    points = "258",
-                    wins = "7",
-                    driver = Driver(
-                        id = "max_verstappen",
-                        firstName = "Max",
-                        lastName = "Verstappen",
-                        imageUrl = null,
-                        flagUrl = null
-                    ),
-                    constructor = Constructor(
-                        id = "red_bull",
-                        name = "Red Bull",
-                        imageUrl = null,
-                        flagUrl = null
-                    )
-                )
-            )
-        }
     }
 }

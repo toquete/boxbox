@@ -1,6 +1,5 @@
 package com.toquete.boxbox.feature.standings.constructors
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,16 +20,17 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.ConstructorStanding
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
 import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
+import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
 internal fun ConstructorStandingItem(standing: ConstructorStanding) {
@@ -77,8 +77,8 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(8.dp),
                     data = standing.constructor.imageUrl,
-                    placeholder = R.drawable.ic_construction,
-                    error = R.drawable.ic_construction,
+                    placeholder = uiR.drawable.ic_construction,
+                    error = uiR.drawable.ic_construction,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
                 )
             }
@@ -116,8 +116,8 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                 BoxBoxAsyncImage(
                     modifier = Modifier.padding(6.dp),
                     data = standing.constructor.flagUrl,
-                    placeholder = R.drawable.ic_public,
-                    error = R.drawable.ic_public,
+                    placeholder = uiR.drawable.ic_public,
+                    error = uiR.drawable.ic_public,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
                     decoder = SvgDecoder.Factory()
                 )
@@ -126,9 +126,9 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
     }
 }
 
-@Preview(name = "Item Light", showBackground = true)
+@UiModePreviews
 @Composable
-private fun ConstructorStandingItemLightPreview() {
+internal fun ConstructorStandingItemPreview() {
     BoxBoxTheme {
         ConstructorStandingItem(
             standing = ConstructorStanding(
@@ -143,27 +143,5 @@ private fun ConstructorStandingItemLightPreview() {
                 )
             )
         )
-    }
-}
-
-@Preview(name = "Item Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun ConstructorStandingItemDarkPreview() {
-    BoxBoxTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            ConstructorStandingItem(
-                standing = ConstructorStanding(
-                    position = 1,
-                    points = "258",
-                    wins = "7",
-                    constructor = Constructor(
-                        id = "red_bull",
-                        name = "Red Bull",
-                        imageUrl = null,
-                        flagUrl = null
-                    )
-                )
-            )
-        }
     }
 }

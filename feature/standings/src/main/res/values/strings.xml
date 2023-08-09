@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="standings">Standings</string>
     <string name="drivers">Drivers</string>
     <string name="constructors">Constructors</string>
     <string name="points">%s PTS</string>

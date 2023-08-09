@@ -1,6 +1,5 @@
 package com.toquete.boxbox.feature.standings.constructors
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,12 +18,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.ConstructorStanding
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
@@ -72,33 +71,9 @@ internal fun ConstructorStandingsScreen(state: ConstructorStandingsState) {
     }
 }
 
-@Preview(name = "Content Light", showBackground = true)
+@UiModePreviews
 @Composable
-private fun FullConstructorStandingsContentLightPreview() {
-    BoxBoxTheme {
-        ConstructorStandingsScreen(
-            state = ConstructorStandingsState(
-                standings = listOf(
-                    ConstructorStanding(
-                        position = 1,
-                        points = "258",
-                        wins = "7",
-                        constructor = Constructor(
-                            id = "red_bull",
-                            name = "Red Bull",
-                            imageUrl = null,
-                            flagUrl = null
-                        )
-                    )
-                )
-            )
-        )
-    }
-}
-
-@Preview(name = "Content Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun FullConstructorStandingsContentDarkPreview() {
+internal fun FullConstructorStandingsScreenPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             ConstructorStandingsScreen(

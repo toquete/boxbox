@@ -1,6 +1,5 @@
 package com.toquete.boxbox.feature.settings
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +12,6 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -23,13 +21,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 
 @Composable
@@ -122,9 +120,9 @@ private fun SettingsRow(
     }
 }
 
-@Preview(name = "Light", showBackground = false)
+@UiModePreviews
 @Composable
-fun SettingsContentLightPreview() {
+internal fun SettingsContentPreview() {
     BoxBoxTheme {
         SettingsContent(
             state = SettingsState.Success(
@@ -133,21 +131,5 @@ fun SettingsContentLightPreview() {
             onDismiss = {},
             onOptionSelected = {}
         )
-    }
-}
-
-@Preview(name = "Dark", showBackground = false, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun SettingsContentDarkPreview() {
-    BoxBoxTheme {
-        Surface {
-            SettingsContent(
-                state = SettingsState.Success(
-                    UserPreferences(darkThemeConfig = DarkThemeConfig.LIGHT)
-                ),
-                onDismiss = {},
-                onOptionSelected = {}
-            )
-        }
     }
 }

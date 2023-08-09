@@ -11,14 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.WifiOff
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -27,7 +19,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -38,7 +29,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
@@ -50,7 +40,6 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.toquete.boxbox.R
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
-import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.settings.SettingsScreen
 import com.toquete.boxbox.navigation.BoxBoxNavHost
 import com.toquete.boxbox.util.monitor.NetworkMonitor
@@ -132,7 +121,6 @@ fun MainScreen(
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 private fun MainScreenContent(
     mainAppState: MainAppState,
     onSettingsButtonClick: () -> Unit
@@ -147,34 +135,12 @@ private fun MainScreenContent(
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(R.string.app_name),
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontFamily = FormulaOne,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                },
-                actions = {
-                    if (isOffline) {
-                        Icon(
-                            modifier = Modifier.size(30.dp),
-                            imageVector = Icons.Default.WifiOff,
-                            contentDescription = null
-                        )
-                    }
-                    IconButton(onClick = onSettingsButtonClick) {
-                        Icon(
-                            modifier = Modifier.size(30.dp),
-                            imageVector = Icons.Default.Settings,
-                            contentDescription = null
-                        )
-                    }
-                }
+            BoxBoxTopAppBar(
+                appState = mainAppState,
+                onSettingsButtonClick = onSettingsButtonClick
             )
         },
+        bottomBar = { BoxBoxNavigationBar(appState = mainAppState) },
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
                 BoxBoxNavHost(appState = mainAppState)

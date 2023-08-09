@@ -1,6 +1,5 @@
 package com.toquete.boxbox.feature.races.ui
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,16 +17,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.model.Race
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
-import com.toquete.boxbox.feature.races.R
 import kotlinx.datetime.toInstant
+import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
 internal fun RaceItem(race: Race) {
@@ -46,10 +46,11 @@ internal fun RaceItem(race: Race) {
             BoxBoxAsyncImage(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp),
-                data = race.circuit.flagUrl,
-                placeholder = R.drawable.ic_turn_sharp_right,
-                error = R.drawable.ic_turn_sharp_right,
+                    .height(200.dp)
+                    .padding(16.dp),
+                data = race.circuit.imageUrl,
+                placeholder = uiR.drawable.ic_turn_sharp_right,
+                error = uiR.drawable.ic_turn_sharp_right,
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
             )
         }
@@ -61,14 +62,18 @@ internal fun RaceItem(race: Race) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.weight(weight = 0.6f)) {
+            Column(
+                modifier = Modifier.weight(weight = 0.6f),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
+                        modifier = Modifier.weight(weight = 0.6f, fill = false),
                         text = race.circuit.country,
-                        style = MaterialTheme.typography.headlineLarge.copy(fontFamily = FormulaOne),
+                        style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Bold
                     )
                     BoxBoxAsyncImage(
@@ -76,9 +81,10 @@ internal fun RaceItem(race: Race) {
                             .size(width = 40.dp, height = 30.dp)
                             .padding(start = 8.dp),
                         data = race.circuit.flagUrl,
-                        placeholder = R.drawable.ic_public,
-                        error = R.drawable.ic_public,
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant)
+                        placeholder = uiR.drawable.ic_public,
+                        error = uiR.drawable.ic_public,
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
+                        decoder = SvgDecoder.Factory()
                     )
                 }
                 Text(
@@ -88,6 +94,7 @@ internal fun RaceItem(race: Race) {
                 )
             }
             Surface(
+                modifier = Modifier.weight(weight = 0.4f, fill = false),
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.secondary
             ) {
@@ -111,43 +118,9 @@ internal fun RaceItem(race: Race) {
     }
 }
 
-@Preview(name = "Item Light", showBackground = true)
+@UiModePreviews
 @Composable
-private fun RaceItemLightPreview() {
-    BoxBoxTheme {
-        RaceItem(
-            race = Race(
-                season = "2023",
-                round = 1,
-                url = "https://en.wikipedia.org/wiki/2023_Bahrain_Grand_Prix",
-                name = "Bahrain Grand Prix",
-                circuit = Circuit(
-                    id = "bahrain",
-                    url = "http://en.wikipedia.org/wiki/Bahrain_International_Circuit",
-                    name = "Bahrain International Circuit",
-                    location = Location(
-                        latitude = "26.0325",
-                        longitude = "50.5106"
-                    ),
-                    locality = "Sakhir",
-                    country = "Bahrain",
-                    flagUrl = null,
-                    imageUrl = null
-                ),
-                dateTime = "2023-03-05T15:00:00Z".toInstant(),
-                firstPracticeDateTime = "2023-03-03T11:30:00Z".toInstant(),
-                secondPracticeDateTime = "2023-03-03T15:00:00Z".toInstant(),
-                thirdPracticeDateTime = "2023-03-04T11:30:00Z".toInstant(),
-                qualifyingDateTime = "2023-03-04T15:00:00Z".toInstant(),
-                sprintDateTime = null
-            )
-        )
-    }
-}
-
-@Preview(name = "Item Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun RaceItemDarkPreview() {
+internal fun RaceItemPreview() {
     BoxBoxTheme {
         RaceItem(
             race = Race(

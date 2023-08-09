@@ -1,6 +1,5 @@
 package com.toquete.boxbox.feature.standings.drivers
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,13 +18,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.DriverStanding
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.standings.ui.ScrollToUpButton
 import kotlinx.coroutines.launch
@@ -73,40 +72,9 @@ internal fun DriverStandingsScreen(state: DriverStandingsState) {
     }
 }
 
-@Preview(name = "Content Light", showBackground = true)
+@UiModePreviews
 @Composable
-private fun FullDriverStandingsContentLightPreview() {
-    BoxBoxTheme {
-        DriverStandingsScreen(
-            state = DriverStandingsState(
-                standings = listOf(
-                    DriverStanding(
-                        position = 1,
-                        points = "258",
-                        wins = "7",
-                        driver = Driver(
-                            id = "max_verstappen",
-                            firstName = "Max",
-                            lastName = "Verstappen",
-                            imageUrl = null,
-                            flagUrl = null
-                        ),
-                        constructor = Constructor(
-                            id = "red_bull",
-                            name = "Red Bull",
-                            imageUrl = null,
-                            flagUrl = null
-                        )
-                    )
-                )
-            )
-        )
-    }
-}
-
-@Preview(name = "Content Dark", showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun FullDriverStandingsContentDarkPreview() {
+internal fun FullDriverStandingsScreenPreview() {
     BoxBoxTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             DriverStandingsScreen(
