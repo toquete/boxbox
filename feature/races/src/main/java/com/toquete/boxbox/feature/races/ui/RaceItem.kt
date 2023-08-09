@@ -47,7 +47,8 @@ internal fun RaceItem(race: Race) {
             BoxBoxAsyncImage(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp),
+                    .height(200.dp)
+                    .padding(16.dp),
                 data = race.circuit.imageUrl,
                 placeholder = uiR.drawable.ic_turn_sharp_right,
                 error = uiR.drawable.ic_turn_sharp_right,
@@ -94,7 +95,7 @@ internal fun RaceItem(race: Race) {
                 )
             }
             Surface(
-                modifier = Modifier.weight(0.4f, fill = false),
+                modifier = Modifier.weight(weight = 0.4f, fill = false),
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.secondary
             ) {
