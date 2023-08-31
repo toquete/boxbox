@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.decode.SvgDecoder
+import com.toquete.boxbox.core.common.extension.toShortMonthString
 import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.model.Race
@@ -103,7 +104,7 @@ internal fun RaceItem(race: Race) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "MAR",
+                        text = race.dateTime?.toShortMonthString().orEmpty(),
                         style = MaterialTheme.typography.titleMedium.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Medium
                     )
