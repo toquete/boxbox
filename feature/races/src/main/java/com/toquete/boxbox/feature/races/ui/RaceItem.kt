@@ -17,8 +17,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.unit.dp
 import coil.decode.SvgDecoder
+import com.toquete.boxbox.core.common.extension.toDayString
 import com.toquete.boxbox.core.common.extension.toShortMonthString
 import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
@@ -74,7 +76,10 @@ internal fun RaceItem(race: Race) {
                     Text(
                         modifier = Modifier.weight(weight = 0.6f, fill = false),
                         text = race.circuit.country,
-                        style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontFamily = FormulaOne,
+                            hyphens = Hyphens.Auto
+                        ),
                         fontWeight = FontWeight.Bold
                     )
                     BoxBoxAsyncImage(
@@ -109,7 +114,7 @@ internal fun RaceItem(race: Race) {
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        text = "05",
+                        text = race.dateTime?.toDayString().orEmpty(),
                         style = MaterialTheme.typography.headlineSmall.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Medium
                     )
