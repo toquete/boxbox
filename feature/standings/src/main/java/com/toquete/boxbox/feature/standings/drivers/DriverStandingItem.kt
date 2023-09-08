@@ -82,6 +82,7 @@ fun DriverStandingItem(standing: DriverStanding) {
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {
                 BoxBoxAsyncImage(
+                    modifier = Modifier.testTag("Driver"),
                     data = standing.driver.imageUrl,
                     placeholder = uiR.drawable.ic_person,
                     error = uiR.drawable.ic_person,
@@ -129,7 +130,9 @@ fun DriverStandingItem(standing: DriverStanding) {
             }
             StandingInfoSurface(modifier = Modifier.size(width = 50.dp, height = 30.dp)) {
                 BoxBoxAsyncImage(
-                    modifier = Modifier.padding(6.dp),
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .testTag("Flag"),
                     data = standing.driver.flagUrl,
                     placeholder = uiR.drawable.ic_public,
                     error = uiR.drawable.ic_public,

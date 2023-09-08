@@ -53,7 +53,8 @@ internal fun RaceItem(race: Race) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(200.dp)
-                        .padding(16.dp),
+                        .padding(16.dp)
+                        .testTag("Circuit Image"),
                     data = race.circuit.imageUrl,
                     placeholder = uiR.drawable.ic_turn_sharp_right,
                     error = uiR.drawable.ic_turn_sharp_right,
@@ -63,7 +64,8 @@ internal fun RaceItem(race: Race) {
                     modifier = Modifier
                         .padding(8.dp)
                         .size(width = 40.dp, height = 30.dp)
-                        .align(Alignment.TopEnd),
+                        .align(Alignment.TopEnd)
+                        .testTag("Flag"),
                     data = race.circuit.flagUrl,
                     placeholder = uiR.drawable.ic_public,
                     error = uiR.drawable.ic_public,
@@ -85,6 +87,7 @@ internal fun RaceItem(race: Race) {
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
+                    modifier = Modifier.testTag("Country"),
                     text = race.circuit.country,
                     style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
                     fontWeight = FontWeight.Bold
@@ -94,6 +97,7 @@ internal fun RaceItem(race: Race) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Text(
+                    modifier = Modifier.testTag("Circuit Name"),
                     text = race.circuit.name,
                     style = MaterialTheme.typography.labelLarge.copy(fontFamily = FormulaOne),
                     fontWeight = FontWeight.Normal
@@ -109,11 +113,13 @@ internal fun RaceItem(race: Race) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
+                        modifier = Modifier.testTag("Month"),
                         text = race.dateTime?.toShortMonthString().orEmpty(),
                         style = MaterialTheme.typography.titleMedium.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Medium
                     )
                     Text(
+                        modifier = Modifier.testTag("Date"),
                         text = race.dateTime?.toDayString().orEmpty(),
                         style = MaterialTheme.typography.headlineSmall.copy(fontFamily = FormulaOne),
                         fontWeight = FontWeight.Medium
