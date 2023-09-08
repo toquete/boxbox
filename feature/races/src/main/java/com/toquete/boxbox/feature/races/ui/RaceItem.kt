@@ -1,6 +1,7 @@
 package com.toquete.boxbox.feature.races.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -16,8 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.unit.dp
 import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.common.extension.toDayString
@@ -46,16 +48,29 @@ internal fun RaceItem(race: Race) {
             shape = MaterialTheme.shapes.medium,
             color = MaterialTheme.colorScheme.inverseOnSurface
         ) {
-            BoxBoxAsyncImage(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .padding(16.dp),
-                data = race.circuit.imageUrl,
-                placeholder = uiR.drawable.ic_turn_sharp_right,
-                error = uiR.drawable.ic_turn_sharp_right,
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
-            )
+            Box(modifier = Modifier.fillMaxWidth()) {
+                BoxBoxAsyncImage(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                        .padding(16.dp),
+                    data = race.circuit.imageUrl,
+                    placeholder = uiR.drawable.ic_turn_sharp_right,
+                    error = uiR.drawable.ic_turn_sharp_right,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
+                )
+                BoxBoxAsyncImage(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .size(width = 40.dp, height = 30.dp)
+                        .align(Alignment.TopEnd),
+                    data = race.circuit.flagUrl,
+                    placeholder = uiR.drawable.ic_public,
+                    error = uiR.drawable.ic_public,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
+                    decoder = SvgDecoder.Factory()
+                )
+            }
         }
         Row(
             modifier = Modifier
@@ -69,30 +84,15 @@ internal fun RaceItem(race: Race) {
                 modifier = Modifier.weight(weight = 0.6f),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        modifier = Modifier.weight(weight = 0.6f, fill = false),
-                        text = race.circuit.country,
-                        style = MaterialTheme.typography.headlineMedium.copy(
-                            fontFamily = FormulaOne,
-                            hyphens = Hyphens.Auto
-                        ),
-                        fontWeight = FontWeight.Bold
-                    )
-                    BoxBoxAsyncImage(
-                        modifier = Modifier
-                            .size(width = 40.dp, height = 30.dp)
-                            .padding(start = 8.dp),
-                        data = race.circuit.flagUrl,
-                        placeholder = uiR.drawable.ic_public,
-                        error = uiR.drawable.ic_public,
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
-                        decoder = SvgDecoder.Factory()
-                    )
-                }
+                Text(
+                    text = race.circuit.country,
+                    style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
+                    fontWeight = FontWeight.Bold
+                )
+                Divider(
+                    modifier = Modifier.testTag("Divider"),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 Text(
                     text = race.circuit.name,
                     style = MaterialTheme.typography.labelLarge.copy(fontFamily = FormulaOne),
@@ -100,7 +100,7 @@ internal fun RaceItem(race: Race) {
                 )
             }
             Surface(
-                modifier = Modifier.weight(weight = 0.4f, fill = false),
+                modifier = Modifier.weight(weight = 0.3f, fill = false),
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.secondary
             ) {
