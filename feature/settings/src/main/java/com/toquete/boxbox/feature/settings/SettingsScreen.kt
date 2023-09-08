@@ -40,7 +40,7 @@ fun SettingsScreen(
 }
 
 @Composable
-private fun SettingsContent(
+internal fun SettingsContent(
     state: SettingsState,
     onDismiss: () -> Unit,
     onOptionSelected: (DarkThemeConfig) -> Unit
