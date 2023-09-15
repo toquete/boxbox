@@ -33,7 +33,6 @@ test-core = "1.5.0"
 test-runner = "1.5.2"
 test-rules = "1.5.0"
 detekt = "1.23.1"
-test-aggregation = "1.1.1"
 ksp = "1.9.10-1.0.13"
 google-services = "4.3.15"
 firebase-bom = "32.2.3"
@@ -53,6 +52,7 @@ compose-material-icons = { module = "androidx.compose.material:material-icons-co
 compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 compose-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+compose-navigation-test = { module = "androidx.navigation:navigation-testing", version.ref = "navigation" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
@@ -122,8 +122,6 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-test-aggregation-results = { id = "io.github.gmazzo.test.aggregation.results", version.ref = "test-aggregation" }
-test-aggregation-coverage = { id = "io.github.gmazzo.test.aggregation.coverage", version.ref = "test-aggregation" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }

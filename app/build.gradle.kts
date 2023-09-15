@@ -87,6 +87,7 @@ dependencies {
     kapt(libs.hilt.work.compiler)
 
     testImplementation(project(":core:testing"))
+    androidTestImplementation(project(":core:testing"))
 }
 
 dependencies {
