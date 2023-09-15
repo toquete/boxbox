@@ -28,7 +28,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureFirebase(this)
                 defaultConfig {
                     targetSdk = 33
-                    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                    testInstrumentationRunner = "com.toquete.boxbox.core.testing.util.BoxBoxTestRunner"
                 }
                 buildTypes {
                     debug {
