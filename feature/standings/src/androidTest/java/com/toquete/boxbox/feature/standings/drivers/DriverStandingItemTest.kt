@@ -30,6 +30,8 @@ class DriverStandingItemTest {
             onNodeWithTag("Points").assertTextEquals("90 PTS")
             onNodeWithTag("Wins").assertTextEquals("5 WINS")
             onNodeWithTag("Constructor").assertTextEquals("Red Bull")
+            onNodeWithTag("Driver").assertIsDisplayed()
+            onNodeWithTag("Flag").assertIsDisplayed()
         }
     }
 }

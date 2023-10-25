@@ -27,7 +27,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureFlavors(this)
                 configureFirebase(this)
                 defaultConfig {
-                    targetSdk = 33
+                    targetSdk = 34
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
                 buildTypes {
