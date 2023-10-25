@@ -1,5 +1,5 @@
 [versions]
-gradle = "8.0.2"
+gradle = "8.1.2"
 kotlin = "1.9.10"
 kotlin-jvm = "1.8.0"
 hilt = "2.48.1"
