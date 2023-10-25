@@ -28,6 +28,8 @@ class ConstructorStandingItemTest {
             onNodeWithTag("Divider").assertIsDisplayed()
             onNodeWithTag("Points").assertTextEquals("123 PTS")
             onNodeWithTag("Wins").assertTextEquals("3 WINS")
+            onNodeWithTag("Constructor Image").assertIsDisplayed()
+            onNodeWithTag("Flag").assertIsDisplayed()
         }
     }
 }

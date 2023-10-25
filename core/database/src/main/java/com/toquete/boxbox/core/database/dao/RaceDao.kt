@@ -21,7 +21,7 @@ interface RaceDao {
             "FROM races AS race " +
             "INNER JOIN circuits AS circuit " +
             "ON race.circuit_id = circuit.id " +
-            "INNER JOIN circuits_images AS ci " +
+            "LEFT JOIN circuits_images AS ci " +
             "ON circuit.id = ci.id " +
             "LEFT JOIN countries AS country " +
             "ON country.name LIKE '%' || circuit.country || '%' " +

@@ -75,7 +75,9 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                 color = MaterialTheme.colorScheme.inverseOnSurface
             ) {
                 BoxBoxAsyncImage(
-                    modifier = Modifier.padding(8.dp),
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .testTag("Constructor Image"),
                     data = standing.constructor.imageUrl,
                     placeholder = uiR.drawable.ic_construction,
                     error = uiR.drawable.ic_construction,
@@ -114,7 +116,9 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
             }
             StandingInfoSurface(modifier = Modifier.size(width = 50.dp, height = 30.dp)) {
                 BoxBoxAsyncImage(
-                    modifier = Modifier.padding(6.dp),
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .testTag("Flag"),
                     data = standing.constructor.flagUrl,
                     placeholder = uiR.drawable.ic_public,
                     error = uiR.drawable.ic_public,
