@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun ScrollToUpButton(
     modifier: Modifier = Modifier,
