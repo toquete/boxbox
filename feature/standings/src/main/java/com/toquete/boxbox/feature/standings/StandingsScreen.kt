@@ -25,7 +25,9 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun StandingsScreen() {
     var selectedTab by remember { mutableStateOf(StandingsTab.DRIVERS) }
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(
+        pageCount = { StandingsTab.values().size }
+    )
     val coroutineScope = rememberCoroutineScope()
     val pages = StandingsTab.values()
 
@@ -49,10 +51,7 @@ internal fun StandingsScreen() {
                 )
             }
         }
-        HorizontalPager(
-            pageCount = pages.size,
-            state = pagerState
-        ) { page ->
+        HorizontalPager(state = pagerState) { page ->
             when (pages[page]) {
                 StandingsTab.DRIVERS -> DriverStandingsRoute()
                 StandingsTab.CONSTRUCTORS -> ConstructorStandingsRoute()
