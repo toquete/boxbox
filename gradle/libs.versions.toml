@@ -82,7 +82,6 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
 work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
@@ -112,7 +111,6 @@ compose = ["compose-ui", "compose-preview", "activity-compose"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-runtime-compose", "lifecycle-livedata-ktx"]
 retrofit = ["retrofit", "serialization", "okhttp", "serialization-converter", "logging"]
 coil = ["coil", "coil-compose", "coil-svg"]
-accompanist = ["accompanist-systemuicontroller"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
