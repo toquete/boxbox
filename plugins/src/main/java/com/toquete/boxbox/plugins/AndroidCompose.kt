@@ -26,7 +26,6 @@ internal fun Project.configureAndroidCompose(
             add("androidTestImplementation", platform(bom))
 
             add("implementation", libs.findBundle("lifecycle").get())
-            add("implementation", libs.findBundle("accompanist").get())
             add("implementation", libs.findBundle("compose").get())
             add("implementation", libs.findLibrary("compose.navigation").get())
             add("implementation", libs.findLibrary("hilt.navigation").get())

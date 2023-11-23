@@ -1,8 +1,11 @@
 package com.toquete.boxbox.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -27,16 +30,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.toquete.boxbox.R
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
@@ -76,16 +76,21 @@ class MainActivity : ComponentActivity() {
 
         splashScreen.setKeepOnScreenCondition { uiState.isLoading }
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        enableEdgeToEdge()
 
         setContent {
-            val systemUiController = rememberSystemUiController()
             val isDarkTheme = shouldUseDarkTheme(uiState)
 
-            DisposableEffect(systemUiController, isDarkTheme) {
-                systemUiController.setSystemBarsColor(
-                    color = Color.Transparent,
-                    darkIcons = !isDarkTheme
+            DisposableEffect(isDarkTheme) {
+                enableEdgeToEdge(
+                    statusBarStyle = SystemBarStyle.auto(
+                        Color.TRANSPARENT,
+                        Color.TRANSPARENT
+                    ) { isDarkTheme },
+                    navigationBarStyle = SystemBarStyle.auto(
+                        DefaultLightScrim,
+                        DefaultDarkScrim
+                    ) { isDarkTheme }
                 )
                 onDispose { }
             }
@@ -185,3 +190,6 @@ private fun shouldUseDarkTheme(uiState: MainState): Boolean {
         DarkThemeConfig.DARK -> true
     }
 }
+
+private val DefaultLightScrim = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
+private val DefaultDarkScrim = Color.argb(0x80, 0x1b, 0x1b, 0x1b)

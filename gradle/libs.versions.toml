@@ -1,47 +1,47 @@
 [versions]
 gradle = "8.1.2"
-kotlin = "1.9.10"
+kotlin = "1.9.20"
 kotlin-jvm = "1.8.0"
 hilt = "2.48.1"
 compose = "1.4.3"
 compose-ui = "1.3.3"
-compose-compiler = "1.5.3"
-compose-bom = "2023.06.01"
-core-ktx = "1.10.1"
+compose-compiler = "1.5.4"
+compose-bom = "2023.10.01"
+core-ktx = "1.12.0"
 kotlinxCoroutines = "1.7.3"
 datastore-preferences = "1.0.0"
-lifecycle = "2.6.1"
-activity = "1.7.2"
+lifecycle = "2.6.2"
+activity = "1.8.0"
 retrofit = "2.9.0"
 serialization = "1.6.0"
 okhttp = "4.12.0"
 serialization-converter = "1.0.0"
-coil = "2.4.0"
+coil = "2.5.0"
 junit = "4.13.2"
 junit-ext = "1.1.5"
 espresso = "3.5.1"
 desugar-jdk-libs = "2.0.3"
 koltinx-datetime = "0.4.1"
-room = "2.5.2"
-accompanist = "0.31.0-alpha"
+room = "2.6.0"
+accompanist = "0.33.2-alpha"
 splashscreen = "1.0.1"
 work = "2.8.1"
 hilt-work = "1.0.0"
-mockwebserver = "4.11.0"
+mockwebserver = "4.12.0"
 mockk = "1.13.8"
 test-core = "1.5.0"
 test-runner = "1.5.2"
 test-rules = "1.5.0"
-detekt = "1.23.1"
+detekt = "1.23.3"
 test-aggregation = "1.1.1"
 ksp = "1.9.10-1.0.13"
 google-services = "4.3.15"
-firebase-bom = "32.2.3"
+firebase-bom = "32.4.0"
 crashlytics = "2.9.5"
 crashlytics-gradle = "2.9.9"
 kover = "0.7.3"
 timber = "5.0.1"
-navigation = "2.6.0"
+navigation = "2.7.4"
 hilt-navigation = "1.0.0"
 
 [libraries]
@@ -82,7 +82,6 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
 work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
@@ -112,7 +111,6 @@ compose = ["compose-ui", "compose-preview", "activity-compose"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-runtime-compose", "lifecycle-livedata-ktx"]
 retrofit = ["retrofit", "serialization", "okhttp", "serialization-converter", "logging"]
 coil = ["coil", "coil-compose", "coil-svg"]
-accompanist = ["accompanist-systemuicontroller"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
