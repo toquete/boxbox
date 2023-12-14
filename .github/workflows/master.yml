@@ -34,7 +34,7 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: java
       - name: Build APK
@@ -43,7 +43,7 @@ jobs:
           dependency-graph: generate-and-submit
           arguments: ':app:assembleProdDebug'
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
   lint:
     runs-on: ubuntu-latest
     steps:
