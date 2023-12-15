@@ -63,7 +63,7 @@ jobs:
         with:
           arguments: lint
       - name: Uploading lint results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lint-reports
           path: '**/lint-results-*.html'
@@ -86,7 +86,7 @@ jobs:
         with:
           arguments: detektProdDebug
       - name: Uploading detekt results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: detekt-reports
           path: '**/detekt.html'
@@ -109,12 +109,12 @@ jobs:
         with:
           arguments: koverHtmlReport
       - name: Uploading test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: '**/reports/tests/testProdDebugUnitTest/'
       - name: Uploading test coverage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-coverage-report
           path: '**/reports/coverage/'
@@ -145,7 +145,7 @@ jobs:
           ./gradlew cleanManagedDevices --unused-only
           ./gradlew pixel2api30ProdDebugAndroidTest -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=1 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
       - name: Upload Android test reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-test-reports
           path: '**/build/reports/androidTests'
