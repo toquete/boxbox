@@ -15,6 +15,13 @@ val keystoreProperties = Properties().apply {
     }
 }
 
+val buildPropertiesFile = rootProject.file("build.properties")
+val buildProperties = Properties().apply {
+    if (buildPropertiesFile.exists()) {
+        load(FileInputStream(buildPropertiesFile))
+    }
+}
+
 android {
     namespace = "com.toquete.boxbox"
 
@@ -22,6 +29,12 @@ android {
         applicationId = "com.toquete.boxbox"
         versionCode = 5
         versionName = "1.1.0"
+
+        buildConfigField(
+            "String",
+            "APP_CHECK_DEBUG_TOKEN",
+            "\"${buildProperties.getProperty("APP_CHECK_DEBUG_TOKEN")}\""
+        )
     }
 
     signingConfigs {
@@ -58,6 +71,10 @@ android {
             isMinifyEnabled = false
             isDebuggable = true
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 

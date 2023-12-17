@@ -9,5 +9,7 @@ data class DriverImageEntity(
     @PrimaryKey
     val id: String,
     @ColumnInfo(name = "image_url")
-    val imageUrl: String
+    val imageUrl: String,
+    @ColumnInfo(name = "number_url", defaultValue = "")
+    val numberUrl: String
 )
