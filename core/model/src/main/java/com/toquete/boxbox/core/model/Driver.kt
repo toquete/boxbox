@@ -5,5 +5,6 @@ data class Driver(
     val firstName: String,
     val lastName: String,
     val imageUrl: String?,
-    val flagUrl: String?
+    val flagUrl: String?,
+    val numberUrl: String?
 )
