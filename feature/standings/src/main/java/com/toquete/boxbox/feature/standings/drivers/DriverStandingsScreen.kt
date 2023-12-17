@@ -89,7 +89,8 @@ internal fun FullDriverStandingsScreenPreview() {
                                 firstName = "Max",
                                 lastName = "Verstappen",
                                 imageUrl = null,
-                                flagUrl = null
+                                flagUrl = null,
+                                numberUrl = null
                             ),
                             constructor = Constructor(
                                 id = "red_bull",
