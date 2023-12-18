@@ -23,7 +23,8 @@ fun BoxBoxAsyncImage(
     @DrawableRes placeholder: Int? = null,
     contentDescription: String? = null,
     colorFilter: ColorFilter? = null,
-    decoder: Decoder.Factory? = null
+    decoder: Decoder.Factory? = null,
+    onState: (AsyncImagePainter.State) -> Unit = {},
 ) {
     val request = ImageRequest.Builder(LocalContext.current)
         .data(data)
@@ -34,7 +35,10 @@ fun BoxBoxAsyncImage(
             decoder?.let { decoderFactory(decoder) }
         }
         .build()
-    val painter = rememberAsyncImagePainter(request)
+    val painter = rememberAsyncImagePainter(
+        model = request,
+        onState = onState
+    )
     val context = LocalContext.current
     context.imageLoader.enqueue(request)
 

@@ -10,6 +10,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import coil.compose.AsyncImagePainter
 
 private const val ANIMATION_DURATION = 500
 private const val ANIMATION_LABEL = "FlipCardRotation"
@@ -21,10 +22,10 @@ private const val HALF_ROTATION_ANGLE = 180f
 fun FlipCard(
     side: CardSide,
     onClick: (CardSide) -> Unit,
-    duration: Int = ANIMATION_DURATION,
     modifier: Modifier = Modifier,
+    duration: Int = ANIMATION_DURATION,
     back: @Composable () -> Unit = {},
-    front: @Composable () -> Unit = {},
+    front: @Composable () -> Unit = {}
 ) {
     val rotation = animateFloatAsState(
         targetValue = side.angle,
