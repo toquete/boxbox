@@ -121,6 +121,7 @@ dependencies {
     kover(project(":data:constructors"))
     kover(project(":data:constructorstandings"))
     kover(project(":data:constructorimages"))
+    kover(project(":data:constructorcolors"))
     kover(project(":data:races"))
     kover(project(":data:circuits"))
     kover(project(":data:circuitimages"))
