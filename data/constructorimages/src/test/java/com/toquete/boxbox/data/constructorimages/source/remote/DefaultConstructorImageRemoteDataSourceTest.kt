@@ -15,7 +15,7 @@ class DefaultConstructorImageRemoteDataSourceTest {
     private val dataSource = DefaultConstructorImageRemoteDataSource(remoteDatabase)
 
     @Test
-    fun `getConstructorsImages should return all cosntructors images from remote when called`() = runTest {
+    fun `getConstructorsImages should return all constructors images from remote when called`() = runTest {
         coEvery {
             remoteDatabase.getCollection(id = "constructor_image", ConstructorImageResponse::class.java)
         } returns constructorImageResponses

@@ -12,8 +12,9 @@ val fullDriverStandingEntities = listOf(
             countryEntities.first().flagUrl
         ),
         constructorEntities.first(),
-        driverImageEntities.first().imageUrl,
-        constructorImageEntities.first().imageUrl
+        driverImageEntities.first(),
+        constructorImageEntities.first().imageUrl,
+        constructorColorEntities.first()
     )
 )
 

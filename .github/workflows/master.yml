@@ -34,16 +34,16 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: java
       - name: Build APK
-        uses: gradle/gradle-build-action@v2.10.0
+        uses: gradle/gradle-build-action@v2.11.0
         with:
           dependency-graph: generate-and-submit
           arguments: ':app:assembleProdDebug'
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -59,11 +59,11 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Lint
-        uses: gradle/gradle-build-action@v2.10.0
+        uses: gradle/gradle-build-action@v2.11.0
         with:
           arguments: lint
       - name: Uploading lint results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lint-reports
           path: '**/lint-results-*.html'
@@ -82,11 +82,11 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Detekt
-        uses: gradle/gradle-build-action@v2.10.0
+        uses: gradle/gradle-build-action@v2.11.0
         with:
           arguments: detektProdDebug
       - name: Uploading detekt results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: detekt-reports
           path: '**/detekt.html'
@@ -105,16 +105,16 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Unit test and coverage
-        uses: gradle/gradle-build-action@v2.10.0
+        uses: gradle/gradle-build-action@v2.11.0
         with:
           arguments: koverHtmlReport
       - name: Uploading test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: '**/reports/tests/testProdDebugUnitTest/'
       - name: Uploading test coverage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-coverage-report
           path: '**/reports/coverage/'
@@ -137,7 +137,7 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build AndroidTest app
-        uses: gradle/gradle-build-action@v2.10.0
+        uses: gradle/gradle-build-action@v2.11.0
         with:
           arguments: packageProdDebug
       - name: Run Instrumented Tests on GMD
@@ -145,7 +145,7 @@ jobs:
           ./gradlew cleanManagedDevices --unused-only
           ./gradlew pixel2api30ProdDebugAndroidTest -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=1 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
       - name: Upload Android test reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-test-reports
           path: '**/build/reports/androidTests'
