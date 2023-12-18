@@ -194,10 +194,7 @@ internal fun DriverStandingItemPreview() {
                 driver = Driver(
                     id = "max_verstappen",
                     firstName = "Max",
-                    lastName = "Verstappen",
-                    imageUrl = null,
-                    flagUrl = null,
-                    numberUrl = null
+                    lastName = "Verstappen"
                 ),
                 constructor = Constructor(
                     id = "red_bull",
