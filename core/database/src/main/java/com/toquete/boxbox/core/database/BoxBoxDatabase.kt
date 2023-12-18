@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.toquete.boxbox.core.database.dao.CircuitDao
 import com.toquete.boxbox.core.database.dao.CircuitImageDao
+import com.toquete.boxbox.core.database.dao.ConstructorColorDao
 import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
@@ -15,6 +16,7 @@ import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.dao.RaceDao
 import com.toquete.boxbox.core.database.model.CircuitEntity
 import com.toquete.boxbox.core.database.model.CircuitImageEntity
+import com.toquete.boxbox.core.database.model.ConstructorColorEntity
 import com.toquete.boxbox.core.database.model.ConstructorEntity
 import com.toquete.boxbox.core.database.model.ConstructorImageEntity
 import com.toquete.boxbox.core.database.model.ConstructorStandingEntity
@@ -25,7 +27,7 @@ import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.core.database.model.RaceEntity
 
 @Database(
-    version = 3,
+    version = 4,
     entities = [
         DriverStandingEntity::class,
         DriverEntity::class,
@@ -36,13 +38,16 @@ import com.toquete.boxbox.core.database.model.RaceEntity
         ConstructorImageEntity::class,
         CircuitEntity::class,
         RaceEntity::class,
-        CircuitImageEntity::class
+        CircuitImageEntity::class,
+        ConstructorColorEntity::class
     ],
     autoMigrations = [
         AutoMigration(from = 1, to = 2),
-        AutoMigration(from = 2, to = 3)
+        AutoMigration(from = 2, to = 3),
+        AutoMigration(from = 3, to = 4)
     ]
 )
+@Suppress("TooManyFunctions")
 internal abstract class BoxBoxDatabase : RoomDatabase() {
 
     abstract fun driverStandingDao(): DriverStandingDao
@@ -64,4 +69,6 @@ internal abstract class BoxBoxDatabase : RoomDatabase() {
     abstract fun circuitDao(): CircuitDao
 
     abstract fun circuitImageDao(): CircuitImageDao
+
+    abstract fun constructorColorDao(): ConstructorColorDao
 }

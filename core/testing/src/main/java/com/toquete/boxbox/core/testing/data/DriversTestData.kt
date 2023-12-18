@@ -21,5 +21,6 @@ val driver = Driver(
     firstName = "Max",
     lastName = "Verstappen",
     imageUrl = "http://image.com",
-    flagUrl = "http://flag.com"
+    flagUrl = "http://flag.com",
+    numberUrl = "http://number.com"
 )

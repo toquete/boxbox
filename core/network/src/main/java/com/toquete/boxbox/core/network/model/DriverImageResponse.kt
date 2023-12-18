@@ -6,5 +6,8 @@ data class DriverImageResponse(
     val id: String? = null,
     @get:PropertyName("image_url")
     @set:PropertyName("image_url")
-    var imageUrl: String? = null
+    var imageUrl: String? = null,
+    @get:PropertyName("number_url")
+    @set:PropertyName("number_url")
+    var numberUrl: String? = null
 )
