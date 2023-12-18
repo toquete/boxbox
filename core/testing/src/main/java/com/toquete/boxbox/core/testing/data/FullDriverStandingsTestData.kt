@@ -13,7 +13,8 @@ val fullDriverStandingEntities = listOf(
         ),
         constructorEntities.first(),
         driverImageEntities.first(),
-        constructorImageEntities.first().imageUrl
+        constructorImageEntities.first().imageUrl,
+        constructorColorEntities.first()
     )
 )
 
