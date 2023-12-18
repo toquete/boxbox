@@ -15,6 +15,13 @@ val keystoreProperties = Properties().apply {
     }
 }
 
+val buildPropertiesFile = rootProject.file("build.properties")
+val buildProperties = Properties().apply {
+    if (buildPropertiesFile.exists()) {
+        load(FileInputStream(buildPropertiesFile))
+    }
+}
+
 android {
     namespace = "com.toquete.boxbox"
 
@@ -22,6 +29,12 @@ android {
         applicationId = "com.toquete.boxbox"
         versionCode = 5
         versionName = "1.1.0"
+
+        buildConfigField(
+            "String",
+            "APP_CHECK_DEBUG_TOKEN",
+            "\"${buildProperties.getProperty("APP_CHECK_DEBUG_TOKEN")}\""
+        )
     }
 
     signingConfigs {
@@ -59,6 +72,10 @@ android {
             isDebuggable = true
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -72,6 +89,7 @@ dependencies {
     implementation(project(":data:countries"))
     implementation(project(":data:driverstandings"))
     implementation(project(":data:constructorstandings"))
+    implementation(project(":data:constructorcolors"))
     implementation(project(":data:races"))
     implementation(project(":feature:standings"))
     implementation(project(":feature:settings"))
@@ -104,6 +122,7 @@ dependencies {
     kover(project(":data:constructors"))
     kover(project(":data:constructorstandings"))
     kover(project(":data:constructorimages"))
+    kover(project(":data:constructorcolors"))
     kover(project(":data:races"))
     kover(project(":data:circuits"))
     kover(project(":data:circuitimages"))

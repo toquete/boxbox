@@ -17,17 +17,22 @@ data class FullDriverStandingEntity(
     )
     val constructor: ConstructorEntity,
     @Relation(
-        entity = DriverImageEntity::class,
         parentColumn = "driver_id",
         entityColumn = "id",
-        projection = ["image_url"]
+        entity = DriverImageEntity::class
     )
-    val driverImageUrl: String?,
+    val driverImage: DriverImageEntity?,
     @Relation(
         entity = ConstructorImageEntity::class,
         parentColumn = "constructor_id",
         entityColumn = "id",
         projection = ["image_url"]
     )
-    val constructorImageUrl: String?
+    val constructorImageUrl: String?,
+    @Relation(
+        entity = ConstructorColorEntity::class,
+        parentColumn = "constructor_id",
+        entityColumn = "id"
+    )
+    val constructorColor: ConstructorColorEntity?
 )
