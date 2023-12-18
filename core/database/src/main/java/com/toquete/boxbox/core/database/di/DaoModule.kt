@@ -3,6 +3,7 @@ package com.toquete.boxbox.core.database.di
 import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.database.dao.CircuitDao
 import com.toquete.boxbox.core.database.dao.CircuitImageDao
+import com.toquete.boxbox.core.database.dao.ConstructorColorDao
 import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
@@ -18,6 +19,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
+@Suppress("TooManyFunctions")
 internal object DaoModule {
 
     @Provides
@@ -68,5 +70,10 @@ internal object DaoModule {
     @Provides
     fun providesCircuitImageDao(database: BoxBoxDatabase): CircuitImageDao {
         return database.circuitImageDao()
+    }
+
+    @Provides
+    fun providesConstructorColorDao(database: BoxBoxDatabase): ConstructorColorDao {
+        return database.constructorColorDao()
     }
 }

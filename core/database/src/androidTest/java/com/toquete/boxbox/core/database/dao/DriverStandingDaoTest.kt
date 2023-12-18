@@ -3,6 +3,7 @@ package com.toquete.boxbox.core.database.dao
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.toquete.boxbox.core.database.BoxBoxDatabase
+import com.toquete.boxbox.core.testing.data.constructorColorEntities
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.constructorImageEntities
 import com.toquete.boxbox.core.testing.data.countryEntities
@@ -26,6 +27,7 @@ class DriverStandingDaoTest {
     private lateinit var driverImageDao: DriverImageDao
     private lateinit var constructorImageDao: ConstructorImageDao
     private lateinit var countryDao: CountryDao
+    private lateinit var constructorColorDao: ConstructorColorDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -40,6 +42,7 @@ class DriverStandingDaoTest {
         driverImageDao = db.driverImageDao()
         constructorImageDao = db.constructorImageDao()
         countryDao = db.countryDao()
+        constructorColorDao = db.constructorColorDao()
     }
 
     @After
@@ -75,6 +78,7 @@ class DriverStandingDaoTest {
         driverImageDao.upsertAll(driverImageEntities)
         constructorImageDao.upsertAll(constructorImageEntities)
         countryDao.upsertAll(countryEntities)
+        constructorColorDao.upsertAll(constructorColorEntities)
 
         val result = dao.getFullDriverStandings().first()
 

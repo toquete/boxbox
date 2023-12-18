@@ -26,9 +26,9 @@ internal fun FullDriverStandingEntity.toDomain(): DriverStanding {
             id = driverWithCountryFlag.driver.id,
             firstName = driverWithCountryFlag.driver.firstName,
             lastName = driverWithCountryFlag.driver.lastName,
-            imageUrl = driverWithImage.driverImage?.imageUrl,
+            imageUrl = driverImage?.imageUrl,
             flagUrl = driverWithCountryFlag.flagUrl,
-            numberUrl = driverWithImage.driverImage?.numberUrl
+            numberUrl = driverImage?.numberUrl
         ),
         constructor = Constructor(
             id = constructor.id,
