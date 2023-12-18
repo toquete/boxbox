@@ -20,6 +20,6 @@ val constructorStandings = listOf(
         position = 1,
         points = "123",
         wins = "3",
-        constructor = constructor
+        constructor = constructor.copy(accentColor = null, backgroundColor = null)
     )
 )

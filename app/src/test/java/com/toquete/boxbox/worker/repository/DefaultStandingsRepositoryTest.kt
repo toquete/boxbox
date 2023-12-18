@@ -1,5 +1,6 @@
 package com.toquete.boxbox.worker.repository
 
+import com.toquete.boxbox.data.constructorcolors.repository.ConstructorColorRepository
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
 import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
 import io.mockk.coVerify
@@ -12,9 +13,11 @@ class DefaultStandingsRepositoryTest {
 
     private val driverStandingsRepository: DriverStandingsRepository = mockk(relaxed = true)
     private val constructorStandingsRepository: ConstructorStandingsRepository = mockk(relaxed = true)
+    private val constructorColorRepository: ConstructorColorRepository = mockk(relaxed = true)
     private val repository = DefaultStandingsRepository(
         driverStandingsRepository,
-        constructorStandingsRepository
+        constructorStandingsRepository,
+        constructorColorRepository
     )
 
     @Test
@@ -25,6 +28,7 @@ class DefaultStandingsRepositoryTest {
         coVerify {
             driverStandingsRepository.sync()
             constructorStandingsRepository.sync()
+            constructorColorRepository.sync()
         }
     }
 }

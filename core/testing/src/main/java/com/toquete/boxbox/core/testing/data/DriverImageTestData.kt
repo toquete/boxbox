@@ -6,13 +6,15 @@ import com.toquete.boxbox.core.network.model.DriverImageResponse
 val driverImageEntities = listOf(
     DriverImageEntity(
         id = "max_verstappen",
-        imageUrl = "http://image.com"
+        imageUrl = "http://image.com",
+        numberUrl = "http://number.com"
     )
 )
 
 val driverImageResponses = listOf(
     DriverImageResponse(
         id = "max_verstappen",
-        imageUrl = "http://image.com"
+        imageUrl = "http://image.com",
+        numberUrl = "http://number.com"
     )
 )
