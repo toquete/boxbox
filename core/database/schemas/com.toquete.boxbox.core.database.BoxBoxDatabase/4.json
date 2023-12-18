@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 4,
-    "identityHash": "9ccf62ca474a72ef59d2505a950bbb41",
+    "identityHash": "7cf0564ebbdd6d6633c12ca72c87a2af",
     "entities": [
       {
         "tableName": "driver_standings",
@@ -481,12 +481,44 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "constructors_colors",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `accent_color` TEXT NOT NULL, `background_color` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "accentColor",
+            "columnName": "accent_color",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "backgroundColor",
+            "columnName": "background_color",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9ccf62ca474a72ef59d2505a950bbb41')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7cf0564ebbdd6d6633c12ca72c87a2af')"
     ]
   }
 }
