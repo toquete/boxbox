@@ -10,7 +10,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import coil.compose.AsyncImagePainter
 
 private const val ANIMATION_DURATION = 500
 private const val ANIMATION_LABEL = "FlipCardRotation"
