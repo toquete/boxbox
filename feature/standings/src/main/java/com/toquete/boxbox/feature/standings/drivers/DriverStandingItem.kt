@@ -173,9 +173,7 @@ private fun DriverImage(standing: DriverStanding) {
 fun DriverNumber(standing: DriverStanding) {
     val backgroundColor = standing.constructor.backgroundColor?.let { color ->
         Color(color.toColorInt())
-    } ?: run {
-        MaterialTheme.colorScheme.inverseOnSurface
-    }
+    } ?: MaterialTheme.colorScheme.inverseOnSurface
     var isLoadingOrError by remember {
         mutableStateOf(true)
     }
