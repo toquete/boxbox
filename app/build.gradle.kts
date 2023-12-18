@@ -89,6 +89,7 @@ dependencies {
     implementation(project(":data:countries"))
     implementation(project(":data:driverstandings"))
     implementation(project(":data:constructorstandings"))
+    implementation(project(":data:constructorcolors"))
     implementation(project(":data:races"))
     implementation(project(":feature:standings"))
     implementation(project(":feature:settings"))

@@ -94,9 +94,7 @@ internal fun FullDriverStandingsScreenPreview() {
                             ),
                             constructor = Constructor(
                                 id = "red_bull",
-                                name = "Red Bull",
-                                imageUrl = null,
-                                flagUrl = null
+                                name = "Red Bull"
                             )
                         )
                     )
