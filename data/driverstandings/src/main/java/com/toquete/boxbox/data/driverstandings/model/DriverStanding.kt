@@ -34,7 +34,8 @@ internal fun FullDriverStandingEntity.toDomain(): DriverStanding {
             id = constructor.id,
             name = constructor.name,
             imageUrl = constructorImageUrl,
-            flagUrl = null
+            accentColor = constructorColor?.accentColor,
+            backgroundColor = constructorColor?.backgroundColor
         )
     )
 }

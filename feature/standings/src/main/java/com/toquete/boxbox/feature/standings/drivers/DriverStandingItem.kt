@@ -17,15 +17,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.toColorInt
+import coil.compose.AsyncImagePainter
 import coil.decode.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
@@ -42,7 +46,7 @@ import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
 fun DriverStandingItem(standing: DriverStanding) {
-    var cardSide by remember {
+    var cardSide by rememberSaveable {
         mutableStateOf(CardSide.FRONT)
     }
     Card(
@@ -167,17 +171,26 @@ private fun DriverImage(standing: DriverStanding) {
 
 @Composable
 fun DriverNumber(standing: DriverStanding) {
+    val backgroundColor = standing.constructor.backgroundColor?.let { color ->
+        Color(color.toColorInt())
+    } ?: MaterialTheme.colorScheme.inverseOnSurface
+    var isLoadingOrError by remember {
+        mutableStateOf(true)
+    }
     Surface(
         modifier = Modifier.fillMaxSize(),
         shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colorScheme.inverseOnSurface
+        color = if (isLoadingOrError) MaterialTheme.colorScheme.inverseOnSurface else backgroundColor
     ) {
         BoxBoxAsyncImage(
             modifier = Modifier.testTag("Number"),
             data = standing.driver.numberUrl,
             placeholder = uiR.drawable.ic_numbers,
             error = uiR.drawable.ic_numbers,
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface)
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.inverseSurface),
+            onState = { state ->
+                isLoadingOrError = state is AsyncImagePainter.State.Loading || state is AsyncImagePainter.State.Error
+            }
         )
     }
 }
@@ -194,16 +207,11 @@ internal fun DriverStandingItemPreview() {
                 driver = Driver(
                     id = "max_verstappen",
                     firstName = "Max",
-                    lastName = "Verstappen",
-                    imageUrl = null,
-                    flagUrl = null,
-                    numberUrl = null
+                    lastName = "Verstappen"
                 ),
                 constructor = Constructor(
                     id = "red_bull",
-                    name = "Red Bull",
-                    imageUrl = null,
-                    flagUrl = null
+                    name = "Red Bull"
                 )
             )
         )

@@ -21,10 +21,10 @@ private const val HALF_ROTATION_ANGLE = 180f
 fun FlipCard(
     side: CardSide,
     onClick: (CardSide) -> Unit,
-    duration: Int = ANIMATION_DURATION,
     modifier: Modifier = Modifier,
+    duration: Int = ANIMATION_DURATION,
     back: @Composable () -> Unit = {},
-    front: @Composable () -> Unit = {},
+    front: @Composable () -> Unit = {}
 ) {
     val rotation = animateFloatAsState(
         targetValue = side.angle,

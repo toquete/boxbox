@@ -87,16 +87,11 @@ internal fun FullDriverStandingsScreenPreview() {
                             driver = Driver(
                                 id = "max_verstappen",
                                 firstName = "Max",
-                                lastName = "Verstappen",
-                                imageUrl = null,
-                                flagUrl = null,
-                                numberUrl = null
+                                lastName = "Verstappen"
                             ),
                             constructor = Constructor(
                                 id = "red_bull",
-                                name = "Red Bull",
-                                imageUrl = null,
-                                flagUrl = null
+                                name = "Red Bull"
                             )
                         )
                     )

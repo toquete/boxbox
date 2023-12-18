@@ -85,9 +85,7 @@ internal fun FullConstructorStandingsScreenPreview() {
                             wins = "7",
                             constructor = Constructor(
                                 id = "red_bull",
-                                name = "Red Bull",
-                                imageUrl = null,
-                                flagUrl = null
+                                name = "Red Bull"
                             )
                         )
                     )
