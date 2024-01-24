@@ -41,7 +41,7 @@ crashlytics = "2.9.9"
 crashlytics-gradle = "2.9.9"
 kover = "0.7.3"
 timber = "5.0.1"
-navigation = "2.7.4"
+navigation = "2.7.6"
 hilt-navigation = "1.0.0"
 
 [libraries]
