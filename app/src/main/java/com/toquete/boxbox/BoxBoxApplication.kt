@@ -33,17 +33,16 @@ class BoxBoxApplication : Application(), Configuration.Provider {
     @Inject
     lateinit var appCheckProviderFactory: AppCheckProviderFactory
 
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
+
     override fun onCreate() {
         super.onCreate()
         setupAppCheck()
         setupSyncWork()
         setupTimber()
-    }
-
-    override fun getWorkManagerConfiguration(): Configuration {
-        return Configuration.Builder()
-            .setWorkerFactory(workerFactory)
-            .build()
     }
 
     private fun setupSyncWork() {
