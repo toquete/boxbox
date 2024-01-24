@@ -1,7 +1,6 @@
 package com.toquete.boxbox.util.monitor
 
 import android.content.Context
-import androidx.lifecycle.asFlow
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.toquete.boxbox.SYNC_WORK_NAME
@@ -17,8 +16,7 @@ class WorkManagerSyncMonitor @Inject constructor(
 ) : SyncMonitor {
 
     private val workInfos = WorkManager.getInstance(context)
-        .getWorkInfosForUniqueWorkLiveData(SYNC_WORK_NAME)
-        .asFlow()
+        .getWorkInfosForUniqueWorkFlow(SYNC_WORK_NAME)
 
     override val isSyncing: Flow<Boolean> = workInfos.map { infos ->
         infos.any { it.state == WorkInfo.State.RUNNING }
