@@ -116,7 +116,7 @@ jobs:
       - name: Unit test and coverage
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: koverHtmlReport
+          arguments: koverXmlReport
           build-scan-publish: true
           build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-service-agree: "yes"
@@ -125,11 +125,13 @@ jobs:
         with:
           name: test-reports
           path: '**/reports/tests/testProdDebugUnitTest/'
-      - name: Uploading test coverage
-        uses: actions/upload-artifact@v4
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
         with:
-          name: test-coverage-report
-          path: '**/reports/coverage/'
+          fail_ci_if_error: true
+          file: '**/app/build/reports/coverage/coverage.xml'
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   android-test:
     needs: build
     if: '${{ inputs.runAndroidTests }}'
