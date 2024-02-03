@@ -125,13 +125,11 @@ jobs:
         with:
           name: test-reports
           path: '**/reports/tests/testProdDebugUnitTest/'
-      - name: Uploading test coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-coverage-report
-          path: '**/reports/coverage/'
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
+          file: '**/app/build/reports/coverage/coverage.xml'
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   android-test:
