@@ -33,13 +33,19 @@ jobs:
       - name: Create service account JSON
         run: echo $SERVICE_ACCOUNT_JSON | base64 -di > ${{ github.workspace }}/service-account.json
       - name: Build release APK
-        uses: gradle/gradle-build-action@v3.0.0
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: ':app:assembleProdRelease'
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
       - name: Build release bundle
-        uses: gradle/gradle-build-action@v3.0.0
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: ':app:bundleProdRelease'
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
       - name: Upload Release Build to Artifacts
         uses: actions/upload-artifact@v4
         with:
