@@ -134,7 +134,6 @@ jobs:
         uses: coverallsapp/github-action@v2
         with:
           flag-name: "Unit"
-          base-path: ${{ github.workspace }}
   android-test:
     needs: build
     if: '${{ inputs.runAndroidTests }}'
