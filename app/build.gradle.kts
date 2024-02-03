@@ -141,6 +141,10 @@ koverReport {
             onCheck = false
             setReportDir(layout.buildDirectory.dir("reports/coverage"))
         }
+        xml {
+            onCheck = false
+            setReportFile(layout.buildDirectory.file("reports/coverage/coverage.xml"))
+        }
     }
     filters {
         excludes {

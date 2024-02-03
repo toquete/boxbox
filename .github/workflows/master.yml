@@ -116,7 +116,7 @@ jobs:
       - name: Unit test and coverage
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: koverHtmlReport
+          arguments: koverXmlReport
           build-scan-publish: true
           build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-service-agree: "yes"
@@ -130,6 +130,10 @@ jobs:
         with:
           name: test-coverage-report
           path: '**/reports/coverage/'
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          flag-name: "Unit"
   android-test:
     needs: build
     if: '${{ inputs.runAndroidTests }}'
