@@ -4,8 +4,10 @@ import com.toquete.boxbox.core.common.extension.readPath
 import com.toquete.boxbox.core.network.di.NetworkModule
 import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
 import com.toquete.boxbox.core.testing.data.driverStandingsWrapper
+import com.toquete.boxbox.core.testing.data.raceResultWrapper
 import com.toquete.boxbox.core.testing.data.racesWrapper
 import kotlinx.coroutines.test.runTest
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -13,6 +15,7 @@ import org.junit.After
 import org.junit.Test
 import kotlin.test.assertEquals
 
+@OptIn(ExperimentalSerializationApi::class)
 class BoxBoxServiceTest {
 
     private val mockWebServer = MockWebServer()
@@ -105,6 +108,32 @@ class BoxBoxServiceTest {
         }
 
         service.getRaces()
+
+        assertEquals(expected, mockWebServer.takeRequest().path)
+    }
+
+    @Test
+    fun `getRaceResults should return parsed data class on success`() = runTest {
+        val expected = raceResultWrapper
+        MockResponse().apply {
+            setBody(readPath("race_results.json"))
+            mockWebServer.enqueue(this)
+        }
+
+        val result = service.getRaceResults()
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `getRaceResults should send correct request path when called`() = runTest {
+        val expected = "/current/results.json"
+        MockResponse().apply {
+            setBody(readPath("race_results.json"))
+            mockWebServer.enqueue(this)
+        }
+
+        service.getRaceResults()
 
         assertEquals(expected, mockWebServer.takeRequest().path)
     }

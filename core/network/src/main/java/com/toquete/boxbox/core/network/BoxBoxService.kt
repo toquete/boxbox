@@ -15,4 +15,7 @@ interface BoxBoxService {
 
     @GET("current.json")
     suspend fun getRaces(): RacesWrapper
+
+    @GET("current/results.json")
+    suspend fun getRaceResults(): RacesWrapper
 }

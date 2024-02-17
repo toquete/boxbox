@@ -15,6 +15,7 @@ val racesResponse = listOf(
         circuit = circuitResponse,
         date = "2023-03-05",
         time = "15:00:00Z",
+        results = null,
         firstPractice = PracticeResponse(
             date = "2023-03-03",
             time = "11:30:00Z"
