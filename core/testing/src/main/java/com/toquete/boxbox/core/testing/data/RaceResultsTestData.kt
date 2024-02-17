@@ -1,5 +1,6 @@
 package com.toquete.boxbox.core.testing.data
 
+import com.toquete.boxbox.core.database.model.RaceResultEntity
 import com.toquete.boxbox.core.network.model.ConstructorResponse
 import com.toquete.boxbox.core.network.model.DriverResponse
 import com.toquete.boxbox.core.network.model.RaceResponse
@@ -41,5 +42,16 @@ val raceResultsResponse = listOf(
         thirdPractice = null,
         qualifying = null,
         sprint = null
+    )
+)
+
+val raceResultEntities = listOf(
+    RaceResultEntity(
+        season = "2023",
+        round = 1,
+        position = 1,
+        driverId = "max_verstappen",
+        constructorId = "red_bull",
+        gridPosition = 1
     )
 )

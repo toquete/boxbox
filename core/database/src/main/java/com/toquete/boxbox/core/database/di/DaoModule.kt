@@ -12,6 +12,7 @@ import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.dao.RaceDao
+import com.toquete.boxbox.core.database.dao.RaceResultDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -75,5 +76,10 @@ internal object DaoModule {
     @Provides
     fun providesConstructorColorDao(database: BoxBoxDatabase): ConstructorColorDao {
         return database.constructorColorDao()
+    }
+
+    @Provides
+    fun providesRaceResultDao(database: BoxBoxDatabase): RaceResultDao {
+        return database.raceResultDao()
     }
 }

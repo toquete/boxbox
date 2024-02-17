@@ -14,6 +14,7 @@ import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.dao.RaceDao
+import com.toquete.boxbox.core.database.dao.RaceResultDao
 import com.toquete.boxbox.core.database.model.CircuitEntity
 import com.toquete.boxbox.core.database.model.CircuitImageEntity
 import com.toquete.boxbox.core.database.model.ConstructorColorEntity
@@ -25,6 +26,7 @@ import com.toquete.boxbox.core.database.model.DriverEntity
 import com.toquete.boxbox.core.database.model.DriverImageEntity
 import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.core.database.model.RaceEntity
+import com.toquete.boxbox.core.database.model.RaceResultEntity
 
 @Database(
     version = 5,
@@ -39,7 +41,8 @@ import com.toquete.boxbox.core.database.model.RaceEntity
         CircuitEntity::class,
         RaceEntity::class,
         CircuitImageEntity::class,
-        ConstructorColorEntity::class
+        ConstructorColorEntity::class,
+        RaceResultEntity::class
     ],
     autoMigrations = [
         AutoMigration(from = 1, to = 2),
@@ -72,4 +75,6 @@ internal abstract class BoxBoxDatabase : RoomDatabase() {
     abstract fun circuitImageDao(): CircuitImageDao
 
     abstract fun constructorColorDao(): ConstructorColorDao
+
+    abstract fun raceResultDao(): RaceResultDao
 }
