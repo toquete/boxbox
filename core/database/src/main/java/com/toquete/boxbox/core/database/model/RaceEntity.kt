@@ -14,21 +14,21 @@ data class RaceEntity(
     @ColumnInfo(name = "circuit_id")
     val circuitId: String,
     @ColumnInfo(name = "first_practice_date")
-    val firstPracticeDate: String,
+    val firstPracticeDate: String?,
     @ColumnInfo(name = "first_practice_time")
-    val firstPracticeTime: String,
+    val firstPracticeTime: String?,
     @ColumnInfo(name = "second_practice_date")
-    val secondPracticeDate: String,
+    val secondPracticeDate: String?,
     @ColumnInfo(name = "second_practice_time")
-    val secondPracticeTime: String,
+    val secondPracticeTime: String?,
     @ColumnInfo(name = "third_practice_date")
     val thirdPracticeDate: String?,
     @ColumnInfo(name = "third_practice_time")
     val thirdPracticeTime: String?,
     @ColumnInfo(name = "qualifying_date")
-    val qualifyingDate: String,
+    val qualifyingDate: String?,
     @ColumnInfo(name = "qualifying_time")
-    val qualifyingTime: String,
+    val qualifyingTime: String?,
     @ColumnInfo(name = "sprint_date")
     val sprintDate: String?,
     @ColumnInfo(name = "sprint_time")
