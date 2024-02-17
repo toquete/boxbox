@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 5,
-    "identityHash": "98f6b6afa58c7e65dcf685b8ca30dfb5",
+    "identityHash": "6cbdf59adf7b7b2f9836c6e29819882f",
     "entities": [
       {
         "tableName": "driver_standings",
@@ -513,12 +513,64 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "race_results",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`season` TEXT NOT NULL, `round` INTEGER NOT NULL, `position` INTEGER NOT NULL, `driver_id` TEXT NOT NULL, `constructor_id` TEXT NOT NULL, `grid_position` INTEGER NOT NULL, PRIMARY KEY(`season`, `round`, `position`))",
+        "fields": [
+          {
+            "fieldPath": "season",
+            "columnName": "season",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "round",
+            "columnName": "round",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "driverId",
+            "columnName": "driver_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "constructorId",
+            "columnName": "constructor_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gridPosition",
+            "columnName": "grid_position",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "season",
+            "round",
+            "position"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '98f6b6afa58c7e65dcf685b8ca30dfb5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6cbdf59adf7b7b2f9836c6e29819882f')"
     ]
   }
 }
