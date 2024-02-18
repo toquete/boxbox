@@ -1,10 +1,11 @@
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.RaceResultEntity
+import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.core.network.model.ConstructorResponse
 import com.toquete.boxbox.core.network.model.DriverResponse
 import com.toquete.boxbox.core.network.model.RaceResponse
-import com.toquete.boxbox.core.network.model.RaceResultsResponse
+import com.toquete.boxbox.core.network.model.RaceResultResponse
 
 val raceResultsResponse = listOf(
     RaceResponse(
@@ -16,7 +17,7 @@ val raceResultsResponse = listOf(
         date = "2023-03-05",
         time = "15:00:00Z",
         results = listOf(
-            RaceResultsResponse(
+            RaceResultResponse(
                 racePosition = "1",
                 driver = DriverResponse(
                     id = "max_verstappen",
@@ -52,6 +53,17 @@ val raceResultEntities = listOf(
         position = 1,
         driverId = "max_verstappen",
         constructorId = "red_bull",
+        gridPosition = 1
+    )
+)
+
+val raceResults = listOf(
+    RaceResult(
+        season = "2023",
+        round = 1,
+        position = 1,
+        driver = driver.copy(imageUrl = null, flagUrl = null, numberUrl = null),
+        constructor = constructor.copy(imageUrl = null, flagUrl = null, accentColor = null, backgroundColor = null),
         gridPosition = 1
     )
 )

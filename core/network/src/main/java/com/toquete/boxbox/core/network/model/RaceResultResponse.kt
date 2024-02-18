@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RaceResultsResponse(
+data class RaceResultResponse(
     @SerialName("position")
     val racePosition: String,
     @SerialName("Driver")
