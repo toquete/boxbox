@@ -1,4 +1,4 @@
-package com.toquete.boxbox.data.races.source.remote.source.repository
+package com.toquete.boxbox.data.races.repository
 
 import com.toquete.boxbox.core.testing.data.circuitEntities
 import com.toquete.boxbox.core.testing.data.raceEntities
