@@ -1,11 +1,9 @@
 package com.toquete.boxbox.data.raceresults.repository
 
-import com.toquete.boxbox.core.testing.data.raceEntities
 import com.toquete.boxbox.core.testing.data.raceResultEntities
 import com.toquete.boxbox.core.testing.data.raceResults
 import com.toquete.boxbox.core.testing.data.raceResultsResponse
 import com.toquete.boxbox.core.testing.data.raceResultsWithDriverAndConstructor
-import com.toquete.boxbox.core.testing.data.racesResponse
 import com.toquete.boxbox.data.raceresults.source.local.RaceResultLocalDataSource
 import com.toquete.boxbox.data.raceresults.source.remote.RaceResultRemoteDataSource
 import io.mockk.coEvery
@@ -40,6 +38,16 @@ class DefaultRaceResultRepositoryTest {
         repository.sync()
 
         coEvery { localDataSource.insertAll(raceResultEntities) }
+    }
+
+    @Test
+    fun `sync should insert empty data in database when remote data is gotten successfully`() = runTest {
+        val data = raceResultsResponse.map { it.copy(results = null) }
+        coEvery { remoteDataSource.getRaceResults() } returns data
+
+        repository.sync()
+
+        coEvery { localDataSource.insertAll(emptyList()) }
     }
 
     @Test(expected = IOException::class)

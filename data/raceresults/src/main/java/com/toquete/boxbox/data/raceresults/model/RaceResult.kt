@@ -18,7 +18,7 @@ internal fun List<RaceResponse>.toEntity(): List<RaceResultEntity> {
                 constructorId = raceResult.constructor.id,
                 gridPosition = raceResult.gridPosition.toInt()
             )
-        } ?: emptyList()
+        }.orEmpty()
     }
 }
 
