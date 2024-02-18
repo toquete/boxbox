@@ -4,7 +4,7 @@ import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.network.model.RaceResponse
 import javax.inject.Inject
 
-class DefaultRaceResultRemoteDataSource @Inject constructor(
+internal class DefaultRaceResultRemoteDataSource @Inject constructor(
     private val service: BoxBoxService
 ) : RaceResultRemoteDataSource {
 
