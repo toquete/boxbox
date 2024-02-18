@@ -4,7 +4,7 @@ import com.toquete.boxbox.core.database.model.RaceResultEntity
 import com.toquete.boxbox.core.network.model.ConstructorResponse
 import com.toquete.boxbox.core.network.model.DriverResponse
 import com.toquete.boxbox.core.network.model.RaceResponse
-import com.toquete.boxbox.core.network.model.RaceResultsResponse
+import com.toquete.boxbox.core.network.model.RaceResultResponse
 
 val raceResultsResponse = listOf(
     RaceResponse(
@@ -16,7 +16,7 @@ val raceResultsResponse = listOf(
         date = "2023-03-05",
         time = "15:00:00Z",
         results = listOf(
-            RaceResultsResponse(
+            RaceResultResponse(
                 racePosition = "1",
                 driver = DriverResponse(
                     id = "max_verstappen",
