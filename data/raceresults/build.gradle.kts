@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.data.constructorstandings"
+    namespace = "com.toquete.boxbox.data.raceresults"
 }
 
 dependencies {
