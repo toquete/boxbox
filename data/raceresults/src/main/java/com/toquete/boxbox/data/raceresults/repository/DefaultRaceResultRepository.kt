@@ -8,8 +8,9 @@ import com.toquete.boxbox.data.raceresults.source.local.RaceResultLocalDataSourc
 import com.toquete.boxbox.data.raceresults.source.remote.RaceResultRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-internal class DefaultRaceResultRepository(
+internal class DefaultRaceResultRepository @Inject constructor(
     private val remoteDataSource: RaceResultRemoteDataSource,
     private val localDataSource: RaceResultLocalDataSource
 ) : RaceResultRepository {

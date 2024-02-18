@@ -2,8 +2,9 @@ package com.toquete.boxbox.data.raceresults.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.network.model.RaceResponse
+import javax.inject.Inject
 
-class DefaultRaceResultRemoteDataSource(
+class DefaultRaceResultRemoteDataSource @Inject constructor(
     private val service: BoxBoxService
 ) : RaceResultRemoteDataSource {
 

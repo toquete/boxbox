@@ -4,8 +4,9 @@ import com.toquete.boxbox.core.database.dao.RaceResultDao
 import com.toquete.boxbox.core.database.model.RaceResultEntity
 import com.toquete.boxbox.core.database.model.RaceResultWithDriverAndConstructorEntity
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-internal class DefaultRaceResultLocalDataSource(
+internal class DefaultRaceResultLocalDataSource @Inject constructor(
     private val dao: RaceResultDao
 ) : RaceResultLocalDataSource {
 
