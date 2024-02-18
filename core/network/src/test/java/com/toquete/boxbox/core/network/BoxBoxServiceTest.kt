@@ -127,7 +127,7 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getRaceResults should send correct request path when called`() = runTest {
-        val expected = "/current/results.json"
+        val expected = "/current/results.json?limit=1000"
         MockResponse().apply {
             setBody(readPath("race_results.json"))
             mockWebServer.enqueue(this)

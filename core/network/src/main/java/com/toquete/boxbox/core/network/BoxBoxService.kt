@@ -4,6 +4,9 @@ import com.toquete.boxbox.core.network.model.ConstructorStandingsWrapper
 import com.toquete.boxbox.core.network.model.DriverStandingsWrapper
 import com.toquete.boxbox.core.network.model.RacesWrapper
 import retrofit2.http.GET
+import retrofit2.http.Query
+
+private const val MAX_LIMIT = 1000
 
 interface BoxBoxService {
 
@@ -17,5 +20,5 @@ interface BoxBoxService {
     suspend fun getRaces(): RacesWrapper
 
     @GET("current/results.json")
-    suspend fun getRaceResults(): RacesWrapper
+    suspend fun getRaceResults(@Query("limit") limit: Int = MAX_LIMIT): RacesWrapper
 }
