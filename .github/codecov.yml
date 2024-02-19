@@ -20,3 +20,5 @@ ignore:
     - "**/*Application*"
     - "**/*Worker*"
     - "**/*Composable*"
+    - "**/*Destination*"
+    - "**/*Navigation*"
