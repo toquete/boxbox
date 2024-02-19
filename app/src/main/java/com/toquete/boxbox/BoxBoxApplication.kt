@@ -6,6 +6,11 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
+import coil.ImageLoader
+import coil.ImageLoaderFactory
+import coil.disk.DiskCache
+import coil.memory.MemoryCache
+import coil.request.CachePolicy
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
@@ -19,10 +24,12 @@ import javax.inject.Inject
 
 private const val APP_CHECK_DEBUG_STORE = "com.google.firebase.appcheck.debug.store.%s"
 private const val APP_CHECK_DEBUG_TOKEN_KEY = "com.google.firebase.appcheck.debug.DEBUG_SECRET"
+private const val MEMORY_CACHE_PERCENT = 0.1
+private const val DISK_CACHE_PERCENT = 0.03
 const val SYNC_WORK_NAME = "SYNC_WORK_NAME"
 
 @HiltAndroidApp
-class BoxBoxApplication : Application(), Configuration.Provider {
+class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFactory {
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
@@ -43,6 +50,25 @@ class BoxBoxApplication : Application(), Configuration.Provider {
         setupAppCheck()
         setupSyncWork()
         setupTimber()
+    }
+
+    override fun newImageLoader(): ImageLoader {
+        return ImageLoader.Builder(this)
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .memoryCache {
+                MemoryCache.Builder(this)
+                    .maxSizePercent(MEMORY_CACHE_PERCENT)
+                    .strongReferencesEnabled(enable = true)
+                    .build()
+            }
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .diskCache {
+                DiskCache.Builder()
+                    .maxSizePercent(DISK_CACHE_PERCENT)
+                    .directory(cacheDir)
+                    .build()
+            }
+            .build()
     }
 
     private fun setupSyncWork() {
