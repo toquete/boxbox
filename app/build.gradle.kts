@@ -99,6 +99,7 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
     implementation(libs.work.runtime)
+    implementation(libs.coil)
     implementation(libs.firebase.appcheck)
     implementation(libs.firebase.appcheck.ktx)
     implementation(libs.firebase.appcheck.debug)

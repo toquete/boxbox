@@ -11,7 +11,6 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.Decoder
 import coil.imageLoader
-import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.size.Size
 
@@ -26,11 +25,10 @@ fun BoxBoxAsyncImage(
     decoder: Decoder.Factory? = null,
     onState: (AsyncImagePainter.State) -> Unit = {},
 ) {
-    val request = ImageRequest.Builder(LocalContext.current)
+    val context = LocalContext.current
+    val request = ImageRequest.Builder(context)
         .data(data)
         .size(Size.ORIGINAL)
-        .diskCacheKey(data)
-        .diskCachePolicy(CachePolicy.ENABLED)
         .apply {
             decoder?.let { decoderFactory(decoder) }
         }
@@ -39,7 +37,6 @@ fun BoxBoxAsyncImage(
         model = request,
         onState = onState
     )
-    val context = LocalContext.current
     context.imageLoader.enqueue(request)
 
     val fallback = when (painter.state) {
