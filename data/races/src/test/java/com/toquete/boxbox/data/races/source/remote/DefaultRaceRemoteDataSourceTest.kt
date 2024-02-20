@@ -1,4 +1,4 @@
-package com.toquete.boxbox.data.races.source.remote.source.remote
+package com.toquete.boxbox.data.races.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.testing.data.racesResponse

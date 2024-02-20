@@ -19,14 +19,16 @@ data class RaceResponse(
     val date: String,
     @SerialName("time")
     val time: String,
+    @SerialName("Results")
+    val results: List<RaceResultResponse>?,
     @SerialName("FirstPractice")
-    val firstPractice: PracticeResponse,
+    val firstPractice: PracticeResponse?,
     @SerialName("SecondPractice")
-    val secondPractice: PracticeResponse,
+    val secondPractice: PracticeResponse?,
     @SerialName("ThirdPractice")
     val thirdPractice: PracticeResponse?,
     @SerialName("Qualifying")
-    val qualifying: PracticeResponse,
+    val qualifying: PracticeResponse?,
     @SerialName("Sprint")
     val sprint: PracticeResponse?
 )
