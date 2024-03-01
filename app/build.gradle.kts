@@ -27,8 +27,8 @@ android {
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
-        versionCode = 6
-        versionName = "1.1.1"
+        versionCode = 7
+        versionName = "1.1.2"
 
         buildConfigField(
             "String",
@@ -91,6 +91,7 @@ dependencies {
     implementation(project(":data:constructorstandings"))
     implementation(project(":data:constructorcolors"))
     implementation(project(":data:races"))
+    implementation(project(":data:raceresults"))
     implementation(project(":feature:standings"))
     implementation(project(":feature:settings"))
     implementation(project(":feature:races"))
@@ -98,11 +99,12 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
     implementation(libs.work.runtime)
+    implementation(libs.coil)
     implementation(libs.firebase.appcheck)
     implementation(libs.firebase.appcheck.ktx)
     implementation(libs.firebase.appcheck.debug)
     implementation(libs.hilt.work)
-    kapt(libs.hilt.work.compiler)
+    ksp(libs.hilt.work.compiler)
 
     testImplementation(project(":core:testing"))
 }
@@ -126,8 +128,10 @@ dependencies {
     kover(project(":data:races"))
     kover(project(":data:circuits"))
     kover(project(":data:circuitimages"))
+    kover(project(":data:raceresults"))
     kover(project(":domain:common"))
     kover(project(":domain:races"))
+    kover(project(":domain:raceresults"))
     kover(project(":feature:standings"))
     kover(project(":feature:settings"))
     kover(project(":feature:races"))
@@ -140,6 +144,10 @@ koverReport {
             title = "BoxBox"
             onCheck = false
             setReportDir(layout.buildDirectory.dir("reports/coverage"))
+        }
+        xml {
+            onCheck = false
+            setReportFile(layout.buildDirectory.file("reports/coverage/coverage.xml"))
         }
     }
     filters {

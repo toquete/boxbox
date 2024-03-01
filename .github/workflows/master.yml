@@ -38,10 +38,13 @@ jobs:
         with:
           languages: java
       - name: Build APK
-        uses: gradle/gradle-build-action@v2.11.1
+        uses: gradle/actions/setup-gradle@v3
         with:
           dependency-graph: generate-and-submit
           arguments: ':app:assembleProdDebug'
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
   lint:
@@ -59,9 +62,12 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Lint
-        uses: gradle/gradle-build-action@v2.11.1
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: lint
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
       - name: Uploading lint results
         uses: actions/upload-artifact@v4
         with:
@@ -82,9 +88,12 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Detekt
-        uses: gradle/gradle-build-action@v2.11.1
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: detektProdDebug
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
       - name: Uploading detekt results
         uses: actions/upload-artifact@v4
         with:
@@ -105,19 +114,24 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Unit test and coverage
-        uses: gradle/gradle-build-action@v2.11.1
+        uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: koverHtmlReport
+          arguments: koverXmlReport
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
       - name: Uploading test results
         uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: '**/reports/tests/testProdDebugUnitTest/'
-      - name: Uploading test coverage
-        uses: actions/upload-artifact@v4
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
         with:
-          name: test-coverage-report
-          path: '**/reports/coverage/'
+          fail_ci_if_error: true
+          file: '**/app/build/reports/coverage/coverage.xml'
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   android-test:
     needs: build
     if: '${{ inputs.runAndroidTests }}'
@@ -137,9 +151,12 @@ jobs:
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Build AndroidTest app
-        uses: gradle/gradle-build-action@v2.11.1
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: packageProdDebug
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
       - name: Run Instrumented Tests on GMD
         run: |
           ./gradlew cleanManagedDevices --unused-only

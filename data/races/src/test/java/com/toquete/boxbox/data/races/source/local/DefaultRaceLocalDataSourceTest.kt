@@ -1,4 +1,4 @@
-package com.toquete.boxbox.data.races.source.remote.source.local
+package com.toquete.boxbox.data.races.source.local
 
 import com.toquete.boxbox.core.database.dao.RaceDao
 import com.toquete.boxbox.core.testing.data.raceEntities
