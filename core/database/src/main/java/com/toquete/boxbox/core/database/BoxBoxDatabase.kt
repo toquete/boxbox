@@ -29,7 +29,7 @@ import com.toquete.boxbox.core.database.model.RaceEntity
 import com.toquete.boxbox.core.database.model.RaceResultEntity
 
 @Database(
-    version = 5,
+    version = 6,
     entities = [
         DriverStandingEntity::class,
         DriverEntity::class,
