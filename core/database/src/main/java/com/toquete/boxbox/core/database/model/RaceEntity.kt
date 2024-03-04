@@ -10,7 +10,7 @@ data class RaceEntity(
     val raceUrl: String,
     val raceName: String,
     val date: String,
-    val time: String,
+    val time: String?,
     @ColumnInfo(name = "circuit_id")
     val circuitId: String,
     @ColumnInfo(name = "first_practice_date")
