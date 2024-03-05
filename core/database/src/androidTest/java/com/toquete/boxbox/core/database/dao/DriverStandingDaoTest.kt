@@ -52,7 +52,7 @@ class DriverStandingDaoTest {
 
     @Test
     fun testDriverStandingsInsert() = runTest {
-        dao.upsertAll(driverStandingEntities)
+        dao.insertAll(driverStandingEntities)
 
         val result = dao.getDriverStandings().first()
 
@@ -61,7 +61,7 @@ class DriverStandingDaoTest {
 
     @Test
     fun testDriverStandingsDelete() = runTest {
-        dao.upsertAll(driverStandingEntities)
+        dao.insertAll(driverStandingEntities)
 
         dao.deleteAll()
 
@@ -72,7 +72,7 @@ class DriverStandingDaoTest {
 
     @Test
     fun testFullDriverStandingSelect() = runTest {
-        dao.upsertAll(driverStandingEntities)
+        dao.deleteAndInsertAllInTransaction(driverStandingEntities)
         driverDao.upsertAll(driverEntities)
         constructorDao.upsertAll(constructorEntities)
         driverImageDao.upsertAll(driverImageEntities)
