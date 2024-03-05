@@ -11,7 +11,7 @@ class DefaultConstructorStandingsLocalDataSource @Inject constructor(
 ) : ConstructorStandingsLocalDataSource {
 
     override suspend fun insertAll(constructorStandings: List<ConstructorStandingEntity>) {
-        constructorStandingDao.upsertAll(constructorStandings)
+        constructorStandingDao.deleteAndInsertAllInTransaction(constructorStandings)
     }
 
     override fun getConstructorStandings(): Flow<List<FullConstructorStandingEntity>> {
