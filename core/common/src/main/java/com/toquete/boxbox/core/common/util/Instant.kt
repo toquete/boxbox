@@ -4,9 +4,9 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.toInstant
 
 fun dateAndTimeToInstant(date: String?, time: String?): Instant? {
-    if (date == null || time == null) {
-        return null
+    return when {
+        date == null -> null
+        time == null -> "${date}T00:00:00Z".toInstant()
+        else -> "${date}T$time".toInstant()
     }
-
-    return "${date}T$time".toInstant()
 }
