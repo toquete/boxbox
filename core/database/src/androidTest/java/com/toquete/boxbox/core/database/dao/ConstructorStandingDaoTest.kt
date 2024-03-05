@@ -43,7 +43,7 @@ class ConstructorStandingDaoTest {
 
     @Test
     fun testConstructorStandingsInsert() = runTest {
-        dao.upsertAll(constructorStandingEntities)
+        dao.insertAll(constructorStandingEntities)
 
         val result = dao.getConstructorStandings().first()
 
@@ -52,7 +52,7 @@ class ConstructorStandingDaoTest {
 
     @Test
     fun testConstructorStandingsDelete() = runTest {
-        dao.upsertAll(constructorStandingEntities)
+        dao.insertAll(constructorStandingEntities)
 
         dao.deleteAll()
 
@@ -63,7 +63,7 @@ class ConstructorStandingDaoTest {
 
     @Test
     fun testFullConstructorStandingSelect() = runTest {
-        dao.upsertAll(constructorStandingEntities)
+        dao.deleteAndInsertAllInTransaction(constructorStandingEntities)
         constructorDao.upsertAll(constructorEntities)
         constructorImageDao.upsertAll(constructorImageEntities)
         countryDao.upsertAll(countryEntities)
