@@ -43,7 +43,7 @@ class RaceResultDaoTest {
         constructorDao.upsertAll(constructorEntities)
         dao.upsertAll(raceResultEntities)
 
-        val result = dao.getRaceResultsBySeason(season = "2023").first()
+        val result = dao.getRaceResultsBySeasonAndRound(season = "2023", round = 1).first()
 
         assertContentEquals(raceResultsWithDriverAndConstructor, result)
     }
