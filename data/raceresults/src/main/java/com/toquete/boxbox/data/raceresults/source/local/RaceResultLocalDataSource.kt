@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 internal interface RaceResultLocalDataSource {
 
-    fun getRaceResultsBySeason(season: String): Flow<List<RaceResultWithDriverAndConstructorEntity>>
+    fun getRaceResultsBySeasonAndRound(season: String, round: Int): Flow<List<RaceResultWithDriverAndConstructorEntity>>
 
     suspend fun insertAll(raceResults: List<RaceResultEntity>)
 }

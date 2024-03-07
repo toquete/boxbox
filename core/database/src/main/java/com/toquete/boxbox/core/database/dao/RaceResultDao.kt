@@ -15,9 +15,10 @@ interface RaceResultDao {
     @Query(
         "SELECT * FROM race_results " +
             "WHERE season = :season " +
+            "AND round = :round " +
             "ORDER BY position ASC"
     )
-    fun getRaceResultsBySeason(season: String): Flow<List<RaceResultWithDriverAndConstructorEntity>>
+    fun getRaceResultsBySeasonAndRound(season: String, round: Int): Flow<List<RaceResultWithDriverAndConstructorEntity>>
 
     @Upsert
     suspend fun upsertAll(raceResults: List<RaceResultEntity>)

@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RaceResultRepository : Syncable {
 
-    fun getRaceResultsBySeason(season: String): Flow<List<RaceResult>>
+    fun getRaceResultsBySeasonAndRound(season: String, round: Int): Flow<List<RaceResult>>
 }
