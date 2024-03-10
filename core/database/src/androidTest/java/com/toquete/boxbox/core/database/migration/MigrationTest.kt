@@ -6,6 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.database.MIGRATION_5_6
+import com.toquete.boxbox.core.database.MIGRATION_6_7
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,7 +16,7 @@ import java.io.IOException
 class MigrationTest {
 
     private val testDb = "migration-test"
-    private val allMigrations = arrayOf(MIGRATION_5_6)
+    private val allMigrations = arrayOf(MIGRATION_5_6, MIGRATION_6_7)
 
     @get:Rule
     val helper: MigrationTestHelper = MigrationTestHelper(
