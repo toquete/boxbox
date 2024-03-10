@@ -9,7 +9,7 @@ data class DriverEntity(
     @PrimaryKey
     val id: String,
     val number: String,
-    val code: String,
+    val code: String?,
     val url: String,
     @ColumnInfo(name = "first_name")
     val firstName: String,
