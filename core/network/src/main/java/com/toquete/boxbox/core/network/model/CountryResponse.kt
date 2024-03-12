@@ -8,5 +8,8 @@ data class CountryResponse(
     val nationality: String? = null,
     @get:PropertyName("flag_url")
     @set:PropertyName("flag_url")
-    var flagUrl: String? = null
+    var flagUrl: String? = null,
+    @get:PropertyName("alternative_id")
+    @set:PropertyName("alternative_id")
+    var alternativeId: String? = null
 )
