@@ -26,6 +26,7 @@ interface RaceDao {
             "LEFT JOIN countries AS country " +
             "ON country.name LIKE '%' || circuit.country || '%' " +
             "OR country.id = circuit.country " +
+            "OR country.alternative_id = circuit.country " +
             "WHERE race.season = :season "
     )
     fun getRacesBySeason(season: String): Flow<List<RaceWithCircuitEntity>>
