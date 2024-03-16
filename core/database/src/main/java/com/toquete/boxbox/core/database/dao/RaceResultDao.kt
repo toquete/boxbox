@@ -23,18 +23,18 @@ interface RaceResultDao {
 
     @Query(
         "SELECT results.*, circuits.country, circuits.circuitName, drivers.code, images.image_url " +
-                "FROM race_results AS results " +
-                "INNER JOIN races " +
-                "ON races.season = results.season " +
-                "AND races.round = results.round " +
-                "INNER JOIN drivers " +
-                "ON drivers.id = results.driver_id " +
-                "INNER JOIN circuits " +
-                "ON circuits.id = races.circuit_id " +
-                "LEFT JOIN drivers_images AS images " +
-                "ON images.id = results.driver_id " +
-                "WHERE results.season = :season " +
-                "AND results.position BETWEEN 1 AND 3"
+            "FROM race_results AS results " +
+            "INNER JOIN races " +
+            "ON races.season = results.season " +
+            "AND races.round = results.round " +
+            "INNER JOIN drivers " +
+            "ON drivers.id = results.driver_id " +
+            "INNER JOIN circuits " +
+            "ON circuits.id = races.circuit_id " +
+            "LEFT JOIN drivers_images AS images " +
+            "ON images.id = results.driver_id " +
+            "WHERE results.season = :season " +
+            "AND results.position BETWEEN 1 AND 3"
     )
     fun getRaceResultsPodiumsBySeason(season: String): Flow<List<RaceResultWithCircuitAndDriverEntity>>
 
