@@ -41,6 +41,10 @@ internal fun Project.configureKotlinAndroid(
             jvmTarget = JavaVersion.VERSION_11.toString()
         }
 
+        lint {
+            disable.add("MutableCollectionMutableState")
+        }
+
         val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
         dependencies {
