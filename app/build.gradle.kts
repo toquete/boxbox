@@ -164,12 +164,16 @@ koverReport {
                 "*Module*",
                 "*Application",
                 "*Worker*",
-                "*Composable*"
+                "*Composable*",
+                "*Destination*"
             )
             packages(
                 "*.di",
+                "*.navigation",
                 "com.toquete.boxbox.util",
-                "com.toquete.boxbox.core.ui.theme"
+                "com.toquete.boxbox.ui",
+                "com.toquete.boxbox.core.ui.theme",
+                "com.toquete.boxbox.core.ui.custom",
             )
             annotatedBy(
                 "*Composable",
