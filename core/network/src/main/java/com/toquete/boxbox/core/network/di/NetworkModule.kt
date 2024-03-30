@@ -1,6 +1,5 @@
 package com.toquete.boxbox.core.network.di
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.toquete.boxbox.core.network.interceptor.HttpLogger
 import com.toquete.boxbox.core.network.interceptor.NetworkErrorInterceptor
 import dagger.Module
@@ -15,6 +14,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 
 private const val JSON_MEDIA_TYPE = "application/json"
 private const val BASE_URL = "https://ergast.com/api/f1/"
