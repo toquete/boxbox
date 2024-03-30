@@ -24,9 +24,11 @@ class DefaultRaceResultRepositoryTest {
 
     @Test
     fun `getRaceResultsBySeason should return mapped list when called`() = runTest {
-        coEvery { localDataSource.getRaceResultsBySeason(any()) } returns flowOf(raceResultsWithDriverAndConstructor)
+        coEvery {
+            localDataSource.getRaceResultsBySeasonAndRound(any(), any())
+        } returns flowOf(raceResultsWithDriverAndConstructor)
 
-        val result = repository.getRaceResultsBySeason(season = "2023").first()
+        val result = repository.getRaceResultsBySeasonAndRound(season = "2023", round = 1).first()
 
         assertContentEquals(raceResults, result)
     }

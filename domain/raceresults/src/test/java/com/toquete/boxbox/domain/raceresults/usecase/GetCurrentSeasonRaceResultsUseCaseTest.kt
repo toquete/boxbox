@@ -24,12 +24,12 @@ class GetCurrentSeasonRaceResultsUseCaseTest {
 
     @Test
     fun `invoke should return current season race results`() = runTest {
-        every { raceResultRepository.getRaceResultsBySeason(any()) } returns flowOf(raceResults)
+        every { raceResultRepository.getRaceResultsBySeasonAndRound(any(), any()) } returns flowOf(raceResults)
         every { getTodayLocalDateUseCase() } returns LocalDate(year = 2023, monthNumber = 1, dayOfMonth = 1)
 
-        val result = useCase().first()
+        val result = useCase(round = 1).first()
 
-        verify { raceResultRepository.getRaceResultsBySeason(season = "2023") }
+        verify { raceResultRepository.getRaceResultsBySeasonAndRound(season = "2023", round = 1) }
         assertContentEquals(raceResults, result)
     }
 }

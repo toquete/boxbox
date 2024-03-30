@@ -18,7 +18,7 @@ data class RaceResponse(
     @SerialName("date")
     val date: String,
     @SerialName("time")
-    val time: String,
+    val time: String?,
     @SerialName("Results")
     val results: List<RaceResultResponse>?,
     @SerialName("FirstPractice")

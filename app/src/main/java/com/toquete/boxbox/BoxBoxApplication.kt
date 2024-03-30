@@ -68,6 +68,8 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
                     .directory(cacheDir)
                     .build()
             }
+            .respectCacheHeaders(enable = false)
+            .networkObserverEnabled(enable = true)
             .build()
     }
 

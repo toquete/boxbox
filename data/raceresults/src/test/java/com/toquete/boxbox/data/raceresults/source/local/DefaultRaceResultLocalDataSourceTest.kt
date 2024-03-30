@@ -20,9 +20,9 @@ class DefaultRaceResultLocalDataSourceTest {
 
     @Test
     fun `getRaceResultsBySeason should return race results`() = runTest {
-        every { dao.getRaceResultsBySeason(any()) } returns flowOf(raceResultsWithDriverAndConstructor)
+        every { dao.getRaceResultsBySeasonAndRound(any(), any()) } returns flowOf(raceResultsWithDriverAndConstructor)
 
-        val result = dataSource.getRaceResultsBySeason(season = "2023").first()
+        val result = dataSource.getRaceResultsBySeasonAndRound(season = "2023", round = 1).first()
 
         assertContentEquals(raceResultsWithDriverAndConstructor, result)
     }

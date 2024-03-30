@@ -11,5 +11,7 @@ data class CountryEntity(
     val name: String,
     val nationality: String,
     @ColumnInfo(name = "flag_url")
-    val flagUrl: String
+    val flagUrl: String,
+    @ColumnInfo(name = "alternative_id")
+    val alternativeId: String?
 )
