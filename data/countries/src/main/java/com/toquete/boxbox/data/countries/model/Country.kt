@@ -8,6 +8,7 @@ internal fun CountryResponse.toEntity(): CountryEntity {
         id = id.orEmpty(),
         name = name.orEmpty(),
         nationality = nationality.orEmpty(),
-        flagUrl = flagUrl.orEmpty()
+        flagUrl = flagUrl.orEmpty(),
+        alternativeId = alternativeId
     )
 }

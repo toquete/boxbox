@@ -23,16 +23,16 @@ internal fun FullDriverStandingEntity.toDomain(): DriverStanding {
         points = standing.points,
         wins = standing.wins,
         driver = Driver(
-            id = driverWithCountryFlag.driver.id,
-            firstName = driverWithCountryFlag.driver.firstName,
-            lastName = driverWithCountryFlag.driver.lastName,
+            id = driverWithCountryFlag?.driver?.id.orEmpty(),
+            firstName = driverWithCountryFlag?.driver?.firstName.orEmpty(),
+            lastName = driverWithCountryFlag?.driver?.lastName.orEmpty(),
             imageUrl = driverImage?.imageUrl,
-            flagUrl = driverWithCountryFlag.flagUrl,
+            flagUrl = driverWithCountryFlag?.flagUrl,
             numberUrl = driverImage?.numberUrl
         ),
         constructor = Constructor(
-            id = constructor.id,
-            name = constructor.name,
+            id = constructor?.id.orEmpty(),
+            name = constructor?.name.orEmpty(),
             imageUrl = constructorImageUrl,
             accentColor = constructorColor?.accentColor,
             backgroundColor = constructorColor?.backgroundColor

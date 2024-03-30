@@ -54,7 +54,7 @@ jobs:
             app/build/outputs/apk/prod/release/
             app/build/outputs/bundle/prodRelease/
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           files: app/build/outputs/apk/prod/release/app-prod-release.apk

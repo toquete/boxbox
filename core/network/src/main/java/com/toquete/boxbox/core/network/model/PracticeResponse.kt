@@ -8,5 +8,5 @@ data class PracticeResponse(
     @SerialName("date")
     val date: String,
     @SerialName("time")
-    val time: String
+    val time: String?
 )

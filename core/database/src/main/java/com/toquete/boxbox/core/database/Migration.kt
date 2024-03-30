@@ -16,3 +16,14 @@ val MIGRATION_5_6 = object : Migration(5, 6) {
         )
     }
 }
+
+val MIGRATION_6_7 = object : Migration(6, 7) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("DROP TABLE drivers")
+        db.execSQL(
+            "CREATE TABLE `drivers` (`id` TEXT NOT NULL, `number` TEXT NOT NULL, `code` TEXT, " +
+                "`url` TEXT NOT NULL, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL, " +
+                "`date_of_birth` TEXT NOT NULL, `nationality` TEXT NOT NULL, PRIMARY KEY(`id`))"
+        )
+    }
+}
