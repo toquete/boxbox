@@ -32,13 +32,13 @@ jobs:
           languages: java
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-      - name: Build APK
-        run: ./gradlew :app:assembleProdDebug
         with:
           dependency-graph: generate-and-submit
           build-scan-publish: true
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
+      - name: Build APK
+        run: ./gradlew :app:assembleProdDebug
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
   lint:
@@ -57,12 +57,12 @@ jobs:
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-      - name: Lint
-        run: ./gradlew lint
         with:
           build-scan-publish: true
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
+      - name: Lint
+        run: ./gradlew lint
       - name: Uploading lint results
         uses: actions/upload-artifact@v4
         with:
@@ -84,12 +84,12 @@ jobs:
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-      - name: Detekt
-        run: ./gradlew detektProdDebug
         with:
           build-scan-publish: true
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
+      - name: Detekt
+        run: ./gradlew detektProdDebug
       - name: Uploading detekt results
         uses: actions/upload-artifact@v4
         with:
@@ -111,12 +111,12 @@ jobs:
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-      - name: Unit test and coverage
-        run: ./gradlew koverXmlReport
         with:
           build-scan-publish: true
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
+      - name: Unit test and coverage
+        run: ./gradlew koverXmlReport
       - name: Uploading test results
         uses: actions/upload-artifact@v4
         with:
@@ -153,6 +153,10 @@ jobs:
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          build-scan-publish: true
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
       - name: Build project and run instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
