@@ -6,13 +6,6 @@ name: CI
   pull_request:
     branches:
       - master
-  workflow_dispatch:
-    inputs:
-      runAndroidTests:
-        description: Run Android Tests
-        required: true
-        default: false
-        type: boolean
 permissions:
   contents: write
   security-events: write
@@ -154,6 +147,13 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
+      - name: Build test APK
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          arguments: 'assembleProdDebugAndroidTest'
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
       - name: Build project and run instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -165,7 +165,7 @@ jobs:
           disable-animations: true
           disk-size: 6000M
           heap-size: 600M
-          script: ./gradlew connectedProdDebugAndroidTest --daemon
+          script: ./gradlew connectedProdDebugAndroidTest --no-daemon --max-workers 2
       - name: Upload Android test reports
         uses: actions/upload-artifact@v4
         with:
