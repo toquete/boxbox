@@ -133,10 +133,14 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   android-test:
-    needs: build
-    if: '${{ inputs.runAndroidTests }}'
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Java
@@ -150,17 +154,18 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
-      - name: Build AndroidTest app
-        uses: gradle/actions/setup-gradle@v3
+      - name: Build project and run instrumentation tests
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          arguments: packageProdDebug
-          build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
-      - name: Run Instrumented Tests on GMD
-        run: |
-          ./gradlew cleanManagedDevices --unused-only
-          ./gradlew pixel2api30ProdDebugAndroidTest -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=1 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
+          api-level: 30
+          arch: x86_64
+          target: aosp_atd
+          channel: canary
+          profile: Pixel 2
+          disable-animations: true
+          disk-size: 6000M
+          heap-size: 600M
+          script: ./gradlew connectedProdDebugAndroidTest --daemon
       - name: Upload Android test reports
         uses: actions/upload-artifact@v4
         with:
