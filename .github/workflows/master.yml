@@ -6,13 +6,6 @@ name: CI
   pull_request:
     branches:
       - master
-  workflow_dispatch:
-    inputs:
-      runAndroidTests:
-        description: Run Android Tests
-        required: true
-        default: false
-        type: boolean
 permissions:
   contents: write
   security-events: write
@@ -37,14 +30,15 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: java
-      - name: Build APK
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
           dependency-graph: generate-and-submit
-          arguments: ':app:assembleProdDebug'
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
+      - name: Build APK
+        run: ./gradlew :app:assembleProdDebug
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
   lint:
@@ -61,13 +55,14 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
-      - name: Lint
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: lint
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
+      - name: Lint
+        run: ./gradlew lint
       - name: Uploading lint results
         uses: actions/upload-artifact@v4
         with:
@@ -87,13 +82,14 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
-      - name: Detekt
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: detektProdDebug
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
+      - name: Detekt
+        run: ./gradlew detektProdDebug
       - name: Uploading detekt results
         uses: actions/upload-artifact@v4
         with:
@@ -113,13 +109,14 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
-      - name: Unit test and coverage
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: koverXmlReport
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
+      - name: Unit test and coverage
+        run: ./gradlew koverXmlReport
       - name: Uploading test results
         uses: actions/upload-artifact@v4
         with:
@@ -133,10 +130,14 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   android-test:
-    needs: build
-    if: '${{ inputs.runAndroidTests }}'
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Java
@@ -150,17 +151,24 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
-      - name: Build AndroidTest app
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: packageProdDebug
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
-      - name: Run Instrumented Tests on GMD
-        run: |
-          ./gradlew cleanManagedDevices --unused-only
-          ./gradlew pixel2api30ProdDebugAndroidTest -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=1 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
+      - name: Build project and run instrumentation tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          arch: x86_64
+          target: aosp_atd
+          channel: canary
+          profile: pixel_2
+          disable-animations: true
+          disk-size: 6000M
+          heap-size: 600M
+          script: ./gradlew connectedProdDebugAndroidTest --no-daemon --max-workers 2
       - name: Upload Android test reports
         uses: actions/upload-artifact@v4
         with:
