@@ -37,15 +37,15 @@ jobs:
         with:
           arguments: ':app:assembleProdRelease'
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
       - name: Build release bundle
         uses: gradle/actions/setup-gradle@v3
         with:
           arguments: ':app:bundleProdRelease'
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
       - name: Upload Release Build to Artifacts
         uses: actions/upload-artifact@v4
         with:
