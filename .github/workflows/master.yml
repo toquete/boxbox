@@ -36,8 +36,8 @@ jobs:
           dependency-graph: generate-and-submit
           arguments: ':app:assembleProdDebug'
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
   lint:
@@ -59,8 +59,8 @@ jobs:
         with:
           arguments: lint
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
       - name: Uploading lint results
         uses: actions/upload-artifact@v4
         with:
@@ -85,8 +85,8 @@ jobs:
         with:
           arguments: detektProdDebug
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
       - name: Uploading detekt results
         uses: actions/upload-artifact@v4
         with:
@@ -111,8 +111,8 @@ jobs:
         with:
           arguments: koverXmlReport
           build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
       - name: Uploading test results
         uses: actions/upload-artifact@v4
         with:
