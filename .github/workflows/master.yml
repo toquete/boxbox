@@ -161,7 +161,7 @@ jobs:
           arch: x86_64
           target: aosp_atd
           channel: canary
-          profile: Pixel 2
+          profile: pixel_2
           disable-animations: true
           disk-size: 6000M
           heap-size: 600M
