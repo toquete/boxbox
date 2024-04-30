@@ -147,13 +147,6 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
-      - name: Build test APK
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: 'assembleProdDebugAndroidTest'
-          build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
       - name: Build project and run instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
