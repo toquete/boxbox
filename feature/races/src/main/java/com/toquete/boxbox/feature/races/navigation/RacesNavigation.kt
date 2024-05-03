@@ -12,8 +12,8 @@ fun NavController.navigateToRaces(navOptions: NavOptions? = null) {
     navigate(RACES_ROUTE, navOptions)
 }
 
-fun NavGraphBuilder.racesScreen() {
+fun NavGraphBuilder.racesScreen(onRaceClick: (Int) -> Unit = {}) {
     composable(route = RACES_ROUTE) {
-        RacesRoute()
+        RacesRoute(onRaceClick = onRaceClick)
     }
 }

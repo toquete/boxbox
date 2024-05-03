@@ -6,26 +6,22 @@ import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.SportsScore
 import androidx.compose.material.icons.outlined.EmojiEvents
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.toquete.boxbox.R
 import com.toquete.boxbox.feature.races.R as racesR
 import com.toquete.boxbox.feature.standings.R as standingsR
 
 enum class TopLevelDestination(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
-    @StringRes val iconTextId: Int,
-    @StringRes val titleTextId: Int
+    @StringRes val iconTextId: Int
 ) {
     STANDINGS(
         selectedIcon = Icons.Filled.EmojiEvents,
         unselectedIcon = Icons.Outlined.EmojiEvents,
-        iconTextId = standingsR.string.standings,
-        titleTextId = R.string.app_name
+        iconTextId = standingsR.string.standings
     ),
     RACES(
         selectedIcon = Icons.Filled.SportsScore,
         unselectedIcon = Icons.Filled.SportsScore,
-        iconTextId = racesR.string.races,
-        titleTextId = racesR.string.races
+        iconTextId = racesR.string.races
     )
 }

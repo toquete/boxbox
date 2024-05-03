@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.domain.raceresults.usecase.GetCurrentSeasonRaceResultsUseCase
+import com.toquete.boxbox.feature.raceresults.navigation.ROUND_ARGUMENT
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -16,7 +17,7 @@ internal class RaceResultsViewModel @Inject constructor(
     getCurrentSeasonRaceResultsUseCase: GetCurrentSeasonRaceResultsUseCase
 ) : ViewModel() {
 
-    private val round: Int = checkNotNull(savedStateHandle["round"])
+    private val round: Int = checkNotNull(savedStateHandle[ROUND_ARGUMENT])
 
     val state = getCurrentSeasonRaceResultsUseCase(round)
         .map { RaceResultsState(it) }

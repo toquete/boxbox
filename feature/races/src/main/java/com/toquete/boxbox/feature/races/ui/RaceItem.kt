@@ -1,5 +1,6 @@
 package com.toquete.boxbox.feature.races.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,7 +36,7 @@ import kotlinx.datetime.toInstant
 import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
-internal fun RaceItem(race: Race) {
+internal fun RaceItem(race: Race, onClick: (Int) -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -44,7 +45,8 @@ internal fun RaceItem(race: Race) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(16.dp)
+                .clickable { onClick(race.round) },
             shape = MaterialTheme.shapes.medium,
             color = MaterialTheme.colorScheme.inverseOnSurface
         ) {
