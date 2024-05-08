@@ -42,6 +42,7 @@ internal fun RaceResultItemPreview() {
                 season = "2021",
                 round = 1,
                 position = 1,
+                points = 25,
                 driver = Driver(
                     id = "VER",
                     firstName = "Max",
@@ -51,7 +52,10 @@ internal fun RaceResultItemPreview() {
                     id = "RBR",
                     name = "Red Bull Racing",
                 ),
-                gridPosition = 1
+                gridPosition = 1,
+                laps = "57",
+                status = "Finished",
+                time = "1:33:56.736"
             )
         )
     }

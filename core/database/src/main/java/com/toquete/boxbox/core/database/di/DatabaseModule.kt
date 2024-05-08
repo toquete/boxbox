@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.database.MIGRATION_5_6
 import com.toquete.boxbox.core.database.MIGRATION_6_7
+import com.toquete.boxbox.core.database.MIGRATION_8_9
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +23,7 @@ internal object DatabaseModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): BoxBoxDatabase {
         return Room.databaseBuilder(context, BoxBoxDatabase::class.java, DATABASE)
-            .addMigrations(MIGRATION_5_6, MIGRATION_6_7)
+            .addMigrations(MIGRATION_5_6, MIGRATION_6_7, MIGRATION_8_9)
             .build()
     }
 }
