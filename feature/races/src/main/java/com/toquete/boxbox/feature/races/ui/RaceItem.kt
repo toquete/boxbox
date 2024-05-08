@@ -10,8 +10,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -41,12 +44,12 @@ internal fun RaceItem(race: Race, onClick: (Int) -> Unit = {}) {
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
+            .clickable { onClick(race.round) }
     ) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
-                .clickable { onClick(race.round) },
+                .padding(16.dp),
             shape = MaterialTheme.shapes.medium,
             color = MaterialTheme.colorScheme.inverseOnSurface
         ) {
@@ -88,12 +91,24 @@ internal fun RaceItem(race: Race, onClick: (Int) -> Unit = {}) {
                 modifier = Modifier.weight(weight = 0.6f),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                Text(
-                    modifier = Modifier.testTag("Country"),
-                    text = race.circuit.country,
-                    style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
-                    fontWeight = FontWeight.Bold
-                )
+                Row {
+                    Text(
+                        modifier = Modifier
+                            .weight(weight = 0.8f, fill = false)
+                            .testTag("Country"),
+                        text = race.circuit.country,
+                        style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
+                        fontWeight = FontWeight.Bold
+                    )
+                    Icon(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .align(Alignment.CenterVertically)
+                            .testTag("Chevron"),
+                        imageVector = Icons.Default.ChevronRight,
+                        contentDescription = null
+                    )
+                }
                 HorizontalDivider(
                     modifier = Modifier.testTag("Divider"),
                     color = MaterialTheme.colorScheme.onSurfaceVariant

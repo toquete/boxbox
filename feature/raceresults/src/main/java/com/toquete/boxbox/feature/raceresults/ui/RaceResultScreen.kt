@@ -1,11 +1,16 @@
 package com.toquete.boxbox.feature.raceresults.ui
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -30,14 +35,19 @@ internal fun RaceResultRoute(
 
 @Composable
 internal fun RaceResultScreen(state: RaceResultsState) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .horizontalScroll(rememberScrollState())
+    ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(state.results) {
                 RaceResultItem(it)
+                Spacer(modifier = Modifier.height(8.dp))
+                HorizontalDivider(modifier = Modifier.width(500.dp))
             }
         }
     }
@@ -51,6 +61,21 @@ internal fun RaceResultPreview() {
             RaceResultScreen(
                 state = RaceResultsState(
                     results = listOf(
+                        RaceResult(
+                            season = "2021",
+                            round = 1,
+                            position = 1,
+                            driver = Driver(
+                                id = "VER",
+                                firstName = "Max",
+                                lastName = "Verstappen"
+                            ),
+                            constructor = Constructor(
+                                id = "RBR",
+                                name = "Red Bull Racing",
+                            ),
+                            gridPosition = 1
+                        ),
                         RaceResult(
                             season = "2021",
                             round = 1,

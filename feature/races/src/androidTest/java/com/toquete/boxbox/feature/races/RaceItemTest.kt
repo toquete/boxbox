@@ -24,13 +24,15 @@ class RaceItemTest {
                 }
             }
 
-            onNodeWithTag("Circuit Image").assertIsDisplayed()
-            onNodeWithTag("Flag").assertIsDisplayed()
-            onNodeWithTag("Country").assertTextEquals("Bahrain")
-            onNodeWithTag("Divider").assertIsDisplayed()
-            onNodeWithTag("Circuit Name").assertTextEquals("Bahrain International Circuit")
-            onNodeWithTag("Month").assertTextEquals("MAR")
-            onNodeWithTag("Date").assertTextEquals("05")
+            onNodeWithTag("Circuit Image", useUnmergedTree = true).assertIsDisplayed()
+            onNodeWithTag("Flag", useUnmergedTree = true).assertIsDisplayed()
+            onNodeWithTag("Country", useUnmergedTree = true).assertTextEquals("Bahrain")
+            onNodeWithTag("Chevron", useUnmergedTree = true).assertIsDisplayed()
+            onNodeWithTag("Divider", useUnmergedTree = true).assertIsDisplayed()
+            onNodeWithTag("Circuit Name", useUnmergedTree = true)
+                .assertTextEquals("Bahrain International Circuit")
+            onNodeWithTag("Month", useUnmergedTree = true).assertTextEquals("MAR")
+            onNodeWithTag("Date", useUnmergedTree = true).assertTextEquals("05")
         }
     }
 }
