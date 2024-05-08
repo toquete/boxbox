@@ -2,6 +2,7 @@ package com.toquete.boxbox.ui
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.WifiOff
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -26,34 +27,43 @@ fun BoxBoxTopAppBar(
     onSettingsButtonClick: () -> Unit
 ) {
     val isOffline by appState.isOffline.collectAsStateWithLifecycle()
-    val destination = appState.currentTopLevelDestination
-    if (destination != null) {
-        CenterAlignedTopAppBar(
-            title = {
-                Text(
-                    text = stringResource(destination.titleTextId),
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        fontFamily = FormulaOne,
-                        fontWeight = FontWeight.Bold
-                    )
+    val screen = appState.currentScreen
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = stringResource(screen.titleTextId),
+                style = MaterialTheme.typography.titleLarge.copy(
+                    fontFamily = FormulaOne,
+                    fontWeight = FontWeight.Bold
                 )
-            },
-            actions = {
-                if (isOffline) {
+            )
+        },
+        actions = {
+            if (isOffline) {
+                Icon(
+                    modifier = Modifier.size(30.dp),
+                    imageVector = Icons.Default.WifiOff,
+                    contentDescription = null
+                )
+            }
+            IconButton(onClick = onSettingsButtonClick) {
+                Icon(
+                    modifier = Modifier.size(30.dp),
+                    imageVector = Icons.Default.Settings,
+                    contentDescription = null
+                )
+            }
+        },
+        navigationIcon = {
+            if (appState.canNavigateBack) {
+                IconButton(onClick = { appState.navigateUp() }) {
                     Icon(
                         modifier = Modifier.size(30.dp),
-                        imageVector = Icons.Default.WifiOff,
-                        contentDescription = null
-                    )
-                }
-                IconButton(onClick = onSettingsButtonClick) {
-                    Icon(
-                        modifier = Modifier.size(30.dp),
-                        imageVector = Icons.Default.Settings,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = null
                     )
                 }
             }
-        )
-    }
+        }
+    )
 }

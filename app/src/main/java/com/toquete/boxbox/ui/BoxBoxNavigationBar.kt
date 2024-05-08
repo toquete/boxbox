@@ -12,20 +12,23 @@ import com.toquete.boxbox.navigation.TopLevelDestination
 
 @Composable
 fun BoxBoxNavigationBar(appState: MainAppState) {
-    NavigationBar {
-        appState.topLevelDestinations.forEach { destination ->
-            val selected = appState.currentDestination.isTopLevelDestinationInHierarchy(destination)
-            NavigationBarItem(
-                selected = selected,
-                onClick = { appState.navigateToTopLevelDestination(destination) },
-                icon = {
-                    Icon(
-                        imageVector = if (selected) destination.selectedIcon else destination.unselectedIcon,
-                        contentDescription = null
-                    )
-                },
-                label = { Text(stringResource(destination.iconTextId)) }
-            )
+    val destination = appState.currentTopLevelDestination
+    if (destination != null) {
+        NavigationBar {
+            appState.topLevelDestinations.forEach { destination ->
+                val selected = appState.currentDestination.isTopLevelDestinationInHierarchy(destination)
+                NavigationBarItem(
+                    selected = selected,
+                    onClick = { appState.navigateToTopLevelDestination(destination) },
+                    icon = {
+                        Icon(
+                            imageVector = if (selected) destination.selectedIcon else destination.unselectedIcon,
+                            contentDescription = null
+                        )
+                    },
+                    label = { Text(stringResource(destination.iconTextId)) }
+                )
+            }
         }
     }
 }
