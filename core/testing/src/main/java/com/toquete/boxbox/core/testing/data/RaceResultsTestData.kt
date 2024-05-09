@@ -6,6 +6,7 @@ import com.toquete.boxbox.core.network.model.ConstructorResponse
 import com.toquete.boxbox.core.network.model.DriverResponse
 import com.toquete.boxbox.core.network.model.RaceResponse
 import com.toquete.boxbox.core.network.model.RaceResultResponse
+import com.toquete.boxbox.core.network.model.TimeResponse
 
 val raceResultsResponse = listOf(
     RaceResponse(
@@ -19,6 +20,7 @@ val raceResultsResponse = listOf(
         results = listOf(
             RaceResultResponse(
                 racePosition = "1",
+                points = "25",
                 driver = DriverResponse(
                     id = "max_verstappen",
                     number = "33",
@@ -35,7 +37,13 @@ val raceResultsResponse = listOf(
                     name = "Red Bull",
                     nationality = "Austrian"
                 ),
-                gridPosition = "1"
+                gridPosition = "1",
+                laps = "57",
+                status = "Finished",
+                time = TimeResponse(
+                    millis = "5636736",
+                    time = "1:33:56.736"
+                )
             )
         ),
         firstPractice = null,
@@ -51,9 +59,13 @@ val raceResultEntities = listOf(
         season = "2023",
         round = 1,
         position = 1,
+        points = 25,
         driverId = "max_verstappen",
         constructorId = "red_bull",
-        gridPosition = 1
+        gridPosition = 1,
+        laps = "57",
+        status = "Finished",
+        time = "1:33:56.736"
     )
 )
 
@@ -62,8 +74,12 @@ val raceResults = listOf(
         season = "2023",
         round = 1,
         position = 1,
+        points = 25,
         driver = driver.copy(imageUrl = null, flagUrl = null, numberUrl = null),
         constructor = constructor.copy(imageUrl = null, flagUrl = null, accentColor = null, backgroundColor = null),
-        gridPosition = 1
+        gridPosition = 1,
+        laps = "57",
+        status = "Finished",
+        time = "1:33:56.736"
     )
 )
