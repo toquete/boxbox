@@ -39,12 +39,12 @@ import kotlinx.datetime.toInstant
 import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
-internal fun RaceItem(race: Race, onClick: (Int) -> Unit = {}) {
+internal fun RaceItem(race: Race, onClick: (Int, String) -> Unit = { _, _ -> }) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .clickable { onClick(race.round) }
+            .clickable { onClick(race.round, race.circuit.country) }
     ) {
         Surface(
             modifier = Modifier

@@ -28,42 +28,44 @@ fun BoxBoxTopAppBar(
 ) {
     val isOffline by appState.isOffline.collectAsStateWithLifecycle()
     val screen = appState.currentScreen
-    CenterAlignedTopAppBar(
-        title = {
-            Text(
-                text = stringResource(screen.titleTextId),
-                style = MaterialTheme.typography.titleLarge.copy(
-                    fontFamily = FormulaOne,
-                    fontWeight = FontWeight.Bold
+    if (screen.titleTextId != null) {
+        CenterAlignedTopAppBar(
+            title = {
+                Text(
+                    text = stringResource(screen.titleTextId),
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        fontFamily = FormulaOne,
+                        fontWeight = FontWeight.Bold
+                    )
                 )
-            )
-        },
-        actions = {
-            if (isOffline) {
-                Icon(
-                    modifier = Modifier.size(30.dp),
-                    imageVector = Icons.Default.WifiOff,
-                    contentDescription = null
-                )
-            }
-            IconButton(onClick = onSettingsButtonClick) {
-                Icon(
-                    modifier = Modifier.size(30.dp),
-                    imageVector = Icons.Default.Settings,
-                    contentDescription = null
-                )
-            }
-        },
-        navigationIcon = {
-            if (appState.canNavigateBack) {
-                IconButton(onClick = { appState.navigateUp() }) {
+            },
+            actions = {
+                if (isOffline) {
                     Icon(
                         modifier = Modifier.size(30.dp),
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        imageVector = Icons.Default.WifiOff,
                         contentDescription = null
                     )
                 }
+                IconButton(onClick = onSettingsButtonClick) {
+                    Icon(
+                        modifier = Modifier.size(30.dp),
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = null
+                    )
+                }
+            },
+            navigationIcon = {
+                if (appState.canNavigateBack) {
+                    IconButton(onClick = { appState.navigateUp() }) {
+                        Icon(
+                            modifier = Modifier.size(30.dp),
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = null
+                        )
+                    }
+                }
             }
-        }
-    )
+        )
+    }
 }

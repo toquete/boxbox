@@ -24,14 +24,14 @@ import kotlinx.datetime.toInstant
 @Composable
 internal fun RacesRoute(
     viewModel: RacesViewModel = hiltViewModel(),
-    onRaceClick: (Int) -> Unit = {}
+    onRaceClick: (Int, String) -> Unit = { _, _ -> }
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     RacesScreen(state, onRaceClick)
 }
 
 @Composable
-internal fun RacesScreen(state: RacesState, onRaceClick: (Int) -> Unit = {}) {
+internal fun RacesScreen(state: RacesState, onRaceClick: (Int, String) -> Unit = { _, _ -> }) {
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),

@@ -23,11 +23,7 @@ fun BoxBoxNavHost(
         modifier = modifier
     ) {
         standingsScreen()
-        racesScreen(
-            onRaceClick = { raceId ->
-                navController.navigateToRaceResult(raceId)
-            }
-        )
-        raceResultScreen()
+        racesScreen(onRaceClick = navController::navigateToRaceResult)
+        raceResultScreen(onNavigateUp = appState::navigateUp)
     }
 }
