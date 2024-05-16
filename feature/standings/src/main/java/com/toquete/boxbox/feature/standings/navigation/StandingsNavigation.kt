@@ -12,8 +12,12 @@ fun NavController.navigateToStandings(navOptions: NavOptions? = null) {
     navigate(STANDINGS_ROUTE, navOptions)
 }
 
-fun NavGraphBuilder.standingsScreen() {
+fun NavGraphBuilder.standingsScreen(
+    isOffline: Boolean,
+    isSyncing: Boolean,
+    onSettingsButtonClick: () -> Unit
+) {
     composable(route = STANDINGS_ROUTE) {
-        StandingsScreen()
+        StandingsScreen(isOffline, isSyncing, onSettingsButtonClick)
     }
 }

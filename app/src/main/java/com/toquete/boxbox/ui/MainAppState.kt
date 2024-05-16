@@ -15,7 +15,6 @@ import com.toquete.boxbox.feature.races.navigation.RACES_ROUTE
 import com.toquete.boxbox.feature.races.navigation.navigateToRaces
 import com.toquete.boxbox.feature.standings.navigation.STANDINGS_ROUTE
 import com.toquete.boxbox.feature.standings.navigation.navigateToStandings
-import com.toquete.boxbox.navigation.BoxBoxScreen
 import com.toquete.boxbox.navigation.TopLevelDestination
 import com.toquete.boxbox.util.monitor.NetworkMonitor
 import com.toquete.boxbox.util.monitor.SyncMonitor
@@ -75,17 +74,6 @@ class MainAppState(
             RACES_ROUTE -> TopLevelDestination.RACES
             else -> null
         }
-
-    val currentScreen: BoxBoxScreen
-        @Composable get() = BoxBoxScreen.entries.firstOrNull { it.route == currentDestination?.route }
-            ?: BoxBoxScreen.STANDINGS
-
-    val canNavigateBack: Boolean
-        @Composable get() = currentTopLevelDestination == null
-
-    fun navigateUp() {
-        navController.navigateUp()
-    }
 
     fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
         val topLevelNavOptions = navOptions {

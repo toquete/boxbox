@@ -5,6 +5,8 @@ import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.core.testing.data.raceResults
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.domain.raceresults.usecase.GetCurrentSeasonRaceResultsUseCase
+import com.toquete.boxbox.feature.raceresults.navigation.RACE_ARGUMENT
+import com.toquete.boxbox.feature.raceresults.navigation.ROUND_ARGUMENT
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
@@ -23,7 +25,12 @@ class RaceResultsViewModelTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     private val getCurrentSeasonRaceResultsUseCase: GetCurrentSeasonRaceResultsUseCase = mockk()
-    private val savedStateHandle = SavedStateHandle(mapOf("round" to 1))
+    private val savedStateHandle = SavedStateHandle(
+        mapOf(
+            RACE_ARGUMENT to "Bahrain",
+            ROUND_ARGUMENT to 1
+        )
+    )
 
     private lateinit var viewModel: RaceResultsViewModel
 
@@ -41,7 +48,7 @@ class RaceResultsViewModelTest {
         assertEquals(RaceResultsState(), viewModel.state.value)
 
         raceResultsFlow.emit(raceResults)
-        assertEquals(RaceResultsState(raceResults), viewModel.state.value)
+        assertEquals(RaceResultsState(raceName = "Bahrain", raceResults), viewModel.state.value)
 
         backgroundScope.cancel()
     }
