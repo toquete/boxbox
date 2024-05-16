@@ -3,12 +3,9 @@ package com.toquete.boxbox.feature.raceresults.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -52,11 +49,7 @@ internal fun RaceResultScreen(
     state: RaceResultsState,
     onNavigateUp: () -> Unit = { }
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(PaddingValues())
-    ) {
+    Column(modifier = Modifier.fillMaxSize()) {
         CenterAlignedTopAppBar(
             windowInsets = WindowInsets(top = 0.dp),
             title = {
@@ -78,28 +71,24 @@ internal fun RaceResultScreen(
                 }
             }
         )
-        Box(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .horizontalScroll(rememberScrollState())
+                .horizontalScroll(rememberScrollState()),
         ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                stickyHeader {
-                    RaceResultHeader()
+            stickyHeader {
+                RaceResultHeader()
+            }
+            itemsIndexed(state.results) { index, raceResult ->
+                val background = if (index.isEven()) {
+                    MaterialTheme.colorScheme.surfaceVariant
+                } else {
+                    MaterialTheme.colorScheme.background
                 }
-                itemsIndexed(state.results) { index, raceResult ->
-                    val background = if (index.isEven()) {
-                        MaterialTheme.colorScheme.surfaceVariant
-                    } else {
-                        MaterialTheme.colorScheme.background
-                    }
-                    RaceResultItem(
-                        modifier = Modifier.background(color = background),
-                        raceResult = raceResult
-                    )
-                }
+                RaceResultItem(
+                    modifier = Modifier.background(color = background),
+                    raceResult = raceResult
+                )
             }
         }
     }
