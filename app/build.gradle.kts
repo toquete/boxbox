@@ -96,6 +96,7 @@ dependencies {
     implementation(project(":feature:settings"))
     implementation(project(":feature:races"))
     implementation(project(":feature:raceresults"))
+    implementation(project(":feature:home"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
@@ -137,6 +138,7 @@ dependencies {
     kover(project(":feature:settings"))
     kover(project(":feature:races"))
     kover(project(":feature:raceresults"))
+    kover(project(":feature:home"))
 }
 
 koverReport {
