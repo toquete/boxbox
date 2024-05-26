@@ -127,20 +127,16 @@ private fun MainScreenContent(
 ) {
     val isOffline by mainAppState.isOffline.collectAsStateWithLifecycle()
     val hasFailed by mainAppState.hasFailed.collectAsStateWithLifecycle()
-    val isSyncing by mainAppState.isSyncing.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
 
     SnackbarMessage(isOffline, hasFailed, snackbarHostState)
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
-        bottomBar = { BoxBoxNavigationBar(appState = mainAppState) },
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
                 BoxBoxNavHost(
-                    navController = mainAppState.navController,
-                    isSyncing = isSyncing,
-                    isOffline = isOffline,
+                    mainAppState = mainAppState,
                     onSettingsButtonClick = onSettingsButtonClick,
                 )
             }

@@ -65,6 +65,8 @@ class MainAppState(
 
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
 
+    val topLevelRoutes: List<String> = topLevelDestinations.map { it.route }
+
     val currentDestination: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination
 
