@@ -8,13 +8,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Surface
@@ -126,21 +122,17 @@ private fun MainScreenContent(
     onSettingsButtonClick: () -> Unit
 ) {
     val isOffline by mainAppState.isOffline.collectAsStateWithLifecycle()
+    val isSyncing by mainAppState.isSyncing.collectAsStateWithLifecycle()
     val hasFailed by mainAppState.hasFailed.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
 
     SnackbarMessage(isOffline, hasFailed, snackbarHostState)
 
-    Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
-        content = { paddingValues ->
-            Box(modifier = Modifier.padding(paddingValues)) {
-                BoxBoxNavHost(
-                    mainAppState = mainAppState,
-                    onSettingsButtonClick = onSettingsButtonClick,
-                )
-            }
-        }
+    BoxBoxNavHost(
+        isOffline = isOffline,
+        isSyncing = isSyncing,
+        navController = mainAppState.navController,
+        onSettingsButtonClick = onSettingsButtonClick,
     )
 }
 

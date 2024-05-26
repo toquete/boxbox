@@ -13,24 +13,25 @@ import com.toquete.boxbox.feature.home.navigation.HomeDestination
 
 @Composable
 internal fun rememberHomeState(
-    routes: List<String>,
     navController: NavHostController = rememberNavController()
-) = remember(routes, navController) {
-    HomeState(routes, navController)
+) = remember(navController) {
+    HomeState(navController)
 }
 
 @Stable
-internal class HomeState(
-    val routes: List<String>,
-    val navController: NavHostController
-) {
+internal class HomeState(val navController: NavHostController) {
 
     val homeDestinations: List<HomeDestination> = HomeDestination.entries
 
     val currentDestination: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination
 
-    fun navigateToHomeDestination(route: String) {
+    val currentHomeDestination: HomeDestination?
+        @Composable get() = currentDestination?.let { destination ->
+            homeDestinations.find { it.name.equals(destination.route, ignoreCase = true) }
+        }
+
+    fun navigateToHomeDestination(destination: HomeDestination) {
         val topLevelNavOptions = navOptions {
             // Pop up to the start destination of the graph to
             // avoid building up a large stack of destinations
@@ -45,6 +46,6 @@ internal class HomeState(
             restoreState = true
         }
 
-        navController.navigate(route, topLevelNavOptions)
+        navController.navigate(destination.name.lowercase(), topLevelNavOptions)
     }
 }

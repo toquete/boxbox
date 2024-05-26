@@ -7,14 +7,16 @@ import com.toquete.boxbox.feature.home.ui.HomeScreen
 const val HOME_ROUTE = "home"
 
 fun NavGraphBuilder.homeScreen(
+    isOffline: Boolean,
     isSyncing: Boolean,
-    routes: List<String>,
+    onSettingsButtonClick: () -> Unit,
     builder: NavGraphBuilder.() -> Unit
 ) {
     composable(route = HOME_ROUTE) {
         HomeScreen(
+            isOffline = isOffline,
             isSyncing = isSyncing,
-            routes = routes,
+            onSettingsButtonClick = onSettingsButtonClick,
             builder = builder
         )
     }

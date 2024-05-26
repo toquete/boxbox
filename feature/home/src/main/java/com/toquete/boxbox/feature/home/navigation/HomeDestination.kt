@@ -11,16 +11,19 @@ import com.toquete.boxbox.feature.home.R
 internal enum class HomeDestination(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
-    @StringRes val iconTextId: Int
+    @StringRes val iconTextId: Int,
+    @StringRes val titleTextId: Int
 ) {
     STANDINGS(
         selectedIcon = Icons.Filled.EmojiEvents,
         unselectedIcon = Icons.Outlined.EmojiEvents,
-        iconTextId = R.string.app_name
+        iconTextId = R.string.standings,
+        titleTextId = R.string.app_name
     ),
     RACES(
         selectedIcon = Icons.Filled.SportsScore,
         unselectedIcon = Icons.Filled.SportsScore,
-        iconTextId = R.string.races
+        iconTextId = R.string.races,
+        titleTextId = R.string.races
     )
 }

@@ -15,12 +15,20 @@ import com.toquete.boxbox.feature.home.navigation.HomeNavHost
 
 @Composable
 fun HomeScreen(
+    isOffline: Boolean,
     isSyncing: Boolean,
-    routes: List<String>,
+    onSettingsButtonClick: () -> Unit,
     builder: NavGraphBuilder.() -> Unit
 ) {
-    val homeState = rememberHomeState(routes)
+    val homeState = rememberHomeState()
     Scaffold(
+        topBar = {
+            HomeTopAppBar(
+                homeState = homeState,
+                isOffline = isOffline,
+                onSettingsButtonClick = onSettingsButtonClick
+            )
+        },
         bottomBar = {
             HomeNavigationBar(homeState = homeState)
         }
@@ -28,7 +36,6 @@ fun HomeScreen(
         Box(modifier = Modifier.padding(paddingValues)) {
             HomeNavHost(
                 homeState = homeState,
-                startDestination = routes.first(),
                 builder = builder
             )
             AnimatedVisibility(visible = isSyncing) {

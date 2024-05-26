@@ -4,7 +4,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -51,7 +50,6 @@ internal fun RaceResultScreen(
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         CenterAlignedTopAppBar(
-            windowInsets = WindowInsets(top = 0.dp),
             title = {
                 Text(
                     text = state.raceName,

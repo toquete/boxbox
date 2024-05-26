@@ -10,7 +10,7 @@ import com.toquete.boxbox.feature.home.ui.HomeState
 internal fun HomeNavHost(
     modifier: Modifier = Modifier,
     homeState: HomeState,
-    startDestination: String,
+    startDestination: String = HomeDestination.STANDINGS.name.lowercase(),
     builder: NavGraphBuilder.() -> Unit
 ) {
     NavHost(

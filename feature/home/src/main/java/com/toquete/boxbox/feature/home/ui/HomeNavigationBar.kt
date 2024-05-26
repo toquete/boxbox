@@ -13,12 +13,11 @@ import com.toquete.boxbox.feature.home.navigation.HomeDestination
 @Composable
 internal fun HomeNavigationBar(homeState: HomeState) {
     NavigationBar {
-        homeState.homeDestinations.forEachIndexed { index, destination ->
+        homeState.homeDestinations.forEach { destination ->
             val isSelected = homeState.currentDestination.isTopLevelDestinationInHierarchy(destination)
-            val route = homeState.routes[index]
             NavigationBarItem(
                 selected = isSelected,
-                onClick = { homeState.navigateToHomeDestination(route) },
+                onClick = { homeState.navigateToHomeDestination(destination) },
                 icon = {
                     Icon(
                         imageVector = if (isSelected) destination.selectedIcon else destination.unselectedIcon,

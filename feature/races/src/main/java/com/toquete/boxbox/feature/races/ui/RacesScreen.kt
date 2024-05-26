@@ -3,20 +3,14 @@ package com.toquete.boxbox.feature.races.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -25,8 +19,6 @@ import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.model.Race
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
-import com.toquete.boxbox.core.ui.theme.FormulaOne
-import com.toquete.boxbox.feature.races.R
 import kotlinx.datetime.toInstant
 
 @Composable
@@ -38,25 +30,12 @@ internal fun RacesRoute(
     RacesScreen(state, onRaceClick)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun RacesScreen(
     state: RacesState,
     onRaceClick: (Int, String) -> Unit = { _, _ -> }
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
-        CenterAlignedTopAppBar(
-            windowInsets = WindowInsets(top = 0.dp),
-            title = {
-                Text(
-                    text = stringResource(R.string.races),
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        fontFamily = FormulaOne,
-                        fontWeight = FontWeight.Bold
-                    )
-                )
-            }
-        )
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(16.dp),
