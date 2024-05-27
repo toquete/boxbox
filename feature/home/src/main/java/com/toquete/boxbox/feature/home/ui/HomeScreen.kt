@@ -7,38 +7,56 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import com.toquete.boxbox.feature.home.navigation.HomeNavHost
 
 @Composable
-fun HomeScreen(
-    isOffline: Boolean,
-    isSyncing: Boolean,
+internal fun HomeRoute(
+    viewModel: HomeViewModel = hiltViewModel(),
     onSettingsButtonClick: () -> Unit,
     builder: NavGraphBuilder.() -> Unit
 ) {
-    val homeState = rememberHomeState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    HomeScreen(
+        state = state,
+        onSettingsButtonClick = onSettingsButtonClick,
+        builder = builder
+    )
+}
+
+@Composable
+internal fun HomeScreen(
+    state: HomeState,
+    onSettingsButtonClick: () -> Unit,
+    builder: NavGraphBuilder.() -> Unit
+) {
+    val homeViewState = rememberHomeViewState()
     Scaffold(
         topBar = {
             HomeTopAppBar(
-                homeState = homeState,
-                isOffline = isOffline,
+                homeViewState = homeViewState,
+                isOffline = state.isOffline,
                 onSettingsButtonClick = onSettingsButtonClick
             )
         },
         bottomBar = {
-            HomeNavigationBar(homeState = homeState)
-        }
+            HomeNavigationBar(homeViewState = homeViewState)
+        },
+        snackbarHost = { SnackbarHost(hostState = homeViewState.snackbarHostState) }
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             HomeNavHost(
-                homeState = homeState,
+                homeViewState = homeViewState,
                 builder = builder
             )
-            AnimatedVisibility(visible = isSyncing) {
+            AnimatedVisibility(visible = state.isSyncing) {
                 LinearProgressIndicator(
                     modifier = Modifier
                         .fillMaxWidth()

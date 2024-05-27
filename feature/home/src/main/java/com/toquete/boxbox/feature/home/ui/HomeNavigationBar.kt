@@ -11,13 +11,13 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import com.toquete.boxbox.feature.home.navigation.HomeDestination
 
 @Composable
-internal fun HomeNavigationBar(homeState: HomeState) {
+internal fun HomeNavigationBar(homeViewState: HomeViewState) {
     NavigationBar {
-        homeState.homeDestinations.forEach { destination ->
-            val isSelected = homeState.currentDestination.isTopLevelDestinationInHierarchy(destination)
+        homeViewState.homeDestinations.forEach { destination ->
+            val isSelected = homeViewState.currentDestination.isTopLevelDestinationInHierarchy(destination)
             NavigationBarItem(
                 selected = isSelected,
-                onClick = { homeState.navigateToHomeDestination(destination) },
+                onClick = { homeViewState.navigateToHomeDestination(destination) },
                 icon = {
                     Icon(
                         imageVector = if (isSelected) destination.selectedIcon else destination.unselectedIcon,

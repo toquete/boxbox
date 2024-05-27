@@ -14,8 +14,6 @@ import com.toquete.boxbox.feature.standings.navigation.standingsScreen
 
 @Composable
 fun BoxBoxNavHost(
-    isOffline: Boolean,
-    isSyncing: Boolean,
     navController: NavHostController,
     modifier: Modifier = Modifier,
     startDestination: String = HOME_ROUTE,
@@ -27,8 +25,6 @@ fun BoxBoxNavHost(
         modifier = modifier
     ) {
         homeScreen(
-            isOffline = isOffline,
-            isSyncing = isSyncing,
             onSettingsButtonClick = onSettingsButtonClick
         ) {
             addHomeGraph(

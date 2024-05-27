@@ -20,11 +20,11 @@ import com.toquete.boxbox.core.ui.theme.FormulaOne
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun HomeTopAppBar(
-    homeState: HomeState,
+    homeViewState: HomeViewState,
     isOffline: Boolean,
     onSettingsButtonClick: () -> Unit = { }
 ) {
-    val title = homeState.currentHomeDestination?.titleTextId
+    val title = homeViewState.currentHomeDestination?.titleTextId
     CenterAlignedTopAppBar(
         title = {
             Text(
