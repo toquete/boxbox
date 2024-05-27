@@ -1,8 +1,8 @@
 package com.toquete.boxbox.di
 
+import com.toquete.boxbox.core.common.util.NetworkMonitor
+import com.toquete.boxbox.core.common.util.SyncMonitor
 import com.toquete.boxbox.util.monitor.ConnectivityManagerNetworkMonitor
-import com.toquete.boxbox.util.monitor.NetworkMonitor
-import com.toquete.boxbox.util.monitor.SyncMonitor
 import com.toquete.boxbox.util.monitor.WorkManagerSyncMonitor
 import dagger.Binds
 import dagger.Module

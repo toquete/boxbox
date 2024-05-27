@@ -2,21 +2,21 @@ package com.toquete.boxbox.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.toquete.boxbox.feature.home.navigation.HOME_ROUTE
+import com.toquete.boxbox.feature.home.navigation.homeScreen
 import com.toquete.boxbox.feature.raceresults.navigation.navigateToRaceResult
 import com.toquete.boxbox.feature.raceresults.navigation.raceResultScreen
 import com.toquete.boxbox.feature.races.navigation.racesScreen
-import com.toquete.boxbox.feature.standings.navigation.STANDINGS_ROUTE
 import com.toquete.boxbox.feature.standings.navigation.standingsScreen
 
 @Composable
 fun BoxBoxNavHost(
-    modifier: Modifier = Modifier,
     navController: NavHostController,
-    isOffline: Boolean,
-    isSyncing: Boolean,
-    startDestination: String = STANDINGS_ROUTE,
+    modifier: Modifier = Modifier,
+    startDestination: String = HOME_ROUTE,
     onSettingsButtonClick: () -> Unit
 ) {
     NavHost(
@@ -24,12 +24,20 @@ fun BoxBoxNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        standingsScreen(
-            isOffline = isOffline,
-            isSyncing = isSyncing,
+        homeScreen(
             onSettingsButtonClick = onSettingsButtonClick
-        )
-        racesScreen(onRaceClick = navController::navigateToRaceResult)
+        ) {
+            addHomeGraph(
+                onRaceItemClick = navController::navigateToRaceResult
+            )
+        }
         raceResultScreen(onNavigateUp = navController::navigateUp)
     }
+}
+
+private fun NavGraphBuilder.addHomeGraph(
+    onRaceItemClick: (Int, String) -> Unit
+) {
+    standingsScreen()
+    racesScreen(onRaceClick = onRaceItemClick)
 }
