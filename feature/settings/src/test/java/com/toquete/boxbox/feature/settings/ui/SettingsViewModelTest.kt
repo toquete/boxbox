@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.settings
+package com.toquete.boxbox.feature.settings.ui
 
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences

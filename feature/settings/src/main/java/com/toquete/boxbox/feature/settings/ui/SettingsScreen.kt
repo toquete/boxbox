@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.settings
+package com.toquete.boxbox.feature.settings.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,18 +23,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.feature.settings.R
 
 @Composable
-fun SettingsScreen(
+internal fun SettingsScreen(
+    viewModel: SettingsViewModel = hiltViewModel(),
     onDismiss: () -> Unit
 ) {
-    val viewModel: SettingsViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
     SettingsContent(state, onDismiss, viewModel::onSettingsItemClick)
 }
