@@ -18,7 +18,7 @@ plugins {
 }
 
 tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }
 
 allprojects {
@@ -52,6 +52,6 @@ allprojects {
     }
 
     dependencies {
-        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.5")
+        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.6")
     }
 }
