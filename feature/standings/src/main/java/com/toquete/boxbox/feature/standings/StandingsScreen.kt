@@ -16,6 +16,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.res.stringResource
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
+import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.standings.constructors.ConstructorStandingsRoute
 import com.toquete.boxbox.feature.standings.drivers.DriverStandingsRoute
 import com.toquete.boxbox.feature.standings.model.StandingsTab
@@ -26,10 +28,10 @@ import kotlinx.coroutines.launch
 internal fun StandingsScreen() {
     var selectedTab by remember { mutableStateOf(StandingsTab.DRIVERS) }
     val pagerState = rememberPagerState(
-        pageCount = { StandingsTab.values().size }
+        pageCount = { StandingsTab.entries.size }
     )
     val coroutineScope = rememberCoroutineScope()
-    val pages = StandingsTab.values()
+    val pages = StandingsTab.entries.toTypedArray()
 
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { page ->
@@ -57,5 +59,13 @@ internal fun StandingsScreen() {
                 StandingsTab.CONSTRUCTORS -> ConstructorStandingsRoute()
             }
         }
+    }
+}
+
+@UiModePreviews
+@Composable
+internal fun StandingsScreenPreview() {
+    BoxBoxTheme {
+        StandingsScreen()
     }
 }
