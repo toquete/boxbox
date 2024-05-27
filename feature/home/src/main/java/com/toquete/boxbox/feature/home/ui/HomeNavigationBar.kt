@@ -5,6 +5,8 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -16,6 +18,7 @@ internal fun HomeNavigationBar(homeViewState: HomeViewState) {
         homeViewState.homeDestinations.forEach { destination ->
             val isSelected = homeViewState.currentDestination.isTopLevelDestinationInHierarchy(destination)
             NavigationBarItem(
+                modifier = Modifier.testTag("Home Navigation Bar Item ${destination.name}"),
                 selected = isSelected,
                 onClick = { homeViewState.navigateToHomeDestination(destination) },
                 icon = {

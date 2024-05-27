@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
+import com.toquete.boxbox.core.ui.annotation.UiModePreviews
+import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.home.navigation.HomeNavHost
 
 @Composable
@@ -34,8 +36,8 @@ internal fun HomeRoute(
 @Composable
 internal fun HomeScreen(
     state: HomeState,
-    onSettingsButtonClick: () -> Unit,
-    builder: NavGraphBuilder.() -> Unit
+    onSettingsButtonClick: () -> Unit = { },
+    builder: NavGraphBuilder.() -> Unit = { }
 ) {
     val homeViewState = rememberHomeViewState()
     Scaffold(
@@ -64,5 +66,13 @@ internal fun HomeScreen(
                 )
             }
         }
+    }
+}
+
+@UiModePreviews
+@Composable
+internal fun HomeScreenPreview() {
+    BoxBoxTheme {
+        HomeScreen(state = HomeState())
     }
 }
