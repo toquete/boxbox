@@ -3,6 +3,7 @@ package com.toquete.boxbox.feature.raceresults.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -21,7 +22,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -33,6 +37,7 @@ import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
+import com.toquete.boxbox.feature.raceresults.R
 
 @Composable
 internal fun RaceResultRoute(
@@ -65,7 +70,10 @@ internal fun RaceResultScreen(
                 )
             },
             navigationIcon = {
-                IconButton(onClick = onNavigateUp) {
+                IconButton(
+                    modifier = Modifier.testTag("Back Button"),
+                    onClick = onNavigateUp
+                ) {
                     Icon(
                         modifier = Modifier.size(30.dp),
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -74,26 +82,46 @@ internal fun RaceResultScreen(
                 }
             }
         )
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .horizontalScroll(rememberScrollState()),
-        ) {
-            stickyHeader {
-                RaceResultHeader()
-            }
-            itemsIndexed(state.results) { index, raceResult ->
-                val background = if (index.isEven()) {
-                    MaterialTheme.colorScheme.surfaceVariant
-                } else {
-                    MaterialTheme.colorScheme.background
+        if (state.results.isEmpty()) {
+            EmptyState()
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .horizontalScroll(rememberScrollState()),
+            ) {
+                stickyHeader {
+                    RaceResultHeader()
                 }
-                RaceResultItem(
-                    modifier = Modifier.background(color = background),
-                    raceResult = raceResult
-                )
+                itemsIndexed(state.results) { index, raceResult ->
+                    val background = if (index.isEven()) {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    } else {
+                        MaterialTheme.colorScheme.background
+                    }
+                    RaceResultItem(
+                        modifier = Modifier.background(color = background),
+                        raceResult = raceResult
+                    )
+                }
             }
         }
+    }
+}
+
+@Composable
+internal fun EmptyState() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = stringResource(R.string.no_results_available),
+            style = MaterialTheme.typography.bodyLarge.copy(
+                fontFamily = FormulaOne,
+                fontWeight = FontWeight.Bold
+            )
+        )
     }
 }
 
@@ -145,6 +173,21 @@ internal fun RaceResultPreview() {
                             time = "1:33:56.736"
                         )
                     )
+                )
+            )
+        }
+    }
+}
+
+@UiModePreviews
+@Composable
+internal fun EmptyStatePreview() {
+    BoxBoxTheme {
+        Surface(color = MaterialTheme.colorScheme.background) {
+            RaceResultScreen(
+                state = RaceResultsState(
+                    raceName = "Bahrain",
+                    results = emptyList()
                 )
             )
         }
