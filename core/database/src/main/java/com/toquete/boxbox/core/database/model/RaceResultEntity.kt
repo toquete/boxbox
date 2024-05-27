@@ -8,10 +8,14 @@ data class RaceResultEntity(
     val season: String,
     val round: Int,
     val position: Int,
+    val points: Int,
     @ColumnInfo(name = "driver_id")
     val driverId: String,
     @ColumnInfo(name = "constructor_id")
     val constructorId: String,
     @ColumnInfo(name = "grid_position")
-    val gridPosition: Int
+    val gridPosition: Int,
+    val laps: String,
+    val status: String,
+    val time: String?
 )

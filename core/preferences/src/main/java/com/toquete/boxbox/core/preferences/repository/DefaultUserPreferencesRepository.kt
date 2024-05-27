@@ -16,7 +16,7 @@ internal class DefaultUserPreferencesRepository @Inject constructor(
 
     override val userPreferences: Flow<UserPreferences> = dataStore.data.map { preferences ->
         val darkThemeConfig = preferences[DARK_THEME_CONFIG]?.let {
-            DarkThemeConfig.values()[it]
+            DarkThemeConfig.entries[it]
         } ?: DarkThemeConfig.FOLLOW_SYSTEM
 
         UserPreferences(
