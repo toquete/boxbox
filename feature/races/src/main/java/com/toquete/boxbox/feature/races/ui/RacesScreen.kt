@@ -1,7 +1,7 @@
 package com.toquete.boxbox.feature.races.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -24,15 +24,18 @@ import kotlinx.datetime.toInstant
 @Composable
 internal fun RacesRoute(
     viewModel: RacesViewModel = hiltViewModel(),
-    onRaceClick: (Int) -> Unit = {}
+    onRaceClick: (Int, String) -> Unit = { _, _ -> }
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     RacesScreen(state, onRaceClick)
 }
 
 @Composable
-internal fun RacesScreen(state: RacesState, onRaceClick: (Int) -> Unit = {}) {
-    Box(modifier = Modifier.fillMaxSize()) {
+internal fun RacesScreen(
+    state: RacesState,
+    onRaceClick: (Int, String) -> Unit = { _, _ -> }
+) {
+    Column(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(16.dp),

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BoxBox</string>
+    <string name="standings">Standings</string>
+    <string name="races">Races</string>
+    <string name="not_connected">You are not connected to the internet!</string>
+    <string name="fail_message">Failed to update data from server!</string>
+</resources>
