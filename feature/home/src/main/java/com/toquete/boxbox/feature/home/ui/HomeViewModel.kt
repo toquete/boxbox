@@ -42,7 +42,6 @@ internal class HomeViewModel @Inject constructor(
         message?.let {
             SnackbarManager.showMessage(it, duration = SnackbarDuration.Long)
         }
-
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(STATE_FLOW_STOP_TIMEOUT),
