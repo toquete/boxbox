@@ -6,7 +6,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.toquete.boxbox.feature.standings.StandingsScreen
 
-const val STANDINGS_ROUTE = "standings_route"
+const val STANDINGS_ROUTE = "standings"
 
 fun NavController.navigateToStandings(navOptions: NavOptions? = null) {
     navigate(STANDINGS_ROUTE, navOptions)

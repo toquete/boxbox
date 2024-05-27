@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.settings
+package com.toquete.boxbox.feature.settings.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
