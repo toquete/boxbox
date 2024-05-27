@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -25,7 +24,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.compose.rememberNavController
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
-import com.toquete.boxbox.feature.settings.SettingsScreen
 import com.toquete.boxbox.navigation.BoxBoxNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -81,20 +79,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    var showDialog by remember { mutableStateOf(false) }
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        if (showDialog) {
-            SettingsScreen {
-                showDialog = false
-            }
-        }
-        BoxBoxNavHost(
-            navController = navController,
-            onSettingsButtonClick = { showDialog = true }
-        )
+        BoxBoxNavHost(navController = navController)
     }
 }
 
