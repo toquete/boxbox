@@ -16,8 +16,13 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val state: StateFlow<MainState> = preferencesRepository.userPreferences
-        .map { MainState(isLoading = false, it.darkThemeConfig) }
-        .stateIn(
+        .map { preferences ->
+            MainState(
+                isLoading = false,
+                darkThemeConfig = preferences.darkThemeConfig,
+                colorConfig = preferences.colorConfig
+            )
+        }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = MainState()
