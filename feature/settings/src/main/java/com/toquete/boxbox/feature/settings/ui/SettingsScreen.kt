@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.selection.selectable
@@ -25,10 +26,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import com.toquete.boxbox.core.ui.theme.supportsDynamicTheming
 import com.toquete.boxbox.feature.settings.R
 
 @Composable
@@ -37,14 +40,20 @@ internal fun SettingsScreen(
     onDismiss: () -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    SettingsContent(state, onDismiss, viewModel::onSettingsItemClick)
+    SettingsContent(
+        state = state,
+        onDismiss = onDismiss,
+        onThemeOptionSelected = viewModel::onThemeSettingsItemClick,
+        onColorOptionSelected = viewModel::onColorSettingsItemClick
+    )
 }
 
 @Composable
 internal fun SettingsContent(
     state: SettingsState,
-    onDismiss: () -> Unit,
-    onOptionSelected: (DarkThemeConfig) -> Unit
+    onDismiss: () -> Unit = { },
+    onThemeOptionSelected: (DarkThemeConfig) -> Unit = { },
+    onColorOptionSelected: (ColorConfig) -> Unit = { }
 ) {
     val configuration = LocalConfiguration.current
     AlertDialog(
@@ -56,29 +65,54 @@ internal fun SettingsContent(
             when (state) {
                 SettingsState.Loading -> Text(stringResource(R.string.settings_loading))
                 is SettingsState.Success -> {
-                    Column(
-                        modifier = Modifier.selectableGroup(),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        Text(
-                            text = stringResource(R.string.settings_theme),
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                        SettingsRow(
-                            text = stringResource(R.string.settings_light),
-                            isSelected = state.data.darkThemeConfig == DarkThemeConfig.LIGHT,
-                            onClick = { onOptionSelected(DarkThemeConfig.LIGHT) }
-                        )
-                        SettingsRow(
-                            text = stringResource(R.string.settings_dark),
-                            isSelected = state.data.darkThemeConfig == DarkThemeConfig.DARK,
-                            onClick = { onOptionSelected(DarkThemeConfig.DARK) }
-                        )
-                        SettingsRow(
-                            text = stringResource(R.string.settings_follow_system),
-                            isSelected = state.data.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
-                            onClick = { onOptionSelected(DarkThemeConfig.FOLLOW_SYSTEM) }
-                        )
+                    Column {
+                        Column(
+                            modifier = Modifier.selectableGroup(),
+                            verticalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Text(
+                                text = stringResource(R.string.settings_theme),
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            SettingsRow(
+                                text = stringResource(R.string.settings_light),
+                                isSelected = state.data.darkThemeConfig == DarkThemeConfig.LIGHT,
+                                onClick = { onThemeOptionSelected(DarkThemeConfig.LIGHT) }
+                            )
+                            SettingsRow(
+                                text = stringResource(R.string.settings_dark),
+                                isSelected = state.data.darkThemeConfig == DarkThemeConfig.DARK,
+                                onClick = { onThemeOptionSelected(DarkThemeConfig.DARK) }
+                            )
+                            SettingsRow(
+                                text = stringResource(R.string.settings_follow_system),
+                                isSelected = state.data.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
+                                onClick = { onThemeOptionSelected(DarkThemeConfig.FOLLOW_SYSTEM) }
+                            )
+                        }
+                        if (supportsDynamicTheming()) {
+                            Column(
+                                modifier = Modifier
+                                    .padding(top = 16.dp)
+                                    .selectableGroup(),
+                                verticalArrangement = Arrangement.spacedBy(16.dp)
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.settings_color),
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                                SettingsRow(
+                                    text = stringResource(R.string.settings_default),
+                                    isSelected = state.data.colorConfig == ColorConfig.DEFAULT,
+                                    onClick = { onColorOptionSelected(ColorConfig.DEFAULT) }
+                                )
+                                SettingsRow(
+                                    text = stringResource(R.string.settings_dynamic),
+                                    isSelected = state.data.colorConfig == ColorConfig.DYNAMIC,
+                                    onClick = { onColorOptionSelected(ColorConfig.DYNAMIC) }
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -127,10 +161,11 @@ internal fun SettingsContentPreview() {
     BoxBoxTheme {
         SettingsContent(
             state = SettingsState.Success(
-                UserPreferences(darkThemeConfig = DarkThemeConfig.LIGHT)
-            ),
-            onDismiss = {},
-            onOptionSelected = {}
+                UserPreferences(
+                    darkThemeConfig = DarkThemeConfig.LIGHT,
+                    colorConfig = ColorConfig.DEFAULT
+                )
+            )
         )
     }
 }

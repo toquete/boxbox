@@ -6,4 +6,7 @@
     <string name="settings">Settings</string>
     <string name="settings_loading">Loading…</string>
     <string name="settings_theme">Theme</string>
+    <string name="settings_color">Color</string>
+    <string name="settings_default">Default</string>
+    <string name="settings_dynamic">Dynamic</string>
 </resources>
