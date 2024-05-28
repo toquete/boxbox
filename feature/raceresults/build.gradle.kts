@@ -7,6 +7,7 @@ plugins {
 
 android {
     namespace = "com.toquete.boxbox.feature.raceresults"
+    resourcePrefix = "race_results_"
 }
 
 dependencies {

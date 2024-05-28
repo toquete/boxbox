@@ -116,7 +116,7 @@ internal fun EmptyState() {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = stringResource(R.string.no_results_available),
+            text = stringResource(R.string.race_results_no_results_available),
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontFamily = FormulaOne,
                 fontWeight = FontWeight.Bold

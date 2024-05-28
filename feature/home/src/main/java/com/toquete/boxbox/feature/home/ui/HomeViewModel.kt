@@ -34,8 +34,8 @@ internal class HomeViewModel @Inject constructor(
         )
     }.onEach { state ->
         val message = when {
-            state.isOffline -> R.string.not_connected
-            state.hasFailed -> R.string.fail_message
+            state.isOffline -> R.string.home_not_connected
+            state.hasFailed -> R.string.home_fail_message
             else -> null
         }
 

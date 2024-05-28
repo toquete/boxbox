@@ -54,28 +54,28 @@ internal fun SettingsContent(
         title = { Text(stringResource(R.string.settings)) },
         text = {
             when (state) {
-                SettingsState.Loading -> Text(stringResource(R.string.loading))
+                SettingsState.Loading -> Text(stringResource(R.string.settings_loading))
                 is SettingsState.Success -> {
                     Column(
                         modifier = Modifier.selectableGroup(),
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         Text(
-                            text = stringResource(R.string.theme),
+                            text = stringResource(R.string.settings_theme),
                             style = MaterialTheme.typography.titleMedium
                         )
                         SettingsRow(
-                            text = stringResource(R.string.light),
+                            text = stringResource(R.string.settings_light),
                             isSelected = state.data.darkThemeConfig == DarkThemeConfig.LIGHT,
                             onClick = { onOptionSelected(DarkThemeConfig.LIGHT) }
                         )
                         SettingsRow(
-                            text = stringResource(R.string.dark),
+                            text = stringResource(R.string.settings_dark),
                             isSelected = state.data.darkThemeConfig == DarkThemeConfig.DARK,
                             onClick = { onOptionSelected(DarkThemeConfig.DARK) }
                         )
                         SettingsRow(
-                            text = stringResource(R.string.follow_system),
+                            text = stringResource(R.string.settings_follow_system),
                             isSelected = state.data.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
                             onClick = { onOptionSelected(DarkThemeConfig.FOLLOW_SYSTEM) }
                         )
