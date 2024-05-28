@@ -6,6 +6,6 @@ import com.toquete.boxbox.feature.standings.R
 
 @Generated
 enum class StandingsTab(@StringRes val titleId: Int) {
-    DRIVERS(R.string.drivers),
-    CONSTRUCTORS(R.string.constructors)
+    DRIVERS(R.string.standings_drivers),
+    CONSTRUCTORS(R.string.standings_constructors)
 }

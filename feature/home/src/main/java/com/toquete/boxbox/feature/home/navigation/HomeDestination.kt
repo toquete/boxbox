@@ -17,13 +17,13 @@ internal enum class HomeDestination(
     STANDINGS(
         selectedIcon = Icons.Filled.EmojiEvents,
         unselectedIcon = Icons.Outlined.EmojiEvents,
-        iconTextId = R.string.standings,
-        titleTextId = R.string.app_name
+        iconTextId = R.string.home_standings,
+        titleTextId = R.string.home_app_name
     ),
     RACES(
         selectedIcon = Icons.Filled.SportsScore,
         unselectedIcon = Icons.Filled.SportsScore,
-        iconTextId = R.string.races,
-        titleTextId = R.string.races
+        iconTextId = R.string.home_races,
+        titleTextId = R.string.home_races
     )
 }

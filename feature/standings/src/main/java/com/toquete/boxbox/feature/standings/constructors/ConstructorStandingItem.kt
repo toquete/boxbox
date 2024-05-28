@@ -101,7 +101,7 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                     modifier = Modifier
                         .padding(6.dp)
                         .testTag("Points"),
-                    text = stringResource(R.string.points, standing.points),
+                    text = stringResource(R.string.standings_points, standing.points),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
@@ -110,7 +110,7 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                     modifier = Modifier
                         .padding(6.dp)
                         .testTag("Wins"),
-                    text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
+                    text = pluralStringResource(R.plurals.standings_wins, standing.wins.toInt(), standing.wins),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
                 )
             }
