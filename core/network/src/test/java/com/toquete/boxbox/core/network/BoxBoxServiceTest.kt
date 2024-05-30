@@ -6,6 +6,7 @@ import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
 import com.toquete.boxbox.core.testing.data.driverStandingsWrapper
 import com.toquete.boxbox.core.testing.data.raceResultWrapper
 import com.toquete.boxbox.core.testing.data.racesWrapper
+import com.toquete.boxbox.core.testing.data.sprintRaceResultWrapper
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -134,6 +135,32 @@ class BoxBoxServiceTest {
         }
 
         service.getRaceResults()
+
+        assertEquals(expected, mockWebServer.takeRequest().path)
+    }
+
+    @Test
+    fun `getSprintRaceResults should return parsed data class on success`() = runTest {
+        val expected = sprintRaceResultWrapper
+        MockResponse().apply {
+            setBody(readPath("sprint_results.json"))
+            mockWebServer.enqueue(this)
+        }
+
+        val result = service.getSprintRaceResults()
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `getSprintRaceResults should send correct request path when called`() = runTest {
+        val expected = "/current/sprint.json?limit=1000"
+        MockResponse().apply {
+            setBody(readPath("sprint_results.json"))
+            mockWebServer.enqueue(this)
+        }
+
+        service.getSprintRaceResults()
 
         assertEquals(expected, mockWebServer.takeRequest().path)
     }

@@ -8,7 +8,7 @@ import com.toquete.boxbox.core.network.model.RaceResponse
 import com.toquete.boxbox.core.network.model.RaceResultResponse
 import com.toquete.boxbox.core.network.model.TimeResponse
 
-val raceResultsResponse = listOf(
+val sprintRaceResultsResponse = listOf(
     RaceResponse(
         season = "2023",
         round = "1",
@@ -17,7 +17,13 @@ val raceResultsResponse = listOf(
         circuit = circuitResponse,
         date = "2023-03-05",
         time = "15:00:00Z",
-        results = listOf(
+        results = null,
+        firstPractice = null,
+        secondPractice = null,
+        thirdPractice = null,
+        qualifying = null,
+        sprint = null,
+        sprintResults = listOf(
             RaceResultResponse(
                 racePosition = "1",
                 points = "25",
@@ -45,17 +51,11 @@ val raceResultsResponse = listOf(
                     time = "1:33:56.736"
                 )
             )
-        ),
-        firstPractice = null,
-        secondPractice = null,
-        thirdPractice = null,
-        qualifying = null,
-        sprint = null,
-        sprintResults = null
+        )
     )
 )
 
-val raceResultEntities = listOf(
+val sprintRaceResultEntities = listOf(
     RaceResultEntity(
         season = "2023",
         round = 1,
@@ -70,7 +70,7 @@ val raceResultEntities = listOf(
     )
 )
 
-val raceResults = listOf(
+val sprintRaceResults = listOf(
     RaceResult(
         season = "2023",
         round = 1,
