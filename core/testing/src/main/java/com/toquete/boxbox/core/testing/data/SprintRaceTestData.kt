@@ -2,11 +2,14 @@ package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.RaceEntity
 import com.toquete.boxbox.core.model.Race
-import com.toquete.boxbox.core.network.model.PracticeResponse
+import com.toquete.boxbox.core.network.model.ConstructorResponse
+import com.toquete.boxbox.core.network.model.DriverResponse
 import com.toquete.boxbox.core.network.model.RaceResponse
+import com.toquete.boxbox.core.network.model.RaceResultResponse
+import com.toquete.boxbox.core.network.model.TimeResponse
 import kotlinx.datetime.toInstant
 
-val racesResponse = listOf(
+val sprintRacesResponse = listOf(
     RaceResponse(
         season = "2023",
         round = "1",
@@ -16,28 +19,44 @@ val racesResponse = listOf(
         date = "2023-03-05",
         time = "15:00:00Z",
         results = null,
-        firstPractice = PracticeResponse(
-            date = "2023-03-03",
-            time = "11:30:00Z"
-        ),
-        secondPractice = PracticeResponse(
-            date = "2023-03-03",
-            time = "15:00:00Z"
-        ),
-        thirdPractice = PracticeResponse(
-            date = "2023-03-04",
-            time = "11:30:00Z"
-        ),
-        qualifying = PracticeResponse(
-            date = "2023-03-04",
-            time = "15:00:00Z"
-        ),
+        firstPractice = null,
+        secondPractice = null,
+        thirdPractice = null,
+        qualifying = null,
         sprint = null,
-        sprintResults = null
+        sprintResults = listOf(
+            RaceResultResponse(
+                racePosition = "1",
+                points = "25",
+                driver = DriverResponse(
+                    id = "max_verstappen",
+                    number = "33",
+                    code = "VER",
+                    url = "http://en.wikipedia.org/wiki/Max_Verstappen",
+                    givenName = "Max",
+                    familyName = "Verstappen",
+                    dateOfBirth = "1997-09-30",
+                    nationality = "Dutch"
+                ),
+                constructor = ConstructorResponse(
+                    id = "red_bull",
+                    url = "http://en.wikipedia.org/wiki/Red_Bull_Racing",
+                    name = "Red Bull",
+                    nationality = "Austrian"
+                ),
+                gridPosition = "1",
+                laps = "57",
+                status = "Finished",
+                time = TimeResponse(
+                    millis = "5636736",
+                    time = "1:33:56.736"
+                )
+            )
+        )
     )
 )
 
-val raceEntities = listOf(
+val sprintRaceEntities = listOf(
     RaceEntity(
         season = "2023",
         round = 1,
@@ -78,7 +97,7 @@ val raceEntities = listOf(
     )
 )
 
-val races = listOf(
+val sprintRaces = listOf(
     Race(
         season = "2023",
         round = 1,
