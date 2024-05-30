@@ -1,6 +1,6 @@
 package com.toquete.boxbox.core.testing.data
 
-import com.toquete.boxbox.core.database.model.RaceResultEntity
+import com.toquete.boxbox.core.database.model.SprintRaceResultEntity
 import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.core.network.model.ConstructorResponse
 import com.toquete.boxbox.core.network.model.DriverResponse
@@ -56,7 +56,7 @@ val sprintRaceResultsResponse = listOf(
 )
 
 val sprintRaceResultEntities = listOf(
-    RaceResultEntity(
+    SprintRaceResultEntity(
         season = "2023",
         round = 1,
         position = 1,
