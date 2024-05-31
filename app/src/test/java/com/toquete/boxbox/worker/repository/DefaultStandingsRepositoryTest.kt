@@ -4,6 +4,7 @@ import com.toquete.boxbox.data.constructorcolors.repository.ConstructorColorRepo
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
 import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
 import com.toquete.boxbox.data.raceresults.repository.RaceResultRepository
+import com.toquete.boxbox.data.sprintresults.repository.SprintResultRepository
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -16,11 +17,13 @@ class DefaultStandingsRepositoryTest {
     private val constructorStandingsRepository: ConstructorStandingsRepository = mockk(relaxed = true)
     private val constructorColorRepository: ConstructorColorRepository = mockk(relaxed = true)
     private val raceResultRepository: RaceResultRepository = mockk(relaxed = true)
+    private val sprintRaceResultRepository: SprintResultRepository = mockk(relaxed = true)
     private val repository = DefaultStandingsRepository(
         driverStandingsRepository,
         constructorStandingsRepository,
         constructorColorRepository,
-        raceResultRepository
+        raceResultRepository,
+        sprintRaceResultRepository
     )
 
     @Test
@@ -33,6 +36,7 @@ class DefaultStandingsRepositoryTest {
             constructorStandingsRepository.sync()
             constructorColorRepository.sync()
             raceResultRepository.sync()
+            sprintRaceResultRepository.sync()
         }
     }
 }

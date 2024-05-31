@@ -9,4 +9,6 @@
     <string name="race_results_time">Time</string>
     <string name="race_results_status">Status</string>
     <string name="race_results_points">Pts</string>
+    <string name="race_results_race">Race</string>
+    <string name="race_results_sprint">Sprint</string>
 </resources>
