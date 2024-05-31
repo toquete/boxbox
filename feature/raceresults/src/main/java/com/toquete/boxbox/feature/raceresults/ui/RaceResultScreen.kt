@@ -1,16 +1,10 @@
 package com.toquete.boxbox.feature.raceresults.ui
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -30,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.toquete.boxbox.core.common.extension.isEven
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.RaceResult
@@ -48,7 +41,7 @@ internal fun RaceResultRoute(
     RaceResultScreen(state, onNavigateUp)
 }
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun RaceResultScreen(
     state: RaceResultsState,
@@ -82,29 +75,11 @@ internal fun RaceResultScreen(
                 }
             }
         )
-        if (state.results.isEmpty()) {
-            EmptyState()
-        } else {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .horizontalScroll(rememberScrollState()),
-            ) {
-                stickyHeader {
-                    RaceResultHeader()
-                }
-                itemsIndexed(state.results) { index, raceResult ->
-                    val background = if (index.isEven()) {
-                        MaterialTheme.colorScheme.surfaceVariant
-                    } else {
-                        MaterialTheme.colorScheme.background
-                    }
-                    RaceResultItem(
-                        modifier = Modifier.background(color = background),
-                        raceResult = raceResult
-                    )
-                }
-            }
+
+        when {
+            state.results.isEmpty() -> EmptyState()
+            state.sprintResults.isNotEmpty() -> RaceAndSprintResult(state.results, state.sprintResults)
+            else -> RaceResultTable(state.results)
         }
     }
 }

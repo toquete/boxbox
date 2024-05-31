@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.sprintresults.di
 
+import com.toquete.boxbox.data.sprintresults.repository.DefaultSprintResultRepository
 import com.toquete.boxbox.data.sprintresults.repository.SprintResultRepository
 import dagger.Binds
 import dagger.Module
@@ -12,6 +13,6 @@ internal abstract class RepositoryModule {
 
     @Binds
     abstract fun bindsSprintResultRepository(
-        defaultSprintResultRepository: SprintResultRepository
+        defaultSprintResultRepository: DefaultSprintResultRepository
     ): SprintResultRepository
 }
