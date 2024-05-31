@@ -26,10 +26,10 @@ class ConstructorStandingItemTest {
             onNodeWithTag("Position").assertTextEquals("1")
             onNodeWithTag("Constructor Name").assertTextEquals("Red Bull")
             onNodeWithTag("Divider").assertIsDisplayed()
-            onNodeWithTag("Points").assertTextEquals("123 PTS")
-            onNodeWithTag("Wins").assertTextEquals("3 WINS")
+            onNodeWithTag("Points", useUnmergedTree = true).assertTextEquals("123 PTS")
+            onNodeWithTag("Wins", useUnmergedTree = true).assertTextEquals("3 WINS")
             onNodeWithTag("Constructor Image").assertIsDisplayed()
-            onNodeWithTag("Flag").assertIsDisplayed()
+            onNodeWithTag("Flag", useUnmergedTree = true).assertIsDisplayed()
         }
     }
 }
