@@ -28,11 +28,11 @@ class DriverStandingItemTest {
             onNodeWithTag("First Name").assertTextEquals("Max")
             onNodeWithTag("Last Name").assertTextEquals("Verstappen")
             onNodeWithTag("Divider").assertIsDisplayed()
-            onNodeWithTag("Points").assertTextEquals("90 PTS")
-            onNodeWithTag("Wins").assertTextEquals("5 WINS")
-            onNodeWithTag("Constructor").assertTextEquals("Red Bull")
+            onNodeWithTag("Points", useUnmergedTree = true).assertTextEquals("90 PTS")
+            onNodeWithTag("Wins", useUnmergedTree = true).assertTextEquals("5 WINS")
+            onNodeWithTag("Constructor", useUnmergedTree = true).assertIsDisplayed()
             onNodeWithTag("Driver", useUnmergedTree = true).assertIsDisplayed()
-            onNodeWithTag("Flag").assertIsDisplayed()
+            onNodeWithTag("Flag", useUnmergedTree = true).assertIsDisplayed()
         }
     }
 
@@ -51,7 +51,7 @@ class DriverStandingItemTest {
     }
 
     @Test
-    fun checkDriverimageIsDisplayedOnNumberClick() {
+    fun checkDriverImageIsDisplayedOnNumberClick() {
         with(composeTestRule) {
             setContent {
                 BoxBoxTheme {

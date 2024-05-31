@@ -1,5 +1,6 @@
 package com.toquete.boxbox.feature.races.ui
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -123,7 +124,8 @@ internal fun RaceItem(race: Race, onClick: (Int, String) -> Unit = { _, _ -> }) 
             Surface(
                 modifier = Modifier.weight(weight = 0.3f, fill = false),
                 shape = MaterialTheme.shapes.medium,
-                color = MaterialTheme.colorScheme.secondary
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurfaceVariant)
             ) {
                 Column(
                     modifier = Modifier.padding(8.dp),
