@@ -2,6 +2,7 @@ package com.toquete.boxbox.feature.settings.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,9 +25,15 @@ class SettingsViewModel @Inject constructor(
             initialValue = SettingsState.Loading
         )
 
-    fun onSettingsItemClick(darkThemeConfig: DarkThemeConfig) {
+    fun onThemeSettingsItemClick(darkThemeConfig: DarkThemeConfig) {
         viewModelScope.launch {
             preferencesRepository.setDarkThemeConfig(darkThemeConfig)
+        }
+    }
+
+    fun onColorSettingsItemClick(colorConfig: ColorConfig) {
+        viewModelScope.launch {
+            preferencesRepository.setColorConfig(colorConfig)
         }
     }
 }

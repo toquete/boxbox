@@ -32,7 +32,8 @@ val racesResponse = listOf(
             date = "2023-03-04",
             time = "15:00:00Z"
         ),
-        sprint = null
+        sprint = null,
+        sprintResults = null
     )
 )
 
