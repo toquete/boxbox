@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="race_results">Race Results</string>
-    <string name="no_results_available">No results available</string>
-    <string name="position">Pos</string>
-    <string name="driver">Driver</string>
-    <string name="constructor">Constructor</string>
-    <string name="laps">Laps</string>
-    <string name="time">Time</string>
-    <string name="status">Status</string>
-    <string name="points">Pts</string>
+    <string name="race_results_no_results_available">No results available</string>
+    <string name="race_results_position">Pos</string>
+    <string name="race_results_driver">Driver</string>
+    <string name="race_results_constructor">Constructor</string>
+    <string name="race_results_laps">Laps</string>
+    <string name="race_results_time">Time</string>
+    <string name="race_results_status">Status</string>
+    <string name="race_results_points">Pts</string>
+    <string name="race_results_race">Race</string>
+    <string name="race_results_sprint">Sprint</string>
 </resources>
