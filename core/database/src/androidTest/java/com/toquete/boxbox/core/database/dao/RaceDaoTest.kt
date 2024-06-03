@@ -41,18 +41,6 @@ class RaceDaoTest {
     }
 
     @Test
-    fun testRaceInsert() = runTest {
-        countryDao.upsertAll(countryEntities)
-        circuitDao.upsertAll(circuitEntities)
-        circuitImageDao.upsertAll(circuitImageEntities)
-        dao.upsertAll(raceEntities)
-
-        val result = dao.getRacesBySeason(season = "2023").first()
-
-        assertContentEquals(racesWithCircuits, result)
-    }
-
-    @Test
     fun testGetUpcomingRacesBySeason() = runTest {
         countryDao.upsertAll(countryEntities)
         circuitDao.upsertAll(circuitEntities)

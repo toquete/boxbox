@@ -3,7 +3,6 @@ package com.toquete.boxbox.feature.races.ui
 import com.toquete.boxbox.core.model.Race
 import com.toquete.boxbox.core.testing.data.races
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
-import com.toquete.boxbox.domain.races.usecase.GetCurrentSeasonRacesUseCase
 import com.toquete.boxbox.domain.races.usecase.GetPastRacesInCurrentSeasonUseCase
 import com.toquete.boxbox.domain.races.usecase.GetUpcomingRacesInCurrentSeasonUseCase
 import io.mockk.every
@@ -23,7 +22,6 @@ class RacesViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private val getCurrentSeasonRacesUseCase: GetCurrentSeasonRacesUseCase = mockk(relaxed = true)
     private val getUpcomingRacesUseCase: GetUpcomingRacesInCurrentSeasonUseCase = mockk(relaxed = true)
     private val getPastRacesUseCase: GetPastRacesInCurrentSeasonUseCase = mockk(relaxed = true)
 
@@ -31,10 +29,8 @@ class RacesViewModelTest {
 
     @Test
     fun `init should send success state when races are returned`() = runTest {
-        val racesFlow = MutableSharedFlow<List<Race>>()
         val upcomingRacesFlow = MutableSharedFlow<List<Race>>()
         val pastRacesFlow = MutableSharedFlow<List<Race>>()
-        every { getCurrentSeasonRacesUseCase() } returns racesFlow
         every { getUpcomingRacesUseCase() } returns upcomingRacesFlow
         every { getPastRacesUseCase() } returns pastRacesFlow
 
@@ -46,17 +42,15 @@ class RacesViewModelTest {
 
         assertEquals(RacesState(), viewModel.state.value)
 
-        racesFlow.emit(races)
         upcomingRacesFlow.emit(races)
         pastRacesFlow.emit(races)
-        assertEquals(RacesState(races, races, races), viewModel.state.value)
+        assertEquals(RacesState(races, races), viewModel.state.value)
 
         backgroundScope.cancel()
     }
 
     private fun setupViewModel() {
         viewModel = RacesViewModel(
-            getCurrentSeasonRacesUseCase,
             getUpcomingRacesUseCase,
             getPastRacesUseCase
         )

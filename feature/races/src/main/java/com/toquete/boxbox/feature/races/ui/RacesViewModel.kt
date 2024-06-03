@@ -2,7 +2,6 @@ package com.toquete.boxbox.feature.races.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.domain.races.usecase.GetCurrentSeasonRacesUseCase
 import com.toquete.boxbox.domain.races.usecase.GetPastRacesInCurrentSeasonUseCase
 import com.toquete.boxbox.domain.races.usecase.GetUpcomingRacesInCurrentSeasonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,18 +12,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class RacesViewModel @Inject constructor(
-    getCurrentSeasonRacesUseCase: GetCurrentSeasonRacesUseCase,
     getUpcomingRacesUseCase: GetUpcomingRacesInCurrentSeasonUseCase,
     getPastRacesUseCase: GetPastRacesInCurrentSeasonUseCase
 ) : ViewModel() {
 
     val state = combine(
-        getCurrentSeasonRacesUseCase(),
         getUpcomingRacesUseCase(),
         getPastRacesUseCase()
-    ) { currentSeasonRaces, upcomingRaces, pastRaces ->
+    ) { upcomingRaces, pastRaces ->
         RacesState(
-            currentSeasonRaces,
             upcomingRaces,
             pastRaces
         )

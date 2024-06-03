@@ -19,15 +19,6 @@ class DefaultRaceLocalDataSourceTest {
     private val dataSource = DefaultRaceLocalDataSource(dao)
 
     @Test
-    fun `getRacesBySeason should return races`() = runTest {
-        every { dao.getRacesBySeason(any()) } returns flowOf(racesWithCircuits)
-
-        val result = dataSource.getRacesBySeason(season = "2023").first()
-
-        assertContentEquals(racesWithCircuits, result)
-    }
-
-    @Test
     fun `getUpcomingRacesBySeason should return races`() = runTest {
         every { dao.getUpcomingRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
 

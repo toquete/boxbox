@@ -30,15 +30,6 @@ class DefaultRaceRepositoryTest {
     )
 
     @Test
-    fun `getRacesBySeason should return mapped list when called`() = runTest {
-        coEvery { localDataSource.getRacesBySeason(any()) } returns flowOf(racesWithCircuits)
-
-        val result = repository.getRacesBySeason(season = "2023")
-
-        assertContentEquals(races, result.first())
-    }
-
-    @Test
     fun `getUpcomingRacesBySeason should return mapped list when called`() = runTest {
         coEvery { localDataSource.getUpcomingRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
 
