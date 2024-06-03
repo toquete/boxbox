@@ -73,7 +73,8 @@ interface RaceDao {
             "OR country.id = circuit.country " +
             "OR country.alternative_id = circuit.country " +
             "WHERE race.season = :season " +
-            "  AND race.date < :today "
+            "  AND race.date < :today " +
+            "ORDER BY race.date DESC"
     )
     fun getPastRacesBySeason(season: String, today: String): Flow<List<RaceWithCircuitEntity>>
 
