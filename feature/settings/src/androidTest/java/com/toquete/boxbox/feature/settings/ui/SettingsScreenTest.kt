@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
@@ -24,11 +25,12 @@ class SettingsScreenTest {
                     SettingsContent(
                         state = SettingsState.Success(
                             UserPreferences(
-                                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM
+                                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                                colorConfig = ColorConfig.DEFAULT
                             )
                         ),
                         onDismiss = {},
-                        onOptionSelected = {}
+                        onThemeOptionSelected = {}
                     )
                 }
             }
@@ -57,11 +59,12 @@ class SettingsScreenTest {
                     SettingsContent(
                         state = SettingsState.Success(
                             UserPreferences(
-                                darkThemeConfig = DarkThemeConfig.LIGHT
+                                darkThemeConfig = DarkThemeConfig.LIGHT,
+                                colorConfig = ColorConfig.DEFAULT
                             )
                         ),
                         onDismiss = {},
-                        onOptionSelected = {}
+                        onThemeOptionSelected = {}
                     )
                 }
             }
@@ -80,11 +83,12 @@ class SettingsScreenTest {
                     SettingsContent(
                         state = SettingsState.Success(
                             UserPreferences(
-                                darkThemeConfig = DarkThemeConfig.DARK
+                                darkThemeConfig = DarkThemeConfig.DARK,
+                                colorConfig = ColorConfig.DEFAULT
                             )
                         ),
                         onDismiss = {},
-                        onOptionSelected = {}
+                        onThemeOptionSelected = {}
                     )
                 }
             }

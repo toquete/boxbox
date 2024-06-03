@@ -1,5 +1,6 @@
 package com.toquete.boxbox.feature.settings.ui
 
+import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
 import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
@@ -47,13 +48,23 @@ class SettingsViewModelTest {
     }
 
     @Test
-    fun `onSettingsItemClick should set selected dark theme config`() = runTest {
+    fun `onThemeSettingsItemClick should set selected dark theme config`() = runTest {
         val config = DarkThemeConfig.DARK
         setupViewModel()
 
-        viewModel.onSettingsItemClick(config)
+        viewModel.onThemeSettingsItemClick(config)
 
         coVerify { userPreferencesRepository.setDarkThemeConfig(config) }
+    }
+
+    @Test
+    fun `onColorSettingsItemClick should set selected color config`() = runTest {
+        val config = ColorConfig.DEFAULT
+        setupViewModel()
+
+        viewModel.onColorSettingsItemClick(config)
+
+        coVerify { userPreferencesRepository.setColorConfig(config) }
     }
 
     private fun setupViewModel() {

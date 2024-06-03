@@ -1,10 +1,15 @@
 package com.toquete.boxbox.core.ui.theme
 
+import android.os.Build
+import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     primary = md_theme_dark_primary,
@@ -71,11 +76,17 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun BoxBoxTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorScheme
-    } else {
-        LightColorScheme
+fun BoxBoxTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColors: Boolean = false,
+    content: @Composable () -> Unit
+) {
+    val dynamicColor = dynamicColors && supportsDynamicTheming()
+    val colors = when {
+        dynamicColor && darkTheme -> dynamicDarkColorScheme(LocalContext.current)
+        dynamicColor && !darkTheme -> dynamicLightColorScheme(LocalContext.current)
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
     }
 
     MaterialTheme(
@@ -84,3 +95,6 @@ fun BoxBoxTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable
         content = content
     )
 }
+
+@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
+fun supportsDynamicTheming() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S

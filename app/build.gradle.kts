@@ -27,8 +27,8 @@ android {
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
-        versionCode = 10
-        versionName = "1.1.5"
+        versionCode = 13
+        versionName = "1.2.1"
 
         buildConfigField(
             "String",
@@ -92,6 +92,7 @@ dependencies {
     implementation(project(":data:constructorcolors"))
     implementation(project(":data:races"))
     implementation(project(":data:raceresults"))
+    implementation(project(":data:sprintresults"))
     implementation(project(":feature:standings"))
     implementation(project(":feature:settings"))
     implementation(project(":feature:races"))
@@ -131,9 +132,11 @@ dependencies {
     kover(project(":data:circuits"))
     kover(project(":data:circuitimages"))
     kover(project(":data:raceresults"))
+    kover(project(":data:sprintresults"))
     kover(project(":domain:common"))
     kover(project(":domain:races"))
     kover(project(":domain:raceresults"))
+    kover(project(":domain:sprintresults"))
     kover(project(":feature:standings"))
     kover(project(":feature:settings"))
     kover(project(":feature:races"))

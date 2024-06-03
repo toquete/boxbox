@@ -50,7 +50,8 @@ val raceResultsResponse = listOf(
         secondPractice = null,
         thirdPractice = null,
         qualifying = null,
-        sprint = null
+        sprint = null,
+        sprintResults = null
     )
 )
 
