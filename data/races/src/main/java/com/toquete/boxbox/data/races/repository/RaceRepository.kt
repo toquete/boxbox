@@ -7,4 +7,8 @@ import kotlinx.coroutines.flow.Flow
 interface RaceRepository : Syncable {
 
     fun getRacesBySeason(season: String): Flow<List<Race>>
+
+    fun getUpcomingRacesBySeason(season: String, today: String): Flow<List<Race>>
+
+    fun getPastRacesBySeason(season: String, today: String): Flow<List<Race>>
 }
