@@ -3,7 +3,6 @@ package com.toquete.boxbox.data.races.source.local
 import com.toquete.boxbox.core.database.dao.RaceDao
 import com.toquete.boxbox.core.testing.data.raceEntities
 import com.toquete.boxbox.core.testing.data.racesWithCircuits
-import com.toquete.boxbox.data.races.source.local.DefaultRaceLocalDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -20,10 +19,19 @@ class DefaultRaceLocalDataSourceTest {
     private val dataSource = DefaultRaceLocalDataSource(dao)
 
     @Test
-    fun `getRacesBySeason should return races`() = runTest {
-        every { dao.getRacesBySeason(any()) } returns flowOf(racesWithCircuits)
+    fun `getUpcomingRacesBySeason should return races`() = runTest {
+        every { dao.getUpcomingRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
 
-        val result = dataSource.getRacesBySeason(season = "2023").first()
+        val result = dataSource.getUpcomingRacesBySeason(season = "2023", today = "2023-01-01").first()
+
+        assertContentEquals(racesWithCircuits, result)
+    }
+
+    @Test
+    fun `getPastRacesBySeason should return races`() = runTest {
+        every { dao.getPastRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
+
+        val result = dataSource.getPastRacesBySeason(season = "2023", today = "2023-01-01").first()
 
         assertContentEquals(racesWithCircuits, result)
     }
