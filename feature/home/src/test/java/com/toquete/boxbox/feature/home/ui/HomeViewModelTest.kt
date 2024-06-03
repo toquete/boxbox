@@ -76,7 +76,7 @@ class HomeViewModelTest {
         hasFailedFlow.emit(false)
         networkFlow.emit(false)
 
-        verify { SnackbarManager.showMessage(R.string.not_connected, duration = SnackbarDuration.Long) }
+        verify { SnackbarManager.showMessage(R.string.home_not_connected, duration = SnackbarDuration.Long) }
 
         backgroundScope.cancel()
         unmockkObject(SnackbarManager)
@@ -102,7 +102,7 @@ class HomeViewModelTest {
         hasFailedFlow.emit(true)
         networkFlow.emit(true)
 
-        verify { SnackbarManager.showMessage(R.string.fail_message, duration = SnackbarDuration.Long) }
+        verify { SnackbarManager.showMessage(R.string.home_fail_message, duration = SnackbarDuration.Long) }
 
         backgroundScope.cancel()
         unmockkObject(SnackbarManager)

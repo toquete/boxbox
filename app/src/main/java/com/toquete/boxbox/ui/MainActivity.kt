@@ -22,6 +22,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.compose.rememberNavController
+import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.navigation.BoxBoxNavHost
@@ -54,6 +55,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val isDarkTheme = shouldUseDarkTheme(uiState)
+            val isDynamicColors = shouldUseDynamicColors(uiState)
 
             DisposableEffect(isDarkTheme) {
                 enableEdgeToEdge(
@@ -69,7 +71,10 @@ class MainActivity : ComponentActivity() {
                 onDispose { }
             }
 
-            BoxBoxTheme(darkTheme = isDarkTheme) {
+            BoxBoxTheme(
+                darkTheme = isDarkTheme,
+                dynamicColors = isDynamicColors
+            ) {
                 MainScreen()
             }
         }
@@ -94,6 +99,10 @@ private fun shouldUseDarkTheme(uiState: MainState): Boolean {
         DarkThemeConfig.LIGHT -> false
         DarkThemeConfig.DARK -> true
     }
+}
+
+private fun shouldUseDynamicColors(uiState: MainState): Boolean {
+    return uiState.colorConfig == ColorConfig.DYNAMIC
 }
 
 private val DefaultLightScrim = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
