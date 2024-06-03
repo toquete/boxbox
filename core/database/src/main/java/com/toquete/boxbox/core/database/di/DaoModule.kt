@@ -13,6 +13,7 @@ import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.dao.RaceDao
 import com.toquete.boxbox.core.database.dao.RaceResultDao
+import com.toquete.boxbox.core.database.dao.SprintRaceResultDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -81,5 +82,10 @@ internal object DaoModule {
     @Provides
     fun providesRaceResultDao(database: BoxBoxDatabase): RaceResultDao {
         return database.raceResultDao()
+    }
+
+    @Provides
+    fun providesSprintRaceResultDao(database: BoxBoxDatabase): SprintRaceResultDao {
+        return database.sprintRaceResultDao()
     }
 }

@@ -3,8 +3,10 @@ package com.toquete.boxbox.feature.raceresults.ui
 import androidx.lifecycle.SavedStateHandle
 import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.core.testing.data.raceResults
+import com.toquete.boxbox.core.testing.data.sprintRaceResults
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.domain.raceresults.usecase.GetCurrentSeasonRaceResultsUseCase
+import com.toquete.boxbox.domain.sprintresults.usecase.GetCurrentSeasonSprintResultsUseCase
 import com.toquete.boxbox.feature.raceresults.navigation.RACE_ARGUMENT
 import com.toquete.boxbox.feature.raceresults.navigation.ROUND_ARGUMENT
 import io.mockk.every
@@ -25,6 +27,7 @@ class RaceResultsViewModelTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     private val getCurrentSeasonRaceResultsUseCase: GetCurrentSeasonRaceResultsUseCase = mockk()
+    private val getCurrentSeasonSprintResultsUseCase: GetCurrentSeasonSprintResultsUseCase = mockk()
     private val savedStateHandle = SavedStateHandle(
         mapOf(
             RACE_ARGUMENT to "Bahrain",
@@ -37,7 +40,9 @@ class RaceResultsViewModelTest {
     @Test
     fun `init should send success state`() = runTest {
         val raceResultsFlow = MutableSharedFlow<List<RaceResult>>()
+        val sprintResultsFlow = MutableSharedFlow<List<RaceResult>>()
         every { getCurrentSeasonRaceResultsUseCase(round = 1) } returns raceResultsFlow
+        every { getCurrentSeasonSprintResultsUseCase(round = 1) } returns sprintResultsFlow
 
         setupViewModel()
 
@@ -48,12 +53,17 @@ class RaceResultsViewModelTest {
         assertEquals(RaceResultsState(), viewModel.state.value)
 
         raceResultsFlow.emit(raceResults)
-        assertEquals(RaceResultsState(raceName = "Bahrain", raceResults), viewModel.state.value)
+        sprintResultsFlow.emit(sprintRaceResults)
+        assertEquals(RaceResultsState(raceName = "Bahrain", raceResults, sprintRaceResults), viewModel.state.value)
 
         backgroundScope.cancel()
     }
 
     private fun setupViewModel() {
-        viewModel = RaceResultsViewModel(savedStateHandle, getCurrentSeasonRaceResultsUseCase)
+        viewModel = RaceResultsViewModel(
+            savedStateHandle,
+            getCurrentSeasonRaceResultsUseCase,
+            getCurrentSeasonSprintResultsUseCase
+        )
     }
 }

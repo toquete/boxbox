@@ -6,12 +6,15 @@ import com.toquete.boxbox.domain.common.usecase.GetTodayLocalDateUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetCurrentSeasonRacesUseCase @Inject constructor(
-    private val raceRepository: RaceRepository,
+class GetUpcomingRacesInCurrentSeasonUseCase @Inject constructor(
+    private val repository: RaceRepository,
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase
 ) {
 
     operator fun invoke(): Flow<List<Race>> {
-        return raceRepository.getRacesBySeason(season = getTodayLocalDateUseCase().year.toString())
+        return repository.getUpcomingRacesBySeason(
+            season = getTodayLocalDateUseCase().year.toString(),
+            today = getTodayLocalDateUseCase().toString()
+        )
     }
 }

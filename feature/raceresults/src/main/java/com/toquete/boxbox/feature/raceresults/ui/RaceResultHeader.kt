@@ -29,7 +29,7 @@ internal fun RaceResultHeader() {
             modifier = Modifier
                 .width(50.dp)
                 .padding(end = 4.dp),
-            text = stringResource(R.string.position),
+            text = stringResource(R.string.race_results_position),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne),
             fontWeight = FontWeight.Bold
         )
@@ -37,7 +37,7 @@ internal fun RaceResultHeader() {
             modifier = Modifier
                 .width(200.dp)
                 .padding(end = 4.dp),
-            text = stringResource(R.string.driver),
+            text = stringResource(R.string.race_results_driver),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne),
             fontWeight = FontWeight.Bold
         )
@@ -45,7 +45,7 @@ internal fun RaceResultHeader() {
             modifier = Modifier
                 .width(150.dp)
                 .padding(end = 4.dp),
-            text = stringResource(R.string.constructor),
+            text = stringResource(R.string.race_results_constructor),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne),
             fontWeight = FontWeight.Bold
         )
@@ -53,7 +53,7 @@ internal fun RaceResultHeader() {
             modifier = Modifier
                 .width(60.dp)
                 .padding(end = 4.dp),
-            text = stringResource(R.string.laps),
+            text = stringResource(R.string.race_results_laps),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne),
             fontWeight = FontWeight.Bold
         )
@@ -61,7 +61,7 @@ internal fun RaceResultHeader() {
             modifier = Modifier
                 .width(125.dp)
                 .padding(end = 4.dp),
-            text = stringResource(R.string.time),
+            text = stringResource(R.string.race_results_time),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne),
             fontWeight = FontWeight.Bold
         )
@@ -69,13 +69,13 @@ internal fun RaceResultHeader() {
             modifier = Modifier
                 .width(125.dp)
                 .padding(end = 4.dp),
-            text = stringResource(R.string.status),
+            text = stringResource(R.string.race_results_status),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne),
             fontWeight = FontWeight.Bold
         )
         Text(
             modifier = Modifier.width(50.dp),
-            text = stringResource(R.string.points),
+            text = stringResource(R.string.race_results_points),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne),
             fontWeight = FontWeight.Bold
         )

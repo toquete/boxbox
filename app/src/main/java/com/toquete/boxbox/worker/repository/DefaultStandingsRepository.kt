@@ -4,6 +4,7 @@ import com.toquete.boxbox.data.constructorcolors.repository.ConstructorColorRepo
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
 import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
 import com.toquete.boxbox.data.raceresults.repository.RaceResultRepository
+import com.toquete.boxbox.data.sprintresults.repository.SprintResultRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -14,7 +15,8 @@ class DefaultStandingsRepository @Inject constructor(
     private val driverStandingsRepository: DriverStandingsRepository,
     private val constructorStandingsRepository: ConstructorStandingsRepository,
     private val constructorColorRepository: ConstructorColorRepository,
-    private val raceResultRepository: RaceResultRepository
+    private val raceResultRepository: RaceResultRepository,
+    private val sprintResultRepository: SprintResultRepository
 ) : StandingsRepository {
 
     override suspend fun sync(scope: CoroutineScope) {
@@ -23,7 +25,8 @@ class DefaultStandingsRepository @Inject constructor(
                 async { driverStandingsRepository.sync() },
                 async { constructorStandingsRepository.sync() },
                 async { constructorColorRepository.sync() },
-                async { raceResultRepository.sync() }
+                async { raceResultRepository.sync() },
+                async { sprintResultRepository.sync() }
             )
         }
     }

@@ -10,8 +10,12 @@ internal class DefaultRaceLocalDataSource @Inject constructor(
     private val dao: RaceDao
 ) : RaceLocalDataSource {
 
-    override fun getRacesBySeason(season: String): Flow<List<RaceWithCircuitEntity>> {
-        return dao.getRacesBySeason(season)
+    override fun getUpcomingRacesBySeason(season: String, today: String): Flow<List<RaceWithCircuitEntity>> {
+        return dao.getUpcomingRacesBySeason(season, today)
+    }
+
+    override fun getPastRacesBySeason(season: String, today: String): Flow<List<RaceWithCircuitEntity>> {
+        return dao.getPastRacesBySeason(season, today)
     }
 
     override suspend fun insertAll(races: List<RaceEntity>) {

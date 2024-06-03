@@ -17,8 +17,13 @@ internal class DefaultRaceRepository @Inject constructor(
     private val circuitLocalDataSource: CircuitLocalDataSource
 ) : RaceRepository {
 
-    override fun getRacesBySeason(season: String): Flow<List<Race>> {
-        return localDataSource.getRacesBySeason(season)
+    override fun getUpcomingRacesBySeason(season: String, today: String): Flow<List<Race>> {
+        return localDataSource.getUpcomingRacesBySeason(season, today)
+            .map { it.map(RaceWithCircuitEntity::toDomain) }
+    }
+
+    override fun getPastRacesBySeason(season: String, today: String): Flow<List<Race>> {
+        return localDataSource.getPastRacesBySeason(season, today)
             .map { it.map(RaceWithCircuitEntity::toDomain) }
     }
 
