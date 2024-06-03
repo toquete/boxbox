@@ -7,6 +7,7 @@ plugins {
 
 android {
     namespace = "com.toquete.boxbox.feature.raceresults"
+    resourcePrefix = "race_results_"
 }
 
 dependencies {
@@ -14,6 +15,7 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:common"))
     implementation(project(":domain:raceresults"))
+    implementation(project(":domain:sprintresults"))
 
     testImplementation(project(":core:testing"))
     androidTestImplementation(project(":core:testing"))
