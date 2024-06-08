@@ -1,5 +1,4 @@
 import io.gitlab.arturbosch.detekt.Detekt
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -14,6 +13,7 @@ plugins {
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.crashlytics) apply false
     alias(libs.plugins.kover) apply false
+    alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.detekt)
 }
 
@@ -42,12 +42,6 @@ allprojects {
 
             txt.required.set(true)
             txt.outputLocation.set(file("build/reports/detekt.txt"))
-        }
-    }
-
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_11.toString()
         }
     }
 
