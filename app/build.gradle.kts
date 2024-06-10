@@ -144,48 +144,49 @@ dependencies {
     kover(project(":feature:home"))
 }
 
-koverReport {
-    defaults {
-        mergeWith("prodDebug")
-        html {
-            title = "BoxBox"
-            onCheck = false
-            setReportDir(layout.buildDirectory.dir("reports/coverage"))
+kover {
+    reports {
+        variant("prodDebug") {
+            html {
+                title = "BoxBox"
+                onCheck = false
+                htmlDir = layout.buildDirectory.dir("reports/coverage")
+            }
+            xml {
+                onCheck = false
+                xmlFile = layout.buildDirectory.file("reports/coverage/coverage.xml")
+            }
         }
-        xml {
-            onCheck = false
-            setReportFile(layout.buildDirectory.file("reports/coverage/coverage.xml"))
-        }
-    }
-    filters {
-        excludes {
-            classes(
-                "*Activity",
-                "*Activity\$*",
-                "*.BuildConfig",
-                "*Hilt*",
-                "*Factory*",
-                "*Injector",
-                "*Database*",
-                "*Dao*",
-                "*Module*",
-                "*Application",
-                "*Worker*",
-                "*Composable*"
-            )
-            packages(
-                "*.di",
-                "com.toquete.boxbox.util",
-                "com.toquete.boxbox.core.ui.theme"
-            )
-            annotatedBy(
-                "*Composable",
-                "*Preview",
-                "*Stable",
-                "*Database",
-                "*Module",
-                "*Generated"
-            )
+        filters {
+            excludes {
+                classes(
+                    "*Activity",
+                    "*Activity\$*",
+                    "*.BuildConfig",
+                    "*Hilt*",
+                    "*Factory*",
+                    "*Injector",
+                    "*Database*",
+                    "*Dao*",
+                    "*Module*",
+                    "*Application",
+                    "*Worker*",
+                    "*Composable*"
+                )
+                packages(
+                    "*.di",
+                    "com.toquete.boxbox.util",
+                    "com.toquete.boxbox.core.ui.theme"
+                )
+                annotatedBy(
+                    "*Composable",
+                    "*Preview",
+                    "*Stable",
+                    "*Database",
+                    "*Module",
+                    "*Generated"
+                )
+            }
         }
     }
 }
