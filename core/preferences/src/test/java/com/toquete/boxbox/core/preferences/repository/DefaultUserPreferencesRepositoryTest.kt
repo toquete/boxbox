@@ -25,7 +25,7 @@ class DefaultUserPreferencesRepositoryTest {
     @Before
     fun setUp() {
         repository = DefaultUserPreferencesRepository(
-            tmpFolder.testUserPreferencesDataStore(testScope)
+            tmpFolder.testUserPreferencesDataStore(testScope.backgroundScope)
         )
     }
 
