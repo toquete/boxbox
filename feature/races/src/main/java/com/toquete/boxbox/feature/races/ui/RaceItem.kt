@@ -36,7 +36,7 @@ import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
-import kotlinx.datetime.toInstant
+import kotlinx.datetime.Instant
 import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
@@ -172,11 +172,11 @@ internal fun RaceItemPreview() {
                     flagUrl = null,
                     imageUrl = null
                 ),
-                dateTime = "2023-03-05T15:00:00Z".toInstant(),
-                firstPracticeDateTime = "2023-03-03T11:30:00Z".toInstant(),
-                secondPracticeDateTime = "2023-03-03T15:00:00Z".toInstant(),
-                thirdPracticeDateTime = "2023-03-04T11:30:00Z".toInstant(),
-                qualifyingDateTime = "2023-03-04T15:00:00Z".toInstant(),
+                dateTime = Instant.parse("2023-03-05T15:00:00Z"),
+                firstPracticeDateTime = Instant.parse("2023-03-03T11:30:00Z"),
+                secondPracticeDateTime = Instant.parse("2023-03-03T15:00:00Z"),
+                thirdPracticeDateTime = Instant.parse("2023-03-04T11:30:00Z"),
+                qualifyingDateTime = Instant.parse("2023-03-04T15:00:00Z"),
                 sprintDateTime = null
             )
         )
