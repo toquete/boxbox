@@ -4,5 +4,5 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.core.notification"
+    namespace = "com.toquete.boxbox.core.alarm"
 }
