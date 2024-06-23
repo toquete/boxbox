@@ -1,4 +1,4 @@
-package com.toquete.boxbox.core.notification.di
+package com.toquete.boxbox.core.alarm.di
 
 import android.app.AlarmManager
 import android.content.Context
@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object NotificationModule {
+internal object AlarmModule {
 
     @Singleton
     @Provides

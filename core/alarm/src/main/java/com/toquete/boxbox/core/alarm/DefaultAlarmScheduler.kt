@@ -1,18 +1,18 @@
-package com.toquete.boxbox.core.notification
+package com.toquete.boxbox.core.alarm
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
-import com.toquete.boxbox.core.notification.model.AlarmItem
+import com.toquete.boxbox.core.alarm.model.AlarmItem
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import javax.inject.Inject
 
-internal class DefaultNotificationScheduler @Inject constructor(
+internal class DefaultAlarmScheduler @Inject constructor(
     @ApplicationContext private val context: Context,
     private val alarmManager: AlarmManager
-) : NotificationScheduler {
+) : AlarmScheduler {
 
     override fun setAndAllowWhileIdle(alarmItem: AlarmItem) {
         alarmManager.setAndAllowWhileIdle(
