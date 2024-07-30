@@ -14,6 +14,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "BoxBox"
+gradle.startParameter.excludedTaskNames.addAll(listOf(":plugins:testClasses"))
 include(":app")
 include(":core:model")
 include(":core:ui")
@@ -23,6 +24,7 @@ include(":core:network")
 include(":core:common")
 include(":core:testing")
 include(":core:alarm")
+include(":core:notification")
 include(":data:countries")
 include(":data:drivers")
 include(":data:driverstandings")
