@@ -7,6 +7,7 @@ import com.toquete.boxbox.data.circuitimages.source.remote.CircuitImageRemoteDat
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -15,7 +16,8 @@ class DefaultCircuitImageRepositoryTest {
 
     private val remoteDataSource: CircuitImageRemoteDataSource = mockk(relaxed = true)
     private val localDataSource: CircuitImageLocalDataSource = mockk(relaxed = true)
-    private val repository = DefaultCircuitImageRepository(remoteDataSource, localDataSource)
+    private val testDispatcher = UnconfinedTestDispatcher()
+    private val repository = DefaultCircuitImageRepository(remoteDataSource, localDataSource, testDispatcher)
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
