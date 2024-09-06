@@ -12,6 +12,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -21,7 +22,8 @@ class DefaultSprintResultRepositoryTest {
 
     private val remoteDataSource: SprintResultRemoteDataSource = mockk(relaxed = true)
     private val localDataSource: SprintResultLocalDataSource = mockk(relaxed = true)
-    private val repository = DefaultSprintResultRepository(remoteDataSource, localDataSource)
+    private val testDispatcher = UnconfinedTestDispatcher()
+    private val repository = DefaultSprintResultRepository(remoteDataSource, localDataSource, testDispatcher)
 
     @Test
     fun `getSprintResultsBySeasonAndRound should return mapped list when called`() = runTest {
