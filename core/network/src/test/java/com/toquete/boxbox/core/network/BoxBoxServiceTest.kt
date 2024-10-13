@@ -8,7 +8,6 @@ import com.toquete.boxbox.core.testing.data.raceResultWrapper
 import com.toquete.boxbox.core.testing.data.racesWrapper
 import com.toquete.boxbox.core.testing.data.sprintRaceResultWrapper
 import kotlinx.coroutines.test.runTest
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -16,7 +15,6 @@ import org.junit.After
 import org.junit.Test
 import kotlin.test.assertEquals
 
-@OptIn(ExperimentalSerializationApi::class)
 class BoxBoxServiceTest {
 
     private val mockWebServer = MockWebServer()
@@ -121,20 +119,20 @@ class BoxBoxServiceTest {
             mockWebServer.enqueue(this)
         }
 
-        val result = service.getRaceResults()
+        val result = service.getRaceResults(offset = 0)
 
         assertEquals(expected, result)
     }
 
     @Test
     fun `getRaceResults should send correct request path when called`() = runTest {
-        val expected = "/current/results.json?limit=1000"
+        val expected = "/current/results.json?offset=0&limit=100"
         MockResponse().apply {
             setBody(readPath("race_results.json"))
             mockWebServer.enqueue(this)
         }
 
-        service.getRaceResults()
+        service.getRaceResults(offset = 0)
 
         assertEquals(expected, mockWebServer.takeRequest().path)
     }
@@ -154,7 +152,7 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getSprintRaceResults should send correct request path when called`() = runTest {
-        val expected = "/current/sprint.json?limit=1000"
+        val expected = "/current/sprint.json?limit=100"
         MockResponse().apply {
             setBody(readPath("sprint_results.json"))
             mockWebServer.enqueue(this)

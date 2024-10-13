@@ -6,6 +6,7 @@ import com.toquete.boxbox.core.network.model.RacesWrapper
 
 val sprintRaceResultWrapper = RacesWrapper(
     data = RaceTableResponse(
+        totalPages = 200,
         raceTable = RaceDataResponse(
             season = "2023",
             races = sprintRacesResponse
