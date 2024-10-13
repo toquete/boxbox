@@ -25,5 +25,8 @@ interface BoxBoxService {
     ): RacesWrapper
 
     @GET("current/sprint.json")
-    suspend fun getSprintRaceResults(@Query("limit") limit: Int = MAX_RESPONSE_LIMIT): RacesWrapper
+    suspend fun getSprintRaceResults(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int = MAX_RESPONSE_LIMIT
+    ): RacesWrapper
 }

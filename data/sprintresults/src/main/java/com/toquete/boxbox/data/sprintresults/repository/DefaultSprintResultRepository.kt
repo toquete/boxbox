@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.sprintresults.repository
 
+import com.toquete.boxbox.core.common.MAX_RESPONSE_LIMIT
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import com.toquete.boxbox.core.database.model.SprintRaceResultWithDriverAndConstructorEntity
 import com.toquete.boxbox.core.model.RaceResult
@@ -28,8 +29,13 @@ internal class DefaultSprintResultRepository @Inject constructor(
 
     override suspend fun sync() {
         withContext(dispatcher) {
-            val list = remoteDataSource.getSprintResults()
-            localDataSource.insertAll(list.toEntity())
+            var offset = 0
+            do {
+                val data = remoteDataSource.getSprintResults(offset)
+                val list = data.data.raceTable.races
+                localDataSource.insertAll(list.toEntity())
+                offset += MAX_RESPONSE_LIMIT
+            } while (offset <= data.data.totalPages)
         }
     }
 }
