@@ -145,20 +145,20 @@ class BoxBoxServiceTest {
             mockWebServer.enqueue(this)
         }
 
-        val result = service.getSprintRaceResults()
+        val result = service.getSprintRaceResults(offset = 0)
 
         assertEquals(expected, result)
     }
 
     @Test
     fun `getSprintRaceResults should send correct request path when called`() = runTest {
-        val expected = "/current/sprint.json?limit=100"
+        val expected = "/current/sprint.json?offset=0&limit=100"
         MockResponse().apply {
             setBody(readPath("sprint_results.json"))
             mockWebServer.enqueue(this)
         }
 
-        service.getSprintRaceResults()
+        service.getSprintRaceResults(offset = 0)
 
         assertEquals(expected, mockWebServer.takeRequest().path)
     }

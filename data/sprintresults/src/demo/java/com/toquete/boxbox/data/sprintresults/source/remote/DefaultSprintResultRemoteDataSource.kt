@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.sprintresults.source.remote
 
 import com.toquete.boxbox.core.common.extension.readPath
-import com.toquete.boxbox.core.network.model.RaceResponse
+import com.toquete.boxbox.core.network.model.RacesWrapper
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
@@ -11,7 +11,7 @@ internal class DefaultSprintResultRemoteDataSource @Inject constructor(
     private val json: Json
 ) : SprintResultRemoteDataSource {
 
-    override suspend fun getSprintResults(): List<RaceResponse> {
+    override suspend fun getSprintResults(offset: Int): RacesWrapper {
         val response = readPath(SPRINT_RESULTS_JSON)
         return json.decodeFromString(response)
     }
