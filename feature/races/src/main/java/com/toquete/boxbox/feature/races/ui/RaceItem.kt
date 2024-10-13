@@ -13,10 +13,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,18 +41,19 @@ import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
 internal fun RaceItem(race: Race, onClick: (Int, String) -> Unit = { _, _ -> }) {
-    Card(
+    OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .clickable { onClick(race.round, race.circuit.country) }
+            .clickable { onClick(race.round, race.circuit.country) },
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurfaceVariant)
     ) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(bottom = 16.dp),
             shape = MaterialTheme.shapes.medium,
-            color = MaterialTheme.colorScheme.inverseOnSurface
+            color = MaterialTheme.colorScheme.surfaceContainer
         ) {
             Box(modifier = Modifier.fillMaxWidth()) {
                 BoxBoxAsyncImage(
@@ -124,7 +125,6 @@ internal fun RaceItem(race: Race, onClick: (Int, String) -> Unit = { _, _ -> }) 
             Surface(
                 modifier = Modifier.weight(weight = 0.3f, fill = false),
                 shape = MaterialTheme.shapes.medium,
-                color = MaterialTheme.colorScheme.surfaceVariant,
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurfaceVariant)
             ) {
                 Column(
