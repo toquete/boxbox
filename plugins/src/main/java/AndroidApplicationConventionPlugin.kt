@@ -18,6 +18,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("org.jetbrains.kotlin.android")
                 apply("org.jetbrains.kotlinx.kover")
                 apply("com.google.gms.google-services")
+                apply("com.google.firebase.crashlytics")
                 apply("boxbox.android.firebase")
             }
 
