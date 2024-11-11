@@ -107,6 +107,7 @@ dependencies {
     implementation(libs.firebase.appcheck.ktx)
     implementation(libs.firebase.appcheck.debug)
     implementation(libs.hilt.work)
+    implementation(libs.firebase.crashlytics)
     ksp(libs.hilt.work.compiler)
 
     testImplementation(project(":core:testing"))
