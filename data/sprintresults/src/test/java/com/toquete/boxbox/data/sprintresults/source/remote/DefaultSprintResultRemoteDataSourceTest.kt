@@ -2,12 +2,11 @@ package com.toquete.boxbox.data.sprintresults.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.testing.data.sprintRaceResultWrapper
-import com.toquete.boxbox.core.testing.data.sprintRaceResultsResponse
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import kotlin.test.assertContentEquals
+import kotlin.test.assertEquals
 
 class DefaultSprintResultRemoteDataSourceTest {
 
@@ -16,10 +15,11 @@ class DefaultSprintResultRemoteDataSourceTest {
 
     @Test
     fun `getSprintResults should return sprint race results`() = runTest {
-        coEvery { service.getSprintRaceResults() } returns sprintRaceResultWrapper
+        val offset = 0
+        coEvery { service.getSprintRaceResults(offset) } returns sprintRaceResultWrapper
 
-        val result = dataSource.getSprintResults()
+        val result = dataSource.getSprintResults(offset)
 
-        assertContentEquals(sprintRaceResultsResponse, result)
+        assertEquals(sprintRaceResultWrapper, result)
     }
 }
