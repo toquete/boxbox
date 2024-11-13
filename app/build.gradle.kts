@@ -200,6 +200,6 @@ sonar {
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.androidLint.reportPaths", "build/reports/lint-results-demoDebug.xml")
         property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt.xml")
-        property("sonar.coverageReportPaths", "build/reports/coverage/coverage.xml")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/coverage/coverage.xml")
     }
 }
