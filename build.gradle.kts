@@ -33,9 +33,11 @@ allprojects {
 
     tasks.withType<Detekt>().configureEach {
         reports {
-            xml.required.set(false)
             sarif.required.set(false)
             md.required.set(false)
+
+            xml.required.set(true)
+            xml.outputLocation.set(file("build/reports/detekt.xml"))
 
             html.required.set(true)
             html.outputLocation.set(file("build/reports/detekt.html"))
