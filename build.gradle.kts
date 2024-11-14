@@ -1,4 +1,5 @@
 import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -21,7 +22,11 @@ tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
 
-allprojects {
+val reportMerge by tasks.registering(ReportMergeTask::class) {
+    output.set(rootProject.layout.buildDirectory.file("reports/detekt-results.xml"))
+}
+
+subprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
 
     detekt {
@@ -45,6 +50,11 @@ allprojects {
             txt.required.set(true)
             txt.outputLocation.set(file("build/reports/detekt.txt"))
         }
+        finalizedBy(reportMerge)
+    }
+
+    reportMerge {
+        input.from(tasks.withType<Detekt>().map { it.xmlReportFile })
     }
 
     dependencies {

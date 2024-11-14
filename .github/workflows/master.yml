@@ -56,6 +56,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -78,17 +80,19 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Lint
-        run: ./gradlew lint sonar
+        run: ./gradlew lintProdDebug sonar
       - name: Uploading lint results
         uses: actions/upload-artifact@v4
         with:
-          name: lint-reports
-          path: '**/lint-results-*.html'
+          name: lint-report
+          path: '**/boxbox/build/reports/lint-results-*.html'
   detekt:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -111,7 +115,7 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Detekt
-        run: ./gradlew detektProdDebug sonar
+        run: ./gradlew detektProdDebug reportMerge sonar --continue
       - name: Uploading detekt results
         uses: actions/upload-artifact@v4
         with:
@@ -122,6 +126,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
