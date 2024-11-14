@@ -19,11 +19,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: '17'
+      - name: Cache SonarQube Cloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
@@ -40,7 +48,7 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Build APK
-        run: ./gradlew :app:assembleProdDebug
+        run: ./gradlew :app:assembleProdDebug sonar
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
   lint:
@@ -102,11 +110,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: '17'
+      - name: Cache SonarQube Cloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
@@ -118,7 +134,7 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Unit test and coverage
-        run: ./gradlew koverXmlReportProdDebug
+        run: ./gradlew koverXmlReportProdDebug sonar
       - name: Uploading test results
         uses: actions/upload-artifact@v4
         with:
