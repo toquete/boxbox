@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.kover) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.detekt)
+    alias(libs.plugins.sonarqube)
 }
 
 tasks.register<Delete>("clean") {
@@ -59,5 +60,15 @@ subprojects {
 
     dependencies {
         detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.7")
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "toquete_boxbox")
+        property("sonar.organization", "toquete")
+        property("sonar.projectName", "BoxBox")
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.coverage.jacoco.xmlReportPaths", "$projectDir/app/build/reports/coverage/coverage.xml")
     }
 }

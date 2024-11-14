@@ -37,6 +37,7 @@ kover = "0.8.3"
 timber = "5.0.1"
 navigation = "2.8.2"
 hilt-navigation = "1.2.0"
+sonarqube = "5.1.0.4882"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -120,4 +121,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin"}
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
