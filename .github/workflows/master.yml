@@ -176,7 +176,7 @@ jobs:
         with:
           merge-multiple: true
       - name: Sonar analysis
-        run: ./gradlew sonar -x lint
+        run: ./gradlew sonar
   android-test:
     runs-on: ubuntu-latest
     timeout-minutes: 60
