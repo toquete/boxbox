@@ -6,6 +6,7 @@ plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
     id("boxbox.android.hilt")
+    id("org.sonarqube") version "5.1.0.4882"
 }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -75,6 +76,14 @@ android {
 
     buildFeatures {
         buildConfig = true
+    }
+
+    lint {
+        checkDependencies = true
+        xmlReport = true
+        xmlOutput = file("${rootProject.rootDir}/build/reports/lint-results.xml")
+        htmlReport = true
+        htmlOutput = file("${rootProject.rootDir}/build/reports/lint-results.html")
     }
 }
 
@@ -189,5 +198,16 @@ kover {
                 )
             }
         }
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "toquete_boxbox")
+        property("sonar.organization", "toquete")
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.androidLint.reportPaths", "${rootProject.rootDir}/build/reports/lint-results.xml")
+        property("sonar.kotlin.detekt.reportPaths", "${rootProject.rootDir}/build/reports/detekt-results.xml")
+        property("sonar.coverage.jacoco.xmlReportPaths", "$projectDir/build/reports/coverage/coverage.xml")
     }
 }
