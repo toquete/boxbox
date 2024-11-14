@@ -199,9 +199,3 @@ kover {
         }
     }
 }
-
-sonar {
-    properties {
-        property("sonar.androidLint.reportPaths", "$rootDir/build/reports/lint-results.xml")
-    }
-}

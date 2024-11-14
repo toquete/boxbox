@@ -70,5 +70,6 @@ sonar {
         property("sonar.projectName", "BoxBox")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.coverage.jacoco.xmlReportPaths", "$projectDir/app/build/reports/coverage/coverage.xml")
+        property("sonar.androidLint.reportPaths", "build/reports/lint-results-prodDebug.xml")
     }
 }
