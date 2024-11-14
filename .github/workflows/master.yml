@@ -85,7 +85,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lint-report
-          path: '**/boxbox/build/reports/lint-results-*.html'
+          path: '**/boxbox/build/reports/lint-results.html'
   detekt:
     runs-on: ubuntu-latest
     steps:
