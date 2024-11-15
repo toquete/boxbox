@@ -7,11 +7,13 @@ import java.util.Locale
 
 enum class BoxBoxFlavor(
     val applicationIdSuffix: String? = null,
-    val versionNameSuffix: String? = null
+    val versionNameSuffix: String? = null,
+    val isDefault: Boolean = false
 ) {
     DEMO(
         applicationIdSuffix = ".demo",
-        versionNameSuffix = "-DEMO"
+        versionNameSuffix = "-DEMO",
+        isDefault = true
     ),
     PROD
 }
@@ -23,13 +25,10 @@ internal fun configureFlavors(commonExtension: CommonExtension<*, *, *, *, *, *>
             BoxBoxFlavor.values().forEach {
                 create(it.name.lowercase(Locale.US)) {
                     dimension = "version"
-                    if (this@apply is ApplicationExtension && this is ApplicationProductFlavor) {
-                        if (it.applicationIdSuffix != null) {
-                            applicationIdSuffix = it.applicationIdSuffix
-                        }
-                        if (it.versionNameSuffix != null) {
-                            versionNameSuffix = it.versionNameSuffix
-                        }
+                    if (commonExtension is ApplicationExtension && this is ApplicationProductFlavor) {
+                        applicationIdSuffix = it.applicationIdSuffix
+                        versionNameSuffix = it.versionNameSuffix
+                        isDefault = it.isDefault
                     }
                 }
             }

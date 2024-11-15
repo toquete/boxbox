@@ -70,6 +70,7 @@ android {
             versionNameSuffix = BoxBoxBuildType.DEBUG.versionNameSuffix
             isMinifyEnabled = false
             isDebuggable = true
+            isDefault = true
         }
     }
 
@@ -197,5 +198,11 @@ kover {
                 )
             }
         }
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectVersion", android.defaultConfig.versionName.orEmpty())
     }
 }
