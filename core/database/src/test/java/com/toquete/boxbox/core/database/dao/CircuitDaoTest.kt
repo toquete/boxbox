@@ -2,18 +2,21 @@ package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
-import com.toquete.boxbox.core.testing.data.countryEntities
+import com.toquete.boxbox.core.testing.data.circuitEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import kotlin.test.assertEquals
+import org.junit.runner.RunWith
+import kotlin.test.assertContentEquals
 
-class CountryDaoTest {
+@RunWith(AndroidJUnit4::class)
+class CircuitDaoTest {
 
-    private lateinit var dao: CountryDao
+    private lateinit var circuitDao: CircuitDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -22,7 +25,7 @@ class CountryDaoTest {
             ApplicationProvider.getApplicationContext(),
             BoxBoxDatabase::class.java
         ).build()
-        dao = db.countryDao()
+        circuitDao = db.circuitDao()
     }
 
     @After
@@ -31,11 +34,11 @@ class CountryDaoTest {
     }
 
     @Test
-    fun testCountryInsert() = runTest {
-        dao.upsertAll(countryEntities)
+    fun testCircuitInsert() = runTest {
+        circuitDao.upsertAll(circuitEntities)
 
-        val result = dao.getCountryById(id = "NED").first()
+        val result = circuitDao.getCircuits().first()
 
-        assertEquals(countryEntities.first(), result)
+        assertContentEquals(circuitEntities, result)
     }
 }

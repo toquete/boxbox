@@ -24,6 +24,11 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureGradleManagedDevices(this)
                 configureFlavors(this)
                 defaultConfig.targetSdk = 34
+                testOptions {
+                    unitTests {
+                        isIncludeAndroidResources = true
+                    }
+                }
                 buildTypes {
                     debug {
                         enableUnitTestCoverage = true
