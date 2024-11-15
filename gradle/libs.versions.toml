@@ -38,6 +38,7 @@ timber = "5.0.1"
 navigation = "2.8.2"
 hilt-navigation = "1.2.0"
 sonarqube = "5.1.0.4882"
+robolectric = "4.14"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -96,6 +97,7 @@ firebase-appcheck = { module = "com.google.firebase:firebase-appcheck-playintegr
 firebase-appcheck-ktx = { module = "com.google.firebase:firebase-appcheck" }
 firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }

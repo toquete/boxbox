@@ -2,18 +2,21 @@ package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
-import com.toquete.boxbox.core.testing.data.driverImageEntities
+import com.toquete.boxbox.core.testing.data.driverEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import kotlin.test.assertEquals
+import org.junit.runner.RunWith
+import kotlin.test.assertContentEquals
 
-class DriverImageDaoTest {
+@RunWith(AndroidJUnit4::class)
+class DriverDaoTest {
 
-    private lateinit var dao: DriverImageDao
+    private lateinit var dao: DriverDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -22,7 +25,7 @@ class DriverImageDaoTest {
             ApplicationProvider.getApplicationContext(),
             BoxBoxDatabase::class.java
         ).build()
-        dao = db.driverImageDao()
+        dao = db.driverDao()
     }
 
     @After
@@ -31,11 +34,11 @@ class DriverImageDaoTest {
     }
 
     @Test
-    fun testDriverImageInsert() = runTest {
-        dao.upsertAll(driverImageEntities)
+    fun testDriverInsert() = runTest {
+        dao.upsertAll(driverEntities)
 
-        val result = dao.getDriverImageById(id = "max_verstappen").first()
+        val result = dao.getDrivers().first()
 
-        assertEquals(driverImageEntities.first(), result)
+        assertContentEquals(driverEntities, result)
     }
 }
