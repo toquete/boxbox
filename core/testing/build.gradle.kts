@@ -23,6 +23,5 @@ dependencies {
     api(libs.test.runner)
     api(libs.test.rules)
     api(libs.junit.compose)
-    testApi(libs.robolectric)
     debugApi(libs.compose.ui.manifest)
 }
