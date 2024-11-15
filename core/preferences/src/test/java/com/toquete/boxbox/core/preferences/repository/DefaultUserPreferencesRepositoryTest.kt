@@ -1,5 +1,6 @@
 package com.toquete.boxbox.core.preferences.repository
 
+import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.testUserPreferencesDataStore
 import kotlinx.coroutines.flow.first
@@ -24,7 +25,7 @@ class DefaultUserPreferencesRepositoryTest {
     @Before
     fun setUp() {
         repository = DefaultUserPreferencesRepository(
-            tmpFolder.testUserPreferencesDataStore(testScope)
+            tmpFolder.testUserPreferencesDataStore(testScope.backgroundScope)
         )
     }
 
@@ -67,6 +68,37 @@ class DefaultUserPreferencesRepositoryTest {
         repository.setDarkThemeConfig(DarkThemeConfig.LIGHT)
 
         val result = repository.userPreferences.first().darkThemeConfig
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `colorConfig should be DEFAULT by default`() = testScope.runTest {
+        val expected = ColorConfig.DEFAULT
+
+        val result = repository.userPreferences.first().colorConfig
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `colorConfig should be DEFAULT when set`() = testScope.runTest {
+        val expected = ColorConfig.DEFAULT
+
+        repository.setColorConfig(ColorConfig.DEFAULT)
+
+        val result = repository.userPreferences.first().colorConfig
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `colorConfig should be DYNAMIC when set`() = testScope.runTest {
+        val expected = ColorConfig.DYNAMIC
+
+        repository.setColorConfig(ColorConfig.DYNAMIC)
+
+        val result = repository.userPreferences.first().colorConfig
 
         assertEquals(expected, result)
     }

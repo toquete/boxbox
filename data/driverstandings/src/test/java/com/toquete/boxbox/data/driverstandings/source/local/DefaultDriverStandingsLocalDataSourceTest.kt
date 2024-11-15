@@ -20,11 +20,11 @@ class DefaultDriverStandingsLocalDataSourceTest {
 
     @Test
     fun `insertAll should insert driver standings when called`() = runTest {
-        coEvery { driverStandingDao.upsertAll(any()) } returns Unit
+        coEvery { driverStandingDao.deleteAndInsertAllInTransaction(any()) } returns Unit
 
         dataSource.insertAll(driverStandingEntities)
 
-        coVerify { driverStandingDao.upsertAll(driverStandingEntities) }
+        coVerify { driverStandingDao.deleteAndInsertAllInTransaction(driverStandingEntities) }
     }
 
     @Test

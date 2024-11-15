@@ -1,17 +1,14 @@
 package com.toquete.boxbox.data.raceresults.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
-import com.toquete.boxbox.core.network.model.RaceResponse
+import com.toquete.boxbox.core.network.model.RacesWrapper
 import javax.inject.Inject
 
 internal class DefaultRaceResultRemoteDataSource @Inject constructor(
     private val service: BoxBoxService
 ) : RaceResultRemoteDataSource {
 
-    override suspend fun getRaceResults(): List<RaceResponse> {
-        return service.getRaceResults()
-            .data
-            .raceTable
-            .races
+    override suspend fun getRaceResults(offset: Int): RacesWrapper {
+        return service.getRaceResults(offset)
     }
 }

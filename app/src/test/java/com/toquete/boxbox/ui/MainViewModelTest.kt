@@ -1,5 +1,6 @@
 package com.toquete.boxbox.ui
 
+import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
 import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
@@ -41,7 +42,11 @@ class MainViewModelTest {
 
         userPreferencesFlow.emit(userPreferences)
         assertEquals(
-            MainState(isLoading = false, DarkThemeConfig.FOLLOW_SYSTEM),
+            MainState(
+                isLoading = false,
+                darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+                colorConfig = ColorConfig.DEFAULT
+            ),
             viewModel.state.value
         )
 

@@ -6,7 +6,6 @@ import com.toquete.boxbox.core.testing.data.races
 import com.toquete.boxbox.core.testing.data.racesResponse
 import com.toquete.boxbox.core.testing.data.racesWithCircuits
 import com.toquete.boxbox.data.circuits.source.local.CircuitLocalDataSource
-import com.toquete.boxbox.data.races.repository.DefaultRaceRepository
 import com.toquete.boxbox.data.races.source.local.RaceLocalDataSource
 import com.toquete.boxbox.data.races.source.remote.RaceRemoteDataSource
 import io.mockk.coEvery
@@ -14,6 +13,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -24,17 +24,28 @@ class DefaultRaceRepositoryTest {
     private val remoteDataSource: RaceRemoteDataSource = mockk(relaxed = true)
     private val localDataSource: RaceLocalDataSource = mockk(relaxed = true)
     private val circuitLocalDataSource: CircuitLocalDataSource = mockk(relaxed = true)
+    private val testDispatcher = UnconfinedTestDispatcher()
     private val repository = DefaultRaceRepository(
         remoteDataSource,
         localDataSource,
-        circuitLocalDataSource
+        circuitLocalDataSource,
+        testDispatcher
     )
 
     @Test
-    fun `getRacesBySeason should return mapped list when called`() = runTest {
-        coEvery { localDataSource.getRacesBySeason(any()) } returns flowOf(racesWithCircuits)
+    fun `getUpcomingRacesBySeason should return mapped list when called`() = runTest {
+        coEvery { localDataSource.getUpcomingRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
 
-        val result = repository.getRacesBySeason(season = "2023")
+        val result = repository.getUpcomingRacesBySeason(season = "2023", today = "2023-01-01")
+
+        assertContentEquals(races, result.first())
+    }
+
+    @Test
+    fun `getPastRacesBySeason should return mapped list when called`() = runTest {
+        coEvery { localDataSource.getPastRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
+
+        val result = repository.getPastRacesBySeason(season = "2023", today = "2023-01-01")
 
         assertContentEquals(races, result.first())
     }

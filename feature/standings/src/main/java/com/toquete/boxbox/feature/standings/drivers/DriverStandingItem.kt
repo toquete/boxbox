@@ -1,16 +1,21 @@
 package com.toquete.boxbox.feature.standings.drivers
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,18 +46,17 @@ import com.toquete.boxbox.core.ui.custom.FlipCard
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.standings.R
-import com.toquete.boxbox.feature.standings.ui.StandingInfoSurface
 import com.toquete.boxbox.core.ui.R as uiR
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun DriverStandingItem(standing: DriverStanding) {
-    var cardSide by rememberSaveable {
-        mutableStateOf(CardSide.FRONT)
-    }
-    Card(
+    var cardSide by rememberSaveable { mutableStateOf(CardSide.FRONT) }
+    OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()
+            .wrapContentHeight(),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurfaceVariant)
     ) {
         Row(
             modifier = Modifier
@@ -98,56 +102,68 @@ fun DriverStandingItem(standing: DriverStanding) {
                 back = { DriverNumber(standing) }
             )
         }
-        Divider(
+        HorizontalDivider(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .testTag("Divider"),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
+        FlowRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            StandingInfoSurface {
-                Text(
-                    modifier = Modifier
-                        .padding(6.dp)
-                        .testTag("Points"),
-                    text = stringResource(R.string.points, standing.points),
-                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
-                )
-            }
-            StandingInfoSurface {
-                Text(
-                    modifier = Modifier
-                        .padding(6.dp)
-                        .testTag("Wins"),
-                    text = pluralStringResource(R.plurals.wins, standing.wins.toInt(), standing.wins),
-                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
-                )
-            }
-            StandingInfoSurface {
-                Text(
-                    modifier = Modifier
-                        .padding(6.dp)
-                        .testTag("Constructor"),
-                    text = standing.constructor.name,
-                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FormulaOne)
-                )
-            }
-            StandingInfoSurface(modifier = Modifier.size(width = 50.dp, height = 30.dp)) {
-                BoxBoxAsyncImage(
-                    modifier = Modifier
-                        .padding(6.dp)
-                        .testTag("Flag"),
-                    data = standing.driver.flagUrl,
-                    placeholder = uiR.drawable.ic_public,
-                    error = uiR.drawable.ic_public,
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
-                    decoder = SvgDecoder.Factory()
-                )
-            }
+            SuggestionChip(
+                onClick = { },
+                label = {
+                    Text(
+                        modifier = Modifier.testTag("Points"),
+                        text = stringResource(R.string.standings_points, standing.points),
+                        style = MaterialTheme.typography.bodySmall.copy(fontFamily = FormulaOne)
+                    )
+                },
+                colors = SuggestionChipDefaults.suggestionChipColors()
+            )
+            SuggestionChip(
+                onClick = { },
+                label = {
+                    Text(
+                        modifier = Modifier.testTag("Wins"),
+                        text = pluralStringResource(R.plurals.standings_wins, standing.wins.toInt(), standing.wins),
+                        style = MaterialTheme.typography.bodySmall.copy(fontFamily = FormulaOne)
+                    )
+                }
+            )
+            SuggestionChip(
+                onClick = { },
+                label = {
+                    BoxBoxAsyncImage(
+                        modifier = Modifier
+                            .size(width = 40.dp, height = 20.dp)
+                            .testTag("Constructor"),
+                        data = standing.constructor.imageUrl,
+                        placeholder = uiR.drawable.ic_construction,
+                        error = uiR.drawable.ic_construction,
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
+                    )
+                }
+            )
+            SuggestionChip(
+                onClick = { },
+                label = {
+                    BoxBoxAsyncImage(
+                        modifier = Modifier
+                            .size(width = 40.dp, height = 20.dp)
+                            .testTag("Flag"),
+                        data = standing.driver.flagUrl,
+                        placeholder = uiR.drawable.ic_public,
+                        error = uiR.drawable.ic_public,
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
+                        decoder = SvgDecoder.Factory()
+                    )
+                }
+            )
         }
     }
 }
@@ -157,7 +173,7 @@ private fun DriverImage(standing: DriverStanding) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colorScheme.inverseOnSurface
+        color = MaterialTheme.colorScheme.surfaceContainer
     ) {
         BoxBoxAsyncImage(
             modifier = Modifier.testTag("Driver"),

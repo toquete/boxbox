@@ -16,7 +16,7 @@ class AndroidRoomConventionPlugin : Plugin<Project> {
                 add("ksp", libs.findLibrary("room.compiler").get())
 
                 add("implementation", libs.findLibrary("room.ktx").get())
-                add("androidTestImplementation", libs.findLibrary("room.testing").get())
+                add("testImplementation", libs.findLibrary("room.testing").get())
             }
         }
     }

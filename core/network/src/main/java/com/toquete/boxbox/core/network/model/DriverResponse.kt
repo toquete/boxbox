@@ -10,7 +10,7 @@ data class DriverResponse(
     @SerialName("permanentNumber")
     val number: String,
     @SerialName("code")
-    val code: String,
+    val code: String?,
     @SerialName("url")
     val url: String,
     @SerialName("givenName")

@@ -20,12 +20,12 @@ class DefaultConstructorStandingsLocalDataSourceTest {
 
     @Test
     fun `insertAll should insert standings when called`() = runTest {
-        coEvery { constructorStandingDao.upsertAll(any()) } returns Unit
+        coEvery { constructorStandingDao.deleteAndInsertAllInTransaction(any()) } returns Unit
 
         dataSource.insertAll(constructorStandingEntities)
 
         coVerify {
-            constructorStandingDao.upsertAll(constructorStandingEntities)
+            constructorStandingDao.deleteAndInsertAllInTransaction(constructorStandingEntities)
         }
     }
 

@@ -1,48 +1,44 @@
 [versions]
-gradle = "8.2.2"
-kotlin = "1.9.22"
-kotlin-jvm = "1.8.0"
-hilt = "2.50"
-compose = "1.4.3"
-compose-ui = "1.3.3"
-compose-compiler = "1.5.8"
-compose-bom = "2024.02.00"
-core-ktx = "1.12.0"
-kotlinxCoroutines = "1.8.0"
-datastore-preferences = "1.0.0"
-lifecycle = "2.7.0"
-activity = "1.8.2"
-retrofit = "2.9.0"
-serialization = "1.6.2"
+gradle = "8.7.2"
+kotlin = "2.0.21"
+hilt = "2.52"
+compose-bom = "2024.10.01"
+core-ktx = "1.13.1"
+kotlinxCoroutines = "1.9.0"
+datastore-preferences = "1.1.1"
+lifecycle = "2.8.7"
+activity = "1.9.1"
+retrofit = "2.11.0"
+serialization = "1.7.1"
 okhttp = "4.12.0"
-serialization-converter = "1.0.0"
-coil = "2.5.0"
+coil = "2.7.0"
 junit = "4.13.2"
-junit-ext = "1.1.5"
-espresso = "3.5.1"
-desugar-jdk-libs = "2.0.4"
-koltinx-datetime = "0.5.0"
+junit-ext = "1.2.1"
+espresso = "3.6.1"
+desugar-jdk-libs = "2.1.2"
+koltinx-datetime = "0.6.0"
 room = "2.6.1"
-accompanist = "0.33.2-alpha"
 splashscreen = "1.0.1"
-work = "2.9.0"
-hilt-work = "1.1.0"
+work = "2.9.1"
+hilt-work = "1.2.0"
 mockwebserver = "4.12.0"
-mockk = "1.13.9"
-test-core = "1.5.0"
-test-runner = "1.5.2"
-test-rules = "1.5.0"
-detekt = "1.23.5"
+mockk = "1.13.11"
+test-core = "1.6.1"
+test-runner = "1.6.2"
+test-rules = "1.6.1"
+detekt = "1.23.7"
 test-aggregation = "1.1.1"
-ksp = "1.9.22-1.0.17"
-google-services = "4.4.1"
-firebase-bom = "32.7.2"
-crashlytics = "2.9.9"
-crashlytics-gradle = "2.9.9"
-kover = "0.7.3"
+ksp = "2.0.21-1.0.27"
+google-services = "4.4.2"
+firebase-bom = "33.5.1"
+crashlytics = "3.0.2"
+crashlytics-gradle = "3.0.2"
+kover = "0.8.3"
 timber = "5.0.1"
-navigation = "2.7.7"
-hilt-navigation = "1.1.0"
+navigation = "2.8.2"
+hilt-navigation = "1.2.0"
+sonarqube = "5.1.0.4882"
+robolectric = "4.14"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -62,7 +58,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serialization-converter" }
+serialization-converter = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
@@ -101,6 +97,7 @@ firebase-appcheck = { module = "com.google.firebase:firebase-appcheck-playintegr
 firebase-appcheck-ktx = { module = "com.google.firebase:firebase-appcheck" }
 firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -126,3 +123,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }

@@ -14,9 +14,13 @@ internal fun List<RaceResponse>.toEntity(): List<RaceResultEntity> {
                 season = race.season,
                 round = race.round.toInt(),
                 position = raceResult.racePosition.toInt(),
+                points = raceResult.points.toInt(),
                 driverId = raceResult.driver.id,
                 constructorId = raceResult.constructor.id,
-                gridPosition = raceResult.gridPosition.toInt()
+                gridPosition = raceResult.gridPosition.toInt(),
+                laps = raceResult.laps,
+                status = raceResult.status,
+                time = raceResult.time?.time
             )
         }.orEmpty()
     }
@@ -27,6 +31,7 @@ internal fun RaceResultWithDriverAndConstructorEntity.toDomain(): RaceResult {
         season = raceResult.season,
         round = raceResult.round,
         position = raceResult.position,
+        points = raceResult.points,
         driver = Driver(
             id = driver.id,
             firstName = driver.firstName,
@@ -36,6 +41,9 @@ internal fun RaceResultWithDriverAndConstructorEntity.toDomain(): RaceResult {
             id = constructor.id,
             name = constructor.name
         ),
-        gridPosition = raceResult.gridPosition
+        gridPosition = raceResult.gridPosition,
+        laps = raceResult.laps,
+        status = raceResult.status,
+        time = raceResult.time
     )
 }

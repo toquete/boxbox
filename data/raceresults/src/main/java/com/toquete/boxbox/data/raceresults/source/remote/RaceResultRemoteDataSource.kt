@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.raceresults.source.remote
 
-import com.toquete.boxbox.core.network.model.RaceResponse
+import com.toquete.boxbox.core.network.model.RacesWrapper
 
 internal interface RaceResultRemoteDataSource {
 
-    suspend fun getRaceResults(): List<RaceResponse>
+    suspend fun getRaceResults(offset: Int): RacesWrapper
 }

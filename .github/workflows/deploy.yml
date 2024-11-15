@@ -32,20 +32,16 @@ jobs:
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
       - name: Create service account JSON
         run: echo $SERVICE_ACCOUNT_JSON | base64 -di > ${{ github.workspace }}/service-account.json
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          build-scan-publish: true
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
       - name: Build release APK
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: ':app:assembleProdRelease'
-          build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+        run: ./gradlew :app:assembleProdRelease
       - name: Build release bundle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: ':app:bundleProdRelease'
-          build-scan-publish: true
-          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
-          build-scan-terms-of-service-agree: "yes"
+        run: ./gradlew :app:bundleProdRelease
       - name: Upload Release Build to Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -54,7 +50,7 @@ jobs:
             app/build/outputs/apk/prod/release/
             app/build/outputs/bundle/prodRelease/
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           files: app/build/outputs/apk/prod/release/app-prod-release.apk

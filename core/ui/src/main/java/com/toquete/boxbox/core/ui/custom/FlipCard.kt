@@ -6,7 +6,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -16,7 +15,6 @@ private const val ANIMATION_LABEL = "FlipCardRotation"
 private const val FRONT_MAX_ANGLE = 90f
 private const val HALF_ROTATION_ANGLE = 180f
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FlipCard(
     side: CardSide,

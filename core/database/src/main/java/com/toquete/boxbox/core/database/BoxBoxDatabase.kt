@@ -15,6 +15,7 @@ import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.dao.RaceDao
 import com.toquete.boxbox.core.database.dao.RaceResultDao
+import com.toquete.boxbox.core.database.dao.SprintRaceResultDao
 import com.toquete.boxbox.core.database.model.CircuitEntity
 import com.toquete.boxbox.core.database.model.CircuitImageEntity
 import com.toquete.boxbox.core.database.model.ConstructorColorEntity
@@ -27,9 +28,10 @@ import com.toquete.boxbox.core.database.model.DriverImageEntity
 import com.toquete.boxbox.core.database.model.DriverStandingEntity
 import com.toquete.boxbox.core.database.model.RaceEntity
 import com.toquete.boxbox.core.database.model.RaceResultEntity
+import com.toquete.boxbox.core.database.model.SprintRaceResultEntity
 
 @Database(
-    version = 5,
+    version = 10,
     entities = [
         DriverStandingEntity::class,
         DriverEntity::class,
@@ -42,13 +44,16 @@ import com.toquete.boxbox.core.database.model.RaceResultEntity
         RaceEntity::class,
         CircuitImageEntity::class,
         ConstructorColorEntity::class,
-        RaceResultEntity::class
+        RaceResultEntity::class,
+        SprintRaceResultEntity::class
     ],
     autoMigrations = [
         AutoMigration(from = 1, to = 2),
         AutoMigration(from = 2, to = 3),
         AutoMigration(from = 3, to = 4),
-        AutoMigration(from = 4, to = 5)
+        AutoMigration(from = 4, to = 5),
+        AutoMigration(from = 7, to = 8),
+        AutoMigration(from = 9, to = 10),
     ]
 )
 @Suppress("TooManyFunctions")
@@ -77,4 +82,6 @@ internal abstract class BoxBoxDatabase : RoomDatabase() {
     abstract fun constructorColorDao(): ConstructorColorDao
 
     abstract fun raceResultDao(): RaceResultDao
+
+    abstract fun sprintRaceResultDao(): SprintRaceResultDao
 }

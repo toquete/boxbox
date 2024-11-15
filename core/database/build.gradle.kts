@@ -15,13 +15,14 @@ android {
     }
 
     sourceSets {
-        getByName("androidTest").assets.srcDir("$projectDir/schemas")
+        getByName("test").assets.srcDir("$projectDir/schemas")
     }
 }
 
 dependencies {
     implementation(project(":core:model"))
-    androidTestImplementation(project(":core:testing"))
+    testImplementation(project(":core:testing"))
+    testImplementation(libs.robolectric)
 }
 
 class RoomSchemaArgProvider(

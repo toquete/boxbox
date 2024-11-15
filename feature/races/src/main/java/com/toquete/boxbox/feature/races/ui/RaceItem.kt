@@ -1,5 +1,7 @@
 package com.toquete.boxbox.feature.races.ui
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,9 +11,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,22 +36,24 @@ import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.custom.BoxBoxAsyncImage
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
-import kotlinx.datetime.toInstant
+import kotlinx.datetime.Instant
 import com.toquete.boxbox.core.ui.R as uiR
 
 @Composable
-internal fun RaceItem(race: Race) {
-    Card(
+internal fun RaceItem(race: Race, onClick: (Int, String) -> Unit = { _, _ -> }) {
+    OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
+            .clickable { onClick(race.round, race.circuit.country) },
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurfaceVariant)
     ) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(bottom = 16.dp),
             shape = MaterialTheme.shapes.medium,
-            color = MaterialTheme.colorScheme.inverseOnSurface
+            color = MaterialTheme.colorScheme.surfaceContainer
         ) {
             Box(modifier = Modifier.fillMaxWidth()) {
                 BoxBoxAsyncImage(
@@ -86,13 +93,25 @@ internal fun RaceItem(race: Race) {
                 modifier = Modifier.weight(weight = 0.6f),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                Text(
-                    modifier = Modifier.testTag("Country"),
-                    text = race.circuit.country,
-                    style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
-                    fontWeight = FontWeight.Bold
-                )
-                Divider(
+                Row {
+                    Text(
+                        modifier = Modifier
+                            .weight(weight = 0.8f, fill = false)
+                            .testTag("Country"),
+                        text = race.circuit.country,
+                        style = MaterialTheme.typography.headlineMedium.copy(fontFamily = FormulaOne),
+                        fontWeight = FontWeight.Bold
+                    )
+                    Icon(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .align(Alignment.CenterVertically)
+                            .testTag("Chevron"),
+                        imageVector = Icons.Default.ChevronRight,
+                        contentDescription = null
+                    )
+                }
+                HorizontalDivider(
                     modifier = Modifier.testTag("Divider"),
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -106,7 +125,7 @@ internal fun RaceItem(race: Race) {
             Surface(
                 modifier = Modifier.weight(weight = 0.3f, fill = false),
                 shape = MaterialTheme.shapes.medium,
-                color = MaterialTheme.colorScheme.secondary
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurfaceVariant)
             ) {
                 Column(
                     modifier = Modifier.padding(8.dp),
@@ -153,11 +172,11 @@ internal fun RaceItemPreview() {
                     flagUrl = null,
                     imageUrl = null
                 ),
-                dateTime = "2023-03-05T15:00:00Z".toInstant(),
-                firstPracticeDateTime = "2023-03-03T11:30:00Z".toInstant(),
-                secondPracticeDateTime = "2023-03-03T15:00:00Z".toInstant(),
-                thirdPracticeDateTime = "2023-03-04T11:30:00Z".toInstant(),
-                qualifyingDateTime = "2023-03-04T15:00:00Z".toInstant(),
+                dateTime = Instant.parse("2023-03-05T15:00:00Z"),
+                firstPracticeDateTime = Instant.parse("2023-03-03T11:30:00Z"),
+                secondPracticeDateTime = Instant.parse("2023-03-03T15:00:00Z"),
+                thirdPracticeDateTime = Instant.parse("2023-03-04T11:30:00Z"),
+                qualifyingDateTime = Instant.parse("2023-03-04T15:00:00Z"),
                 sprintDateTime = null
             )
         )

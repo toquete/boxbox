@@ -10,12 +10,12 @@ data class FullDriverStandingEntity(
         parentColumn = "driver_id",
         entityColumn = "id"
     )
-    val driverWithCountryFlag: DriverWithCountryFlagEntity,
+    val driverWithCountryFlag: DriverWithCountryFlagEntity?,
     @Relation(
         parentColumn = "constructor_id",
         entityColumn = "id"
     )
-    val constructor: ConstructorEntity,
+    val constructor: ConstructorEntity?,
     @Relation(
         parentColumn = "driver_id",
         entityColumn = "id",

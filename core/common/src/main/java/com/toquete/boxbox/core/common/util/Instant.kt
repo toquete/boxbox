@@ -1,12 +1,11 @@
 package com.toquete.boxbox.core.common.util
 
 import kotlinx.datetime.Instant
-import kotlinx.datetime.toInstant
 
 fun dateAndTimeToInstant(date: String?, time: String?): Instant? {
-    if (date == null || time == null) {
-        return null
+    return when {
+        date == null -> null
+        time == null -> Instant.parse("${date}T00:00:00Z")
+        else -> Instant.parse("${date}T$time")
     }
-
-    return "${date}T$time".toInstant()
 }

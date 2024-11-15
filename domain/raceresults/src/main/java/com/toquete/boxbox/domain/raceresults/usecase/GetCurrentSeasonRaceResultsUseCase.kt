@@ -11,7 +11,10 @@ class GetCurrentSeasonRaceResultsUseCase @Inject constructor(
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase
 ) {
 
-    operator fun invoke(): Flow<List<RaceResult>> {
-        return raceResultRepository.getRaceResultsBySeason(season = getTodayLocalDateUseCase().year.toString())
+    operator fun invoke(round: Int): Flow<List<RaceResult>> {
+        return raceResultRepository.getRaceResultsBySeasonAndRound(
+            season = getTodayLocalDateUseCase().year.toString(),
+            round
+        )
     }
 }

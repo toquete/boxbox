@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="standings">Standings</string>
-    <string name="drivers">Drivers</string>
-    <string name="constructors">Constructors</string>
-    <string name="points">%s PTS</string>
-    <plurals name="wins">
+    <string name="standings_drivers">Drivers</string>
+    <string name="standings_constructors">Constructors</string>
+    <string name="standings_points">%s PTS</string>
+    <plurals name="standings_wins">
         <item quantity="one">%s WIN</item>
         <item quantity="other">%s WINS</item>
     </plurals>

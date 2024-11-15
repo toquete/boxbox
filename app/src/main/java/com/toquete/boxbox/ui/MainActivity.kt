@@ -7,59 +7,34 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.toquete.boxbox.R
+import androidx.navigation.compose.rememberNavController
+import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
-import com.toquete.boxbox.feature.settings.SettingsScreen
 import com.toquete.boxbox.navigation.BoxBoxNavHost
-import com.toquete.boxbox.util.monitor.NetworkMonitor
-import com.toquete.boxbox.util.monitor.SyncMonitor
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
-
-    @Inject
-    lateinit var networkMonitor: NetworkMonitor
-
-    @Inject
-    lateinit var syncMonitor: SyncMonitor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -80,6 +55,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val isDarkTheme = shouldUseDarkTheme(uiState)
+            val isDynamicColors = shouldUseDynamicColors(uiState)
 
             DisposableEffect(isDarkTheme) {
                 enableEdgeToEdge(
@@ -95,90 +71,24 @@ class MainActivity : ComponentActivity() {
                 onDispose { }
             }
 
-            BoxBoxTheme(darkTheme = isDarkTheme) {
-                MainScreen(networkMonitor, syncMonitor)
+            BoxBoxTheme(
+                darkTheme = isDarkTheme,
+                dynamicColors = isDynamicColors
+            ) {
+                MainScreen()
             }
         }
     }
 }
 
 @Composable
-fun MainScreen(
-    networkMonitor: NetworkMonitor,
-    syncMonitor: SyncMonitor
-) {
-    val mainAppState = rememberMainAppState(networkMonitor, syncMonitor)
-    var showDialog by remember { mutableStateOf(false) }
+fun MainScreen() {
+    val navController = rememberNavController()
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        if (showDialog) {
-            SettingsScreen {
-                showDialog = false
-            }
-        }
-        MainScreenContent(
-            mainAppState,
-            onSettingsButtonClick = { showDialog = true }
-        )
-    }
-}
-
-@Composable
-private fun MainScreenContent(
-    mainAppState: MainAppState,
-    onSettingsButtonClick: () -> Unit
-) {
-    val isOffline by mainAppState.isOffline.collectAsStateWithLifecycle()
-    val hasFailed by mainAppState.hasFailed.collectAsStateWithLifecycle()
-    val isSyncing by mainAppState.isSyncing.collectAsStateWithLifecycle()
-    val snackbarHostState = remember { SnackbarHostState() }
-
-    SnackbarMessage(isOffline, hasFailed, snackbarHostState)
-
-    Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
-        topBar = {
-            BoxBoxTopAppBar(
-                appState = mainAppState,
-                onSettingsButtonClick = onSettingsButtonClick
-            )
-        },
-        bottomBar = { BoxBoxNavigationBar(appState = mainAppState) },
-        content = { paddingValues ->
-            Box(modifier = Modifier.padding(paddingValues)) {
-                BoxBoxNavHost(appState = mainAppState)
-                AnimatedVisibility(visible = isSyncing) {
-                    LinearProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(4.dp)
-                    )
-                }
-            }
-        }
-    )
-}
-
-@Composable
-private fun SnackbarMessage(
-    isOffline: Boolean,
-    hasFailed: Boolean,
-    snackbarHostState: SnackbarHostState
-) {
-    val message = if (isOffline) stringResource(R.string.not_connected) else stringResource(R.string.fail_message)
-    var isSnackbarDismissed by remember { mutableStateOf(true) }
-
-    LaunchedEffect(isOffline, hasFailed) {
-        if (isOffline || hasFailed || !isSnackbarDismissed) {
-            val result = snackbarHostState.showSnackbar(
-                message = message,
-                duration = SnackbarDuration.Indefinite,
-                withDismissAction = true
-            )
-            isSnackbarDismissed = result == SnackbarResult.Dismissed
-        }
+        BoxBoxNavHost(navController = navController)
     }
 }
 
@@ -189,6 +99,10 @@ private fun shouldUseDarkTheme(uiState: MainState): Boolean {
         DarkThemeConfig.LIGHT -> false
         DarkThemeConfig.DARK -> true
     }
+}
+
+private fun shouldUseDynamicColors(uiState: MainState): Boolean {
+    return uiState.colorConfig == ColorConfig.DYNAMIC
 }
 
 private val DefaultLightScrim = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
