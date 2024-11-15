@@ -169,37 +169,37 @@ kover {
                 xmlFile = layout.buildDirectory.file("reports/coverage/coverage.xml")
             }
         }
-    }
-    filters {
-        excludes {
-            classes(
-                "*Activity",
-                "*Activity\$*",
-                "*.BuildConfig",
-                "*Hilt*",
-                "*Factory*",
-                "*Injector",
-                "*Module*",
-                "*Application",
-                "*Worker*",
-                "*Composable*",
-                "*Destination*"
-            )
-            packages(
-                "*.di",
-                "*.navigation",
-                "com.toquete.boxbox.util",
-                "com.toquete.boxbox.ui",
-                "com.toquete.boxbox.core.ui.theme",
-                "com.toquete.boxbox.core.ui.custom",
-            )
-            annotatedBy(
-                "*Composable",
-                "*Preview",
-                "*Stable",
-                "*Module",
-                "*Generated"
-            )
+        filters {
+            excludes {
+                classes(
+                    "*Activity",
+                    "*Activity\$*",
+                    "*.BuildConfig",
+                    "*Hilt*",
+                    "*Factory*",
+                    "*Injector",
+                    "*Module*",
+                    "*Application",
+                    "*Worker*",
+                    "*Composable*",
+                    "*Destination*"
+                )
+                packages(
+                    "*.di",
+                    "*.navigation",
+                    "com.toquete.boxbox.util",
+                    "com.toquete.boxbox.ui",
+                    "com.toquete.boxbox.core.ui.theme",
+                    "com.toquete.boxbox.core.ui.custom",
+                )
+                annotatedBy(
+                    "*Composable",
+                    "*Preview",
+                    "*Stable",
+                    "*Module",
+                    "*Generated"
+                )
+            }
         }
     }
 }
