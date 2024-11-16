@@ -72,5 +72,6 @@ sonar {
         property("sonar.projectName", "BoxBox")
         property("sonar.projectVersion", projectVersion)
         property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.androidLint.reportPaths", "$projectDir/build/reports/lint-results-prodDebug.xml")
     }
 }
