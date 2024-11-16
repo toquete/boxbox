@@ -63,14 +63,12 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Lint
-        run: ./gradlew lintProdDebug
+        run: ./gradlew lintProdDebug lintDemoDebug
       - name: Uploading lint results
         uses: actions/upload-artifact@v4
         with:
           name: lint-report
-          path: |
-            **/build/reports/lint-results.html
-            **/build/reports/lint-results.xml
+          path: '**/build/reports/lint-results-*.*'
   detekt:
     runs-on: ubuntu-latest
     steps:

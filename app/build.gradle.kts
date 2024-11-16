@@ -72,7 +72,6 @@ android {
             versionNameSuffix = BoxBoxBuildType.DEBUG.versionNameSuffix
             isMinifyEnabled = false
             isDebuggable = true
-            isDefault = true
         }
     }
 
