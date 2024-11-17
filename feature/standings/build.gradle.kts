@@ -18,5 +18,5 @@ dependencies {
     implementation(project(":data:constructorstandings"))
 
     testImplementation(project(":core:testing"))
-    androidTestImplementation(project(":core:testing"))
+    testImplementation(libs.robolectric)
 }
