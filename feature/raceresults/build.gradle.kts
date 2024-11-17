@@ -18,5 +18,5 @@ dependencies {
     implementation(project(":domain:sprintresults"))
 
     testImplementation(project(":core:testing"))
-    androidTestImplementation(project(":core:testing"))
+    testImplementation(libs.robolectric)
 }
