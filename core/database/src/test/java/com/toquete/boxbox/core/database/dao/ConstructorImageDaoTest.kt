@@ -2,18 +2,21 @@ package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
-import com.toquete.boxbox.core.testing.data.constructorEntities
+import com.toquete.boxbox.core.testing.data.constructorImageEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import kotlin.test.assertContentEquals
+import org.junit.runner.RunWith
+import kotlin.test.assertEquals
 
-class ConstructorDaoTest {
+@RunWith(AndroidJUnit4::class)
+class ConstructorImageDaoTest {
 
-    private lateinit var dao: ConstructorDao
+    private lateinit var dao: ConstructorImageDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -22,7 +25,7 @@ class ConstructorDaoTest {
             ApplicationProvider.getApplicationContext(),
             BoxBoxDatabase::class.java
         ).build()
-        dao = db.constructorDao()
+        dao = db.constructorImageDao()
     }
 
     @After
@@ -31,11 +34,11 @@ class ConstructorDaoTest {
     }
 
     @Test
-    fun testConstructorsInsert() = runTest {
-        dao.upsertAll(constructorEntities)
+    fun testConstructorImageInsert() = runTest {
+        dao.upsertAll(constructorImageEntities)
 
-        val result = dao.getConstructors().first()
+        val result = dao.getConstructorImageById(id = "red_bull").first()
 
-        assertContentEquals(constructorEntities, result)
+        assertEquals(constructorImageEntities.first(), result)
     }
 }

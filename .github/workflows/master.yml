@@ -11,6 +11,8 @@ permissions:
   security-events: write
 env:
   GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,10 +28,6 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: java
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -39,8 +37,11 @@ jobs:
           build-scan-terms-of-use-agree: "yes"
       - name: Build APK
         run: ./gradlew :app:assembleProdDebug
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: '**/build/libs'
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -62,12 +63,12 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Lint
-        run: ./gradlew lint
+        run: ./gradlew lintProdDebug lintDemoDebug
       - name: Uploading lint results
         uses: actions/upload-artifact@v4
         with:
-          name: lint-reports
-          path: '**/lint-results-*.html'
+          name: lint-report
+          path: '**/build/reports/lint-results-*.*'
   detekt:
     runs-on: ubuntu-latest
     steps:
@@ -89,12 +90,14 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Detekt
-        run: ./gradlew detektProdDebug
+        run: ./gradlew detektProdDebug reportMerge --continue
       - name: Uploading detekt results
         uses: actions/upload-artifact@v4
         with:
           name: detekt-reports
-          path: '**/detekt.html'
+          path: |
+            **/detekt.html
+            **/reports/detekt-results.xml
   test:
     runs-on: ubuntu-latest
     steps:
@@ -117,11 +120,13 @@ jobs:
           build-scan-terms-of-use-agree: "yes"
       - name: Unit test and coverage
         run: ./gradlew koverXmlReportProdDebug
-      - name: Uploading test results
+      - name: Uploading test results and coverage
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
-          path: '**/reports/tests/testProdDebugUnitTest/'
+          name: test-reports-and-coverage
+          path: |
+            **/reports/tests/testProdDebugUnitTest/
+            **/app/build/reports/coverage/coverage.xml
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         with:
@@ -129,6 +134,41 @@ jobs:
           file: '**/app/build/reports/coverage/coverage.xml'
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  sonar:
+    runs-on: ubuntu-latest
+    needs: [build, lint, detekt, test]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '17'
+      - name: Cache SonarQube Cloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Create Google Services JSON
+        run: |
+          mkdir ${{ github.workspace }}/app/src/prod
+          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          build-scan-publish: true
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+      - name: Sonar analysis
+        run: ./gradlew sonar
   android-test:
     runs-on: ubuntu-latest
     timeout-minutes: 60

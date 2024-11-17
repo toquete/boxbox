@@ -22,13 +22,15 @@ val buildProperties = Properties().apply {
     }
 }
 
+val projectVersion: String by rootProject.extra
+
 android {
     namespace = "com.toquete.boxbox"
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
         versionCode = 14
-        versionName = "1.2.2"
+        versionName = projectVersion
 
         buildConfigField(
             "String",
@@ -75,6 +77,14 @@ android {
 
     buildFeatures {
         buildConfig = true
+    }
+
+    lint {
+        checkDependencies = true
+        xmlReport = true
+        xmlOutput = file("${rootProject.rootDir}/build/reports/lint-results.xml")
+        htmlReport = true
+        htmlOutput = file("${rootProject.rootDir}/build/reports/lint-results.html")
     }
 }
 
@@ -167,8 +177,6 @@ kover {
                     "*Hilt*",
                     "*Factory*",
                     "*Injector",
-                    "*Database*",
-                    "*Dao*",
                     "*Module*",
                     "*Application",
                     "*Worker*",
@@ -183,7 +191,6 @@ kover {
                     "*Composable",
                     "*Preview",
                     "*Stable",
-                    "*Database",
                     "*Module",
                     "*Generated"
                 )

@@ -2,6 +2,7 @@ package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
 import com.toquete.boxbox.core.testing.data.constructorColorEntities
 import com.toquete.boxbox.core.testing.data.constructorEntities
@@ -16,9 +17,11 @@ import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
+@RunWith(AndroidJUnit4::class)
 class DriverStandingDaoTest {
 
     private lateinit var dao: DriverStandingDao
