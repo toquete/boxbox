@@ -23,6 +23,8 @@ tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
 
+val projectVersion by extra("1.2.2")
+
 val reportMerge by tasks.registering(ReportMergeTask::class) {
     output.set(rootProject.layout.buildDirectory.file("reports/detekt-results.xml"))
 }
@@ -68,7 +70,7 @@ sonar {
         property("sonar.projectKey", "toquete_boxbox")
         property("sonar.organization", "toquete")
         property("sonar.projectName", "BoxBox")
+        property("sonar.projectVersion", projectVersion)
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.coverage.jacoco.xmlReportPaths", "$projectDir/app/build/reports/coverage/coverage.xml")
     }
 }

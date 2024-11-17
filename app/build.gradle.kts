@@ -22,13 +22,15 @@ val buildProperties = Properties().apply {
     }
 }
 
+val projectVersion: String by rootProject.extra
+
 android {
     namespace = "com.toquete.boxbox"
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
         versionCode = 14
-        versionName = "1.2.2"
+        versionName = projectVersion
 
         buildConfigField(
             "String",
@@ -70,7 +72,6 @@ android {
             versionNameSuffix = BoxBoxBuildType.DEBUG.versionNameSuffix
             isMinifyEnabled = false
             isDebuggable = true
-            isDefault = true
         }
     }
 
@@ -176,8 +177,6 @@ kover {
                     "*Hilt*",
                     "*Factory*",
                     "*Injector",
-                    "*Database*",
-                    "*Dao*",
                     "*Module*",
                     "*Application",
                     "*Worker*",
@@ -192,17 +191,10 @@ kover {
                     "*Composable",
                     "*Preview",
                     "*Stable",
-                    "*Database",
                     "*Module",
                     "*Generated"
                 )
             }
         }
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectVersion", android.defaultConfig.versionName.orEmpty())
     }
 }
