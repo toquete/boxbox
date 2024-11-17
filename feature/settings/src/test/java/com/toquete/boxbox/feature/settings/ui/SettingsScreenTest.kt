@@ -5,13 +5,16 @@ import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.preferences.model.UserPreferences
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class SettingsScreenTest {
 
     @get:Rule

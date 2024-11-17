@@ -17,5 +17,5 @@ dependencies {
     implementation(project(":core:preferences"))
 
     testImplementation(project(":core:testing"))
-    androidTestImplementation(project(":core:testing"))
+    testImplementation(libs.robolectric)
 }
