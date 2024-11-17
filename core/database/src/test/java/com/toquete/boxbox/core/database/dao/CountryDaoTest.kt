@@ -2,18 +2,21 @@ package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
-import com.toquete.boxbox.core.testing.data.constructorColorEntities
+import com.toquete.boxbox.core.testing.data.countryEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import kotlin.test.assertEquals
 
-class ConstructorColorDaoTest {
+@RunWith(AndroidJUnit4::class)
+class CountryDaoTest {
 
-    private lateinit var dao: ConstructorColorDao
+    private lateinit var dao: CountryDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -22,7 +25,7 @@ class ConstructorColorDaoTest {
             ApplicationProvider.getApplicationContext(),
             BoxBoxDatabase::class.java
         ).build()
-        dao = db.constructorColorDao()
+        dao = db.countryDao()
     }
 
     @After
@@ -31,11 +34,11 @@ class ConstructorColorDaoTest {
     }
 
     @Test
-    fun testConstructorColorInsert() = runTest {
-        dao.upsertAll(constructorColorEntities)
+    fun testCountryInsert() = runTest {
+        dao.upsertAll(countryEntities)
 
-        val result = dao.getConstructorColorById(id = "red_bull").first()
+        val result = dao.getCountryById(id = "NED").first()
 
-        assertEquals(constructorColorEntities.first(), result)
+        assertEquals(countryEntities.first(), result)
     }
 }

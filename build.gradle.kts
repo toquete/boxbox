@@ -16,11 +16,14 @@ plugins {
     alias(libs.plugins.kover) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.detekt)
+    alias(libs.plugins.sonarqube)
 }
 
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
+val projectVersion by extra("1.2.2")
 
 val reportMerge by tasks.registering(ReportMergeTask::class) {
     output.set(rootProject.layout.buildDirectory.file("reports/detekt-results.xml"))
@@ -59,5 +62,15 @@ subprojects {
 
     dependencies {
         detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.7")
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "toquete_boxbox")
+        property("sonar.organization", "toquete")
+        property("sonar.projectName", "BoxBox")
+        property("sonar.projectVersion", projectVersion)
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }

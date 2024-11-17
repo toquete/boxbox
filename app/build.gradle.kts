@@ -6,7 +6,6 @@ plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
     id("boxbox.android.hilt")
-    id("org.sonarqube") version "5.1.0.4882"
 }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -23,13 +22,15 @@ val buildProperties = Properties().apply {
     }
 }
 
+val projectVersion: String by rootProject.extra
+
 android {
     namespace = "com.toquete.boxbox"
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
         versionCode = 14
-        versionName = "1.2.2"
+        versionName = projectVersion
 
         buildConfigField(
             "String",
@@ -176,8 +177,6 @@ kover {
                     "*Hilt*",
                     "*Factory*",
                     "*Injector",
-                    "*Database*",
-                    "*Dao*",
                     "*Module*",
                     "*Application",
                     "*Worker*",
@@ -192,22 +191,10 @@ kover {
                     "*Composable",
                     "*Preview",
                     "*Stable",
-                    "*Database",
                     "*Module",
                     "*Generated"
                 )
             }
         }
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectKey", "toquete_boxbox")
-        property("sonar.organization", "toquete")
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.androidLint.reportPaths", "${rootProject.rootDir}/build/reports/lint-results.xml")
-        property("sonar.kotlin.detekt.reportPaths", "${rootProject.rootDir}/build/reports/detekt-results.xml")
-        property("sonar.coverage.jacoco.xmlReportPaths", "$projectDir/build/reports/coverage/coverage.xml")
     }
 }
