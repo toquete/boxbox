@@ -23,7 +23,12 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 configureGradleManagedDevices(this)
                 configureFlavors(this)
-                defaultConfig.targetSdk = 34
+                defaultConfig.targetSdk = 35
+                testOptions {
+                    unitTests {
+                        isIncludeAndroidResources = true
+                    }
+                }
                 buildTypes {
                     debug {
                         enableUnitTestCoverage = true

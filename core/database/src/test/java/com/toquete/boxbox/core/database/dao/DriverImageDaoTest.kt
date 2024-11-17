@@ -2,18 +2,21 @@ package com.toquete.boxbox.core.database.dao
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
-import com.toquete.boxbox.core.testing.data.circuitImageEntities
+import com.toquete.boxbox.core.testing.data.driverImageEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import kotlin.test.assertEquals
 
-class CircuitImageDaoTest {
+@RunWith(AndroidJUnit4::class)
+class DriverImageDaoTest {
 
-    private lateinit var dao: CircuitImageDao
+    private lateinit var dao: DriverImageDao
     private lateinit var db: BoxBoxDatabase
 
     @Before
@@ -22,7 +25,7 @@ class CircuitImageDaoTest {
             ApplicationProvider.getApplicationContext(),
             BoxBoxDatabase::class.java
         ).build()
-        dao = db.circuitImageDao()
+        dao = db.driverImageDao()
     }
 
     @After
@@ -31,11 +34,11 @@ class CircuitImageDaoTest {
     }
 
     @Test
-    fun testCircuitImageInsert() = runTest {
-        dao.upsertAll(circuitImageEntities)
+    fun testDriverImageInsert() = runTest {
+        dao.upsertAll(driverImageEntities)
 
-        val result = dao.getCircuitImageById(id = "bahrain").first()
+        val result = dao.getDriverImageById(id = "max_verstappen").first()
 
-        assertEquals(circuitImageEntities.first(), result)
+        assertEquals(driverImageEntities.first(), result)
     }
 }
