@@ -37,6 +37,8 @@ kover = "0.8.3"
 timber = "5.0.1"
 navigation = "2.8.2"
 hilt-navigation = "1.2.0"
+sonarqube = "5.1.0.4882"
+robolectric = "4.14"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -95,6 +97,7 @@ firebase-appcheck = { module = "com.google.firebase:firebase-appcheck-playintegr
 firebase-appcheck-ktx = { module = "com.google.firebase:firebase-appcheck" }
 firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -120,4 +123,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin"}
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
