@@ -168,7 +168,7 @@ jobs:
         with:
           merge-multiple: true
       - name: Sonar analysis
-        run: ./gradlew sonar -X
+        run: ./gradlew sonar
   android-test:
     if: false
     runs-on: ubuntu-latest
