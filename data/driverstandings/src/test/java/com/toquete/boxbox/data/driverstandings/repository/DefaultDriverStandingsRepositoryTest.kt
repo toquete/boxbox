@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.driverstandings.repository
 
+import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.driverEntities
@@ -8,7 +9,6 @@ import com.toquete.boxbox.core.testing.data.driverStandings
 import com.toquete.boxbox.core.testing.data.driverStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
 import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
-import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
 import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -25,14 +25,14 @@ class DefaultDriverStandingsRepositoryTest {
 
     private val remoteDataSource: DriverStandingsRemoteDataSource = mockk(relaxed = true)
     private val driverStandingDao = mockk<DriverStandingDao>(relaxed = true)
-    private val driversLocalDataSource: DriversLocalDataSource = mockk(relaxed = true)
+    private val driverDao = mockk<DriverDao>(relaxed = true)
     private val constructorsLocalDataSource: ConstructorsLocalDataSource = mockk(relaxed = true)
     private val testDispatcher = UnconfinedTestDispatcher()
 
     private val repository = DefaultDriverStandingsRepository(
         remoteDataSource,
         driverStandingDao,
-        driversLocalDataSource,
+        driverDao,
         constructorsLocalDataSource,
         testDispatcher
     )
@@ -52,7 +52,7 @@ class DefaultDriverStandingsRepositoryTest {
 
         repository.sync()
 
-        coVerify { driversLocalDataSource.insertAll(driverEntities) }
+        coVerify { driverDao.upsertAll(driverEntities) }
     }
 
     @Test
@@ -80,7 +80,7 @@ class DefaultDriverStandingsRepositoryTest {
         repository.sync()
 
         coVerify(exactly = 0) {
-            driversLocalDataSource.insertAll(any())
+            driverDao.upsertAll(any())
             driverStandingDao.insertAll(any())
             constructorsLocalDataSource.insertAll(any())
         }

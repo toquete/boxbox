@@ -13,7 +13,6 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:database"))
     implementation(project(":core:network"))
-    implementation(project(":data:drivers"))
     implementation(project(":data:constructors"))
     demoImplementation(libs.serialization)
     testImplementation(project(":core:testing"))
