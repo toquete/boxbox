@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.constructorcolors.repository
 
+import com.toquete.boxbox.core.database.dao.ConstructorColorDao
 import com.toquete.boxbox.core.testing.data.constructorColorEntities
 import com.toquete.boxbox.core.testing.data.constructorColorResponses
-import com.toquete.boxbox.data.constructorcolors.source.local.ConstructorColorLocalDataSource
 import com.toquete.boxbox.data.constructorcolors.source.remote.ConstructorColorRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -15,20 +15,20 @@ import java.io.IOException
 internal class DefaultConstructorColorRepositoryTest {
 
     private val remoteDataSource: ConstructorColorRemoteDataSource = mockk(relaxed = true)
-    private val localDataSource: ConstructorColorLocalDataSource = mockk(relaxed = true)
+    private val constructorColorDao: ConstructorColorDao = mockk(relaxed = true)
     private val testDispatcher = UnconfinedTestDispatcher()
-    private val repository = DefaultConstructorColorRepository(remoteDataSource, localDataSource, testDispatcher)
+    private val repository = DefaultConstructorColorRepository(remoteDataSource, constructorColorDao, testDispatcher)
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
         coEvery { remoteDataSource.getConstructorsColors() } returns constructorColorResponses
-        coEvery { localDataSource.insertAll(any()) } returns Unit
+        coEvery { constructorColorDao.upsertAll(any()) } returns Unit
 
         repository.sync()
 
         coEvery {
             remoteDataSource.getConstructorsColors()
-            localDataSource.insertAll(constructorColorEntities)
+            constructorColorDao.upsertAll(constructorColorEntities)
         }
     }
 
@@ -38,6 +38,6 @@ internal class DefaultConstructorColorRepositoryTest {
 
         repository.sync()
 
-        coVerify(exactly = 0) { localDataSource.insertAll(any()) }
+        coVerify(exactly = 0) { constructorColorDao.upsertAll(any()) }
     }
 }
