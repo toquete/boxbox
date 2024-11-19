@@ -10,6 +10,7 @@ android {
 dependencies {
     api(project(":core:model"))
     api(project(":core:common"))
+    implementation(project(":data:raceresults"))
 
     testImplementation(project(":core:testing"))
 }

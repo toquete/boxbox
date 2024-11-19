@@ -3,8 +3,8 @@ package com.toquete.boxbox.feature.raceresults.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.domain.raceresults.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.domain.sprintresults.usecase.GetCurrentSeasonSprintResultsUseCase
+import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.feature.raceresults.navigation.RACE_ARGUMENT
 import com.toquete.boxbox.feature.raceresults.navigation.ROUND_ARGUMENT
 import dagger.hilt.android.lifecycle.HiltViewModel

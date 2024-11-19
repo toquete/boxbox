@@ -11,10 +11,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:model"))
     implementation(project(":core:ui"))
-    implementation(project(":core:common"))
-    implementation(project(":domain:raceresults"))
+    implementation(project(":domainnew"))
     implementation(project(":domain:sprintresults"))
 
     testImplementation(project(":core:testing"))
