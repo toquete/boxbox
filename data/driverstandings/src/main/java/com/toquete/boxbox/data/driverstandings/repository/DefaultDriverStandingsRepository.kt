@@ -1,11 +1,11 @@
 package com.toquete.boxbox.data.driverstandings.repository
 
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
+import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.database.model.FullDriverStandingEntity
 import com.toquete.boxbox.core.model.DriverStanding
-import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
 import com.toquete.boxbox.data.driverstandings.model.toDomain
 import com.toquete.boxbox.data.driverstandings.model.toEntity
 import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
@@ -20,7 +20,7 @@ internal class DefaultDriverStandingsRepository @Inject constructor(
     private val remoteDataSource: DriverStandingsRemoteDataSource,
     private val driverStandingDao: DriverStandingDao,
     private val driverDao: DriverDao,
-    private val constructorsLocalDataSource: ConstructorsLocalDataSource,
+    private val constructorDao: ConstructorDao,
     @IoDispatcher private val dispatcher: CoroutineContext
 ) : DriverStandingsRepository {
 
@@ -34,7 +34,7 @@ internal class DefaultDriverStandingsRepository @Inject constructor(
         withContext(dispatcher) {
             val list = remoteDataSource.getDriverStandings()
             driverDao.upsertAll(list.map { it.driver.toEntity() })
-            constructorsLocalDataSource.insertAll(list.map { it.constructors.first().toEntity() })
+            constructorDao.upsertAll(list.map { it.constructors.first().toEntity() })
             driverStandingDao.insertAll(list.map { it.toEntity() })
         }
     }
