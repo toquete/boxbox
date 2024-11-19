@@ -3,8 +3,8 @@ package com.toquete.boxbox.feature.races.ui
 import com.toquete.boxbox.core.model.Race
 import com.toquete.boxbox.core.testing.data.races
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
-import com.toquete.boxbox.domain.races.usecase.GetPastRacesInCurrentSeasonUseCase
-import com.toquete.boxbox.domain.races.usecase.GetUpcomingRacesInCurrentSeasonUseCase
+import com.toquete.boxbox.domain.usecase.GetPastRacesInCurrentSeasonUseCase
+import com.toquete.boxbox.domain.usecase.GetUpcomingRacesInCurrentSeasonUseCase
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
