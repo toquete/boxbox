@@ -1,10 +1,10 @@
 package com.toquete.boxbox.data.constructorstandings.repository
 
+import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
 import com.toquete.boxbox.core.testing.data.constructorStandingEntities
 import com.toquete.boxbox.core.testing.data.constructorStandings
 import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
-import com.toquete.boxbox.data.constructorstandings.source.local.ConstructorStandingsLocalDataSource
 import com.toquete.boxbox.data.constructorstandings.source.remote.ConstructorStandingsRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -21,18 +21,18 @@ import kotlin.test.assertContentEquals
 class DefaultConstructorStandingsRepositoryTest {
 
     private val remoteDataSource: ConstructorStandingsRemoteDataSource = mockk(relaxed = true)
-    private val localDataSource: ConstructorStandingsLocalDataSource = mockk(relaxed = true)
+    private val constructorStandingDao: ConstructorStandingDao = mockk(relaxed = true)
     private val testDispatcher = UnconfinedTestDispatcher()
 
     private val repository = DefaultConstructorStandingsRepository(
         remoteDataSource,
-        localDataSource,
+        constructorStandingDao,
         testDispatcher
     )
 
     @Test
     fun `getFullConstructorStandings should return mapped list when called`() = runTest {
-        every { localDataSource.getConstructorStandings() } returns flowOf(fullConstructorStandingEntities)
+        every { constructorStandingDao.getFullConstructorStandings() } returns flowOf(fullConstructorStandingEntities)
 
         val result = repository.getConstructorStandings()
 
@@ -42,13 +42,13 @@ class DefaultConstructorStandingsRepositoryTest {
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
         coEvery { remoteDataSource.getConstructorStandings() } returns constructorStandingsResponse
-        coEvery { localDataSource.insertAll(any()) } returns Unit
+        coEvery { constructorStandingDao.insertAll(any()) } returns Unit
 
         repository.sync()
 
         coVerify {
             remoteDataSource.getConstructorStandings()
-            localDataSource.insertAll(constructorStandingEntities)
+            constructorStandingDao.insertAll(constructorStandingEntities)
         }
     }
 
@@ -58,6 +58,6 @@ class DefaultConstructorStandingsRepositoryTest {
 
         repository.sync()
 
-        coVerify(exactly = 0) { localDataSource.insertAll(any()) }
+        coVerify(exactly = 0) { constructorStandingDao.insertAll(any()) }
     }
 }
