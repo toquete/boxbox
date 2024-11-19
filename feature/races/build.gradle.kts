@@ -12,7 +12,7 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
-    implementation(project(":domainnew"))
+    implementation(project(":domain"))
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)

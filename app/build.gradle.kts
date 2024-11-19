@@ -106,7 +106,7 @@ dependencies {
     implementation(project(":feature:races"))
     implementation(project(":feature:raceresults"))
     implementation(project(":feature:home"))
-    implementation(project(":domainnew"))
+    implementation(project(":domain"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
@@ -145,7 +145,7 @@ dependencies {
     kover(project(":feature:races"))
     kover(project(":feature:raceresults"))
     kover(project(":feature:home"))
-    kover(project(":domainnew"))
+    kover(project(":domain"))
 }
 
 kover {
