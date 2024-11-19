@@ -1,4 +1,4 @@
-package com.toquete.boxbox.domain.common.di
+package com.toquete.boxbox.domain.di
 
 import dagger.Module
 import dagger.Provides

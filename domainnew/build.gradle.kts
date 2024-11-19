@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.toquete.boxbox.domain.common"
+    namespace = "com.toquete.boxbox.domain"
 }
 
 dependencies {
-    implementation(project(":core:model"))
-    implementation(project(":core:common"))
+    api(project(":core:model"))
+    api(project(":core:common"))
 
     testImplementation(project(":core:testing"))
 }

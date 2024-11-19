@@ -1,4 +1,4 @@
-package com.toquete.boxbox.domain.common.util
+package com.toquete.boxbox.domain.util
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant

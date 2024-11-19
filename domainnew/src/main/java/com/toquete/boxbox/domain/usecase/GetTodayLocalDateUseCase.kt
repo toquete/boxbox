@@ -1,4 +1,4 @@
-package com.toquete.boxbox.domain.common.usecase
+package com.toquete.boxbox.domain.usecase
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone

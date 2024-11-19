@@ -2,7 +2,7 @@ package com.toquete.boxbox.domain.raceresults.usecase
 
 import com.toquete.boxbox.core.testing.data.raceResults
 import com.toquete.boxbox.data.raceresults.repository.RaceResultRepository
-import com.toquete.boxbox.domain.common.usecase.GetTodayLocalDateUseCase
+import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

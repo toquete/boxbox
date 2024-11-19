@@ -1,6 +1,6 @@
-package com.toquete.boxbox.domain.common.usecase
+package com.toquete.boxbox.domain.usecase
 
-import com.toquete.boxbox.domain.common.util.FixedClock
+import com.toquete.boxbox.domain.util.FixedClock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant

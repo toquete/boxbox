@@ -2,7 +2,7 @@ package com.toquete.boxbox.domain.sprintresults.usecase
 
 import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.data.sprintresults.repository.SprintResultRepository
-import com.toquete.boxbox.domain.common.usecase.GetTodayLocalDateUseCase
+import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

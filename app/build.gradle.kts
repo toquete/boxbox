@@ -90,8 +90,6 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
-    implementation(project(":core:common"))
-    implementation(project(":core:model"))
     implementation(project(":core:preferences"))
     implementation(project(":data:driverimages"))
     implementation(project(":data:constructorimages"))
@@ -108,6 +106,7 @@ dependencies {
     implementation(project(":feature:races"))
     implementation(project(":feature:raceresults"))
     implementation(project(":feature:home"))
+    implementation(project(":domainnew"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
@@ -141,7 +140,6 @@ dependencies {
     kover(project(":data:circuitimages"))
     kover(project(":data:raceresults"))
     kover(project(":data:sprintresults"))
-    kover(project(":domain:common"))
     kover(project(":domain:races"))
     kover(project(":domain:raceresults"))
     kover(project(":domain:sprintresults"))
@@ -150,6 +148,7 @@ dependencies {
     kover(project(":feature:races"))
     kover(project(":feature:raceresults"))
     kover(project(":feature:home"))
+    kover(project(":domainnew"))
 }
 
 kover {
