@@ -13,7 +13,6 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":domainnew"))
-    implementation(project(":domain:sprintresults"))
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
