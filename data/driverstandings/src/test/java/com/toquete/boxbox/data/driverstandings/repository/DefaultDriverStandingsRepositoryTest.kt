@@ -1,5 +1,7 @@
 package com.toquete.boxbox.data.driverstandings.repository
 
+import com.toquete.boxbox.core.database.dao.DriverDao
+import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.testing.data.constructorEntities
 import com.toquete.boxbox.core.testing.data.driverEntities
 import com.toquete.boxbox.core.testing.data.driverStandingEntities
@@ -7,8 +9,6 @@ import com.toquete.boxbox.core.testing.data.driverStandings
 import com.toquete.boxbox.core.testing.data.driverStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
 import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
-import com.toquete.boxbox.data.drivers.source.local.DriversLocalDataSource
-import com.toquete.boxbox.data.driverstandings.source.local.DriverStandingsLocalDataSource
 import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -24,22 +24,22 @@ import kotlin.test.assertContentEquals
 class DefaultDriverStandingsRepositoryTest {
 
     private val remoteDataSource: DriverStandingsRemoteDataSource = mockk(relaxed = true)
-    private val localDataSource: DriverStandingsLocalDataSource = mockk(relaxed = true)
-    private val driversLocalDataSource: DriversLocalDataSource = mockk(relaxed = true)
+    private val driverStandingDao = mockk<DriverStandingDao>(relaxed = true)
+    private val driverDao = mockk<DriverDao>(relaxed = true)
     private val constructorsLocalDataSource: ConstructorsLocalDataSource = mockk(relaxed = true)
     private val testDispatcher = UnconfinedTestDispatcher()
 
     private val repository = DefaultDriverStandingsRepository(
         remoteDataSource,
-        localDataSource,
-        driversLocalDataSource,
+        driverStandingDao,
+        driverDao,
         constructorsLocalDataSource,
         testDispatcher
     )
 
     @Test
     fun `getDriverStandings should return mapped list when called`() = runTest {
-        coEvery { localDataSource.getDriverStandings() } returns flowOf(fullDriverStandingEntities)
+        coEvery { driverStandingDao.getFullDriverStandings() } returns flowOf(fullDriverStandingEntities)
 
         val result = repository.getDriverStandings()
 
@@ -52,7 +52,7 @@ class DefaultDriverStandingsRepositoryTest {
 
         repository.sync()
 
-        coVerify { driversLocalDataSource.insertAll(driverEntities) }
+        coVerify { driverDao.upsertAll(driverEntities) }
     }
 
     @Test
@@ -70,7 +70,7 @@ class DefaultDriverStandingsRepositoryTest {
 
         repository.sync()
 
-        coVerify { localDataSource.insertAll(driverStandingEntities) }
+        coVerify { driverStandingDao.insertAll(driverStandingEntities) }
     }
 
     @Test(expected = IOException::class)
@@ -80,8 +80,8 @@ class DefaultDriverStandingsRepositoryTest {
         repository.sync()
 
         coVerify(exactly = 0) {
-            driversLocalDataSource.insertAll(any())
-            localDataSource.insertAll(any())
+            driverDao.upsertAll(any())
+            driverStandingDao.insertAll(any())
             constructorsLocalDataSource.insertAll(any())
         }
     }

@@ -29,11 +29,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                         isIncludeAndroidResources = true
                     }
                 }
-                buildTypes {
-                    debug {
-                        enableUnitTestCoverage = true
-                    }
-                }
                 packaging {
                     resources {
                         excludes += listOf(
