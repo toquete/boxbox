@@ -1,8 +1,7 @@
-package com.toquete.boxbox.domain.races.usecase
+package com.toquete.boxbox.domain.usecase
 
 import com.toquete.boxbox.core.testing.data.races
 import com.toquete.boxbox.data.races.repository.RaceRepository
-import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
