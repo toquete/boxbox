@@ -1,12 +1,12 @@
 package com.toquete.boxbox.data.races.repository
 
+import com.toquete.boxbox.core.database.dao.CircuitDao
 import com.toquete.boxbox.core.database.dao.RaceDao
 import com.toquete.boxbox.core.testing.data.circuitEntities
 import com.toquete.boxbox.core.testing.data.raceEntities
 import com.toquete.boxbox.core.testing.data.races
 import com.toquete.boxbox.core.testing.data.racesResponse
 import com.toquete.boxbox.core.testing.data.racesWithCircuits
-import com.toquete.boxbox.data.circuits.source.local.CircuitLocalDataSource
 import com.toquete.boxbox.data.races.source.remote.RaceRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -23,12 +23,12 @@ class DefaultRaceRepositoryTest {
 
     private val remoteDataSource: RaceRemoteDataSource = mockk(relaxed = true)
     private val raceDao: RaceDao = mockk(relaxed = true)
-    private val circuitLocalDataSource: CircuitLocalDataSource = mockk(relaxed = true)
+    private val circuitDao: CircuitDao = mockk(relaxed = true)
     private val testDispatcher = UnconfinedTestDispatcher()
     private val repository = DefaultRaceRepository(
         remoteDataSource,
         raceDao,
-        circuitLocalDataSource,
+        circuitDao,
         testDispatcher
     )
 
@@ -56,7 +56,7 @@ class DefaultRaceRepositoryTest {
 
         repository.sync()
 
-        coEvery { circuitLocalDataSource.insertAll(circuitEntities.take(1)) }
+        coEvery { circuitDao.upsertAll(circuitEntities.take(1)) }
     }
 
     @Test
@@ -75,7 +75,7 @@ class DefaultRaceRepositoryTest {
         repository.sync()
 
         coVerify(exactly = 0) {
-            circuitLocalDataSource.insertAll(any())
+            circuitDao.upsertAll(any())
             raceDao.upsertAll(any())
         }
     }
