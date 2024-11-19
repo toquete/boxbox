@@ -134,7 +134,6 @@ dependencies {
     kover(project(":data:countries"))
     kover(project(":data:driverstandings"))
     kover(project(":data:driverimages"))
-    kover(project(":data:constructors"))
     kover(project(":data:constructorstandings"))
     kover(project(":data:constructorimages"))
     kover(project(":data:constructorcolors"))

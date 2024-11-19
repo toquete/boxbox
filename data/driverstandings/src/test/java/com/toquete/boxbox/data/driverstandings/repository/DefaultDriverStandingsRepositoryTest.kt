@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.driverstandings.repository
 
+import com.toquete.boxbox.core.database.dao.ConstructorDao
 import com.toquete.boxbox.core.database.dao.DriverDao
 import com.toquete.boxbox.core.database.dao.DriverStandingDao
 import com.toquete.boxbox.core.testing.data.constructorEntities
@@ -8,7 +9,6 @@ import com.toquete.boxbox.core.testing.data.driverStandingEntities
 import com.toquete.boxbox.core.testing.data.driverStandings
 import com.toquete.boxbox.core.testing.data.driverStandingsResponse
 import com.toquete.boxbox.core.testing.data.fullDriverStandingEntities
-import com.toquete.boxbox.data.constructors.source.local.ConstructorsLocalDataSource
 import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -26,14 +26,14 @@ class DefaultDriverStandingsRepositoryTest {
     private val remoteDataSource: DriverStandingsRemoteDataSource = mockk(relaxed = true)
     private val driverStandingDao = mockk<DriverStandingDao>(relaxed = true)
     private val driverDao = mockk<DriverDao>(relaxed = true)
-    private val constructorsLocalDataSource: ConstructorsLocalDataSource = mockk(relaxed = true)
+    private val constructorDao = mockk<ConstructorDao>(relaxed = true)
     private val testDispatcher = UnconfinedTestDispatcher()
 
     private val repository = DefaultDriverStandingsRepository(
         remoteDataSource,
         driverStandingDao,
         driverDao,
-        constructorsLocalDataSource,
+        constructorDao,
         testDispatcher
     )
 
@@ -61,7 +61,7 @@ class DefaultDriverStandingsRepositoryTest {
 
         repository.sync()
 
-        coVerify { constructorsLocalDataSource.insertAll(constructorEntities) }
+        coVerify { constructorDao.upsertAll(constructorEntities) }
     }
 
     @Test
@@ -82,7 +82,7 @@ class DefaultDriverStandingsRepositoryTest {
         coVerify(exactly = 0) {
             driverDao.upsertAll(any())
             driverStandingDao.insertAll(any())
-            constructorsLocalDataSource.insertAll(any())
+            constructorDao.upsertAll(any())
         }
     }
 }
