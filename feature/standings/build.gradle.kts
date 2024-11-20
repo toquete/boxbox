@@ -12,7 +12,6 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
-    implementation(project(":data:driverstandings"))
     implementation(project(":domain"))
 
     testImplementation(project(":core:testing"))
