@@ -1,10 +1,10 @@
 package com.toquete.boxbox.worker.repository
 
-import com.toquete.boxbox.data.sprintresults.repository.SprintResultRepository
 import com.toquete.boxbox.domain.repository.ConstructorColorRepository
 import com.toquete.boxbox.domain.repository.ConstructorStandingsRepository
 import com.toquete.boxbox.domain.repository.DriverStandingsRepository
 import com.toquete.boxbox.domain.repository.RaceResultRepository
+import com.toquete.boxbox.domain.repository.SprintResultRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
