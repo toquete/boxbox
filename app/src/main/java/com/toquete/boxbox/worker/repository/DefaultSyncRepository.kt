@@ -2,7 +2,7 @@ package com.toquete.boxbox.worker.repository
 
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import com.toquete.boxbox.core.common.util.Syncable
-import com.toquete.boxbox.data.races.repository.RaceRepository
+import com.toquete.boxbox.domain.repository.RaceRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext

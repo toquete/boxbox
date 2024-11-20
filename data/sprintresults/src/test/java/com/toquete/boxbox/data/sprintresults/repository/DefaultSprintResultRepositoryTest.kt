@@ -1,5 +1,6 @@
 package com.toquete.boxbox.data.sprintresults.repository
 
+import com.toquete.boxbox.core.database.dao.SprintRaceResultDao
 import com.toquete.boxbox.core.network.model.RaceDataResponse
 import com.toquete.boxbox.core.network.model.RaceTableResponse
 import com.toquete.boxbox.core.testing.data.sprintRaceResultEntities
@@ -7,7 +8,6 @@ import com.toquete.boxbox.core.testing.data.sprintRaceResultWrapper
 import com.toquete.boxbox.core.testing.data.sprintRaceResults
 import com.toquete.boxbox.core.testing.data.sprintRaceResultsResponse
 import com.toquete.boxbox.core.testing.data.sprintRaceResultsWithDriverAndConstructor
-import com.toquete.boxbox.data.sprintresults.source.local.SprintResultLocalDataSource
 import com.toquete.boxbox.data.sprintresults.source.remote.SprintResultRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -23,14 +23,14 @@ import kotlin.test.assertContentEquals
 class DefaultSprintResultRepositoryTest {
 
     private val remoteDataSource: SprintResultRemoteDataSource = mockk(relaxed = true)
-    private val localDataSource: SprintResultLocalDataSource = mockk(relaxed = true)
+    private val sprintRaceResultDao: SprintRaceResultDao = mockk(relaxed = true)
     private val testDispatcher = UnconfinedTestDispatcher()
-    private val repository = DefaultSprintResultRepository(remoteDataSource, localDataSource, testDispatcher)
+    private val repository = DefaultSprintResultRepository(remoteDataSource, sprintRaceResultDao, testDispatcher)
 
     @Test
     fun `getSprintResultsBySeasonAndRound should return mapped list when called`() = runTest {
         coEvery {
-            localDataSource.getSprintResultsBySeasonAndRound(any(), any())
+            sprintRaceResultDao.getSprintRaceResultsBySeasonAndRound(any(), any())
         } returns flowOf(sprintRaceResultsWithDriverAndConstructor)
 
         val result = repository.getSprintResultsBySeasonAndRound(season = "2023", round = 1).first()
@@ -44,7 +44,7 @@ class DefaultSprintResultRepositoryTest {
 
         repository.sync()
 
-        coEvery { localDataSource.insertAll(sprintRaceResultEntities) }
+        coEvery { sprintRaceResultDao.upsertAll(sprintRaceResultEntities) }
     }
 
     @Test
@@ -63,7 +63,7 @@ class DefaultSprintResultRepositoryTest {
 
         repository.sync()
 
-        coEvery { localDataSource.insertAll(emptyList()) }
+        coEvery { sprintRaceResultDao.upsertAll(emptyList()) }
     }
 
     @Test(expected = IOException::class)
@@ -73,7 +73,7 @@ class DefaultSprintResultRepositoryTest {
         repository.sync()
 
         coVerify(exactly = 0) {
-            localDataSource.insertAll(any())
+            sprintRaceResultDao.upsertAll(any())
         }
     }
 }

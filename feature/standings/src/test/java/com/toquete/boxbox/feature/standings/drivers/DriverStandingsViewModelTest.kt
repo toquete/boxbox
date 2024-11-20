@@ -3,7 +3,7 @@ package com.toquete.boxbox.feature.standings.drivers
 import com.toquete.boxbox.core.model.DriverStanding
 import com.toquete.boxbox.core.testing.data.driverStandings
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
-import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
+import com.toquete.boxbox.domain.repository.DriverStandingsRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
