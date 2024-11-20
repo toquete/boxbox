@@ -30,7 +30,7 @@ internal class DefaultConstructorStandingsRepository @Inject constructor(
     override suspend fun sync() {
         withContext(dispatcher) {
             val list = remoteDataSource.getConstructorStandings()
-            constructorStandingDao.insertAll(list.map(ConstructorStandingResponse::toEntity))
+            constructorStandingDao.deleteAndInsertAllInTransaction(list.map(ConstructorStandingResponse::toEntity))
         }
     }
 }

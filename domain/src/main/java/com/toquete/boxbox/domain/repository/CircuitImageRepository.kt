@@ -1,4 +1,4 @@
-package com.toquete.boxbox.data.circuitimages.repository
+package com.toquete.boxbox.domain.repository
 
 import com.toquete.boxbox.core.common.util.Syncable
 

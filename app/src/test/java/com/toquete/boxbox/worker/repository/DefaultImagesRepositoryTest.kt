@@ -1,9 +1,9 @@
 package com.toquete.boxbox.worker.repository
 
-import com.toquete.boxbox.data.circuitimages.repository.CircuitImageRepository
 import com.toquete.boxbox.data.constructorimages.repository.ConstructorImageRepository
 import com.toquete.boxbox.data.countries.repository.CountryRepository
 import com.toquete.boxbox.data.driverimages.repository.DriverImageRepository
+import com.toquete.boxbox.domain.repository.CircuitImageRepository
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.advanceUntilIdle
