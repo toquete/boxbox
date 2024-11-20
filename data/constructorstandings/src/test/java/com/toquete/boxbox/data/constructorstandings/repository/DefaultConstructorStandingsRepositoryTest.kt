@@ -48,7 +48,7 @@ class DefaultConstructorStandingsRepositoryTest {
 
         coVerify {
             remoteDataSource.getConstructorStandings()
-            constructorStandingDao.insertAll(constructorStandingEntities)
+            constructorStandingDao.deleteAndInsertAllInTransaction(constructorStandingEntities)
         }
     }
 

@@ -1,6 +1,6 @@
 package com.toquete.boxbox.worker.repository
 
-import com.toquete.boxbox.data.races.repository.RaceRepository
+import com.toquete.boxbox.domain.repository.RaceRepository
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.UnconfinedTestDispatcher

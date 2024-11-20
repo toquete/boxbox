@@ -1,6 +1,6 @@
 package com.toquete.boxbox.core.common.util
 
-interface Syncable {
+fun interface Syncable {
 
     suspend fun sync()
 }

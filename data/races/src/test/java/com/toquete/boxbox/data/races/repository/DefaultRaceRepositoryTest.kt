@@ -1,12 +1,12 @@
 package com.toquete.boxbox.data.races.repository
 
+import com.toquete.boxbox.core.database.dao.CircuitDao
+import com.toquete.boxbox.core.database.dao.RaceDao
 import com.toquete.boxbox.core.testing.data.circuitEntities
 import com.toquete.boxbox.core.testing.data.raceEntities
 import com.toquete.boxbox.core.testing.data.races
 import com.toquete.boxbox.core.testing.data.racesResponse
 import com.toquete.boxbox.core.testing.data.racesWithCircuits
-import com.toquete.boxbox.data.circuits.source.local.CircuitLocalDataSource
-import com.toquete.boxbox.data.races.source.local.RaceLocalDataSource
 import com.toquete.boxbox.data.races.source.remote.RaceRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -22,19 +22,19 @@ import kotlin.test.assertContentEquals
 class DefaultRaceRepositoryTest {
 
     private val remoteDataSource: RaceRemoteDataSource = mockk(relaxed = true)
-    private val localDataSource: RaceLocalDataSource = mockk(relaxed = true)
-    private val circuitLocalDataSource: CircuitLocalDataSource = mockk(relaxed = true)
+    private val raceDao: RaceDao = mockk(relaxed = true)
+    private val circuitDao: CircuitDao = mockk(relaxed = true)
     private val testDispatcher = UnconfinedTestDispatcher()
     private val repository = DefaultRaceRepository(
         remoteDataSource,
-        localDataSource,
-        circuitLocalDataSource,
+        raceDao,
+        circuitDao,
         testDispatcher
     )
 
     @Test
     fun `getUpcomingRacesBySeason should return mapped list when called`() = runTest {
-        coEvery { localDataSource.getUpcomingRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
+        coEvery { raceDao.getUpcomingRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
 
         val result = repository.getUpcomingRacesBySeason(season = "2023", today = "2023-01-01")
 
@@ -43,7 +43,7 @@ class DefaultRaceRepositoryTest {
 
     @Test
     fun `getPastRacesBySeason should return mapped list when called`() = runTest {
-        coEvery { localDataSource.getPastRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
+        coEvery { raceDao.getPastRacesBySeason(any(), any()) } returns flowOf(racesWithCircuits)
 
         val result = repository.getPastRacesBySeason(season = "2023", today = "2023-01-01")
 
@@ -56,7 +56,7 @@ class DefaultRaceRepositoryTest {
 
         repository.sync()
 
-        coEvery { circuitLocalDataSource.insertAll(circuitEntities.take(1)) }
+        coEvery { circuitDao.upsertAll(circuitEntities.take(1)) }
     }
 
     @Test
@@ -65,7 +65,7 @@ class DefaultRaceRepositoryTest {
 
         repository.sync()
 
-        coEvery { localDataSource.insertAll(raceEntities.take(1)) }
+        coEvery { raceDao.upsertAll(raceEntities.take(1)) }
     }
 
     @Test(expected = IOException::class)
@@ -75,8 +75,8 @@ class DefaultRaceRepositoryTest {
         repository.sync()
 
         coVerify(exactly = 0) {
-            circuitLocalDataSource.insertAll(any())
-            localDataSource.insertAll(any())
+            circuitDao.upsertAll(any())
+            raceDao.upsertAll(any())
         }
     }
 }
