@@ -2,8 +2,8 @@ package com.toquete.boxbox.feature.races.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.domain.races.usecase.GetPastRacesInCurrentSeasonUseCase
-import com.toquete.boxbox.domain.races.usecase.GetUpcomingRacesInCurrentSeasonUseCase
+import com.toquete.boxbox.domain.usecase.GetPastRacesInCurrentSeasonUseCase
+import com.toquete.boxbox.domain.usecase.GetUpcomingRacesInCurrentSeasonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine

@@ -5,8 +5,8 @@ import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.core.testing.data.raceResults
 import com.toquete.boxbox.core.testing.data.sprintRaceResults
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
-import com.toquete.boxbox.domain.raceresults.usecase.GetCurrentSeasonRaceResultsUseCase
-import com.toquete.boxbox.domain.sprintresults.usecase.GetCurrentSeasonSprintResultsUseCase
+import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
+import com.toquete.boxbox.domain.usecase.GetCurrentSeasonSprintResultsUseCase
 import com.toquete.boxbox.feature.raceresults.navigation.RACE_ARGUMENT
 import com.toquete.boxbox.feature.raceresults.navigation.ROUND_ARGUMENT
 import io.mockk.every
