@@ -5,6 +5,7 @@ import com.toquete.boxbox.core.database.dao.ConstructorColorDao
 import com.toquete.boxbox.core.network.model.ConstructorColorResponse
 import com.toquete.boxbox.data.constructorcolors.model.toEntity
 import com.toquete.boxbox.data.constructorcolors.source.remote.ConstructorColorRemoteDataSource
+import com.toquete.boxbox.domain.repository.ConstructorColorRepository
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

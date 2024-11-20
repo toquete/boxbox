@@ -5,6 +5,7 @@ import com.toquete.boxbox.core.database.dao.ConstructorImageDao
 import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 import com.toquete.boxbox.data.constructorimages.model.toEntity
 import com.toquete.boxbox.data.constructorimages.source.remote.ConstructorImageRemoteDataSource
+import com.toquete.boxbox.domain.repository.ConstructorImageRepository
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

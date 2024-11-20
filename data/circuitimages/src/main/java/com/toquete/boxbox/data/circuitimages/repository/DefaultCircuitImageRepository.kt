@@ -5,6 +5,7 @@ import com.toquete.boxbox.core.database.dao.CircuitImageDao
 import com.toquete.boxbox.core.network.model.CircuitImageResponse
 import com.toquete.boxbox.data.circuitimages.model.toEntity
 import com.toquete.boxbox.data.circuitimages.source.remote.CircuitImageRemoteDataSource
+import com.toquete.boxbox.domain.repository.CircuitImageRepository
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

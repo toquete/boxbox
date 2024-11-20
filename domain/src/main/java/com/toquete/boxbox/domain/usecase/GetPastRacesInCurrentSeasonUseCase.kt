@@ -1,7 +1,7 @@
 package com.toquete.boxbox.domain.usecase
 
 import com.toquete.boxbox.core.model.Race
-import com.toquete.boxbox.data.races.repository.RaceRepository
+import com.toquete.boxbox.domain.repository.RaceRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

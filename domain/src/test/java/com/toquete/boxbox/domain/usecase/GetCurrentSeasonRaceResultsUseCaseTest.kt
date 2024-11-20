@@ -1,7 +1,7 @@
 package com.toquete.boxbox.domain.usecase
 
 import com.toquete.boxbox.core.testing.data.raceResults
-import com.toquete.boxbox.data.raceresults.repository.RaceResultRepository
+import com.toquete.boxbox.domain.repository.RaceResultRepository
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

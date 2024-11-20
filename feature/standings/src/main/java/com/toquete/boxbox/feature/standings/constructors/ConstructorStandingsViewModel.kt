@@ -2,7 +2,7 @@ package com.toquete.boxbox.feature.standings.constructors
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
+import com.toquete.boxbox.domain.repository.ConstructorStandingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map

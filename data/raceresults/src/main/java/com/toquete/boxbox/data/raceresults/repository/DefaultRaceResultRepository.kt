@@ -8,6 +8,7 @@ import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.data.raceresults.model.toDomain
 import com.toquete.boxbox.data.raceresults.model.toEntity
 import com.toquete.boxbox.data.raceresults.source.remote.RaceResultRemoteDataSource
+import com.toquete.boxbox.domain.repository.RaceResultRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
