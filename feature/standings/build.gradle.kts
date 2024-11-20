@@ -11,11 +11,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:model"))
     implementation(project(":core:ui"))
-    implementation(project(":core:common"))
     implementation(project(":data:driverstandings"))
-    implementation(project(":data:constructorstandings"))
+    implementation(project(":domain"))
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)

@@ -3,7 +3,7 @@ package com.toquete.boxbox.feature.standings.constructors
 import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.testing.data.constructorStandings
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
-import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
+import com.toquete.boxbox.domain.repository.ConstructorStandingsRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
