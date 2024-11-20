@@ -5,6 +5,7 @@ import com.toquete.boxbox.core.database.dao.CountryDao
 import com.toquete.boxbox.core.network.model.CountryResponse
 import com.toquete.boxbox.data.countries.model.toEntity
 import com.toquete.boxbox.data.countries.source.remote.CountryRemoteDataSource
+import com.toquete.boxbox.domain.repository.CountryRepository
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
