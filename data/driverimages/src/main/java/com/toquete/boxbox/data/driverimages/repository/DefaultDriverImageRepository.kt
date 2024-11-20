@@ -5,6 +5,7 @@ import com.toquete.boxbox.core.database.dao.DriverImageDao
 import com.toquete.boxbox.core.network.model.DriverImageResponse
 import com.toquete.boxbox.data.driverimages.model.toEntity
 import com.toquete.boxbox.data.driverimages.source.remote.DriverImageRemoteDataSource
+import com.toquete.boxbox.domain.repository.DriverImageRepository
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
