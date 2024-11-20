@@ -70,7 +70,7 @@ class DefaultDriverStandingsRepositoryTest {
 
         repository.sync()
 
-        coVerify { driverStandingDao.insertAll(driverStandingEntities) }
+        coVerify { driverStandingDao.deleteAndInsertAllInTransaction(driverStandingEntities) }
     }
 
     @Test(expected = IOException::class)

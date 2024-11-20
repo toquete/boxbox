@@ -9,6 +9,7 @@ import com.toquete.boxbox.core.model.DriverStanding
 import com.toquete.boxbox.data.driverstandings.model.toDomain
 import com.toquete.boxbox.data.driverstandings.model.toEntity
 import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
+import com.toquete.boxbox.domain.repository.DriverStandingsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -35,7 +36,7 @@ internal class DefaultDriverStandingsRepository @Inject constructor(
             val list = remoteDataSource.getDriverStandings()
             driverDao.upsertAll(list.map { it.driver.toEntity() })
             constructorDao.upsertAll(list.map { it.constructors.first().toEntity() })
-            driverStandingDao.insertAll(list.map { it.toEntity() })
+            driverStandingDao.deleteAndInsertAllInTransaction(list.map { it.toEntity() })
         }
     }
 }

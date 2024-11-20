@@ -8,6 +8,7 @@ import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
 import com.toquete.boxbox.data.constructorstandings.model.toDomain
 import com.toquete.boxbox.data.constructorstandings.model.toEntity
 import com.toquete.boxbox.data.constructorstandings.source.remote.ConstructorStandingsRemoteDataSource
+import com.toquete.boxbox.domain.repository.ConstructorStandingsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -30,7 +31,7 @@ internal class DefaultConstructorStandingsRepository @Inject constructor(
     override suspend fun sync() {
         withContext(dispatcher) {
             val list = remoteDataSource.getConstructorStandings()
-            constructorStandingDao.insertAll(list.map(ConstructorStandingResponse::toEntity))
+            constructorStandingDao.deleteAndInsertAllInTransaction(list.map(ConstructorStandingResponse::toEntity))
         }
     }
 }
