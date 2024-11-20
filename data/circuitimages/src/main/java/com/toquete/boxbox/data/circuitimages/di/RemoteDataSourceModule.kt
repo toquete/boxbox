@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface RemoteDataSourceModule {
+internal fun interface RemoteDataSourceModule {
 
     @Binds
     fun bindCircuitImageRemoteDataSource(
