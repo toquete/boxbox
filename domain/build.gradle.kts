@@ -11,7 +11,6 @@ dependencies {
     api(project(":core:model"))
     api(project(":core:common"))
     implementation(project(":data:races"))
-    implementation(project(":data:raceresults"))
     implementation(project(":data:sprintresults"))
 
     testImplementation(project(":core:testing"))
