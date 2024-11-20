@@ -1,10 +1,10 @@
 package com.toquete.boxbox.worker.repository
 
-import com.toquete.boxbox.data.constructorcolors.repository.ConstructorColorRepository
 import com.toquete.boxbox.data.constructorstandings.repository.ConstructorStandingsRepository
 import com.toquete.boxbox.data.driverstandings.repository.DriverStandingsRepository
 import com.toquete.boxbox.data.raceresults.repository.RaceResultRepository
 import com.toquete.boxbox.data.sprintresults.repository.SprintResultRepository
+import com.toquete.boxbox.domain.repository.ConstructorColorRepository
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.advanceUntilIdle
