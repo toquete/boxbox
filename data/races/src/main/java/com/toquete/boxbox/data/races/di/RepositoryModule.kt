@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.races.di
 
 import com.toquete.boxbox.data.races.repository.DefaultRaceRepository
-import com.toquete.boxbox.data.races.repository.RaceRepository
+import com.toquete.boxbox.domain.repository.RaceRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -9,10 +9,10 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal abstract class RepositoryModule {
+internal interface RepositoryModule {
 
     @Binds
-    abstract fun bindsRaceRepository(
+    fun bindsRaceRepository(
         defaultRaceRepository: DefaultRaceRepository
     ): RaceRepository
 }
