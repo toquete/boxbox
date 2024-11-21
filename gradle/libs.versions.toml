@@ -37,7 +37,7 @@ kover = "0.8.3"
 timber = "5.0.1"
 navigation = "2.8.4"
 hilt-navigation = "1.2.0"
-sonarqube = "5.1.0.4882"
+sonarqube = "6.0.0.5145"
 robolectric = "4.14"
 
 [libraries]
