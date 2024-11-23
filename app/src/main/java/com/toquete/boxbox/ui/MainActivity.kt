@@ -21,6 +21,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
@@ -56,6 +57,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val isDarkTheme = shouldUseDarkTheme(uiState)
             val isDynamicColors = shouldUseDynamicColors(uiState)
+            val navController = rememberNavController()
 
             DisposableEffect(isDarkTheme) {
                 enableEdgeToEdge(
@@ -75,15 +77,14 @@ class MainActivity : ComponentActivity() {
                 darkTheme = isDarkTheme,
                 dynamicColors = isDynamicColors
             ) {
-                MainScreen()
+                MainScreen(navController = navController)
             }
         }
     }
 }
 
 @Composable
-fun MainScreen() {
-    val navController = rememberNavController()
+fun MainScreen(navController: NavHostController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
