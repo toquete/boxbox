@@ -2,7 +2,7 @@ package com.toquete.boxbox.ui
 
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
-import com.toquete.boxbox.core.preferences.model.UserPreferences
+import com.toquete.boxbox.core.model.UserPreferences
 import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
 import com.toquete.boxbox.core.testing.data.userPreferences
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
