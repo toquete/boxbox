@@ -8,6 +8,7 @@ import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.model.UserPreferences
 import com.toquete.boxbox.core.preferences.PreferencesKeys.COLOR_CONFIG
 import com.toquete.boxbox.core.preferences.PreferencesKeys.DARK_THEME_CONFIG
+import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

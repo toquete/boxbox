@@ -2,6 +2,7 @@ package com.toquete.boxbox.di
 
 import com.toquete.boxbox.core.common.util.NetworkMonitor
 import com.toquete.boxbox.core.common.util.SyncMonitor
+import com.toquete.boxbox.core.preferences.di.UserPreferencesRepositoryModule
 import com.toquete.boxbox.data.circuitimages.di.CircuitImageRepositoryModule
 import com.toquete.boxbox.data.constructorcolors.di.ConstructorColorRepositoryModule
 import com.toquete.boxbox.data.constructorimages.di.ConstructorImageRepositoryModule
@@ -22,6 +23,7 @@ import com.toquete.boxbox.domain.repository.DriverStandingsRepository
 import com.toquete.boxbox.domain.repository.RaceRepository
 import com.toquete.boxbox.domain.repository.RaceResultRepository
 import com.toquete.boxbox.domain.repository.SprintResultRepository
+import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import com.toquete.boxbox.fake.FakeCircuitImageRepository
 import com.toquete.boxbox.fake.FakeConstructorColorRepository
 import com.toquete.boxbox.fake.FakeConstructorImageRepository
@@ -34,6 +36,7 @@ import com.toquete.boxbox.fake.FakeRaceRepository
 import com.toquete.boxbox.fake.FakeRaceResultRepository
 import com.toquete.boxbox.fake.FakeSprintResultRepository
 import com.toquete.boxbox.fake.FakeSyncMonitor
+import com.toquete.boxbox.fake.FakeUserPreferencesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
@@ -54,7 +57,8 @@ import javax.inject.Singleton
         RaceResultRepositoryModule::class,
         RaceRepositoryModule::class,
         SprintResultRepositoryModule::class,
-        MonitorModule::class
+        MonitorModule::class,
+        UserPreferencesRepositoryModule::class
     ]
 )
 object TestModule {
@@ -106,4 +110,8 @@ object TestModule {
     @Provides
     @Singleton
     fun providesSyncMonitor(): SyncMonitor = FakeSyncMonitor()
+
+    @Provides
+    @Singleton
+    fun providesUserPreferencesRepository(): UserPreferencesRepository = FakeUserPreferencesRepository()
 }

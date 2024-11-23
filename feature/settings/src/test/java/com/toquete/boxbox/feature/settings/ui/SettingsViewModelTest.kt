@@ -3,9 +3,9 @@ package com.toquete.boxbox.feature.settings.ui
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.model.UserPreferences
-import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
-import com.toquete.boxbox.core.testing.data.userPreferences
+import com.toquete.boxbox.core.testing.data.preferences
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
+import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -41,8 +41,8 @@ class SettingsViewModelTest {
 
         assertEquals(SettingsState.Loading, viewModel.state.value)
 
-        userPreferencesFlow.emit(userPreferences)
-        assertEquals(SettingsState.Success(userPreferences), viewModel.state.value)
+        userPreferencesFlow.emit(preferences)
+        assertEquals(SettingsState.Success(preferences), viewModel.state.value)
 
         backgroundScope.cancel()
     }

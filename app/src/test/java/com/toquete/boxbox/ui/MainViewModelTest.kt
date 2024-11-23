@@ -3,9 +3,9 @@ package com.toquete.boxbox.ui
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.model.UserPreferences
-import com.toquete.boxbox.core.preferences.repository.UserPreferencesRepository
-import com.toquete.boxbox.core.testing.data.userPreferences
+import com.toquete.boxbox.core.testing.data.preferences
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
+import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
@@ -40,7 +40,7 @@ class MainViewModelTest {
 
         assertEquals(MainState(), viewModel.state.value)
 
-        userPreferencesFlow.emit(userPreferences)
+        userPreferencesFlow.emit(preferences)
         assertEquals(
             MainState(
                 isLoading = false,

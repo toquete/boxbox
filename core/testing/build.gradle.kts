@@ -12,7 +12,6 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:database"))
     implementation(project(":core:network"))
-    implementation(project(":core:preferences"))
 
     api(libs.junit)
     api(libs.junit.ext)

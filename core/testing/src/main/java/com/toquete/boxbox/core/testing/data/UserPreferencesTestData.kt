@@ -4,4 +4,4 @@ import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.model.UserPreferences
 
-val userPreferences = UserPreferences(DarkThemeConfig.FOLLOW_SYSTEM, ColorConfig.DEFAULT)
+val preferences = UserPreferences(DarkThemeConfig.FOLLOW_SYSTEM, ColorConfig.DEFAULT)
