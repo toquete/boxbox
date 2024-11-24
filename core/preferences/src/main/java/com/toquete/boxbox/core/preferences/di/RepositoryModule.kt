@@ -10,7 +10,7 @@ import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface RepositoryModule {
+internal fun interface RepositoryModule {
 
     @Binds
     @Named("internal")
