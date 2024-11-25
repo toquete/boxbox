@@ -8,6 +8,7 @@ internal fun configureGradleManagedDevices(
     commonExtension: CommonExtension<*, *, *, *, *, *>
 ) {
     commonExtension.testOptions {
+        animationsDisabled = true
         managedDevices {
             devices {
                 maybeCreate("pixel2api30", ManagedVirtualDevice::class.java).apply {
