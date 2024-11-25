@@ -120,6 +120,10 @@ dependencies {
     ksp(libs.hilt.work.compiler)
 
     testImplementation(project(":core:testing"))
+    androidTestImplementation(project(":core:testing"))
+    androidTestImplementation(libs.compose.navigation.test)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
 }
 
 dependencies {

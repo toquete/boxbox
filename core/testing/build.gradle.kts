@@ -12,7 +12,6 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:database"))
     implementation(project(":core:network"))
-    implementation(project(":core:preferences"))
 
     api(libs.junit)
     api(libs.junit.ext)
@@ -23,5 +22,6 @@ dependencies {
     api(libs.test.runner)
     api(libs.test.rules)
     api(libs.junit.compose)
+    api(libs.espresso)
     debugApi(libs.compose.ui.manifest)
 }
