@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:model"))
+    implementation(project(":domain"))
     implementation(libs.datastore.preferences)
 
     testImplementation(project(":core:testing"))
