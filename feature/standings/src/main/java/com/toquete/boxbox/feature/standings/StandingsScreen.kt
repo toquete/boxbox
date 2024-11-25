@@ -1,12 +1,10 @@
 package com.toquete.boxbox.feature.standings
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -31,7 +29,6 @@ import com.toquete.boxbox.feature.standings.drivers.DriverStandingsRoute
 import com.toquete.boxbox.feature.standings.model.StandingsTab
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun StandingsScreen() {
     var selectedTab by remember { mutableStateOf(StandingsTab.DRIVERS) }
