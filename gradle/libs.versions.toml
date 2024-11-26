@@ -83,6 +83,7 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
 work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
+work-testing = { module = "androidx.work:work-testing", version.ref = "work" }
 hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
 hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-work" }
 mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserver"}
