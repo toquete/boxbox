@@ -2,7 +2,6 @@ package com.toquete.boxbox.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.toquete.boxbox.feature.home.navigation.HOME_ROUTE
@@ -28,18 +27,10 @@ fun BoxBoxNavHost(
         homeScreen(
             onSettingsButtonClick = navController::navigateToSettings
         ) {
-            addHomeGraph(
-                onRaceItemClick = navController::navigateToRaceResult
-            )
+            standingsScreen()
+            racesScreen(onRaceClick = navController::navigateToRaceResult)
         }
         settingsScreen(onDismiss = navController::navigateUp)
         raceResultScreen(onNavigateUp = navController::navigateUp)
     }
-}
-
-private fun NavGraphBuilder.addHomeGraph(
-    onRaceItemClick: (Int, String) -> Unit
-) {
-    standingsScreen()
-    racesScreen(onRaceClick = onRaceItemClick)
 }

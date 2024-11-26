@@ -79,6 +79,12 @@ android {
         buildConfig = true
     }
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     lint {
         checkDependencies = true
         xmlReport = true
@@ -120,6 +126,8 @@ dependencies {
     ksp(libs.hilt.work.compiler)
 
     testImplementation(project(":core:testing"))
+    testImplementation(libs.robolectric)
+    testImplementation(libs.work.testing)
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.compose.navigation.test)
     androidTestImplementation(libs.hilt.android.testing)
@@ -167,17 +175,17 @@ kover {
         }
         filters {
             excludes {
+                androidGeneratedClasses()
                 classes(
-                    "*Activity",
-                    "*Activity\$*",
-                    "*.BuildConfig",
                     "*Hilt*",
                     "*Factory*",
                     "*Injector",
                     "*Module*",
                     "*Application",
-                    "*Worker*",
-                    "*Composable*"
+                    "*Composable*",
+                    "*Navigation*",
+                    "*FirebaseDatabase*",
+                    "*MainActivity*"
                 )
                 packages(
                     "*.di",

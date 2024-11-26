@@ -12,13 +12,11 @@ coverage:
                 target: 70%
                 threshold: 1%
 ignore:
-    - "core/database"
     - "core/ui"
     - "app/src/main/java/com/toquete/boxbox/util"
     - "**/*Activity*"
     - "**/*Module*"
     - "**/*Application*"
-    - "**/*Worker*"
     - "**/*Composable*"
     - "**/*Destination*"
     - "**/*Navigation*"
