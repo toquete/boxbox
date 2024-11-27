@@ -5,15 +5,17 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import com.toquete.boxbox.core.common.util.Syncable
+import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
+import kotlinx.datetime.DayOfWeek
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
 private val syncConstraints = Constraints.Builder()
@@ -25,14 +27,28 @@ class SyncWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParameters: WorkerParameters,
     private val syncRepository: Syncable,
+    private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
     @IoDispatcher private val dispatcher: CoroutineContext
 ) : CoroutineWorker(appContext, workerParameters) {
 
     override suspend fun doWork(): Result = withContext(dispatcher) {
-        runCatching {
+        val dayOfWeek = getTodayLocalDateUseCase().dayOfWeek
+
+        if (!isDayOfWeekAllowed(dayOfWeek)) {
+            Result.success()
+        } else {
+            sync()
+        }
+    }
+
+    private fun isDayOfWeekAllowed(dayOfWeek: DayOfWeek): Boolean {
+        return dayOfWeek in setOf(DayOfWeek.SUNDAY, DayOfWeek.MONDAY)
+    }
+
+    private suspend fun sync(): Result {
+        return runCatching {
             syncRepository.sync()
         }.onFailure { error ->
-            ensureActive()
             Timber.e(error)
         }.fold(
             onSuccess = { Result.success() },
@@ -41,9 +57,9 @@ class SyncWorker @AssistedInject constructor(
     }
 
     companion object {
-
-        fun setupWork() = OneTimeWorkRequestBuilder<SyncWorker>()
-            .setConstraints(syncConstraints)
-            .build()
+        fun setupWork() =
+            PeriodicWorkRequestBuilder<SyncWorker>(repeatInterval = 1, repeatIntervalTimeUnit = TimeUnit.DAYS)
+                .setConstraints(syncConstraints)
+                .build()
     }
 }

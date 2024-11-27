@@ -2,7 +2,7 @@
 gradle = "8.7.2"
 kotlin = "2.0.21"
 hilt = "2.52"
-compose-bom = "2024.10.01"
+compose-bom = "2024.11.00"
 core-ktx = "1.15.0"
 kotlinxCoroutines = "1.9.0"
 datastore-preferences = "1.1.1"
@@ -28,7 +28,7 @@ test-runner = "1.6.2"
 test-rules = "1.6.1"
 detekt = "1.23.7"
 test-aggregation = "1.1.1"
-ksp = "2.0.21-1.0.27"
+ksp = "2.0.21-1.0.28"
 google-services = "4.4.2"
 firebase-bom = "33.6.0"
 crashlytics = "3.0.2"
@@ -38,7 +38,7 @@ timber = "5.0.1"
 navigation = "2.8.4"
 hilt-navigation = "1.2.0"
 sonarqube = "6.0.0.5145"
-robolectric = "4.14"
+robolectric = "4.14.1"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -83,6 +83,7 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
 work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
+work-testing = { module = "androidx.work:work-testing", version.ref = "work" }
 hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
 hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-work" }
 mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserver"}

@@ -12,13 +12,21 @@ coverage:
                 target: 70%
                 threshold: 1%
 ignore:
-    - "core/database"
     - "core/ui"
     - "app/src/main/java/com/toquete/boxbox/util"
+    - "core/ui/src/main/java/com/toquete/boxbox/core/ui/theme"
     - "**/*Activity*"
     - "**/*Module*"
     - "**/*Application*"
-    - "**/*Worker*"
     - "**/*Composable*"
+    - "**/*Preview*"
+    - "**/*Stable*"
+    - "**/*Generated*"
     - "**/*Destination*"
     - "**/*Navigation*"
+    - "**/*Hilt*"
+    - "**/*Factory*"
+    - "**/*Injector*"
+    - "**/*Module*"
+    - "**/*FirebaseDatabase*"
+    - "**/*MainActivity*"
