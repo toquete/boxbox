@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.core.content.edit
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import androidx.work.ExistingWorkPolicy
+import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
 import coil.ImageLoader
 import coil.ImageLoaderFactory
@@ -75,9 +75,9 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
 
     private fun setupSyncWork() {
         WorkManager.getInstance(this)
-            .enqueueUniqueWork(
+            .enqueueUniquePeriodicWork(
                 SYNC_WORK_NAME,
-                ExistingWorkPolicy.KEEP,
+                ExistingPeriodicWorkPolicy.KEEP,
                 SyncWorker.setupWork()
             )
     }
