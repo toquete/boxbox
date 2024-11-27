@@ -19,8 +19,8 @@ class DefaultSyncRepository @Inject constructor(
     override suspend fun sync() {
         withContext(dispatcher) {
             awaitAll(
-                async { standingsRepository.sync(this) },
-                async { imagesRepository.sync(this) },
+                async { standingsRepository.sync() },
+                async { imagesRepository.sync() },
                 async { raceRepository.sync() }
             )
         }

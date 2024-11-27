@@ -25,8 +25,8 @@ class DefaultSyncRepositoryTest {
         repository.sync()
 
         coVerify {
-            standingsRepository.sync(any())
-            imagesRepository.sync(any())
+            standingsRepository.sync()
+            imagesRepository.sync()
             raceRepository.sync()
         }
     }
