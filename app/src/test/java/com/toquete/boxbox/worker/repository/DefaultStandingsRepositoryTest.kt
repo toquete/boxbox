@@ -18,7 +18,7 @@ class DefaultStandingsRepositoryTest {
     private val constructorColorRepository: ConstructorColorRepository = mockk(relaxed = true)
     private val raceResultRepository: RaceResultRepository = mockk(relaxed = true)
     private val sprintRaceResultRepository: SprintResultRepository = mockk(relaxed = true)
-    private val repository = DefaultStandingsRepository(
+    private val repository = StandingsRepository(
         driverStandingsRepository,
         constructorStandingsRepository,
         constructorColorRepository,
@@ -28,7 +28,7 @@ class DefaultStandingsRepositoryTest {
 
     @Test
     fun `sync should call all repositories`() = runTest {
-        repository.sync(this)
+        repository.sync()
         advanceUntilIdle()
 
         coVerify {

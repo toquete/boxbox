@@ -16,7 +16,7 @@ class DefaultImagesRepositoryTest {
     private val driverImageRepository: DriverImageRepository = mockk(relaxed = true)
     private val constructorImageRepository: ConstructorImageRepository = mockk(relaxed = true)
     private val circuitImageRepository: CircuitImageRepository = mockk(relaxed = true)
-    private val repository = DefaultImagesRepository(
+    private val repository = ImagesRepository(
         countryRepository,
         driverImageRepository,
         constructorImageRepository,
@@ -25,7 +25,7 @@ class DefaultImagesRepositoryTest {
 
     @Test
     fun `sync should call all repositories`() = runTest {
-        repository.sync(this)
+        repository.sync()
         advanceUntilIdle()
 
         coVerify {

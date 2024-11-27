@@ -13,7 +13,7 @@ import androidx.work.WorkerParameters
 import androidx.work.testing.SynchronousExecutor
 import androidx.work.testing.TestListenableWorkerBuilder
 import androidx.work.testing.WorkManagerTestInitHelper
-import com.toquete.boxbox.core.common.util.Syncable
+import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -28,6 +28,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,7 +39,7 @@ import kotlin.test.assertEquals
 @RunWith(AndroidJUnit4::class)
 class SyncWorkerTest {
 
-    private val syncRepository: Syncable = mockk()
+    private val syncRepository: SyncRepository = mockk()
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase = mockk()
     private val dispatcher: CoroutineDispatcher = UnconfinedTestDispatcher()
     private val testWorkerFactory = TestWorkerFactory(syncRepository, getTodayLocalDateUseCase, dispatcher)
@@ -55,6 +56,11 @@ class SyncWorkerTest {
 
         // Initialize WorkManager for instrumentation tests.
         WorkManagerTestInitHelper.initializeTestWorkManager(context, config)
+    }
+
+    @After
+    fun tearDown() {
+        WorkManagerTestInitHelper.closeWorkDatabase()
     }
 
     @Test
@@ -140,7 +146,7 @@ class SyncWorkerTest {
     }
 
     private class TestWorkerFactory(
-        private val syncRepository: Syncable,
+        private val syncRepository: SyncRepository,
         private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
         private val dispatcher: CoroutineDispatcher
     ) : WorkerFactory() {
