@@ -1,6 +1,6 @@
 package com.toquete.boxbox.di
 
-import com.toquete.boxbox.core.common.util.Syncable
+import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.worker.repository.DefaultSyncRepository
 import dagger.Binds
 import dagger.Module
@@ -9,10 +9,10 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class SyncRepositoryModule {
+fun interface SyncRepositoryModule {
 
     @Binds
-    abstract fun bindsSyncRepository(
+    fun bindsSyncRepository(
         repository: DefaultSyncRepository
-    ): Syncable
+    ): SyncRepository
 }

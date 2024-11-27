@@ -1,8 +1,8 @@
 package com.toquete.boxbox.worker.repository
 
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
-import com.toquete.boxbox.core.common.util.Syncable
 import com.toquete.boxbox.domain.repository.RaceRepository
+import com.toquete.boxbox.domain.repository.SyncRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
@@ -14,7 +14,7 @@ class DefaultSyncRepository @Inject constructor(
     private val imagesRepository: ImagesRepository,
     private val raceRepository: RaceRepository,
     @IoDispatcher private val dispatcher: CoroutineContext
-) : Syncable {
+) : SyncRepository {
 
     override suspend fun sync() {
         withContext(dispatcher) {

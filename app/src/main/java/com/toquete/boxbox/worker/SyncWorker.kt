@@ -8,7 +8,7 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
-import com.toquete.boxbox.core.common.util.Syncable
+import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -26,7 +26,7 @@ private val syncConstraints = Constraints.Builder()
 class SyncWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParameters: WorkerParameters,
-    private val syncRepository: Syncable,
+    private val syncRepository: SyncRepository,
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
     @IoDispatcher private val dispatcher: CoroutineContext
 ) : CoroutineWorker(appContext, workerParameters) {

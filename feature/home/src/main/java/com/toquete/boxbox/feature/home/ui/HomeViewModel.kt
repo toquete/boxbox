@@ -7,30 +7,38 @@ import com.toquete.boxbox.core.common.STATE_FLOW_STOP_TIMEOUT
 import com.toquete.boxbox.core.common.util.NetworkMonitor
 import com.toquete.boxbox.core.common.util.SyncMonitor
 import com.toquete.boxbox.core.ui.custom.SnackbarManager
+import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.feature.home.R
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 internal class HomeViewModel @Inject constructor(
     syncMonitor: SyncMonitor,
-    networkMonitor: NetworkMonitor
+    networkMonitor: NetworkMonitor,
+    private val syncRepository: SyncRepository
 ) : ViewModel() {
 
+    private val _isRefreshing = MutableStateFlow(false)
     val state: StateFlow<HomeState> = combine(
         networkMonitor.isOnline,
         syncMonitor.isSyncing,
-        syncMonitor.hasFailed
-    ) { isOnline, isSyncing, hasFailed ->
+        syncMonitor.hasFailed,
+        _isRefreshing
+    ) { isOnline, isSyncing, hasFailed, isRefreshing ->
         HomeState(
             isOffline = !isOnline,
             isSyncing = isSyncing,
-            hasFailed = hasFailed
+            hasFailed = hasFailed,
+            isRefreshing = isRefreshing
         )
     }.onEach { state ->
         val message = when {
@@ -47,4 +55,21 @@ internal class HomeViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(STATE_FLOW_STOP_TIMEOUT),
         initialValue = HomeState()
     )
+
+    fun refresh() {
+        _isRefreshing.update { true }
+        viewModelScope.launch {
+            runCatching {
+                syncRepository.sync()
+            }.onFailure {
+                SnackbarManager.showMessage(
+                    messageTextId = R.string.home_fail_refresh,
+                    duration = SnackbarDuration.Long,
+                    withDismissAction = true
+                )
+            }.also {
+                _isRefreshing.update { false }
+            }
+        }
+    }
 }

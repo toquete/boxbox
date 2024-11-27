@@ -1,13 +1,14 @@
 package com.toquete.boxbox.feature.home.ui
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,14 +30,17 @@ internal fun HomeRoute(
     HomeScreen(
         state = state,
         onSettingsButtonClick = onSettingsButtonClick,
+        onRefresh = viewModel::refresh,
         builder = builder
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun HomeScreen(
     state: HomeState,
     onSettingsButtonClick: () -> Unit = { },
+    onRefresh: () -> Unit = { },
     builder: NavGraphBuilder.() -> Unit = { }
 ) {
     val homeViewState = rememberHomeViewState()
@@ -53,7 +57,11 @@ internal fun HomeScreen(
         },
         snackbarHost = { SnackbarHost(hostState = homeViewState.snackbarHostState) }
     ) { paddingValues ->
-        Box(modifier = Modifier.padding(paddingValues)) {
+        PullToRefreshBox(
+            isRefreshing = state.isRefreshing,
+            onRefresh = onRefresh,
+            modifier = Modifier.padding(paddingValues)
+        ) {
             HomeNavHost(
                 homeViewState = homeViewState,
                 builder = builder
