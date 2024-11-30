@@ -124,6 +124,7 @@ dependencies {
     implementation(libs.hilt.work)
     implementation(libs.firebase.crashlytics)
     ksp(libs.hilt.work.compiler)
+    implementation(libs.play.services.ads)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)

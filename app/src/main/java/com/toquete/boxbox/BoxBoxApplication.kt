@@ -11,6 +11,7 @@ import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import coil.request.CachePolicy
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
@@ -19,6 +20,9 @@ import com.google.firebase.appcheck.appCheck
 import com.google.firebase.initialize
 import com.toquete.boxbox.worker.SyncWorker
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -50,6 +54,7 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
         setupAppCheck()
         setupSyncWork()
         setupTimber()
+        setupMobileAds()
     }
 
     override fun newImageLoader(): ImageLoader {
@@ -97,5 +102,11 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
         }
         Firebase.initialize(this)
         Firebase.appCheck.installAppCheckProviderFactory(appCheckProviderFactory)
+    }
+
+    private fun setupMobileAds() {
+        CoroutineScope(Dispatchers.IO).launch {
+            MobileAds.initialize(this@BoxBoxApplication)
+        }
     }
 }
