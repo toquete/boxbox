@@ -1,6 +1,7 @@
 package com.toquete.boxbox.feature.home.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -62,10 +63,14 @@ internal fun HomeScreen(
             onRefresh = onRefresh,
             modifier = Modifier.padding(paddingValues)
         ) {
-            HomeNavHost(
-                homeViewState = homeViewState,
-                builder = builder
-            )
+            Column {
+                HomeNavHost(
+                    modifier = Modifier.weight(1f),
+                    homeViewState = homeViewState,
+                    builder = builder
+                )
+                AdBanner()
+            }
             AnimatedVisibility(visible = state.isSyncing) {
                 LinearProgressIndicator(
                     modifier = Modifier

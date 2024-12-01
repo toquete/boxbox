@@ -13,7 +13,6 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":domain"))
-    implementation(libs.play.services.ads)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
