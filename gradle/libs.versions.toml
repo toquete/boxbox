@@ -96,6 +96,7 @@ test-runner = { module = "androidx.test:runner", version.ref = "test-runner" }
 test-rules = { module = "androidx.test:rules", version.ref = "test-rules" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-remote-config = { module = "com.google.firebase:firebase-config" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
 firebase-appcheck = { module = "com.google.firebase:firebase-appcheck-playintegrity" }
