@@ -1,7 +1,7 @@
 [versions]
 gradle = "8.7.2"
 kotlin = "2.0.21"
-hilt = "2.52"
+hilt = "2.53"
 compose-bom = "2024.11.00"
 core-ktx = "1.15.0"
 kotlinxCoroutines = "1.9.0"
