@@ -12,19 +12,20 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
-class DefaultUserPreferencesRepositoryTest {
+class DataStoreUserPreferencesRepositoryTest {
 
     private val testScope = TestScope(UnconfinedTestDispatcher())
 
-    private lateinit var repository: DefaultUserPreferencesRepository
+    private lateinit var repository: DataStoreUserPreferencesRepository
 
     @get:Rule
     val tmpFolder: TemporaryFolder = TemporaryFolder.builder().assureDeletion().build()
 
     @Before
     fun setUp() {
-        repository = DefaultUserPreferencesRepository(
+        repository = DataStoreUserPreferencesRepository(
             tmpFolder.testUserPreferencesDataStore(testScope.backgroundScope)
         )
     }
@@ -99,6 +100,24 @@ class DefaultUserPreferencesRepositoryTest {
         repository.setColorConfig(ColorConfig.DYNAMIC)
 
         val result = repository.userPreferences.first().colorConfig
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `lastUpdatedDateInMillis should be null by default`() = testScope.runTest {
+        val result = repository.userPreferences.first().lastUpdatedDateInMillis
+
+        assertNull(result)
+    }
+
+    @Test
+    fun `lastUpdatedDateInMillis should return date when set`() = testScope.runTest {
+        val expected = 1L
+
+        repository.setLastUpdatedDateInMillis(expected)
+
+        val result = repository.userPreferences.first().lastUpdatedDateInMillis
 
         assertEquals(expected, result)
     }

@@ -1,6 +1,6 @@
 package com.toquete.boxbox.core.preferences.di
 
-import com.toquete.boxbox.core.preferences.repository.DefaultUserPreferencesRepository
+import com.toquete.boxbox.core.preferences.repository.DataStoreUserPreferencesRepository
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import dagger.Binds
 import dagger.Module
@@ -15,6 +15,6 @@ internal fun interface RepositoryModule {
     @Binds
     @Named("internal")
     fun bindUserPreferencesRepository(
-        repository: DefaultUserPreferencesRepository
+        repository: DataStoreUserPreferencesRepository
     ): UserPreferencesRepository
 }
