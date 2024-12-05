@@ -29,7 +29,8 @@ class SettingsScreenTest {
                         state = SettingsState.Success(
                             UserPreferences(
                                 darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
-                                colorConfig = ColorConfig.DEFAULT
+                                colorConfig = ColorConfig.DEFAULT,
+                                lastUpdatedDateInMillis = null
                             )
                         ),
                         onDismiss = {},
@@ -63,7 +64,8 @@ class SettingsScreenTest {
                         state = SettingsState.Success(
                             UserPreferences(
                                 darkThemeConfig = DarkThemeConfig.LIGHT,
-                                colorConfig = ColorConfig.DEFAULT
+                                colorConfig = ColorConfig.DEFAULT,
+                                lastUpdatedDateInMillis = null
                             )
                         ),
                         onDismiss = {},
@@ -87,7 +89,8 @@ class SettingsScreenTest {
                         state = SettingsState.Success(
                             UserPreferences(
                                 darkThemeConfig = DarkThemeConfig.DARK,
-                                colorConfig = ColorConfig.DEFAULT
+                                colorConfig = ColorConfig.DEFAULT,
+                                lastUpdatedDateInMillis = null
                             )
                         ),
                         onDismiss = {},

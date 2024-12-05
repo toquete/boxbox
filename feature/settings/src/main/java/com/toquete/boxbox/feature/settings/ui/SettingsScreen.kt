@@ -163,7 +163,8 @@ internal fun SettingsContentPreview() {
             state = SettingsState.Success(
                 UserPreferences(
                     darkThemeConfig = DarkThemeConfig.LIGHT,
-                    colorConfig = ColorConfig.DEFAULT
+                    colorConfig = ColorConfig.DEFAULT,
+                    lastUpdatedDateInMillis = null
                 )
             )
         )
