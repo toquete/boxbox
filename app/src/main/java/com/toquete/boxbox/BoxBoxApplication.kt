@@ -18,6 +18,12 @@ import com.google.firebase.FirebaseOptions
 import com.google.firebase.appcheck.AppCheckProviderFactory
 import com.google.firebase.appcheck.appCheck
 import com.google.firebase.initialize
+import com.google.firebase.remoteconfig.ConfigUpdate
+import com.google.firebase.remoteconfig.ConfigUpdateListener
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import com.google.firebase.remoteconfig.remoteConfig
+import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import com.toquete.boxbox.worker.SyncWorker
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +36,7 @@ private const val APP_CHECK_DEBUG_STORE = "com.google.firebase.appcheck.debug.st
 private const val APP_CHECK_DEBUG_TOKEN_KEY = "com.google.firebase.appcheck.debug.DEBUG_SECRET"
 private const val MEMORY_CACHE_PERCENT = 0.1
 private const val DISK_CACHE_PERCENT = 0.03
+private const val MINIMUM_REMOTE_CONFIG_FETCH_INTERVAL = 0L
 const val SYNC_WORK_NAME = "SYNC_WORK_NAME"
 
 @HiltAndroidApp
@@ -55,6 +62,7 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
         setupSyncWork()
         setupTimber()
         setupMobileAds()
+        setupRemoteConfig()
     }
 
     override fun newImageLoader(): ImageLoader {
@@ -107,6 +115,33 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
     private fun setupMobileAds() {
         CoroutineScope(Dispatchers.IO).launch {
             MobileAds.initialize(this@BoxBoxApplication)
+        }
+    }
+
+    private fun setupRemoteConfig() {
+        Firebase.remoteConfig.apply {
+            if (BuildConfig.DEBUG) {
+                val configSettings = remoteConfigSettings {
+                    minimumFetchIntervalInSeconds = MINIMUM_REMOTE_CONFIG_FETCH_INTERVAL
+                }
+                setConfigSettingsAsync(configSettings)
+            }
+            setDefaultsAsync(remoteConfigDefaults)
+            addOnConfigUpdateListener(object : ConfigUpdateListener {
+                override fun onUpdate(configUpdate: ConfigUpdate) {
+                    activate().addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Timber.d("Remote config activated")
+                        } else {
+                            Timber.e(task.exception, "Failed to activate remote config")
+                        }
+                    }
+                }
+
+                override fun onError(error: FirebaseRemoteConfigException) {
+                    Timber.e(error, "Failed to update remote config")
+                }
+            })
         }
     }
 }

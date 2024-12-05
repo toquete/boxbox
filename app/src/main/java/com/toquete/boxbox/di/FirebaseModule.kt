@@ -2,6 +2,8 @@ package com.toquete.boxbox.di
 
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
@@ -18,6 +20,10 @@ internal object FirebaseModule {
     @Provides
     @Singleton
     fun providesFirebaseAnalytics(): FirebaseAnalytics = Firebase.analytics
+
+    @Provides
+    @Singleton
+    fun providesFirebaseCrashlytics(): FirebaseCrashlytics = Firebase.crashlytics
 
     @Provides
     @Singleton

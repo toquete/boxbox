@@ -69,7 +69,9 @@ internal fun HomeScreen(
                     homeViewState = homeViewState,
                     builder = builder
                 )
-                AdBanner()
+                if (state.isAdBannerVisible) {
+                    AdBanner()
+                }
             }
             AnimatedVisibility(visible = state.isSyncing) {
                 LinearProgressIndicator(

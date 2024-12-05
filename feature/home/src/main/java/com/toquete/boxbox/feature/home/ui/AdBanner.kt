@@ -21,6 +21,7 @@ import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.toquete.boxbox.feature.home.R
 
 @Composable
 fun AdBanner(modifier: Modifier = Modifier) {
@@ -70,7 +71,7 @@ private fun getAdView(context: Context, width: Int, isPreviewMode: Boolean): AdV
     }
 
     return AdView(context).apply {
-        adUnitId = "ca-app-pub-3940256099942544/9214589741"
+        adUnitId = resources.getString(R.string.home_ad_unit_id)
         setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, width))
         loadAd(AdRequest.Builder().build())
     }
