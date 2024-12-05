@@ -11,21 +11,33 @@ import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import coil.request.CachePolicy
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.appcheck.AppCheckProviderFactory
 import com.google.firebase.appcheck.appCheck
 import com.google.firebase.initialize
+import com.google.firebase.remoteconfig.ConfigUpdate
+import com.google.firebase.remoteconfig.ConfigUpdateListener
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import com.google.firebase.remoteconfig.remoteConfig
+import com.toquete.boxbox.core.common.annotation.IoDispatcher
+import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import com.toquete.boxbox.worker.SyncWorker
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 private const val APP_CHECK_DEBUG_STORE = "com.google.firebase.appcheck.debug.store.%s"
 private const val APP_CHECK_DEBUG_TOKEN_KEY = "com.google.firebase.appcheck.debug.DEBUG_SECRET"
 private const val MEMORY_CACHE_PERCENT = 0.1
 private const val DISK_CACHE_PERCENT = 0.03
+private const val MINIMUM_REMOTE_CONFIG_FETCH_INTERVAL = 0L
 const val SYNC_WORK_NAME = "SYNC_WORK_NAME"
 
 @HiltAndroidApp
@@ -40,6 +52,10 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
     @Inject
     lateinit var appCheckProviderFactory: AppCheckProviderFactory
 
+    @Inject
+    @IoDispatcher
+    lateinit var ioDispatcher: CoroutineContext
+
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
             .setWorkerFactory(workerFactory)
@@ -50,6 +66,8 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
         setupAppCheck()
         setupSyncWork()
         setupTimber()
+        setupMobileAds()
+        setupRemoteConfig()
     }
 
     override fun newImageLoader(): ImageLoader {
@@ -97,5 +115,38 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
         }
         Firebase.initialize(this)
         Firebase.appCheck.installAppCheckProviderFactory(appCheckProviderFactory)
+    }
+
+    private fun setupMobileAds() {
+        CoroutineScope(ioDispatcher).launch {
+            MobileAds.initialize(this@BoxBoxApplication)
+        }
+    }
+
+    private fun setupRemoteConfig() {
+        Firebase.remoteConfig.apply {
+            if (BuildConfig.DEBUG) {
+                val configSettings = remoteConfigSettings {
+                    minimumFetchIntervalInSeconds = MINIMUM_REMOTE_CONFIG_FETCH_INTERVAL
+                }
+                setConfigSettingsAsync(configSettings)
+            }
+            setDefaultsAsync(remoteConfigDefaults)
+            addOnConfigUpdateListener(object : ConfigUpdateListener {
+                override fun onUpdate(configUpdate: ConfigUpdate) {
+                    activate().addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Timber.d("Remote config activated")
+                        } else {
+                            Timber.e(task.exception, "Failed to activate remote config")
+                        }
+                    }
+                }
+
+                override fun onError(error: FirebaseRemoteConfigException) {
+                    Timber.e(error, "Failed to update remote config")
+                }
+            })
+        }
     }
 }

@@ -3,12 +3,15 @@ package com.toquete.boxbox.feature.home.ui
 import androidx.compose.material3.SnackbarDuration
 import com.toquete.boxbox.core.common.util.NetworkMonitor
 import com.toquete.boxbox.core.common.util.SyncMonitor
+import com.toquete.boxbox.core.model.RemoteConfigs
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.core.ui.custom.SnackbarManager
+import com.toquete.boxbox.domain.repository.RemoteConfigRepository
 import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.feature.home.R
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
@@ -33,6 +36,7 @@ class HomeViewModelTest {
     private val syncMonitor: SyncMonitor = mockk(relaxed = true)
     private val networkMonitor: NetworkMonitor = mockk(relaxed = true)
     private val syncRepository: SyncRepository = mockk(relaxed = true)
+    private val remoteConfigRepository: RemoteConfigRepository = mockk(relaxed = true)
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -51,9 +55,11 @@ class HomeViewModelTest {
         val syncFlow = MutableSharedFlow<Boolean>()
         val hasFailedFlow = MutableSharedFlow<Boolean>()
         val networkFlow = MutableSharedFlow<Boolean>()
-        coEvery { syncMonitor.isSyncing } returns syncFlow
-        coEvery { syncMonitor.hasFailed } returns hasFailedFlow
-        coEvery { networkMonitor.isOnline } returns networkFlow
+        val remoteConfigFlow = MutableSharedFlow<RemoteConfigs>()
+        every { syncMonitor.isSyncing } returns syncFlow
+        every { syncMonitor.hasFailed } returns hasFailedFlow
+        every { networkMonitor.isOnline } returns networkFlow
+        every { remoteConfigRepository.remoteConfigs } returns remoteConfigFlow
 
         setupViewModel()
 
@@ -66,13 +72,15 @@ class HomeViewModelTest {
         syncFlow.emit(true)
         hasFailedFlow.emit(false)
         networkFlow.emit(true)
+        remoteConfigFlow.emit(RemoteConfigs(isAdBannerVisible = true))
 
         assertEquals(
             HomeState(
                 isSyncing = true,
                 hasFailed = false,
                 isOffline = false,
-                isRefreshing = false
+                isRefreshing = false,
+                isAdBannerVisible = true
             ),
             homeViewModel.state.value
         )
@@ -84,9 +92,11 @@ class HomeViewModelTest {
         val syncFlow = MutableSharedFlow<Boolean>()
         val hasFailedFlow = MutableSharedFlow<Boolean>()
         val networkFlow = MutableSharedFlow<Boolean>()
-        coEvery { syncMonitor.isSyncing } returns syncFlow
-        coEvery { syncMonitor.hasFailed } returns hasFailedFlow
-        coEvery { networkMonitor.isOnline } returns networkFlow
+        val remoteConfigFlow = MutableSharedFlow<RemoteConfigs>()
+        every { syncMonitor.isSyncing } returns syncFlow
+        every { syncMonitor.hasFailed } returns hasFailedFlow
+        every { networkMonitor.isOnline } returns networkFlow
+        every { remoteConfigRepository.remoteConfigs } returns remoteConfigFlow
 
         setupViewModel()
 
@@ -97,6 +107,7 @@ class HomeViewModelTest {
         syncFlow.emit(false)
         hasFailedFlow.emit(false)
         networkFlow.emit(false)
+        remoteConfigFlow.emit(RemoteConfigs())
 
         verify { SnackbarManager.showMessage(R.string.home_not_connected, duration = SnackbarDuration.Long) }
 
@@ -108,9 +119,11 @@ class HomeViewModelTest {
         val syncFlow = MutableSharedFlow<Boolean>()
         val hasFailedFlow = MutableSharedFlow<Boolean>()
         val networkFlow = MutableSharedFlow<Boolean>()
-        coEvery { syncMonitor.isSyncing } returns syncFlow
-        coEvery { syncMonitor.hasFailed } returns hasFailedFlow
-        coEvery { networkMonitor.isOnline } returns networkFlow
+        val remoteConfigFlow = MutableSharedFlow<RemoteConfigs>()
+        every { syncMonitor.isSyncing } returns syncFlow
+        every { syncMonitor.hasFailed } returns hasFailedFlow
+        every { networkMonitor.isOnline } returns networkFlow
+        every { remoteConfigRepository.remoteConfigs } returns remoteConfigFlow
 
         setupViewModel()
 
@@ -121,6 +134,7 @@ class HomeViewModelTest {
         syncFlow.emit(true)
         hasFailedFlow.emit(true)
         networkFlow.emit(true)
+        remoteConfigFlow.emit(RemoteConfigs())
 
         verify { SnackbarManager.showMessage(R.string.home_fail_message, duration = SnackbarDuration.Long) }
 
@@ -158,6 +172,11 @@ class HomeViewModelTest {
     }
 
     private fun setupViewModel() {
-        homeViewModel = HomeViewModel(syncMonitor, networkMonitor, syncRepository)
+        homeViewModel = HomeViewModel(
+            syncMonitor,
+            networkMonitor,
+            syncRepository,
+            remoteConfigRepository
+        )
     }
 }

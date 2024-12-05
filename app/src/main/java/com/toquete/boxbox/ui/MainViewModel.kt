@@ -2,29 +2,36 @@ package com.toquete.boxbox.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.toquete.boxbox.domain.repository.RemoteConfigRepository
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    preferencesRepository: UserPreferencesRepository
+    preferencesRepository: UserPreferencesRepository,
+    remoteConfigRepository: RemoteConfigRepository
 ) : ViewModel() {
 
-    val state: StateFlow<MainState> = preferencesRepository.userPreferences
-        .map { preferences ->
-            MainState(
-                isLoading = false,
-                darkThemeConfig = preferences.darkThemeConfig,
-                colorConfig = preferences.colorConfig
-            )
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = MainState()
+    val state: StateFlow<MainState> = combine(
+        preferencesRepository.userPreferences,
+        remoteConfigRepository.fetchAndActivate()
+    ) { preferences, _ ->
+        MainState(
+            isLoading = false,
+            darkThemeConfig = preferences.darkThemeConfig,
+            colorConfig = preferences.colorConfig
         )
+    }.catch {
+        emit(MainState(isLoading = false))
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = MainState()
+    )
 }

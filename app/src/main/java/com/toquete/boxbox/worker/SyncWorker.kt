@@ -9,9 +9,11 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import com.toquete.boxbox.domain.repository.SyncRepository
+import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.DayOfWeek
 import timber.log.Timber
@@ -28,13 +30,15 @@ class SyncWorker @AssistedInject constructor(
     @Assisted workerParameters: WorkerParameters,
     private val syncRepository: SyncRepository,
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
+    private val userPreferencesRepository: UserPreferencesRepository,
     @IoDispatcher private val dispatcher: CoroutineContext
 ) : CoroutineWorker(appContext, workerParameters) {
 
     override suspend fun doWork(): Result = withContext(dispatcher) {
         val dayOfWeek = getTodayLocalDateUseCase().dayOfWeek
+        val lastUpdatedDate = userPreferencesRepository.userPreferences.firstOrNull()?.lastUpdatedDateInMillis
 
-        if (!isDayOfWeekAllowed(dayOfWeek)) {
+        if (!isDayOfWeekAllowed(dayOfWeek) && lastUpdatedDate != null) {
             Result.success()
         } else {
             sync()
