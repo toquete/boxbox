@@ -7,6 +7,7 @@ import com.toquete.boxbox.core.common.STATE_FLOW_STOP_TIMEOUT
 import com.toquete.boxbox.core.common.util.NetworkMonitor
 import com.toquete.boxbox.core.common.util.SyncMonitor
 import com.toquete.boxbox.core.ui.custom.SnackbarManager
+import com.toquete.boxbox.domain.repository.RemoteConfigRepository
 import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.feature.home.R
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +25,8 @@ import javax.inject.Inject
 internal class HomeViewModel @Inject constructor(
     syncMonitor: SyncMonitor,
     networkMonitor: NetworkMonitor,
-    private val syncRepository: SyncRepository
+    private val syncRepository: SyncRepository,
+    remoteConfigRepository: RemoteConfigRepository
 ) : ViewModel() {
 
     private val _isRefreshing = MutableStateFlow(false)
@@ -32,13 +34,15 @@ internal class HomeViewModel @Inject constructor(
         networkMonitor.isOnline,
         syncMonitor.isSyncing,
         syncMonitor.hasFailed,
-        _isRefreshing
-    ) { isOnline, isSyncing, hasFailed, isRefreshing ->
+        _isRefreshing,
+        remoteConfigRepository.remoteConfigs
+    ) { isOnline, isSyncing, hasFailed, isRefreshing, remoteConfigs ->
         HomeState(
             isOffline = !isOnline,
             isSyncing = isSyncing,
             hasFailed = hasFailed,
-            isRefreshing = isRefreshing
+            isRefreshing = isRefreshing,
+            isAdBannerVisible = remoteConfigs.isAdBannerVisible
         )
     }.onEach { state ->
         val message = when {

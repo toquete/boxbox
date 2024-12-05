@@ -77,7 +77,9 @@ class MainActivity : ComponentActivity() {
                 darkTheme = isDarkTheme,
                 dynamicColors = isDynamicColors
             ) {
-                MainScreen(navController = navController)
+                if (!uiState.isLoading) {
+                    MainScreen(navController = navController)
+                }
             }
         }
     }
