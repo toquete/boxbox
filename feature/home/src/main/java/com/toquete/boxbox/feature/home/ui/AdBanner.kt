@@ -1,3 +1,5 @@
+@file:Generated
+
 package com.toquete.boxbox.feature.home.ui
 
 import android.content.Context
@@ -21,6 +23,7 @@ import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.toquete.boxbox.core.common.annotation.Generated
 import com.toquete.boxbox.feature.home.R
 
 @Composable
@@ -46,7 +49,9 @@ fun AdBanner(modifier: Modifier = Modifier) {
 
     AndroidView(
         modifier = modifier.wrapContentSize(),
-        factory = { FrameLayout(it).also { parent = it } },
+        factory = { ctx ->
+            FrameLayout(ctx).also { parent = it }
+        },
         update = { layout ->
             disposeLayout(adView, layout)
             adView?.let { layout.addView(it) }
