@@ -14,6 +14,6 @@ class FakeUserPreferencesRepository : UserPreferencesRepository {
         get() = flowOf(preferences)
 
     override suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig) = Unit
-
     override suspend fun setColorConfig(colorConfig: ColorConfig) = Unit
+    override suspend fun setLastUpdatedDateInMillis(date: Long) = Unit
 }

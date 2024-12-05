@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
-import com.toquete.boxbox.core.model.UserPreferences
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.supportsDynamicTheming
@@ -62,57 +62,64 @@ internal fun SettingsContent(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.settings)) },
         text = {
-            when (state) {
-                SettingsState.Loading -> Text(stringResource(R.string.settings_loading))
-                is SettingsState.Success -> {
-                    Column {
+            if (state.isLoading) {
+                Text(stringResource(R.string.settings_loading))
+            } else {
+                Column(modifier = Modifier.testTag("xablau")) {
+                    Column(
+                        modifier = Modifier.selectableGroup(),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.settings_theme),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        SettingsRow(
+                            text = stringResource(R.string.settings_light),
+                            isSelected = state.darkThemeConfig == DarkThemeConfig.LIGHT,
+                            onClick = { onThemeOptionSelected(DarkThemeConfig.LIGHT) }
+                        )
+                        SettingsRow(
+                            text = stringResource(R.string.settings_dark),
+                            isSelected = state.darkThemeConfig == DarkThemeConfig.DARK,
+                            onClick = { onThemeOptionSelected(DarkThemeConfig.DARK) }
+                        )
+                        SettingsRow(
+                            text = stringResource(R.string.settings_follow_system),
+                            isSelected = state.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
+                            onClick = { onThemeOptionSelected(DarkThemeConfig.FOLLOW_SYSTEM) }
+                        )
+                    }
+                    if (supportsDynamicTheming()) {
                         Column(
-                            modifier = Modifier.selectableGroup(),
+                            modifier = Modifier
+                                .padding(top = 16.dp)
+                                .selectableGroup(),
                             verticalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
                             Text(
-                                text = stringResource(R.string.settings_theme),
+                                text = stringResource(R.string.settings_color),
                                 style = MaterialTheme.typography.titleMedium
                             )
                             SettingsRow(
-                                text = stringResource(R.string.settings_light),
-                                isSelected = state.data.darkThemeConfig == DarkThemeConfig.LIGHT,
-                                onClick = { onThemeOptionSelected(DarkThemeConfig.LIGHT) }
+                                text = stringResource(R.string.settings_default),
+                                isSelected = state.colorConfig == ColorConfig.DEFAULT,
+                                onClick = { onColorOptionSelected(ColorConfig.DEFAULT) }
                             )
                             SettingsRow(
-                                text = stringResource(R.string.settings_dark),
-                                isSelected = state.data.darkThemeConfig == DarkThemeConfig.DARK,
-                                onClick = { onThemeOptionSelected(DarkThemeConfig.DARK) }
-                            )
-                            SettingsRow(
-                                text = stringResource(R.string.settings_follow_system),
-                                isSelected = state.data.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
-                                onClick = { onThemeOptionSelected(DarkThemeConfig.FOLLOW_SYSTEM) }
+                                text = stringResource(R.string.settings_dynamic),
+                                isSelected = state.colorConfig == ColorConfig.DYNAMIC,
+                                onClick = { onColorOptionSelected(ColorConfig.DYNAMIC) }
                             )
                         }
-                        if (supportsDynamicTheming()) {
-                            Column(
-                                modifier = Modifier
-                                    .padding(top = 16.dp)
-                                    .selectableGroup(),
-                                verticalArrangement = Arrangement.spacedBy(16.dp)
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.settings_color),
-                                    style = MaterialTheme.typography.titleMedium
-                                )
-                                SettingsRow(
-                                    text = stringResource(R.string.settings_default),
-                                    isSelected = state.data.colorConfig == ColorConfig.DEFAULT,
-                                    onClick = { onColorOptionSelected(ColorConfig.DEFAULT) }
-                                )
-                                SettingsRow(
-                                    text = stringResource(R.string.settings_dynamic),
-                                    isSelected = state.data.colorConfig == ColorConfig.DYNAMIC,
-                                    onClick = { onColorOptionSelected(ColorConfig.DYNAMIC) }
-                                )
-                            }
-                        }
+                    }
+                    state.lastUpdatedTime?.let { time ->
+                        Spacer(modifier = Modifier.padding(top = 24.dp))
+                        Text(
+                            modifier = Modifier.testTag("last_updated_time"),
+                            text = stringResource(R.string.settings_last_updated_on, time),
+                            style = MaterialTheme.typography.bodySmall
+                        )
                     }
                 }
             }
@@ -160,12 +167,9 @@ private fun SettingsRow(
 internal fun SettingsContentPreview() {
     BoxBoxTheme {
         SettingsContent(
-            state = SettingsState.Success(
-                UserPreferences(
-                    darkThemeConfig = DarkThemeConfig.LIGHT,
-                    colorConfig = ColorConfig.DEFAULT,
-                    lastUpdatedDateInMillis = null
-                )
+            state = SettingsState(
+                isLoading = false,
+                lastUpdatedTime = "2021-09-01 12:00:00"
             )
         )
     }

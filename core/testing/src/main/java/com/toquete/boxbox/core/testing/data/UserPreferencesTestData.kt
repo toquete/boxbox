@@ -7,5 +7,5 @@ import com.toquete.boxbox.core.model.UserPreferences
 val preferences = UserPreferences(
     darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
     colorConfig = ColorConfig.DEFAULT,
-    lastUpdatedDateInMillis = null
+    lastUpdatedDateInMillis = 1704121200000
 )
