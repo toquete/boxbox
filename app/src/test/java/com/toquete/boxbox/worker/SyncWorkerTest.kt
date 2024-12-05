@@ -13,7 +13,11 @@ import androidx.work.WorkerParameters
 import androidx.work.testing.SynchronousExecutor
 import androidx.work.testing.TestListenableWorkerBuilder
 import androidx.work.testing.WorkManagerTestInitHelper
+import com.toquete.boxbox.core.model.ColorConfig
+import com.toquete.boxbox.core.model.DarkThemeConfig
+import com.toquete.boxbox.core.model.UserPreferences
 import com.toquete.boxbox.domain.repository.SyncRepository
+import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -25,6 +29,7 @@ import io.mockk.runs
 import io.mockk.unmockkObject
 import io.mockk.verify
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
@@ -41,8 +46,14 @@ class SyncWorkerTest {
 
     private val syncRepository: SyncRepository = mockk()
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase = mockk()
+    private val userPreferencesRepository: UserPreferencesRepository = mockk()
     private val dispatcher: CoroutineDispatcher = UnconfinedTestDispatcher()
-    private val testWorkerFactory = TestWorkerFactory(syncRepository, getTodayLocalDateUseCase, dispatcher)
+    private val testWorkerFactory = TestWorkerFactory(
+        syncRepository,
+        getTodayLocalDateUseCase,
+        userPreferencesRepository,
+        dispatcher
+    )
     private lateinit var context: Context
 
     @Before
@@ -75,15 +86,23 @@ class SyncWorkerTest {
             monthNumber = 12,
             dayOfMonth = 1 // Sunday
         )
+        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
+            UserPreferences(
+                darkThemeConfig = DarkThemeConfig.DARK,
+                colorConfig = ColorConfig.DEFAULT,
+                lastUpdatedDateInMillis = 1000
+            )
+        )
 
         runTest {
             val result = worker.doWork()
             assertEquals(ListenableWorker.Result.success(), result)
+            coVerify { syncRepository.sync() }
         }
     }
 
     @Test
-    fun `doWork returns success when day of week is not Sunday or Monday`() {
+    fun `doWork returns success when day of week is not Sunday or Monday and last updated data is not null`() {
         val worker = TestListenableWorkerBuilder<SyncWorker>(context)
             .setWorkerFactory(testWorkerFactory)
             .build()
@@ -94,11 +113,45 @@ class SyncWorkerTest {
             monthNumber = 12,
             dayOfMonth = 3 // Tuesday
         )
+        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
+            UserPreferences(
+                darkThemeConfig = DarkThemeConfig.DARK,
+                colorConfig = ColorConfig.DEFAULT,
+                lastUpdatedDateInMillis = 1000
+            )
+        )
 
         runTest {
             val result = worker.doWork()
             assertEquals(ListenableWorker.Result.success(), result)
             coVerify(inverse = true) { syncRepository.sync() }
+        }
+    }
+
+    @Test
+    fun `doWork returns success when day of week is not Sunday or Monday and last updated data is null`() {
+        val worker = TestListenableWorkerBuilder<SyncWorker>(context)
+            .setWorkerFactory(testWorkerFactory)
+            .build()
+
+        coEvery { syncRepository.sync() } just runs
+        every { getTodayLocalDateUseCase() } returns LocalDate(
+            year = 2024,
+            monthNumber = 12,
+            dayOfMonth = 3 // Tuesday
+        )
+        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
+            UserPreferences(
+                darkThemeConfig = DarkThemeConfig.DARK,
+                colorConfig = ColorConfig.DEFAULT,
+                lastUpdatedDateInMillis = null
+            )
+        )
+
+        runTest {
+            val result = worker.doWork()
+            assertEquals(ListenableWorker.Result.success(), result)
+            coVerify { syncRepository.sync() }
         }
     }
 
@@ -114,6 +167,13 @@ class SyncWorkerTest {
             year = 2024,
             monthNumber = 12,
             dayOfMonth = 2 // Monday
+        )
+        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
+            UserPreferences(
+                darkThemeConfig = DarkThemeConfig.DARK,
+                colorConfig = ColorConfig.DEFAULT,
+                lastUpdatedDateInMillis = 1000
+            )
         )
         mockkObject(Timber)
 
@@ -138,6 +198,13 @@ class SyncWorkerTest {
 
         coEvery { syncRepository.sync() } just runs
         every { getTodayLocalDateUseCase() } returns LocalDate(year = 2024, monthNumber = 12, dayOfMonth = 1)
+        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
+            UserPreferences(
+                darkThemeConfig = DarkThemeConfig.DARK,
+                colorConfig = ColorConfig.DEFAULT,
+                lastUpdatedDateInMillis = 1000
+            )
+        )
         testDriver?.setAllConstraintsMet(request.id)
         testDriver?.setPeriodDelayMet(request.id)
 
@@ -148,6 +215,7 @@ class SyncWorkerTest {
     private class TestWorkerFactory(
         private val syncRepository: SyncRepository,
         private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
+        private val userPreferencesRepository: UserPreferencesRepository,
         private val dispatcher: CoroutineDispatcher
     ) : WorkerFactory() {
         override fun createWorker(
@@ -160,6 +228,7 @@ class SyncWorkerTest {
                 workerParameters = workerParameters,
                 syncRepository = syncRepository,
                 getTodayLocalDateUseCase = getTodayLocalDateUseCase,
+                userPreferencesRepository = userPreferencesRepository,
                 dispatcher = dispatcher
             )
         }

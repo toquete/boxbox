@@ -8,12 +8,13 @@ import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.model.UserPreferences
 import com.toquete.boxbox.core.preferences.PreferencesKeys.COLOR_CONFIG
 import com.toquete.boxbox.core.preferences.PreferencesKeys.DARK_THEME_CONFIG
+import com.toquete.boxbox.core.preferences.PreferencesKeys.LAST_UPDATED_DATE_IN_MILLIS
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-internal class DefaultUserPreferencesRepository @Inject constructor(
+internal class DataStoreUserPreferencesRepository @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) : UserPreferencesRepository {
 
@@ -27,7 +28,8 @@ internal class DefaultUserPreferencesRepository @Inject constructor(
 
         UserPreferences(
             darkThemeConfig = darkThemeConfig,
-            colorConfig = colorConfig
+            colorConfig = colorConfig,
+            lastUpdatedDateInMillis = preferences[LAST_UPDATED_DATE_IN_MILLIS]
         )
     }
 
@@ -40,6 +42,12 @@ internal class DefaultUserPreferencesRepository @Inject constructor(
     override suspend fun setColorConfig(colorConfig: ColorConfig) {
         dataStore.edit { preferences ->
             preferences[COLOR_CONFIG] = colorConfig.ordinal
+        }
+    }
+
+    override suspend fun setLastUpdatedDateInMillis(date: Long) {
+        dataStore.edit { preferences ->
+            preferences[LAST_UPDATED_DATE_IN_MILLIS] = date
         }
     }
 }
