@@ -12,6 +12,11 @@ class AndroidFirebaseConventionPlugin : Plugin<Project> {
             dependencies {
                 add("implementation", platform(libs.findLibrary("firebase.bom").get()))
                 add("implementation", libs.findLibrary("firebase.analytics").get())
+                add("implementation", libs.findLibrary("firebase.remote.config").get())
+                add("implementation", libs.findLibrary("firebase.appcheck").get())
+                add("implementation", libs.findLibrary("firebase.appcheck.ktx").get())
+                add("implementation", libs.findLibrary("firebase.appcheck.debug").get())
+                add("implementation", libs.findLibrary("firebase.crashlytics").get())
             }
         }
     }
