@@ -23,14 +23,15 @@ import com.google.firebase.remoteconfig.ConfigUpdateListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.firebase.remoteconfig.remoteConfig
+import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import com.toquete.boxbox.worker.SyncWorker
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 private const val APP_CHECK_DEBUG_STORE = "com.google.firebase.appcheck.debug.store.%s"
 private const val APP_CHECK_DEBUG_TOKEN_KEY = "com.google.firebase.appcheck.debug.DEBUG_SECRET"
@@ -50,6 +51,10 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
 
     @Inject
     lateinit var appCheckProviderFactory: AppCheckProviderFactory
+
+    @Inject
+    @IoDispatcher
+    lateinit var ioDispatcher: CoroutineContext
 
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
@@ -113,7 +118,7 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
     }
 
     private fun setupMobileAds() {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(ioDispatcher).launch {
             MobileAds.initialize(this@BoxBoxApplication)
         }
     }
