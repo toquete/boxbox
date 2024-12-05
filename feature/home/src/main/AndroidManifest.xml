@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application>
+    <application
+        android:usesCleartextTraffic="false"
+        android:allowBackup="false">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6303957371601323~7187753748" />
