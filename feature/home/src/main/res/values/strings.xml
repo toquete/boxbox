@@ -6,4 +6,5 @@
     <string name="home_not_connected">You are not connected to the internet!</string>
     <string name="home_fail_message">Failed to update data from server!</string>
     <string name="home_fail_refresh">Failed to refresh data from server!</string>
+    <string name="home_ad_unit_id">ca-app-pub-3940256099942544/9214589741</string>
 </resources>
