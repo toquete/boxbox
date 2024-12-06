@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
-        versionCode = 14
+        versionCode = 15
         versionName = projectVersion
 
         buildConfigField(
