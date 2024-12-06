@@ -10,19 +10,34 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Instant
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.format
+import kotlinx.datetime.format.char
+import kotlinx.datetime.toLocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(
-    private val preferencesRepository: UserPreferencesRepository
+internal class SettingsViewModel @Inject constructor(
+    private val preferencesRepository: UserPreferencesRepository,
+    private val timeZone: TimeZone
 ) : ViewModel() {
 
     val state = preferencesRepository.userPreferences
-        .map { SettingsState.Success(it) }
+        .map {
+            SettingsState(
+                isLoading = false,
+                darkThemeConfig = it.darkThemeConfig,
+                colorConfig = it.colorConfig,
+                lastUpdatedTime = getLastUpdatedTime(it.lastUpdatedDateInMillis)
+            )
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = SettingsState.Loading
+            initialValue = SettingsState()
         )
 
     fun onThemeSettingsItemClick(darkThemeConfig: DarkThemeConfig) {
@@ -34,6 +49,24 @@ class SettingsViewModel @Inject constructor(
     fun onColorSettingsItemClick(colorConfig: ColorConfig) {
         viewModelScope.launch {
             preferencesRepository.setColorConfig(colorConfig)
+        }
+    }
+
+    private fun getLastUpdatedTime(timeInMillis: Long?): String? {
+        return timeInMillis?.let {
+            val format = LocalDateTime.Format {
+                date(LocalDate.Formats.ISO)
+                char(' ')
+                hour()
+                char(':')
+                minute()
+                char(':')
+                second()
+            }
+
+            Instant.fromEpochMilliseconds(it)
+                .toLocalDateTime(timeZone)
+                .format(format)
         }
     }
 }

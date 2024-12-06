@@ -9,4 +9,5 @@
     <string name="settings_color">Color</string>
     <string name="settings_default">Default</string>
     <string name="settings_dynamic">Dynamic</string>
+    <string name="settings_last_updated_on">Last updated on %s</string>
 </resources>

@@ -11,4 +11,5 @@ interface UserPreferencesRepository {
 
     suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig)
     suspend fun setColorConfig(colorConfig: ColorConfig)
+    suspend fun setLastUpdatedDateInMillis(date: Long)
 }

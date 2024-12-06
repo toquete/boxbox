@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.TimeZone
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -25,6 +26,7 @@ class SettingsViewModelTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     private val userPreferencesRepository: UserPreferencesRepository = mockk(relaxed = true)
+    private val timeZone = TimeZone.of("America/Sao_Paulo")
 
     private lateinit var viewModel: SettingsViewModel
 
@@ -39,10 +41,45 @@ class SettingsViewModelTest {
             viewModel.state.collect()
         }
 
-        assertEquals(SettingsState.Loading, viewModel.state.value)
+        assertEquals(SettingsState(), viewModel.state.value)
 
         userPreferencesFlow.emit(preferences)
-        assertEquals(SettingsState.Success(preferences), viewModel.state.value)
+        assertEquals(
+            SettingsState(
+                isLoading = false,
+                darkThemeConfig = preferences.darkThemeConfig,
+                colorConfig = preferences.colorConfig,
+                lastUpdatedTime = "2024-01-01 12:00:00"
+            ),
+            viewModel.state.value
+        )
+
+        backgroundScope.cancel()
+    }
+
+    @Test
+    fun `init should send null time when time is null`() = runTest {
+        val userPreferencesFlow = MutableSharedFlow<UserPreferences>()
+        coEvery { userPreferencesRepository.userPreferences } returns userPreferencesFlow
+
+        setupViewModel()
+
+        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
+            viewModel.state.collect()
+        }
+
+        assertEquals(SettingsState(), viewModel.state.value)
+
+        userPreferencesFlow.emit(preferences.copy(lastUpdatedDateInMillis = null))
+        assertEquals(
+            SettingsState(
+                isLoading = false,
+                darkThemeConfig = preferences.darkThemeConfig,
+                colorConfig = preferences.colorConfig,
+                lastUpdatedTime = null
+            ),
+            viewModel.state.value
+        )
 
         backgroundScope.cancel()
     }
@@ -68,6 +105,6 @@ class SettingsViewModelTest {
     }
 
     private fun setupViewModel() {
-        viewModel = SettingsViewModel(userPreferencesRepository)
+        viewModel = SettingsViewModel(userPreferencesRepository, timeZone)
     }
 }

@@ -118,12 +118,9 @@ dependencies {
     implementation(libs.splashscreen)
     implementation(libs.work.runtime)
     implementation(libs.coil)
-    implementation(libs.firebase.appcheck)
-    implementation(libs.firebase.appcheck.ktx)
-    implementation(libs.firebase.appcheck.debug)
     implementation(libs.hilt.work)
-    implementation(libs.firebase.crashlytics)
     ksp(libs.hilt.work.compiler)
+    implementation(libs.play.services.ads)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
