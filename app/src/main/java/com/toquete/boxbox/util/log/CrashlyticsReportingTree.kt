@@ -12,6 +12,8 @@ class CrashlyticsReportingTree @Inject constructor(
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
         if (priority == Log.ERROR && t != null) {
             crashlytics.recordException(t)
+        } else {
+            crashlytics.log(message)
         }
     }
 }
