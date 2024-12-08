@@ -23,7 +23,7 @@ tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
 
-val projectVersion by extra("1.3.1")
+val projectVersion by extra("1.3.2")
 
 val reportMerge by tasks.registering(ReportMergeTask::class) {
     output.set(rootProject.layout.buildDirectory.file("reports/detekt-results.xml"))
