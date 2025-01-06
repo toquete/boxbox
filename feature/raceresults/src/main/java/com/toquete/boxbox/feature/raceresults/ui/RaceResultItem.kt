@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.toquete.boxbox.core.model.Constructor
@@ -24,7 +25,8 @@ internal fun RaceResultItem(
     Row(
         modifier = modifier
             .wrapContentWidth(unbounded = true)
-            .padding(all = 8.dp)
+            .padding(all = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             modifier = Modifier
