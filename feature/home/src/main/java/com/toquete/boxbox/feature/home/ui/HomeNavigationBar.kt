@@ -1,7 +1,9 @@
 package com.toquete.boxbox.feature.home.ui
 
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.BottomAppBarScrollBehavior
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -12,9 +14,13 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.toquete.boxbox.feature.home.navigation.HomeDestination
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun HomeNavigationBar(homeViewState: HomeViewState) {
-    NavigationBar {
+internal fun HomeNavigationBar(
+    homeViewState: HomeViewState,
+    scrollBehavior: BottomAppBarScrollBehavior
+) {
+    BottomAppBar(scrollBehavior = scrollBehavior) {
         homeViewState.homeDestinations.forEach { destination ->
             val isSelected = homeViewState.currentDestination.isTopLevelDestinationInHierarchy(destination)
             NavigationBarItem(

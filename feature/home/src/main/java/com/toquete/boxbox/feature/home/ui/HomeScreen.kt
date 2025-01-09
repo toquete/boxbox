@@ -5,14 +5,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -45,16 +48,25 @@ internal fun HomeScreen(
     builder: NavGraphBuilder.() -> Unit = { }
 ) {
     val homeViewState = rememberHomeViewState()
+    val topAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val bottomAppBarScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
     Scaffold(
+        modifier = Modifier
+            .nestedScroll(bottomAppBarScrollBehavior.nestedScrollConnection)
+            .nestedScroll(topAppBarScrollBehavior.nestedScrollConnection),
         topBar = {
             HomeTopAppBar(
                 homeViewState = homeViewState,
                 isOffline = state.isOffline,
+                scrollBehavior = topAppBarScrollBehavior,
                 onSettingsButtonClick = onSettingsButtonClick
             )
         },
         bottomBar = {
-            HomeNavigationBar(homeViewState = homeViewState)
+            HomeNavigationBar(
+                homeViewState = homeViewState,
+                scrollBehavior = bottomAppBarScrollBehavior
+            )
         },
         snackbarHost = { SnackbarHost(hostState = homeViewState.snackbarHostState) }
     ) { paddingValues ->
