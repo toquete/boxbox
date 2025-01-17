@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
             val isDynamicColors = shouldUseDynamicColors(uiState)
             val navController = rememberNavController()
 
-            DisposableEffect(isDarkTheme) {
+            LaunchedEffect(isDarkTheme) {
                 enableEdgeToEdge(
                     statusBarStyle = SystemBarStyle.auto(
                         Color.TRANSPARENT,
@@ -70,7 +70,6 @@ class MainActivity : ComponentActivity() {
                         DefaultDarkScrim
                     ) { isDarkTheme }
                 )
-                onDispose { }
             }
 
             BoxBoxTheme(
