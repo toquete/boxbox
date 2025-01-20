@@ -10,6 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,6 +31,9 @@ internal fun HomeTopAppBar(
     val title = homeViewState.currentHomeDestination?.titleTextId
     CenterAlignedTopAppBar(
         scrollBehavior = scrollBehavior,
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            scrolledContainerColor = MaterialTheme.colorScheme.surface
+        ),
         title = {
             Text(
                 modifier = Modifier.testTag("Home AppBar Title"),
