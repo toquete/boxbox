@@ -22,4 +22,19 @@ class DefaultConstructorStandingsRemoteDataSourceTest {
 
         assertContentEquals(constructorStandingsResponse, result)
     }
+
+    @Test
+    fun `getConstructorStandings should return empty list when standings list is empty`() = runTest {
+        coEvery { service.getConstructorStandings() } returns constructorStandingsWrapper.copy(
+            data = constructorStandingsWrapper.data.copy(
+                standingTable = constructorStandingsWrapper.data.standingTable.copy(
+                    standingsLists = emptyList()
+                )
+            )
+        )
+
+        val result = dataSource.getConstructorStandings()
+
+        assertContentEquals(emptyList(), result)
+    }
 }
