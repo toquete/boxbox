@@ -10,7 +10,7 @@ data class RaceResponse(
     @SerialName("round")
     val round: String,
     @SerialName("url")
-    val url: String,
+    val url: String?,
     @SerialName("raceName")
     val raceName: String,
     @SerialName("Circuit")

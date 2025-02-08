@@ -7,7 +7,7 @@ import androidx.room.Entity
 data class RaceEntity(
     val season: String,
     val round: Int,
-    val raceUrl: String,
+    val raceUrl: String?,
     val raceName: String,
     val date: String,
     val time: String?,
