@@ -13,7 +13,8 @@ internal class DefaultDriverStandingsRemoteDataSource @Inject constructor(
             .data
             .standingTable
             .standingsLists
-            .first()
-            .driverStandings
+            .firstOrNull()
+            ?.driverStandings
+            .orEmpty()
     }
 }

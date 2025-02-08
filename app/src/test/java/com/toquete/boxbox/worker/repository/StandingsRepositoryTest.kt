@@ -11,7 +11,7 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
-class DefaultStandingsRepositoryTest {
+class StandingsRepositoryTest {
 
     private val driverStandingsRepository: DriverStandingsRepository = mockk(relaxed = true)
     private val constructorStandingsRepository: ConstructorStandingsRepository = mockk(relaxed = true)

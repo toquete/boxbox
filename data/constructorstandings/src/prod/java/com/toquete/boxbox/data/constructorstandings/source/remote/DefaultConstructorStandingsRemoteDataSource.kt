@@ -13,7 +13,8 @@ internal class DefaultConstructorStandingsRemoteDataSource @Inject constructor(
             .data
             .standingTable
             .standingsLists
-            .first()
-            .constructorStandings
+            .firstOrNull()
+            ?.constructorStandings
+            .orEmpty()
     }
 }
