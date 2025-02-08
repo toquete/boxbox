@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,6 +67,7 @@ internal class HomeViewModel @Inject constructor(
             runCatching {
                 syncRepository.sync()
             }.onFailure {
+                Timber.e(it)
                 SnackbarManager.showMessage(
                     messageTextId = R.string.home_fail_refresh,
                     duration = SnackbarDuration.Long,
