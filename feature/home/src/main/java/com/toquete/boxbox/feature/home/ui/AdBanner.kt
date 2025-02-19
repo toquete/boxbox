@@ -30,7 +30,10 @@ import com.toquete.boxbox.feature.home.R
 import timber.log.Timber
 
 @Composable
-fun AdBanner(modifier: Modifier = Modifier) {
+fun AdBanner(
+    modifier: Modifier = Modifier,
+    onAdLoaded: () -> Unit = {}
+) {
     val context = LocalContext.current
     val isPreviewMode = LocalInspectionMode.current
     val deviceWidth = LocalConfiguration.current.screenWidthDp
@@ -39,7 +42,7 @@ fun AdBanner(modifier: Modifier = Modifier) {
 
     LaunchedEffect(context) {
         adView?.destroy()
-        adView = getAdView(context, deviceWidth, isPreviewMode)
+        adView = getAdView(context, deviceWidth, isPreviewMode, onAdLoaded)
     }
 
     if (isPreviewMode) {
@@ -73,7 +76,12 @@ fun AdBanner(modifier: Modifier = Modifier) {
     }
 }
 
-private fun getAdView(context: Context, width: Int, isPreviewMode: Boolean): AdView? {
+private fun getAdView(
+    context: Context,
+    width: Int,
+    isPreviewMode: Boolean,
+    onAdLoaded: () -> Unit = {}
+): AdView? {
     if (isPreviewMode) {
         return null
     }
@@ -84,6 +92,11 @@ private fun getAdView(context: Context, width: Int, isPreviewMode: Boolean): AdV
         adListener = object : AdListener() {
             override fun onAdFailedToLoad(error: LoadAdError) {
                 Timber.w("Ad failed to load: $error")
+            }
+
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                onAdLoaded()
             }
         }
         loadAd(AdRequest.Builder().build())
