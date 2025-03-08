@@ -1,12 +1,10 @@
 package com.toquete.boxbox.feature.raceresults.ui
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -32,11 +30,11 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.raceresults.model.RaceResultsTab
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun RaceAndSprintResult(
     raceResults: List<RaceResult>,
-    sprintResults: List<RaceResult>
+    sprintResults: List<RaceResult>,
+    modifier: Modifier = Modifier
 ) {
     var selectedTab by remember { mutableStateOf(RaceResultsTab.RACE) }
     val pagerState = rememberPagerState(
@@ -53,7 +51,7 @@ fun RaceAndSprintResult(
 
     Column {
         SingleChoiceSegmentedButtonRow(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
         ) {

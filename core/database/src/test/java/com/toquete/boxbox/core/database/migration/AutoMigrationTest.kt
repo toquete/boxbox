@@ -79,4 +79,14 @@ class AutoMigrationTest {
 
         helper.runMigrationsAndValidate(testDb, 10, true)
     }
+
+    @Test
+    @Throws(IOException::class)
+    fun migrateFrom10To11() {
+        helper.createDatabase(testDb, 10).apply {
+            close()
+        }
+
+        helper.runMigrationsAndValidate(testDb, 11, true)
+    }
 }

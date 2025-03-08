@@ -20,9 +20,12 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun RaceResultTable(list: List<RaceResult>) {
+fun RaceResultTable(
+    list: List<RaceResult>,
+    modifier: Modifier = Modifier
+) {
     LazyColumn(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .horizontalScroll(rememberScrollState()),
     ) {

@@ -22,4 +22,19 @@ class DefaultDriverStandingsRemoteDataSourceTest {
 
         assertContentEquals(driverStandingsResponse, result)
     }
+
+    @Test
+    fun `getFullDriverStandings should return empty list when standings list is empty`() = runTest {
+        coEvery { service.getDriverStandings() } returns driverStandingsWrapper.copy(
+            data = driverStandingsWrapper.data.copy(
+                standingTable = driverStandingsWrapper.data.standingTable.copy(
+                    standingsLists = emptyList()
+                )
+            )
+        )
+
+        val result = dataSource.getDriverStandings()
+
+        assertContentEquals(emptyList(), result)
+    }
 }

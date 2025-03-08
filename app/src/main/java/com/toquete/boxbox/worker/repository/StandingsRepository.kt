@@ -8,7 +8,11 @@ import com.toquete.boxbox.domain.repository.SprintResultRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
+
+private const val DELAY = 1
 
 class StandingsRepository @Inject constructor(
     private val driverStandingsRepository: DriverStandingsRepository,
@@ -21,11 +25,16 @@ class StandingsRepository @Inject constructor(
     suspend fun sync() {
         coroutineScope {
             awaitAll(
-                async { driverStandingsRepository.sync() },
-                async { constructorStandingsRepository.sync() },
+                async {
+                    driverStandingsRepository.sync()
+                    delay(DELAY.seconds)
+                    constructorStandingsRepository.sync()
+                    delay(DELAY.seconds)
+                    raceResultRepository.sync()
+                    delay(DELAY.seconds)
+                    sprintResultRepository.sync()
+                },
                 async { constructorColorRepository.sync() },
-                async { raceResultRepository.sync() },
-                async { sprintResultRepository.sync() }
             )
         }
     }

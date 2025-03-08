@@ -1,10 +1,11 @@
 package com.toquete.boxbox.feature.raceresults.ui
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -12,6 +13,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,47 +49,51 @@ internal fun RaceResultScreen(
     state: RaceResultsState,
     onNavigateUp: () -> Unit = { }
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .systemBarsPadding()
-    ) {
-        CenterAlignedTopAppBar(
-            title = {
-                Text(
-                    text = state.raceName,
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        fontFamily = FormulaOne,
-                        fontWeight = FontWeight.Bold
+    Scaffold(
+        contentWindowInsets = WindowInsets.safeDrawing,
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(
+                        text = state.raceName,
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            fontFamily = FormulaOne,
+                            fontWeight = FontWeight.Bold
+                        )
                     )
-                )
-            },
-            navigationIcon = {
-                IconButton(
-                    modifier = Modifier.testTag("Back Button"),
-                    onClick = onNavigateUp
-                ) {
-                    Icon(
-                        modifier = Modifier.size(30.dp),
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = null
-                    )
+                },
+                navigationIcon = {
+                    IconButton(
+                        modifier = Modifier.testTag("Back Button"),
+                        onClick = onNavigateUp
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(30.dp),
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = null
+                        )
+                    }
                 }
-            }
-        )
-
+            )
+        }
+    ) { paddingValues ->
+        val modifier = Modifier.padding(paddingValues)
         when {
-            state.results.isEmpty() -> EmptyState()
-            state.sprintResults.isNotEmpty() -> RaceAndSprintResult(state.results, state.sprintResults)
-            else -> RaceResultTable(state.results)
+            state.results.isEmpty() -> EmptyState(modifier = modifier)
+            state.sprintResults.isNotEmpty() -> RaceAndSprintResult(
+                modifier = modifier,
+                raceResults = state.results,
+                sprintResults = state.sprintResults
+            )
+            else -> RaceResultTable(modifier = modifier, list = state.results)
         }
     }
 }
 
 @Composable
-internal fun EmptyState() {
+internal fun EmptyState(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Text(
