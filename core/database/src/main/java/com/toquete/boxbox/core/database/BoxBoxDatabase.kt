@@ -31,7 +31,7 @@ import com.toquete.boxbox.core.database.model.RaceResultEntity
 import com.toquete.boxbox.core.database.model.SprintRaceResultEntity
 
 @Database(
-    version = 10,
+    version = 11,
     entities = [
         DriverStandingEntity::class,
         DriverEntity::class,
@@ -54,6 +54,7 @@ import com.toquete.boxbox.core.database.model.SprintRaceResultEntity
         AutoMigration(from = 4, to = 5),
         AutoMigration(from = 7, to = 8),
         AutoMigration(from = 9, to = 10),
+        AutoMigration(from = 10, to = 11)
     ]
 )
 @Suppress("TooManyFunctions")

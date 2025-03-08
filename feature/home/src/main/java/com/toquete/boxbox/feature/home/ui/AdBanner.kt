@@ -20,14 +20,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.LifecycleResumeEffect
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 import com.toquete.boxbox.core.common.annotation.Generated
 import com.toquete.boxbox.feature.home.R
+import timber.log.Timber
 
 @Composable
-fun AdBanner(modifier: Modifier = Modifier) {
+fun AdBanner(
+    modifier: Modifier = Modifier,
+    onAdLoaded: () -> Unit = {}
+) {
     val context = LocalContext.current
     val isPreviewMode = LocalInspectionMode.current
     val deviceWidth = LocalConfiguration.current.screenWidthDp
@@ -36,7 +42,7 @@ fun AdBanner(modifier: Modifier = Modifier) {
 
     LaunchedEffect(context) {
         adView?.destroy()
-        adView = getAdView(context, deviceWidth, isPreviewMode)
+        adView = getAdView(context, deviceWidth, isPreviewMode, onAdLoaded)
     }
 
     if (isPreviewMode) {
@@ -70,7 +76,12 @@ fun AdBanner(modifier: Modifier = Modifier) {
     }
 }
 
-private fun getAdView(context: Context, width: Int, isPreviewMode: Boolean): AdView? {
+private fun getAdView(
+    context: Context,
+    width: Int,
+    isPreviewMode: Boolean,
+    onAdLoaded: () -> Unit = {}
+): AdView? {
     if (isPreviewMode) {
         return null
     }
@@ -78,6 +89,16 @@ private fun getAdView(context: Context, width: Int, isPreviewMode: Boolean): AdV
     return AdView(context).apply {
         adUnitId = resources.getString(R.string.home_ad_unit_id)
         setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, width))
+        adListener = object : AdListener() {
+            override fun onAdFailedToLoad(error: LoadAdError) {
+                Timber.w("Ad failed to load: $error")
+            }
+
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                onAdLoaded()
+            }
+        }
         loadAd(AdRequest.Builder().build())
     }
 }
