@@ -36,7 +36,11 @@ internal class DefaultDriverStandingsRepository @Inject constructor(
             val list = remoteDataSource.getDriverStandings()
             driverDao.upsertAll(list.map { it.driver.toEntity() })
             constructorDao.upsertAll(list.map { it.constructors.first().toEntity() })
-            driverStandingDao.deleteAndInsertAllInTransaction(list.map { it.toEntity() })
+            driverStandingDao.deleteAndInsertAllInTransaction(
+                list.mapIndexed { index, driverStanding ->
+                    driverStanding.toEntity(index)
+                }
+            )
         }
     }
 }

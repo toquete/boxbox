@@ -10,8 +10,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-private const val FIRST_ATTEMPT_COUNT = 1
-
 class WorkManagerSyncMonitor @Inject constructor(
     @ApplicationContext context: Context
 ) : SyncMonitor {
@@ -23,8 +21,6 @@ class WorkManagerSyncMonitor @Inject constructor(
         infos.any { it.state == WorkInfo.State.RUNNING }
     }
     override val hasFailed: Flow<Boolean> = workInfos.map { infos ->
-        infos.any {
-            it.state == WorkInfo.State.ENQUEUED && it.runAttemptCount > FIRST_ATTEMPT_COUNT
-        }
+        infos.any { it.state == WorkInfo.State.FAILED }
     }
 }

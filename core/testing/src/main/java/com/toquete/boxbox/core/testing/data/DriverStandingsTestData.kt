@@ -12,6 +12,7 @@ import com.toquete.boxbox.core.network.model.StandingsTableResponse
 val driverStandingsResponse = listOf(
     DriverStandingResponse(
         position = "1",
+        positionText = "1",
         points = "90",
         wins = "5",
         driver = DriverResponse(

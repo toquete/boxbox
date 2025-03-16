@@ -14,7 +14,9 @@ data class DriverStandingsResponse(
 @Serializable
 data class DriverStandingResponse(
     @SerialName("position")
-    val position: String,
+    val position: String?,
+    @SerialName("positionText")
+    val positionText: String,
     @SerialName("points")
     val points: String,
     @SerialName("wins")
