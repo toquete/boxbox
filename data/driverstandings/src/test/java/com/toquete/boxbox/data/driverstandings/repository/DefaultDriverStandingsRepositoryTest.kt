@@ -73,6 +73,16 @@ class DefaultDriverStandingsRepositoryTest {
         coVerify { driverStandingDao.deleteAndInsertAllInTransaction(driverStandingEntities) }
     }
 
+    @Test
+    fun `sync should insert driver standings with replaced position when field is null`() = runTest {
+        val list = listOf(driverStandingsResponse.first().copy(position = null))
+        coEvery { remoteDataSource.getDriverStandings() } returns list
+
+        repository.sync()
+
+        coVerify { driverStandingDao.deleteAndInsertAllInTransaction(driverStandingEntities) }
+    }
+
     @Test(expected = IOException::class)
     fun `sync should not call local data sources when remote data returns error`() = runTest {
         coEvery { remoteDataSource.getDriverStandings() } throws IOException()

@@ -7,9 +7,9 @@ import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.DriverStanding
 import com.toquete.boxbox.core.network.model.DriverStandingResponse
 
-internal fun DriverStandingResponse.toEntity(): DriverStandingEntity {
+internal fun DriverStandingResponse.toEntity(index: Int): DriverStandingEntity {
     return DriverStandingEntity(
-        position = position.toInt(),
+        position = position?.toInt() ?: (index + 1),
         points = points,
         wins = wins,
         driverId = driver.id,
