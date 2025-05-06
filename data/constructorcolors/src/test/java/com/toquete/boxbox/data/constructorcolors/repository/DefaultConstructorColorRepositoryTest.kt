@@ -7,7 +7,6 @@ import com.toquete.boxbox.data.constructorcolors.source.remote.ConstructorColorR
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -16,8 +15,7 @@ internal class DefaultConstructorColorRepositoryTest {
 
     private val remoteDataSource: ConstructorColorRemoteDataSource = mockk(relaxed = true)
     private val constructorColorDao: ConstructorColorDao = mockk(relaxed = true)
-    private val testDispatcher = UnconfinedTestDispatcher()
-    private val repository = DefaultConstructorColorRepository(remoteDataSource, constructorColorDao, testDispatcher)
+    private val repository = DefaultConstructorColorRepository(remoteDataSource, constructorColorDao)
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {

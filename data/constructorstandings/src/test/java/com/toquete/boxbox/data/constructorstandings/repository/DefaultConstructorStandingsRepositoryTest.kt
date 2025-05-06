@@ -12,7 +12,6 @@ import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -22,13 +21,8 @@ class DefaultConstructorStandingsRepositoryTest {
 
     private val remoteDataSource: ConstructorStandingsRemoteDataSource = mockk(relaxed = true)
     private val constructorStandingDao: ConstructorStandingDao = mockk(relaxed = true)
-    private val testDispatcher = UnconfinedTestDispatcher()
 
-    private val repository = DefaultConstructorStandingsRepository(
-        remoteDataSource,
-        constructorStandingDao,
-        testDispatcher
-    )
+    private val repository = DefaultConstructorStandingsRepository(remoteDataSource, constructorStandingDao)
 
     @Test
     fun `getFullConstructorStandings should return mapped list when called`() = runTest {

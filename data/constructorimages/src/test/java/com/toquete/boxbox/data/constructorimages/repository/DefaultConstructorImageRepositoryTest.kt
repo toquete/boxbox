@@ -7,7 +7,6 @@ import com.toquete.boxbox.data.constructorimages.source.remote.ConstructorImageR
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -16,8 +15,7 @@ class DefaultConstructorImageRepositoryTest {
 
     private val remoteDataSource: ConstructorImageRemoteDataSource = mockk(relaxed = true)
     private val constructorImageDao: ConstructorImageDao = mockk(relaxed = true)
-    private val testDispatcher = UnconfinedTestDispatcher()
-    private val repository = DefaultConstructorImageRepository(remoteDataSource, constructorImageDao, testDispatcher)
+    private val repository = DefaultConstructorImageRepository(remoteDataSource, constructorImageDao)
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {

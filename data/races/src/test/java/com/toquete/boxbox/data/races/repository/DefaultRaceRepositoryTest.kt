@@ -13,7 +13,6 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -24,12 +23,10 @@ class DefaultRaceRepositoryTest {
     private val remoteDataSource: RaceRemoteDataSource = mockk(relaxed = true)
     private val raceDao: RaceDao = mockk(relaxed = true)
     private val circuitDao: CircuitDao = mockk(relaxed = true)
-    private val testDispatcher = UnconfinedTestDispatcher()
     private val repository = DefaultRaceRepository(
         remoteDataSource,
         raceDao,
-        circuitDao,
-        testDispatcher
+        circuitDao
     )
 
     @Test
