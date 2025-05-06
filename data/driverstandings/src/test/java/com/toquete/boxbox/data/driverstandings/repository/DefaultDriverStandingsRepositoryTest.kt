@@ -15,7 +15,6 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -27,14 +26,12 @@ class DefaultDriverStandingsRepositoryTest {
     private val driverStandingDao = mockk<DriverStandingDao>(relaxed = true)
     private val driverDao = mockk<DriverDao>(relaxed = true)
     private val constructorDao = mockk<ConstructorDao>(relaxed = true)
-    private val testDispatcher = UnconfinedTestDispatcher()
 
     private val repository = DefaultDriverStandingsRepository(
         remoteDataSource,
         driverStandingDao,
         driverDao,
-        constructorDao,
-        testDispatcher
+        constructorDao
     )
 
     @Test

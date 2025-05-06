@@ -14,7 +14,6 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -24,8 +23,7 @@ class DefaultRaceResultRepositoryTest {
 
     private val remoteDataSource: RaceResultRemoteDataSource = mockk(relaxed = true)
     private val raceResultDao: RaceResultDao = mockk(relaxed = true)
-    private val testDispatcher = UnconfinedTestDispatcher()
-    private val repository = DefaultRaceResultRepository(remoteDataSource, raceResultDao, testDispatcher)
+    private val repository = DefaultRaceResultRepository(remoteDataSource, raceResultDao)
 
     @Test
     fun `getRaceResultsBySeason should return mapped list when called`() = runTest {

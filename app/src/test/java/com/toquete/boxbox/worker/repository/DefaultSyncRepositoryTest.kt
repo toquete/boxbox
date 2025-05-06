@@ -5,7 +5,6 @@ import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
@@ -13,7 +12,6 @@ import org.junit.Test
 
 class DefaultSyncRepositoryTest {
 
-    private val dispatcher = UnconfinedTestDispatcher()
     private val standingsRepository: StandingsRepository = mockk(relaxed = true)
     private val imagesRepository: ImagesRepository = mockk(relaxed = true)
     private val raceRepository: RaceRepository = mockk(relaxed = true)
@@ -27,12 +25,11 @@ class DefaultSyncRepositoryTest {
         imagesRepository,
         raceRepository,
         userPreferencesRepository,
-        clock,
-        dispatcher
+        clock
     )
 
     @Test
-    fun `sync should call all repositories`() = runTest(dispatcher) {
+    fun `sync should call all repositories`() = runTest {
         repository.sync()
 
         coVerify {
@@ -44,7 +41,7 @@ class DefaultSyncRepositoryTest {
     }
 
     @Test
-    fun `sync should not save last updated date if sync fails`() = runTest(dispatcher) {
+    fun `sync should not save last updated date if sync fails`() = runTest {
         coEvery { raceRepository.sync() } throws Exception()
 
         runCatching { repository.sync() }

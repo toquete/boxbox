@@ -28,9 +28,7 @@ import io.mockk.mockkObject
 import io.mockk.runs
 import io.mockk.unmockkObject
 import io.mockk.verify
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
 import org.junit.After
@@ -47,12 +45,10 @@ class SyncWorkerTest {
     private val syncRepository: SyncRepository = mockk()
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase = mockk()
     private val userPreferencesRepository: UserPreferencesRepository = mockk()
-    private val dispatcher: CoroutineDispatcher = UnconfinedTestDispatcher()
     private val testWorkerFactory = TestWorkerFactory(
         syncRepository,
         getTodayLocalDateUseCase,
-        userPreferencesRepository,
-        dispatcher
+        userPreferencesRepository
     )
     private lateinit var context: Context
 
@@ -215,8 +211,7 @@ class SyncWorkerTest {
     private class TestWorkerFactory(
         private val syncRepository: SyncRepository,
         private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
-        private val userPreferencesRepository: UserPreferencesRepository,
-        private val dispatcher: CoroutineDispatcher
+        private val userPreferencesRepository: UserPreferencesRepository
     ) : WorkerFactory() {
         override fun createWorker(
             appContext: Context,
@@ -228,8 +223,7 @@ class SyncWorkerTest {
                 workerParameters = workerParameters,
                 syncRepository = syncRepository,
                 getTodayLocalDateUseCase = getTodayLocalDateUseCase,
-                userPreferencesRepository = userPreferencesRepository,
-                dispatcher = dispatcher
+                userPreferencesRepository = userPreferencesRepository
             )
         }
     }

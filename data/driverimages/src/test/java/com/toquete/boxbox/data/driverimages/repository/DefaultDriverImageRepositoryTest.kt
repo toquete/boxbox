@@ -7,7 +7,6 @@ import com.toquete.boxbox.data.driverimages.source.remote.DriverImageRemoteDataS
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.IOException
@@ -16,8 +15,7 @@ class DefaultDriverImageRepositoryTest {
 
     private val remoteDataSource: DriverImageRemoteDataSource = mockk(relaxed = true)
     private val driverImageDao: DriverImageDao = mockk(relaxed = true)
-    private val testDispatcher = UnconfinedTestDispatcher()
-    private val repository = DefaultDriverImageRepository(remoteDataSource, driverImageDao, testDispatcher)
+    private val repository = DefaultDriverImageRepository(remoteDataSource, driverImageDao)
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
