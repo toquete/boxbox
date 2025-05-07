@@ -40,6 +40,7 @@ hilt-navigation = "1.2.0"
 sonarqube = "5.1.0.4882"
 robolectric = "4.14.1"
 play-services-ads = "24.2.0"
+koin-bom= "4.0.3"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -105,6 +106,12 @@ firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debu
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "play-services-ads" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-workmanager = { module = "io.insert-koin:koin-androidx-workmanager" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose" }
+koin-andoidx-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
