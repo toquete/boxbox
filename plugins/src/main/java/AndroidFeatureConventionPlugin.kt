@@ -13,6 +13,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("boxbox.android.library")
                 apply("boxbox.android.hilt")
+                apply("boxbox.android.koin")
             }
 
             extensions.configure<LibraryExtension> {

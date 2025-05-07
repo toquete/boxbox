@@ -6,6 +6,7 @@ plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
     id("boxbox.android.hilt")
+    id("boxbox.android.koin")
 }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -121,6 +122,7 @@ dependencies {
     implementation(libs.hilt.work)
     ksp(libs.hilt.work.compiler)
     implementation(libs.play.services.ads)
+    implementation(libs.koin.workmanager)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
