@@ -132,6 +132,7 @@ dependencies {
     testImplementation(libs.work.testing)
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.compose.navigation.test)
+    androidTestImplementation(libs.koin.test)
     androidTestImplementation(libs.hilt.android.testing)
     kspAndroidTest(libs.hilt.android.compiler)
 }
