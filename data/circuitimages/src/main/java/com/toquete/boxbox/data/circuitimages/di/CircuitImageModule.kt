@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.circuitimages.source.remote.DefaultCircuitImageRe
 import com.toquete.boxbox.domain.repository.CircuitImageRepository
 import org.koin.dsl.module
 
-val circuitImageModule = module {
+val circuitImageDataModule = module {
     single<CircuitImageRemoteDataSource> { DefaultCircuitImageRemoteDataSource(remoteDatabase = get()) }
     single<CircuitImageRepository> {
         DefaultCircuitImageRepository(
