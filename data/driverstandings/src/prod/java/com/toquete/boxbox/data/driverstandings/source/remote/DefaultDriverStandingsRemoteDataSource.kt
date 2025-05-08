@@ -2,9 +2,8 @@ package com.toquete.boxbox.data.driverstandings.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.network.model.DriverStandingResponse
-import javax.inject.Inject
 
-internal class DefaultDriverStandingsRemoteDataSource @Inject constructor(
+internal class DefaultDriverStandingsRemoteDataSource(
     private val service: BoxBoxService
 ) : DriverStandingsRemoteDataSource {
 

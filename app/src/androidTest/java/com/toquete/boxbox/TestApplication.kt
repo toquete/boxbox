@@ -11,7 +11,7 @@ import com.toquete.boxbox.data.constructorimages.di.constructorImageDataModule
 import com.toquete.boxbox.data.constructorstandings.di.constructorStandingsDataModule
 import com.toquete.boxbox.data.countries.di.countriesDataModule
 import com.toquete.boxbox.data.driverimages.di.driverImagesDataModule
-import com.toquete.boxbox.data.driverstandings.di.driverStandingsModule
+import com.toquete.boxbox.data.driverstandings.di.driverStandingsDataModule
 import com.toquete.boxbox.data.raceresults.di.raceResultsModule
 import com.toquete.boxbox.data.races.di.racesModule
 import com.toquete.boxbox.data.sprintresults.di.sprintResultsModule
@@ -49,7 +49,7 @@ class TestApplication : Application() {
                 constructorStandingsDataModule,
                 countriesDataModule,
                 driverImagesDataModule,
-                driverStandingsModule,
+                driverStandingsDataModule,
                 raceResultsModule,
                 racesModule,
                 sprintResultsModule,

@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemo
 import com.toquete.boxbox.domain.repository.DriverStandingsRepository
 import org.koin.dsl.module
 
-val driverStandingsModule = module {
+val driverStandingsDataModule = module {
     single<DriverStandingsRemoteDataSource> { DefaultDriverStandingsRemoteDataSource(service = get()) }
     single<DriverStandingsRepository> {
         DefaultDriverStandingsRepository(
