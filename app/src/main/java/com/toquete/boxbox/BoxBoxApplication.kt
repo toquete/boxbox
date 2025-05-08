@@ -26,7 +26,7 @@ import com.toquete.boxbox.core.network.di.networkModule
 import com.toquete.boxbox.core.notification.di.notificationModule
 import com.toquete.boxbox.core.preferences.di.preferencesModule
 import com.toquete.boxbox.data.circuitimages.di.circuitImageDataModule
-import com.toquete.boxbox.data.constructorcolors.di.constructorColorModule
+import com.toquete.boxbox.data.constructorcolors.di.constructorColorDataModule
 import com.toquete.boxbox.data.constructorimages.di.constructorImageModule
 import com.toquete.boxbox.data.constructorstandings.di.constructorStandingsModule
 import com.toquete.boxbox.data.countries.di.countriesModule
@@ -111,7 +111,7 @@ class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
                 standingsModule,
                 domainModule,
                 circuitImageDataModule,
-                constructorColorModule,
+                constructorColorDataModule,
                 constructorImageModule,
                 constructorStandingsModule,
                 countriesModule,
