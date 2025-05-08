@@ -4,14 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.domain.usecase.GetPastRacesInCurrentSeasonUseCase
 import com.toquete.boxbox.domain.usecase.GetUpcomingRacesInCurrentSeasonUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import javax.inject.Inject
 
-@HiltViewModel
-internal class RacesViewModel @Inject constructor(
+internal class RacesViewModel(
     getUpcomingRacesUseCase: GetUpcomingRacesInCurrentSeasonUseCase,
     getPastRacesUseCase: GetPastRacesInCurrentSeasonUseCase
 ) : ViewModel() {
