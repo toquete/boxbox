@@ -10,7 +10,6 @@ import com.toquete.boxbox.core.ui.custom.SnackbarManager
 import com.toquete.boxbox.domain.repository.RemoteConfigRepository
 import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.feature.home.R
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -20,10 +19,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
-@HiltViewModel
-internal class HomeViewModel @Inject constructor(
+internal class HomeViewModel(
     syncMonitor: SyncMonitor,
     networkMonitor: NetworkMonitor,
     private val syncRepository: SyncRepository,
