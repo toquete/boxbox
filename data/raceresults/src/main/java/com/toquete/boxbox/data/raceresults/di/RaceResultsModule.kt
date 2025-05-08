@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.raceresults.source.remote.RaceResultRemoteDataSou
 import com.toquete.boxbox.domain.repository.RaceResultRepository
 import org.koin.dsl.module
 
-val raceResultsModule = module {
+val raceResultsDataModule = module {
     single<RaceResultRemoteDataSource> { DefaultRaceResultRemoteDataSource(service = get()) }
     single<RaceResultRepository> {
         DefaultRaceResultRepository(
