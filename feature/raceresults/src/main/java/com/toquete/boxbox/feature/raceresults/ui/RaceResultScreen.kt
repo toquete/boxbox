@@ -24,7 +24,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
@@ -33,11 +32,12 @@ import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.raceresults.R
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun RaceResultRoute(
     onNavigateUp: () -> Unit,
-    viewModel: RaceResultsViewModel = hiltViewModel()
+    viewModel: RaceResultsViewModel = koinViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     RaceResultScreen(state, onNavigateUp)

@@ -97,6 +97,9 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:database"))
+    implementation(project(":core:network"))
+    implementation(project(":core:notification"))
     implementation(project(":core:preferences"))
     implementation(project(":data:driverimages"))
     implementation(project(":data:constructorimages"))

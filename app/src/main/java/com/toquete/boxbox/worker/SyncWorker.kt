@@ -1,7 +1,6 @@
 package com.toquete.boxbox.worker
 
 import android.content.Context
-import androidx.hilt.work.HiltWorker
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
@@ -10,8 +9,6 @@ import androidx.work.WorkerParameters
 import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.datetime.DayOfWeek
 import timber.log.Timber
@@ -21,10 +18,9 @@ private val syncConstraints = Constraints.Builder()
     .setRequiredNetworkType(NetworkType.CONNECTED)
     .build()
 
-@HiltWorker
-class SyncWorker @AssistedInject constructor(
-    @Assisted appContext: Context,
-    @Assisted workerParameters: WorkerParameters,
+class SyncWorker(
+    appContext: Context,
+    workerParameters: WorkerParameters,
     private val syncRepository: SyncRepository,
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
     private val userPreferencesRepository: UserPreferencesRepository
