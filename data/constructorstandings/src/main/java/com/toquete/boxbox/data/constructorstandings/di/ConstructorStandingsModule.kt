@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.constructorstandings.source.remote.DefaultConstru
 import com.toquete.boxbox.domain.repository.ConstructorStandingsRepository
 import org.koin.dsl.module
 
-val constructorStandingsModule = module {
+val constructorStandingsDataModule = module {
     single<ConstructorStandingsRemoteDataSource> { DefaultConstructorStandingsRemoteDataSource(service = get()) }
     single<ConstructorStandingsRepository> {
         DefaultConstructorStandingsRepository(

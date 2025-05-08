@@ -10,9 +10,8 @@ import com.toquete.boxbox.data.constructorstandings.source.remote.ConstructorSta
 import com.toquete.boxbox.domain.repository.ConstructorStandingsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-internal class DefaultConstructorStandingsRepository @Inject constructor(
+internal class DefaultConstructorStandingsRepository(
     private val remoteDataSource: ConstructorStandingsRemoteDataSource,
     private val constructorStandingDao: ConstructorStandingDao
 ) : ConstructorStandingsRepository {

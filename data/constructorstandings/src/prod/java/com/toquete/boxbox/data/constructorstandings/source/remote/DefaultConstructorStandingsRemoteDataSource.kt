@@ -2,9 +2,8 @@ package com.toquete.boxbox.data.constructorstandings.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
-import javax.inject.Inject
 
-internal class DefaultConstructorStandingsRemoteDataSource @Inject constructor(
+internal class DefaultConstructorStandingsRemoteDataSource(
     private val service: BoxBoxService
 ) : ConstructorStandingsRemoteDataSource {
 
