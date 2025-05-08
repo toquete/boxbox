@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.constructorimages.source.remote.DefaultConstructo
 import com.toquete.boxbox.domain.repository.ConstructorImageRepository
 import org.koin.dsl.module
 
-val constructorImageModule = module {
+val constructorImageDataModule = module {
     single<ConstructorImageRemoteDataSource> { DefaultConstructorImageRemoteDataSource(remoteDatabase = get()) }
     single<ConstructorImageRepository> {
         DefaultConstructorImageRepository(

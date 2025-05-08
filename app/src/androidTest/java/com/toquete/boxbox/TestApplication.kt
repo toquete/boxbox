@@ -7,7 +7,7 @@ import com.toquete.boxbox.core.notification.di.notificationModule
 import com.toquete.boxbox.core.preferences.di.preferencesModule
 import com.toquete.boxbox.data.circuitimages.di.circuitImageDataModule
 import com.toquete.boxbox.data.constructorcolors.di.constructorColorDataModule
-import com.toquete.boxbox.data.constructorimages.di.constructorImageModule
+import com.toquete.boxbox.data.constructorimages.di.constructorImageDataModule
 import com.toquete.boxbox.data.constructorstandings.di.constructorStandingsModule
 import com.toquete.boxbox.data.countries.di.countriesModule
 import com.toquete.boxbox.data.driverimages.di.driverImagesModule
@@ -45,7 +45,7 @@ class TestApplication : Application() {
                 domainModule,
                 circuitImageDataModule,
                 constructorColorDataModule,
-                constructorImageModule,
+                constructorImageDataModule,
                 constructorStandingsModule,
                 countriesModule,
                 driverImagesModule,
