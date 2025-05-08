@@ -5,7 +5,6 @@ import java.util.Properties
 plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
-    id("boxbox.android.hilt")
     id("boxbox.android.koin")
 }
 
@@ -122,8 +121,6 @@ dependencies {
     implementation(libs.splashscreen)
     implementation(libs.work.runtime)
     implementation(libs.coil)
-    implementation(libs.hilt.work)
-    ksp(libs.hilt.work.compiler)
     implementation(libs.play.services.ads)
     implementation(libs.koin.workmanager)
 
@@ -133,8 +130,6 @@ dependencies {
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.compose.navigation.test)
     androidTestImplementation(libs.koin.test)
-    androidTestImplementation(libs.hilt.android.testing)
-    kspAndroidTest(libs.hilt.android.compiler)
 }
 
 dependencies {
