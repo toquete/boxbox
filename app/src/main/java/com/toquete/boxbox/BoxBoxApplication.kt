@@ -39,7 +39,7 @@ import com.toquete.boxbox.di.appModule
 import com.toquete.boxbox.di.buildVariantModule
 import com.toquete.boxbox.domain.di.domainModule
 import com.toquete.boxbox.feature.home.di.homeFeatureModule
-import com.toquete.boxbox.feature.raceresults.di.raceResultModule
+import com.toquete.boxbox.feature.raceresults.di.raceResultsFeatureModule
 import com.toquete.boxbox.feature.races.di.racesFeatureModule
 import com.toquete.boxbox.feature.settings.di.settingsModule
 import com.toquete.boxbox.feature.standings.di.standingsModule
@@ -105,7 +105,7 @@ class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
                 appModule,
                 buildVariantModule,
                 homeFeatureModule,
-                raceResultModule,
+                raceResultsFeatureModule,
                 racesFeatureModule,
                 settingsModule,
                 standingsModule,
