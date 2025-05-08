@@ -1,23 +1,12 @@
 package com.toquete.boxbox.core.notification.di
 
-import android.content.Context
 import androidx.core.app.NotificationManagerCompat
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import com.toquete.boxbox.core.notification.DefaultNotificationHelper
+import com.toquete.boxbox.core.notification.NotificationHelper
+import org.koin.android.ext.koin.androidApplication
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-internal object NotificationModule {
-
-    @Singleton
-    @Provides
-    fun providesNotificationManager(
-        @ApplicationContext context: Context
-    ): NotificationManagerCompat {
-        return NotificationManagerCompat.from(context)
-    }
+val notificationModule = module {
+    single { NotificationManagerCompat.from(androidApplication()) }
+    single<NotificationHelper> { DefaultNotificationHelper(notificationManager = get()) }
 }
