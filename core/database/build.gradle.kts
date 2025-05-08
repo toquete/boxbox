@@ -1,6 +1,5 @@
 plugins {
     id("boxbox.android.library")
-    id("boxbox.android.hilt")
     id("boxbox.android.room")
     id("boxbox.android.koin")
 }
