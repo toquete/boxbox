@@ -2,6 +2,7 @@ plugins {
     id("boxbox.android.library")
     id("boxbox.android.hilt")
     id("boxbox.android.room")
+    id("boxbox.android.koin")
 }
 
 android {
@@ -9,13 +10,12 @@ android {
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        ksp {
-            arg(RoomSchemaArgProvider(File(projectDir, "schemas")))
-        }
     }
-
     sourceSets {
         getByName("test").assets.srcDir("$projectDir/schemas")
+    }
+    ksp {
+        arg(RoomSchemaArgProvider(File(projectDir, "schemas")))
     }
 }
 

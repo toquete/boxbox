@@ -1,7 +1,6 @@
 plugins {
     id("boxbox.android.library")
     id("boxbox.android.library.compose")
-    id("boxbox.android.hilt")
 }
 
 android {
