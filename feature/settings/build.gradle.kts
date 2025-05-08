@@ -2,7 +2,6 @@ plugins {
     id("boxbox.android.library")
     id("boxbox.android.library.compose")
     id("boxbox.android.feature")
-    id("boxbox.android.hilt")
     id("boxbox.android.koin")
 }
 

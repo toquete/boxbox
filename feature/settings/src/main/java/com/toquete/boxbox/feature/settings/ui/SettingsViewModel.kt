@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -17,10 +16,8 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
 import kotlinx.datetime.format.char
 import kotlinx.datetime.toLocalDateTime
-import javax.inject.Inject
 
-@HiltViewModel
-internal class SettingsViewModel @Inject constructor(
+internal class SettingsViewModel(
     private val preferencesRepository: UserPreferencesRepository,
     private val timeZone: TimeZone
 ) : ViewModel() {

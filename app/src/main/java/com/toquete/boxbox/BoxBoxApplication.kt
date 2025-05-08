@@ -41,7 +41,7 @@ import com.toquete.boxbox.domain.di.domainModule
 import com.toquete.boxbox.feature.home.di.homeFeatureModule
 import com.toquete.boxbox.feature.raceresults.di.raceResultsFeatureModule
 import com.toquete.boxbox.feature.races.di.racesFeatureModule
-import com.toquete.boxbox.feature.settings.di.settingsModule
+import com.toquete.boxbox.feature.settings.di.settingsFeatureModule
 import com.toquete.boxbox.feature.standings.di.standingsModule
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import com.toquete.boxbox.worker.SyncWorker
@@ -107,7 +107,7 @@ class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
                 homeFeatureModule,
                 raceResultsFeatureModule,
                 racesFeatureModule,
-                settingsModule,
+                settingsFeatureModule,
                 standingsModule,
                 domainModule,
                 circuitImageDataModule,
