@@ -5,9 +5,8 @@ import com.toquete.boxbox.core.network.model.DriverImageResponse
 import com.toquete.boxbox.data.driverimages.model.toEntity
 import com.toquete.boxbox.data.driverimages.source.remote.DriverImageRemoteDataSource
 import com.toquete.boxbox.domain.repository.DriverImageRepository
-import javax.inject.Inject
 
-internal class DefaultDriverImageRepository @Inject constructor(
+internal class DefaultDriverImageRepository(
     private val remoteDataSource: DriverImageRemoteDataSource,
     private val driverImageDao: DriverImageDao
 ) : DriverImageRepository {

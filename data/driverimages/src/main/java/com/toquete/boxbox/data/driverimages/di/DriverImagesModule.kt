@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.driverimages.source.remote.DriverImageRemoteDataS
 import com.toquete.boxbox.domain.repository.DriverImageRepository
 import org.koin.dsl.module
 
-val driverImagesModule = module {
+val driverImagesDataModule = module {
     single<DriverImageRemoteDataSource> { DefaultDriverImageRemoteDataSource(remoteDatabase = get()) }
     single<DriverImageRepository> {
         DefaultDriverImageRepository(
