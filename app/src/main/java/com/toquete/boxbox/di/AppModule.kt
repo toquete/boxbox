@@ -16,7 +16,6 @@ import com.toquete.boxbox.worker.SyncWorker
 import com.toquete.boxbox.worker.repository.DefaultSyncRepository
 import com.toquete.boxbox.worker.repository.ImagesRepository
 import com.toquete.boxbox.worker.repository.StandingsRepository
-import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.workmanager.dsl.workerOf
 import org.koin.core.module.dsl.singleOf
@@ -29,14 +28,7 @@ val appModule = module {
     single { Firebase.remoteConfig }
     single<RemoteConfigRepository> {
         FirebaseRemoteConfigRepository(
-            firebaseRemoteConfig = get(),
-            dispatcher = Dispatchers.IO
-        )
-    }
-    single<RemoteConfigRepository> {
-        FirebaseRemoteConfigRepository(
-            firebaseRemoteConfig = get(),
-            dispatcher = Dispatchers.IO
+            firebaseRemoteConfig = get()
         )
     }
     single<SyncRepository> {

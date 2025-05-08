@@ -7,9 +7,8 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.datetime.Clock
-import javax.inject.Inject
 
-class DefaultSyncRepository @Inject constructor(
+class DefaultSyncRepository(
     private val standingsRepository: StandingsRepository,
     private val imagesRepository: ImagesRepository,
     private val raceRepository: RaceRepository,
