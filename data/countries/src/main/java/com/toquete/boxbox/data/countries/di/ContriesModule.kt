@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.countries.source.remote.DefaultCountryRemoteDataS
 import com.toquete.boxbox.domain.repository.CountryRepository
 import org.koin.dsl.module
 
-val countriesModule = module {
+val countriesDataModule = module {
     single<CountryRemoteDataSource> { DefaultCountryRemoteDataSource(remoteDatabase = get()) }
     single<CountryRepository> {
         DefaultCountryRepository(

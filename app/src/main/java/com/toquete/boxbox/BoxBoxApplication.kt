@@ -29,7 +29,7 @@ import com.toquete.boxbox.data.circuitimages.di.circuitImageDataModule
 import com.toquete.boxbox.data.constructorcolors.di.constructorColorDataModule
 import com.toquete.boxbox.data.constructorimages.di.constructorImageDataModule
 import com.toquete.boxbox.data.constructorstandings.di.constructorStandingsDataModule
-import com.toquete.boxbox.data.countries.di.countriesModule
+import com.toquete.boxbox.data.countries.di.countriesDataModule
 import com.toquete.boxbox.data.driverimages.di.driverImagesModule
 import com.toquete.boxbox.data.driverstandings.di.driverStandingsModule
 import com.toquete.boxbox.data.raceresults.di.raceResultsModule
@@ -114,7 +114,7 @@ class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
                 constructorColorDataModule,
                 constructorImageDataModule,
                 constructorStandingsDataModule,
-                countriesModule,
+                countriesDataModule,
                 driverImagesModule,
                 driverStandingsModule,
                 raceResultsModule,
