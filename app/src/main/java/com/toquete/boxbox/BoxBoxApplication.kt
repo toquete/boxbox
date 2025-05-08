@@ -34,7 +34,7 @@ import com.toquete.boxbox.data.driverimages.di.driverImagesDataModule
 import com.toquete.boxbox.data.driverstandings.di.driverStandingsDataModule
 import com.toquete.boxbox.data.raceresults.di.raceResultsDataModule
 import com.toquete.boxbox.data.races.di.racesDataModule
-import com.toquete.boxbox.data.sprintresults.di.sprintResultsModule
+import com.toquete.boxbox.data.sprintresults.di.sprintResultsDataModule
 import com.toquete.boxbox.di.appModule
 import com.toquete.boxbox.di.buildVariantModule
 import com.toquete.boxbox.domain.di.domainModule
@@ -119,7 +119,7 @@ class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
                 driverStandingsDataModule,
                 raceResultsDataModule,
                 racesDataModule,
-                sprintResultsModule,
+                sprintResultsDataModule,
                 databaseModule,
                 networkModule,
                 notificationModule,

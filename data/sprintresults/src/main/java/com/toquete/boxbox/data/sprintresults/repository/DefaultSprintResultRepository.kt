@@ -10,9 +10,8 @@ import com.toquete.boxbox.data.sprintresults.source.remote.SprintResultRemoteDat
 import com.toquete.boxbox.domain.repository.SprintResultRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-internal class DefaultSprintResultRepository @Inject constructor(
+internal class DefaultSprintResultRepository(
     private val remoteDataSource: SprintResultRemoteDataSource,
     private val sprintRaceResultDao: SprintRaceResultDao
 ) : SprintResultRepository {
