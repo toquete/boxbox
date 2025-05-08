@@ -1,30 +1,23 @@
 package com.toquete.boxbox.core.preferences.di
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import com.toquete.boxbox.core.preferences.repository.DataStoreUserPreferencesRepository
+import com.toquete.boxbox.domain.repository.UserPreferencesRepository
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
 
 private const val USER_PREFERENCES = "user_preferences"
 
-@Module
-@InstallIn(SingletonComponent::class)
-internal object PreferencesModule {
-
-    @Singleton
-    @Provides
-    fun providePreferencesDataStore(
-        @ApplicationContext context: Context
-    ): DataStore<Preferences> {
-        return PreferenceDataStoreFactory.create(
-            produceFile = { context.preferencesDataStoreFile(USER_PREFERENCES) }
+val preferencesModule = module {
+    single<DataStore<Preferences>> {
+        PreferenceDataStoreFactory.create(
+            produceFile = { androidContext().preferencesDataStoreFile(USER_PREFERENCES) }
         )
+    }
+    single<UserPreferencesRepository> {
+        DataStoreUserPreferencesRepository(dataStore = get())
     }
 }
