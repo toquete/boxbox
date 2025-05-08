@@ -42,7 +42,7 @@ import com.toquete.boxbox.feature.home.di.homeFeatureModule
 import com.toquete.boxbox.feature.raceresults.di.raceResultsFeatureModule
 import com.toquete.boxbox.feature.races.di.racesFeatureModule
 import com.toquete.boxbox.feature.settings.di.settingsFeatureModule
-import com.toquete.boxbox.feature.standings.di.standingsModule
+import com.toquete.boxbox.feature.standings.di.standingsFeatureModule
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import com.toquete.boxbox.worker.SyncWorker
 import kotlinx.coroutines.CoroutineScope
@@ -108,7 +108,7 @@ class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
                 raceResultsFeatureModule,
                 racesFeatureModule,
                 settingsFeatureModule,
-                standingsModule,
+                standingsFeatureModule,
                 domainModule,
                 circuitImageDataModule,
                 constructorColorDataModule,

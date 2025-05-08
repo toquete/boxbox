@@ -23,7 +23,7 @@ import com.toquete.boxbox.feature.home.di.homeFeatureModule
 import com.toquete.boxbox.feature.raceresults.di.raceResultsFeatureModule
 import com.toquete.boxbox.feature.races.di.racesFeatureModule
 import com.toquete.boxbox.feature.settings.di.settingsFeatureModule
-import com.toquete.boxbox.feature.standings.di.standingsModule
+import com.toquete.boxbox.feature.standings.di.standingsFeatureModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.workmanager.koin.workManagerFactory
 import org.koin.core.context.startKoin
@@ -41,7 +41,7 @@ class TestApplication : Application() {
                 raceResultsFeatureModule,
                 racesFeatureModule,
                 settingsFeatureModule,
-                standingsModule,
+                standingsFeatureModule,
                 domainModule,
                 circuitImageDataModule,
                 constructorColorDataModule,
