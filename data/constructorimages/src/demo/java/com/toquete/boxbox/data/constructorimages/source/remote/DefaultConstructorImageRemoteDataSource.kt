@@ -1,10 +1,9 @@
 package com.toquete.boxbox.data.constructorimages.source.remote
 
 import com.toquete.boxbox.core.network.model.ConstructorImageResponse
-import javax.inject.Inject
 
 @Suppress("MaxLineLength")
-internal class DefaultConstructorImageRemoteDataSource @Inject constructor() : ConstructorImageRemoteDataSource {
+internal class DefaultConstructorImageRemoteDataSource: ConstructorImageRemoteDataSource {
 
     override suspend fun getConstructorsImages(): List<ConstructorImageResponse> {
         return listOf(

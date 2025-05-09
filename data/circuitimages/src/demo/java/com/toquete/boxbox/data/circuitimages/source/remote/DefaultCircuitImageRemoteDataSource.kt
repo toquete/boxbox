@@ -1,9 +1,8 @@
 package com.toquete.boxbox.data.circuitimages.source.remote
 
 import com.toquete.boxbox.core.network.model.CircuitImageResponse
-import javax.inject.Inject
 
-internal class DefaultCircuitImageRemoteDataSource @Inject constructor() : CircuitImageRemoteDataSource {
+internal class DefaultCircuitImageRemoteDataSource: CircuitImageRemoteDataSource {
 
     @Suppress("MaxLineLength")
     override suspend fun getCircuitImages(): List<CircuitImageResponse> {
