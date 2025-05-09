@@ -127,6 +127,8 @@ dependencies {
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
     testImplementation(libs.work.testing)
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.test.junit4)
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.compose.navigation.test)
     androidTestImplementation(libs.koin.test)

@@ -21,28 +21,7 @@ import com.google.firebase.remoteconfig.ConfigUpdateListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.firebase.remoteconfig.remoteConfig
-import com.toquete.boxbox.core.database.di.databaseModule
-import com.toquete.boxbox.core.network.di.networkModule
-import com.toquete.boxbox.core.notification.di.notificationModule
-import com.toquete.boxbox.core.preferences.di.preferencesModule
-import com.toquete.boxbox.data.circuitimages.di.circuitImageDataModule
-import com.toquete.boxbox.data.constructorcolors.di.constructorColorDataModule
-import com.toquete.boxbox.data.constructorimages.di.constructorImageDataModule
-import com.toquete.boxbox.data.constructorstandings.di.constructorStandingsDataModule
-import com.toquete.boxbox.data.countries.di.countriesDataModule
-import com.toquete.boxbox.data.driverimages.di.driverImagesDataModule
-import com.toquete.boxbox.data.driverstandings.di.driverStandingsDataModule
-import com.toquete.boxbox.data.raceresults.di.raceResultsDataModule
-import com.toquete.boxbox.data.races.di.racesDataModule
-import com.toquete.boxbox.data.sprintresults.di.sprintResultsDataModule
-import com.toquete.boxbox.di.appModule
-import com.toquete.boxbox.di.buildVariantModule
-import com.toquete.boxbox.domain.di.domainModule
-import com.toquete.boxbox.feature.home.di.homeFeatureModule
-import com.toquete.boxbox.feature.raceresults.di.raceResultsFeatureModule
-import com.toquete.boxbox.feature.races.di.racesFeatureModule
-import com.toquete.boxbox.feature.settings.di.settingsFeatureModule
-import com.toquete.boxbox.feature.standings.di.standingsFeatureModule
+import com.toquete.boxbox.di.prodModule
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import com.toquete.boxbox.worker.SyncWorker
 import kotlinx.coroutines.CoroutineScope
@@ -101,30 +80,7 @@ class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
     private fun setupKoin() {
         startKoin {
             androidContext(this@BoxBoxApplication)
-            modules(
-                appModule,
-                buildVariantModule,
-                homeFeatureModule,
-                raceResultsFeatureModule,
-                racesFeatureModule,
-                settingsFeatureModule,
-                standingsFeatureModule,
-                domainModule,
-                circuitImageDataModule,
-                constructorColorDataModule,
-                constructorImageDataModule,
-                constructorStandingsDataModule,
-                countriesDataModule,
-                driverImagesDataModule,
-                driverStandingsDataModule,
-                raceResultsDataModule,
-                racesDataModule,
-                sprintResultsDataModule,
-                databaseModule,
-                networkModule,
-                notificationModule,
-                preferencesModule
-            )
+            modules(prodModule)
             workManagerFactory()
         }
     }
