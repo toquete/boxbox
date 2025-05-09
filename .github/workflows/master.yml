@@ -4,8 +4,6 @@ name: CI
     branches:
       - master
   pull_request:
-    branches:
-      - master
 permissions:
   contents: write
   security-events: write
