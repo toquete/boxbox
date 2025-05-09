@@ -111,6 +111,7 @@ class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
         Firebase.appCheck.installAppCheckProviderFactory(appCheckProviderFactory)
     }
 
+    @Suppress("InjectDispatcher")
     private fun setupMobileAds() {
         CoroutineScope(Dispatchers.IO).launch {
             MobileAds.initialize(this@BoxBoxApplication)
