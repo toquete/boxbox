@@ -5,9 +5,8 @@ import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 import com.toquete.boxbox.data.constructorimages.model.toEntity
 import com.toquete.boxbox.data.constructorimages.source.remote.ConstructorImageRemoteDataSource
 import com.toquete.boxbox.domain.repository.ConstructorImageRepository
-import javax.inject.Inject
 
-internal class DefaultConstructorImageRepository @Inject constructor(
+internal class DefaultConstructorImageRepository(
     private val remoteDataSource: ConstructorImageRemoteDataSource,
     private val constructorImageDao: ConstructorImageDao
 ) : ConstructorImageRepository {

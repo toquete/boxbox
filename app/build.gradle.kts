@@ -5,7 +5,7 @@ import java.util.Properties
 plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
-    id("boxbox.android.hilt")
+    id("boxbox.android.koin")
 }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -96,6 +96,8 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:database"))
+    implementation(project(":core:network"))
     implementation(project(":core:preferences"))
     implementation(project(":data:driverimages"))
     implementation(project(":data:constructorimages"))
@@ -118,17 +120,17 @@ dependencies {
     implementation(libs.splashscreen)
     implementation(libs.work.runtime)
     implementation(libs.coil)
-    implementation(libs.hilt.work)
-    ksp(libs.hilt.work.compiler)
     implementation(libs.play.services.ads)
+    implementation(libs.koin.workmanager)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
     testImplementation(libs.work.testing)
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.test.junit4)
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.compose.navigation.test)
-    androidTestImplementation(libs.hilt.android.testing)
-    kspAndroidTest(libs.hilt.android.compiler)
+    androidTestImplementation(libs.koin.test)
 }
 
 dependencies {

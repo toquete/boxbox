@@ -55,5 +55,9 @@ gradlePlugin {
             id = "boxbox.android.firebase"
             implementationClass = "AndroidFirebaseConventionPlugin"
         }
+        register("androidKoin") {
+            id = "boxbox.android.koin"
+            implementationClass = "AndroidKoinConventionPlugin"
+        }
     }
 }

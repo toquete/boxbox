@@ -3,11 +3,10 @@ package com.toquete.boxbox.data.constructorstandings.source.remote
 import com.toquete.boxbox.core.common.extension.readPath
 import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
 import kotlinx.serialization.json.Json
-import javax.inject.Inject
 
 private const val CONSTRUCTOR_STANDINGS_JSON = "constructor_standings.json"
 
-internal class DefaultConstructorStandingsRemoteDataSource @Inject constructor(
+internal class DefaultConstructorStandingsRemoteDataSource(
     private val json: Json
 ) : ConstructorStandingsRemoteDataSource {
 

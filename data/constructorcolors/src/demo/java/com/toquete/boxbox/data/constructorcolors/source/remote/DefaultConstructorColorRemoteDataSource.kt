@@ -1,9 +1,8 @@
 package com.toquete.boxbox.data.constructorcolors.source.remote
 
 import com.toquete.boxbox.core.network.model.ConstructorColorResponse
-import javax.inject.Inject
 
-internal class DefaultConstructorColorRemoteDataSource @Inject constructor() : ConstructorColorRemoteDataSource {
+internal class DefaultConstructorColorRemoteDataSource : ConstructorColorRemoteDataSource {
 
     override suspend fun getConstructorsColors(): List<ConstructorColorResponse> {
         return listOf(

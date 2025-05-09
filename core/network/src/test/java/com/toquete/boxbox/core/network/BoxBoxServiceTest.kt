@@ -1,7 +1,7 @@
 package com.toquete.boxbox.core.network
 
 import com.toquete.boxbox.core.common.extension.readPath
-import com.toquete.boxbox.core.network.di.NetworkModule
+import com.toquete.boxbox.core.network.di.getRetrofitBuilder
 import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
 import com.toquete.boxbox.core.testing.data.driverStandingsWrapper
 import com.toquete.boxbox.core.testing.data.raceResultWrapper
@@ -18,7 +18,7 @@ import kotlin.test.assertEquals
 class BoxBoxServiceTest {
 
     private val mockWebServer = MockWebServer()
-    private val service = NetworkModule.getRetrofitBuilder(
+    private val service = getRetrofitBuilder(
         json = Json {
             ignoreUnknownKeys = true
             explicitNulls = false

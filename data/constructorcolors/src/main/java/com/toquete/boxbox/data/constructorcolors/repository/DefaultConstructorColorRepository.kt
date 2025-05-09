@@ -5,9 +5,8 @@ import com.toquete.boxbox.core.network.model.ConstructorColorResponse
 import com.toquete.boxbox.data.constructorcolors.model.toEntity
 import com.toquete.boxbox.data.constructorcolors.source.remote.ConstructorColorRemoteDataSource
 import com.toquete.boxbox.domain.repository.ConstructorColorRepository
-import javax.inject.Inject
 
-internal class DefaultConstructorColorRepository @Inject constructor(
+internal class DefaultConstructorColorRepository(
     private val remoteDataSource: ConstructorColorRemoteDataSource,
     private val constructorColorDao: ConstructorColorDao
 ) : ConstructorColorRepository {

@@ -2,8 +2,6 @@ package com.toquete.boxbox
 
 import android.app.Application
 import androidx.core.content.edit
-import androidx.hilt.work.HiltWorkerFactory
-import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
 import coil.ImageLoader
@@ -23,15 +21,18 @@ import com.google.firebase.remoteconfig.ConfigUpdateListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.firebase.remoteconfig.remoteConfig
-import com.toquete.boxbox.core.common.annotation.IoDispatcher
+import com.toquete.boxbox.di.prodModule
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import com.toquete.boxbox.worker.SyncWorker
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.workmanager.koin.workManagerFactory
+import org.koin.core.component.KoinComponent
+import org.koin.core.context.startKoin
 import timber.log.Timber
-import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 private const val APP_CHECK_DEBUG_STORE = "com.google.firebase.appcheck.debug.store.%s"
 private const val APP_CHECK_DEBUG_TOKEN_KEY = "com.google.firebase.appcheck.debug.DEBUG_SECRET"
@@ -40,29 +41,14 @@ private const val DISK_CACHE_PERCENT = 0.03
 private const val MINIMUM_REMOTE_CONFIG_FETCH_INTERVAL = 0L
 const val SYNC_WORK_NAME = "SYNC_WORK_NAME"
 
-@HiltAndroidApp
-class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFactory {
+class BoxBoxApplication : Application(), KoinComponent, ImageLoaderFactory {
 
-    @Inject
-    lateinit var workerFactory: HiltWorkerFactory
-
-    @Inject
-    lateinit var timberTree: Timber.Tree
-
-    @Inject
-    lateinit var appCheckProviderFactory: AppCheckProviderFactory
-
-    @Inject
-    @IoDispatcher
-    lateinit var ioDispatcher: CoroutineContext
-
-    override val workManagerConfiguration: Configuration
-        get() = Configuration.Builder()
-            .setWorkerFactory(workerFactory)
-            .build()
+    private val timberTree: Timber.Tree by inject()
+    private val appCheckProviderFactory: AppCheckProviderFactory by inject()
 
     override fun onCreate() {
         super.onCreate()
+        setupKoin()
         setupAppCheck()
         setupSyncWork()
         setupTimber()
@@ -91,6 +77,14 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
             .build()
     }
 
+    private fun setupKoin() {
+        startKoin {
+            androidContext(this@BoxBoxApplication)
+            modules(prodModule)
+            workManagerFactory()
+        }
+    }
+
     private fun setupSyncWork() {
         WorkManager.getInstance(this)
             .enqueueUniquePeriodicWork(
@@ -117,8 +111,9 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
         Firebase.appCheck.installAppCheckProviderFactory(appCheckProviderFactory)
     }
 
+    @Suppress("InjectDispatcher")
     private fun setupMobileAds() {
-        CoroutineScope(ioDispatcher).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             MobileAds.initialize(this@BoxBoxApplication)
         }
     }

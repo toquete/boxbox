@@ -27,7 +27,6 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
@@ -37,10 +36,11 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.races.model.RacesTab
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Instant
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun RacesRoute(
-    viewModel: RacesViewModel = hiltViewModel(),
+    viewModel: RacesViewModel = koinViewModel(),
     onRaceClick: (Int, String) -> Unit = { _, _ -> }
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()

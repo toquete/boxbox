@@ -32,18 +32,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.home.navigation.HomeNavHost
+import org.koin.androidx.compose.koinViewModel
 
 private const val SNACKBAR_OFFSET = -64
 
 @Composable
 internal fun HomeRoute(
-    viewModel: HomeViewModel = hiltViewModel(),
+    viewModel: HomeViewModel = koinViewModel(),
     onSettingsButtonClick: () -> Unit,
     builder: NavGraphBuilder.() -> Unit
 ) {

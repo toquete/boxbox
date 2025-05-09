@@ -4,9 +4,8 @@ import android.app.NotificationChannel
 import android.os.Build
 import androidx.core.app.NotificationManagerCompat
 import com.toquete.boxbox.core.notification.model.Notification
-import javax.inject.Inject
 
-internal class DefaultNotificationHelper @Inject constructor(
+internal class DefaultNotificationHelper(
     private val notificationManager: NotificationManagerCompat
 ) : NotificationHelper {
 

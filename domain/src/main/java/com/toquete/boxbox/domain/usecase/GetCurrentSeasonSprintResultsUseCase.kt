@@ -3,9 +3,8 @@ package com.toquete.boxbox.domain.usecase
 import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.domain.repository.SprintResultRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class GetCurrentSeasonSprintResultsUseCase @Inject constructor(
+class GetCurrentSeasonSprintResultsUseCase(
     private val sprintResultRepository: SprintResultRepository,
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase
 ) {

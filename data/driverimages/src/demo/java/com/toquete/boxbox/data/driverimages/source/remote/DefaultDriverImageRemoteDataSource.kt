@@ -1,9 +1,8 @@
 package com.toquete.boxbox.data.driverimages.source.remote
 
 import com.toquete.boxbox.core.network.model.DriverImageResponse
-import javax.inject.Inject
 
-internal class DefaultDriverImageRemoteDataSource @Inject constructor() : DriverImageRemoteDataSource {
+internal class DefaultDriverImageRemoteDataSource : DriverImageRemoteDataSource {
 
     override suspend fun getDriversImages(): List<DriverImageResponse> {
         return listOf(

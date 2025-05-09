@@ -1,9 +1,8 @@
 package com.toquete.boxbox.data.countries.source.remote
 
 import com.toquete.boxbox.core.network.model.CountryResponse
-import javax.inject.Inject
 
-internal class DefaultCountryRemoteDataSource @Inject constructor() : CountryRemoteDataSource {
+internal class DefaultCountryRemoteDataSource : CountryRemoteDataSource {
 
     override suspend fun getCountries(): List<CountryResponse> {
         return listOf(

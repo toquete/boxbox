@@ -14,16 +14,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun ConstructorStandingsRoute(
-    viewModel: ConstructorStandingsViewModel = hiltViewModel()
+    viewModel: ConstructorStandingsViewModel = koinViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     ConstructorStandingsScreen(state)
