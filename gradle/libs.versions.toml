@@ -42,6 +42,7 @@ robolectric = "4.14.1"
 play-services-ads = "24.2.0"
 koin-bom = "4.0.3"
 koin = "4.0.3"
+ktor = "3.1.3"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
@@ -115,6 +116,11 @@ koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4" }
 koin-workmanager = { module = "io.insert-koin:koin-androidx-workmanager" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-androidx-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation", version.ref = "koin" }
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-cilent-content-negotiagion = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -125,6 +131,7 @@ compose = ["compose-ui", "compose-preview", "activity-compose"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-runtime-compose", "lifecycle-livedata-ktx"]
 retrofit = ["retrofit", "serialization", "okhttp", "serialization-converter", "logging"]
 coil = ["coil", "coil-compose", "coil-svg"]
+ktor = ["ktor-core", "ktor-client-okhttp", "ktor-client-logging", "ktor-cilent-content-negotiagion", "ktor-serialization", "serialization"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
