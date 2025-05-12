@@ -25,3 +25,10 @@ style:
   UnnecessaryAbstractClass:
     active: true
     ignoreAnnotated: ['Module']
+  WildcardImport:
+    active: true
+    excludeImports: ['io.ktor.*']
+
+formatting:
+  NoWildcardImports:
+    active: false
