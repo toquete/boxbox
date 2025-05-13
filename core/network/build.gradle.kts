@@ -11,9 +11,9 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:common"))
-    implementation(libs.mockwebserver)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
 
     testImplementation(project(":core:testing"))
+    testImplementation(libs.ktor.client.mock)
 }
