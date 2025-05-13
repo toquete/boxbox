@@ -16,4 +16,5 @@ dependencies {
     implementation(libs.firebase.firestore)
 
     testImplementation(project(":core:testing"))
+    testImplementation(libs.ktor.client.mock)
 }
