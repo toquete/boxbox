@@ -132,7 +132,7 @@ compose = ["compose-ui", "compose-preview", "activity-compose"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-runtime-compose", "lifecycle-livedata-ktx"]
 retrofit = ["retrofit", "serialization", "okhttp", "serialization-converter", "logging"]
 coil = ["coil", "coil-compose", "coil-svg"]
-ktor = ["ktor-core", "ktor-client-okhttp", "ktor-client-logging", "ktor-cilent-content-negotiagion", "ktor-serialization", "serialization"]
+ktor = ["ktor-core", "ktor-client-okhttp", "ktor-client-logging", "ktor-cilent-content-negotiagion", "ktor-serialization", "serialization", "okhttp", "logging"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
