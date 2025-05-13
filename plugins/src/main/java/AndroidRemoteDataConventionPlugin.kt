@@ -13,7 +13,6 @@ class AndroidRemoteDataConventionPlugin : Plugin<Project> {
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
-                add("implementation", libs.findBundle("retrofit").get())
                 add("implementation", libs.findBundle("ktor").get())
                 add("testImplementation", libs.findLibrary("junit").get())
                 add("testImplementation", kotlin("test"))
