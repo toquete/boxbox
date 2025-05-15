@@ -126,6 +126,8 @@ ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", versi
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "crashlytics-gradle" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 
 [bundles]
 compose = ["compose-ui", "compose-preview", "activity-compose"]
@@ -150,3 +152,5 @@ crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyti
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "gradle" }
