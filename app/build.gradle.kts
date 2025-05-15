@@ -115,6 +115,7 @@ dependencies {
     implementation(project(":feature:raceresults"))
     implementation(project(":feature:home"))
     implementation(project(":domain"))
+    implementation(project(":shared"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
