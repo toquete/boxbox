@@ -1,7 +1,8 @@
 plugins {
-    id("boxbox.android.library")
+    alias(libs.plugins.kotlin.jvm)
 }
 
-android {
-    namespace = "com.toquete.boxbox.core.common"
+dependencies {
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlinx.coroutines.core)
 }
