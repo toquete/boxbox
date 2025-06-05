@@ -39,7 +39,7 @@ navigation = "2.8.9"
 hilt-navigation = "1.2.0"
 sonarqube = "5.1.0.4882"
 robolectric = "4.14.1"
-play-services-ads = "24.2.0"
+play-services-ads = "24.3.0"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
