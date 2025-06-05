@@ -1,11 +1,21 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.multiplatform)
 }
 
 kotlin {
-    jvmToolchain(17)
-}
+    jvm()
+    listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach {
+        it.binaries.framework {
+            baseName = "modelKit"
+        }
+    }
 
-dependencies {
-    implementation(libs.kotlinx.datetime)
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation(libs.kotlin.stdlib)
+                implementation(libs.kotlinx.datetime)
+            }
+        }
+    }
 }
