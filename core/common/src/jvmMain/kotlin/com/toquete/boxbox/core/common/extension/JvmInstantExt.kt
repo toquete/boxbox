@@ -10,13 +10,13 @@ import java.util.Locale
 private const val SHORT_MONTH_PATTERN = "MMM"
 private const val DAY_PATTERN = "dd"
 
-fun Instant?.toShortMonthString(): String {
+actual fun Instant?.toShortMonthString(): String {
     val formatter = DateTimeFormatter.ofPattern(SHORT_MONTH_PATTERN, Locale.US)
     val date = this?.toLocalDateTime(TimeZone.currentSystemDefault())?.toJavaLocalDateTime()
     return formatter.format(date).uppercase()
 }
 
-fun Instant.toDayString(): String {
+actual fun Instant.toDayString(): String {
     val formatter = DateTimeFormatter.ofPattern(DAY_PATTERN, Locale.US)
     val date = this.toLocalDateTime(TimeZone.currentSystemDefault()).toJavaLocalDateTime()
     return formatter.format(date)
