@@ -49,5 +49,10 @@ kotlin {
                 implementation(project(":core:testing"))
             }
         }
+        iosMain {
+            dependencies {
+                implementation(libs.ktor.client.darwin)
+            }
+        }
     }
 }
