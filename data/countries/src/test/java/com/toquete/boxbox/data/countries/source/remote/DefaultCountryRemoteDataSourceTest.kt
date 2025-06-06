@@ -1,10 +1,10 @@
 package com.toquete.boxbox.data.countries.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
-import com.toquete.boxbox.core.network.model.CountryResponse
 import com.toquete.boxbox.core.testing.data.countryResponses
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertContentEquals
@@ -16,9 +16,7 @@ class DefaultCountryRemoteDataSourceTest {
 
     @Test
     fun `getCountries should return all countries from remote when called`() = runTest {
-        coEvery {
-            remoteDatabase.getCollection(id = "country", type = CountryResponse::class.java)
-        } returns countryResponses
+        coEvery { remoteDatabase.getCountries() } returns flowOf(countryResponses)
 
         val result = dataSource.getCountries()
 

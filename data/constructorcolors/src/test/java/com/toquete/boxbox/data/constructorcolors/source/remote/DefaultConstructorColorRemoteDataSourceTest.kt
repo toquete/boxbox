@@ -1,10 +1,10 @@
 package com.toquete.boxbox.data.constructorcolors.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
-import com.toquete.boxbox.core.network.model.ConstructorColorResponse
 import com.toquete.boxbox.core.testing.data.constructorColorResponses
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertContentEquals
@@ -16,9 +16,7 @@ class DefaultConstructorColorRemoteDataSourceTest {
 
     @Test
     fun `getConstructorsColors should return all constructors colors from remote when called`() = runTest {
-        coEvery {
-            remoteDatabase.getCollection(id = "constructor_color", ConstructorColorResponse::class.java)
-        } returns constructorColorResponses
+        coEvery { remoteDatabase.getConstructorColors() } returns flowOf(constructorColorResponses)
 
         val result = dataSource.getConstructorsColors()
 
