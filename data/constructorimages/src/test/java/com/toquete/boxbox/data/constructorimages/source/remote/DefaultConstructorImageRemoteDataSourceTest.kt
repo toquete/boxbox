@@ -1,7 +1,6 @@
 package com.toquete.boxbox.data.constructorimages.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
-import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 import com.toquete.boxbox.core.testing.data.constructorImageResponses
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -16,9 +15,7 @@ class DefaultConstructorImageRemoteDataSourceTest {
 
     @Test
     fun `getConstructorsImages should return all constructors images from remote when called`() = runTest {
-        coEvery {
-            remoteDatabase.getCollection(id = "constructor_image", ConstructorImageResponse::class.java)
-        } returns constructorImageResponses
+        coEvery { remoteDatabase.getConstructorImages() } returns constructorImageResponses
 
         val result = dataSource.getConstructorsImages()
 
