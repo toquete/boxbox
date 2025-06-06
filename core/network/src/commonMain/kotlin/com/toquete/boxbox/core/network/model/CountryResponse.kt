@@ -1,15 +1,18 @@
 package com.toquete.boxbox.core.network.model
 
-import com.google.firebase.firestore.PropertyName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CountryResponse(
+    @SerialName("id")
     val id: String? = null,
+    @SerialName("name")
     val name: String? = null,
+    @SerialName("nationality")
     val nationality: String? = null,
-    @get:PropertyName("flag_url")
-    @set:PropertyName("flag_url")
-    var flagUrl: String? = null,
-    @get:PropertyName("alternative_id")
-    @set:PropertyName("alternative_id")
-    var alternativeId: String? = null
+    @SerialName("flag_url")
+    val flagUrl: String? = null,
+    @SerialName("alternative_id")
+    val alternativeId: String? = null
 )

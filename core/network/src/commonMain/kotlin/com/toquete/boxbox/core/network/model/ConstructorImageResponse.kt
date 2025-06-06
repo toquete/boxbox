@@ -1,10 +1,12 @@
 package com.toquete.boxbox.core.network.model
 
-import com.google.firebase.firestore.PropertyName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ConstructorImageResponse(
+    @SerialName("id")
     val id: String? = null,
-    @get:PropertyName("image_url")
-    @set:PropertyName("image_url")
-    var imageUrl: String? = null
+    @SerialName("image_url")
+    val imageUrl: String? = null
 )

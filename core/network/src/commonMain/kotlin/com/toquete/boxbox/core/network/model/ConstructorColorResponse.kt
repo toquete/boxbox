@@ -1,13 +1,14 @@
 package com.toquete.boxbox.core.network.model
 
-import com.google.firebase.firestore.PropertyName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ConstructorColorResponse(
+    @SerialName("id")
     val id: String? = null,
-    @get:PropertyName("accent_color")
-    @set:PropertyName("accent_color")
-    var accentColor: String? = null,
-    @get:PropertyName("background_color")
-    @set:PropertyName("background_color")
-    var backgroundColor: String? = null,
+    @SerialName("accent_color")
+    val accentColor: String? = null,
+    @SerialName("background_color")
+    val backgroundColor: String? = null
 )
