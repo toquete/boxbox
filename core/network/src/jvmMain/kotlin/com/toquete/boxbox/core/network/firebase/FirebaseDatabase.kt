@@ -19,10 +19,6 @@ internal class FirebaseDatabase(
         return emptyList()
     }
 
-    override suspend fun <T> getDocument(collection: String, id: String, type: Class<T>): T? {
-        return null
-    }
-
     override fun getCircuitImages(): Flow<List<CircuitImageResponse>> {
         return firestore.collection("circuit_images")
             .snapshots
