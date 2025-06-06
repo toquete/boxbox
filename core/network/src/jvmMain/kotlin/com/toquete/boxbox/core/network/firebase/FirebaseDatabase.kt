@@ -5,6 +5,7 @@ import com.toquete.boxbox.core.network.model.CircuitImageResponse
 import com.toquete.boxbox.core.network.model.ConstructorColorResponse
 import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 import com.toquete.boxbox.core.network.model.CountryResponse
+import com.toquete.boxbox.core.network.model.DriverImageResponse
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -53,6 +54,16 @@ internal class FirebaseDatabase(
 
     override fun getCountries(): Flow<List<CountryResponse>> {
         return firestore.collection("country")
+            .snapshots
+            .map { snapshot ->
+                snapshot.documents.map { document ->
+                    document.data()
+                }
+            }
+    }
+
+    override fun getDriversImages(): Flow<List<DriverImageResponse>> {
+        return firestore.collection("driver_image")
             .snapshots
             .map { snapshot ->
                 snapshot.documents.map { document ->
