@@ -14,6 +14,7 @@ internal class FirebaseDatabase(
     private val firestore: FirebaseFirestore
 ) : BoxBoxRemoteDatabase {
 
+    @Deprecated("Use the function for the model needed")
     override suspend fun <T> getCollection(id: String, type: Class<T>): List<T> {
         return emptyList()
     }

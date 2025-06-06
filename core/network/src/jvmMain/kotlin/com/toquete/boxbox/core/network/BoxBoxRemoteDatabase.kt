@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface BoxBoxRemoteDatabase {
 
+    @Deprecated("Use the function for the model needed")
     suspend fun <T> getCollection(id: String, type: Class<T>): List<T>
     suspend fun <T> getDocument(collection: String, id: String, type: Class<T>): T?
 
