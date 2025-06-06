@@ -4,7 +4,6 @@ import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
 import com.toquete.boxbox.core.testing.data.circuitImageResponses
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertContentEquals
@@ -16,7 +15,7 @@ class DefaultCircuitImageRemoteDataSourceTest {
 
     @Test
     fun `getCircuitImages should return circuit images`() = runTest {
-        coEvery { remoteDatabase.getCircuitImages() } returns flowOf(circuitImageResponses)
+        coEvery { remoteDatabase.getCircuitImages() } returns circuitImageResponses
 
         val result = dataSource.getCircuitImages()
 

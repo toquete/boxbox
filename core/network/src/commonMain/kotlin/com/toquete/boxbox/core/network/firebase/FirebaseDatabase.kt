@@ -7,60 +7,38 @@ import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 import com.toquete.boxbox.core.network.model.CountryResponse
 import com.toquete.boxbox.core.network.model.DriverImageResponse
 import dev.gitlive.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 internal class FirebaseDatabase(
     private val firestore: FirebaseFirestore
 ) : BoxBoxRemoteDatabase {
 
-    override fun getCircuitImages(): Flow<List<CircuitImageResponse>> {
-        return firestore.collection("circuit_images")
-            .snapshots
-            .map { snapshot ->
-                snapshot.documents.map { document ->
-                    document.data()
-                }
-            }
+    override suspend fun getCircuitImages(): List<CircuitImageResponse> {
+        return firestore.collection("circuit_image")
+            .get()
+            .documents.map { it.data() }
     }
 
-    override fun getConstructorColors(): Flow<List<ConstructorColorResponse>> {
+    override suspend fun getConstructorColors(): List<ConstructorColorResponse> {
         return firestore.collection("constructor_color")
-            .snapshots
-            .map { snapshot ->
-                snapshot.documents.map { document ->
-                    document.data()
-                }
-            }
+            .get()
+            .documents.map { it.data() }
     }
 
-    override fun getConstructorImages(): Flow<List<ConstructorImageResponse>> {
+    override suspend fun getConstructorImages(): List<ConstructorImageResponse> {
         return firestore.collection("constructor_image")
-            .snapshots
-            .map { snapshot ->
-                snapshot.documents.map { document ->
-                    document.data()
-                }
-            }
+            .get()
+            .documents.map { it.data() }
     }
 
-    override fun getCountries(): Flow<List<CountryResponse>> {
+    override suspend fun getCountries(): List<CountryResponse> {
         return firestore.collection("country")
-            .snapshots
-            .map { snapshot ->
-                snapshot.documents.map { document ->
-                    document.data()
-                }
-            }
+            .get()
+            .documents.map { it.data() }
     }
 
-    override fun getDriversImages(): Flow<List<DriverImageResponse>> {
+    override suspend fun getDriversImages(): List<DriverImageResponse> {
         return firestore.collection("driver_image")
-            .snapshots
-            .map { snapshot ->
-                snapshot.documents.map { document ->
-                    document.data()
-                }
-            }
+            .get()
+            .documents.map { it.data() }
     }
 }

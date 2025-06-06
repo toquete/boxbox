@@ -4,7 +4,6 @@ import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
 import com.toquete.boxbox.core.testing.data.driverImageResponses
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertContentEquals
@@ -16,7 +15,7 @@ class DefaultDriverImageRemoteDataSourceTest {
 
     @Test
     fun `getDriversImages should return all drivers images from remote when called`() = runTest {
-        coEvery { remoteDatabase.getDriversImages() } returns flowOf(driverImageResponses)
+        coEvery { remoteDatabase.getDriversImages() } returns driverImageResponses
 
         val result = dataSource.getDriversImages()
 

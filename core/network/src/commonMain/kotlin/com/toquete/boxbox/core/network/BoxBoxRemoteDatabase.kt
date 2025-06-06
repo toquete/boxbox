@@ -5,12 +5,11 @@ import com.toquete.boxbox.core.network.model.ConstructorColorResponse
 import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 import com.toquete.boxbox.core.network.model.CountryResponse
 import com.toquete.boxbox.core.network.model.DriverImageResponse
-import kotlinx.coroutines.flow.Flow
 
 interface BoxBoxRemoteDatabase {
-    fun getCircuitImages(): Flow<List<CircuitImageResponse>>
-    fun getConstructorColors(): Flow<List<ConstructorColorResponse>>
-    fun getConstructorImages(): Flow<List<ConstructorImageResponse>>
-    fun getCountries(): Flow<List<CountryResponse>>
-    fun getDriversImages(): Flow<List<DriverImageResponse>>
+    suspend fun getCircuitImages(): List<CircuitImageResponse>
+    suspend fun getConstructorColors(): List<ConstructorColorResponse>
+    suspend fun getConstructorImages(): List<ConstructorImageResponse>
+    suspend fun getCountries(): List<CountryResponse>
+    suspend fun getDriversImages(): List<DriverImageResponse>
 }
