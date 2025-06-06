@@ -1,5 +1,6 @@
-package com.toquete.boxbox.core.network
+package com.toquete.boxbox.core.network.ktor
 
+import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.network.model.ConstructorStandingsWrapper
 import com.toquete.boxbox.core.network.model.DriverStandingsWrapper
 import com.toquete.boxbox.core.network.model.RacesWrapper

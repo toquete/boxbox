@@ -2,8 +2,8 @@ package com.toquete.boxbox.core.network.di
 
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
 import com.toquete.boxbox.core.network.BoxBoxService
-import com.toquete.boxbox.core.network.KtorService
 import com.toquete.boxbox.core.network.firebase.FirebaseDatabase
+import com.toquete.boxbox.core.network.ktor.KtorService
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import dev.gitlive.firebase.firestore.firestore
