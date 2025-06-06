@@ -3,6 +3,7 @@ package com.toquete.boxbox.core.network.firebase
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
 import com.toquete.boxbox.core.network.model.CircuitImageResponse
 import com.toquete.boxbox.core.network.model.ConstructorColorResponse
+import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -31,6 +32,16 @@ internal class FirebaseDatabase(
 
     override fun getConstructorColors(): Flow<List<ConstructorColorResponse>> {
         return firestore.collection("constructor_color")
+            .snapshots
+            .map { snapshot ->
+                snapshot.documents.map { document ->
+                    document.data()
+                }
+            }
+    }
+
+    override fun getConstructorImages(): Flow<List<ConstructorImageResponse>> {
+        return firestore.collection("constructor_image")
             .snapshots
             .map { snapshot ->
                 snapshot.documents.map { document ->
