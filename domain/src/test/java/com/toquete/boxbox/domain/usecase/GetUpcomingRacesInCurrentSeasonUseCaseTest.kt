@@ -23,8 +23,8 @@ class GetUpcomingRacesInCurrentSeasonUseCaseTest {
         every { raceRepository.getUpcomingRacesBySeason(any(), any()) } returns flowOf(races)
         every { getTodayLocalDateUseCase() } returns LocalDate(
             year = 2023,
-            monthNumber = 1,
-            dayOfMonth = 1
+            month = 1,
+            day = 1
         )
 
         val result = useCase().first()
