@@ -26,7 +26,7 @@ class GetCurrentSeasonSprintResultsUseCaseTest {
         every {
             sprintResultRepository.getSprintResultsBySeasonAndRound(any(), any())
         } returns flowOf(sprintRaceResults)
-        every { getTodayLocalDateUseCase() } returns LocalDate(year = 2023, monthNumber = 1, dayOfMonth = 1)
+        every { getTodayLocalDateUseCase() } returns LocalDate(year = 2023, month = 1, day = 1)
 
         val result = useCase(round = 1).first()
 
