@@ -37,7 +37,7 @@ kover = "0.8.3"
 timber = "5.0.1"
 navigation = "2.9.0"
 hilt-navigation = "1.2.0"
-sonarqube = "5.1.0.4882"
+sonarqube = "6.2.0.5505"
 robolectric = "4.15.1"
 play-services-ads = "24.4.0"
 
