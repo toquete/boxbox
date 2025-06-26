@@ -8,6 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import javax.inject.Inject
+import kotlin.time.ExperimentalTime
 
 internal class DefaultAlarmScheduler @Inject constructor(
     @ApplicationContext private val context: Context,
@@ -26,6 +27,7 @@ internal class DefaultAlarmScheduler @Inject constructor(
         alarmManager.cancel(getPendingIntent(alarmItem))
     }
 
+    @OptIn(ExperimentalTime::class)
     private fun getAlarmTime(alarmItem: AlarmItem): Long {
         return alarmItem.dateTime
             .toInstant(TimeZone.currentSystemDefault())

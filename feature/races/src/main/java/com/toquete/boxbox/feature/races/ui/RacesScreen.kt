@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalTime::class)
+
 package com.toquete.boxbox.feature.races.ui
 
 import androidx.compose.foundation.layout.Arrangement
@@ -36,7 +38,8 @@ import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.races.model.RacesTab
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Instant
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 @Composable
 internal fun RacesRoute(
