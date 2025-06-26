@@ -7,6 +7,7 @@ import com.toquete.boxbox.core.model.Circuit
 import com.toquete.boxbox.core.model.Location
 import com.toquete.boxbox.core.model.Race
 import com.toquete.boxbox.core.network.model.RaceResponse
+import kotlin.time.ExperimentalTime
 
 internal fun RaceResponse.toEntity(): RaceEntity {
     return RaceEntity(
@@ -30,6 +31,7 @@ internal fun RaceResponse.toEntity(): RaceEntity {
     )
 }
 
+@OptIn(ExperimentalTime::class)
 internal fun RaceWithCircuitEntity.toDomain(): Race {
     return Race(
         season = race.season,
