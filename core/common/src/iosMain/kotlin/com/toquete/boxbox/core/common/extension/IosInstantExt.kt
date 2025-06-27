@@ -1,6 +1,7 @@
+@file:OptIn(ExperimentalTime::class)
+
 package com.toquete.boxbox.core.common.extension
 
-import kotlinx.datetime.Instant
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
 import platform.Foundation.NSLocale
@@ -8,6 +9,8 @@ import platform.Foundation.NSTimeZone
 import platform.Foundation.dateWithTimeIntervalSince1970
 import platform.Foundation.localTimeZone
 import platform.Foundation.localeWithLocaleIdentifier
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 private const val SHORT_MONTH_PATTERN = "LLL" // Example: Jan, Feb, etc.
 private const val DAY_PATTERN = "dd" // Example: 01, 23, etc.

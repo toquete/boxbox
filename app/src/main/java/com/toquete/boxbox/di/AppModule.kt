@@ -39,26 +39,17 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.workmanager.dsl.workerOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 val appModule = module {
     single { Firebase.analytics }
     single { Firebase.crashlytics }
     single { Firebase.remoteConfig }
-    single<RemoteConfigRepository> {
-        FirebaseRemoteConfigRepository(
-            firebaseRemoteConfig = get()
-        )
-    }
-    single<SyncRepository> {
-        DefaultSyncRepository(
-            standingsRepository = get(),
-            imagesRepository = get(),
-            raceRepository = get(),
-            userPreferencesRepository = get(),
-            clock = get()
-        )
-    }
+    singleOf(::FirebaseRemoteConfigRepository) bind RemoteConfigRepository::class
+    singleOf(::DefaultSyncRepository) bind SyncRepository::class
     singleOf(::ImagesRepository)
     singleOf(::StandingsRepository)
     single<NetworkMonitor> { ConnectivityManagerNetworkMonitor(context = androidApplication()) }
