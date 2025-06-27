@@ -6,8 +6,10 @@ import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 class DefaultSyncRepository(
     private val standingsRepository: StandingsRepository,
     private val imagesRepository: ImagesRepository,

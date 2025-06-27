@@ -6,16 +6,19 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 class GetTodayLocalDateUseCaseTest {
 
     private val now = LocalDateTime(
         year = 2023,
-        monthNumber = 1,
-        dayOfMonth = 1,
+        month = 1,
+        day = 1,
         hour = 0,
         minute = 0,
-        second = 0
+        second = 0,
+        nanosecond = 0
     )
     private val instant = now.toInstant(TimeZone.currentSystemDefault())
     private val clock = FixedClock(instant)

@@ -81,8 +81,8 @@ class SyncWorkerTest {
         coEvery { syncRepository.sync() } just runs
         every { getTodayLocalDateUseCase() } returns LocalDate(
             year = 2024,
-            monthNumber = 12,
-            dayOfMonth = 1 // Sunday
+            month = 12,
+            day = 1 // Sunday
         )
         coEvery { userPreferencesRepository.userPreferences } returns flowOf(
             UserPreferences(
@@ -108,8 +108,8 @@ class SyncWorkerTest {
         coEvery { syncRepository.sync() } just runs
         every { getTodayLocalDateUseCase() } returns LocalDate(
             year = 2024,
-            monthNumber = 12,
-            dayOfMonth = 3 // Tuesday
+            month = 12,
+            day = 3 // Tuesday
         )
         coEvery { userPreferencesRepository.userPreferences } returns flowOf(
             UserPreferences(
@@ -135,8 +135,8 @@ class SyncWorkerTest {
         coEvery { syncRepository.sync() } just runs
         every { getTodayLocalDateUseCase() } returns LocalDate(
             year = 2024,
-            monthNumber = 12,
-            dayOfMonth = 3 // Tuesday
+            month = 12,
+            day = 3 // Tuesday
         )
         coEvery { userPreferencesRepository.userPreferences } returns flowOf(
             UserPreferences(
@@ -163,8 +163,8 @@ class SyncWorkerTest {
         coEvery { syncRepository.sync() } throws exception
         every { getTodayLocalDateUseCase() } returns LocalDate(
             year = 2024,
-            monthNumber = 12,
-            dayOfMonth = 2 // Monday
+            month = 12,
+            day = 2 // Monday
         )
         coEvery { userPreferencesRepository.userPreferences } returns flowOf(
             UserPreferences(
@@ -195,7 +195,7 @@ class SyncWorkerTest {
         }
 
         coEvery { syncRepository.sync() } just runs
-        every { getTodayLocalDateUseCase() } returns LocalDate(year = 2024, monthNumber = 12, dayOfMonth = 1)
+        every { getTodayLocalDateUseCase() } returns LocalDate(year = 2024, month = 12, day = 1)
         coEvery { userPreferencesRepository.userPreferences } returns flowOf(
             UserPreferences(
                 darkThemeConfig = DarkThemeConfig.DARK,

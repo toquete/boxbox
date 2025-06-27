@@ -6,6 +6,7 @@ import android.content.Context
 import com.toquete.boxbox.core.alarm.model.AlarmItem
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
+import kotlin.time.ExperimentalTime
 
 internal class DefaultAlarmScheduler(
     private val context: Context,
@@ -24,6 +25,7 @@ internal class DefaultAlarmScheduler(
         alarmManager.cancel(getPendingIntent(alarmItem))
     }
 
+    @OptIn(ExperimentalTime::class)
     private fun getAlarmTime(alarmItem: AlarmItem): Long {
         return alarmItem.dateTime
             .toInstant(TimeZone.currentSystemDefault())

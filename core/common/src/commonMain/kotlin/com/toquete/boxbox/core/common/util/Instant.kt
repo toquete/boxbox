@@ -1,6 +1,9 @@
+@file:OptIn(ExperimentalTime::class)
+
 package com.toquete.boxbox.core.common.util
 
-import kotlinx.datetime.Instant
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 fun dateAndTimeToInstant(date: String?, time: String?): Instant? {
     return when {

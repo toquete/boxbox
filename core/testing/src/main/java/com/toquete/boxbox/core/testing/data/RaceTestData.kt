@@ -1,10 +1,13 @@
+@file:OptIn(ExperimentalTime::class)
+
 package com.toquete.boxbox.core.testing.data
 
 import com.toquete.boxbox.core.database.model.RaceEntity
 import com.toquete.boxbox.core.model.Race
 import com.toquete.boxbox.core.network.model.PracticeResponse
 import com.toquete.boxbox.core.network.model.RaceResponse
-import kotlinx.datetime.Instant
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 val racesResponse = listOf(
     RaceResponse(

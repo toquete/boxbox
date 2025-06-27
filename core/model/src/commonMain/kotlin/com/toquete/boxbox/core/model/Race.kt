@@ -1,7 +1,9 @@
 package com.toquete.boxbox.core.model
 
-import kotlinx.datetime.Instant
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
+@OptIn(ExperimentalTime::class)
 data class Race(
     val season: String,
     val round: Int,
