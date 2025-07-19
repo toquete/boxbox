@@ -1,6 +1,5 @@
 plugins {
     id("boxbox.android.library")
-    id("boxbox.android.library.compose")
 }
 
 android {
@@ -20,7 +19,5 @@ dependencies {
     api(libs.test.core)
     api(libs.test.runner)
     api(libs.test.rules)
-    api(libs.junit.compose)
     api(libs.espresso)
-    debugApi(libs.compose.ui.manifest)
 }

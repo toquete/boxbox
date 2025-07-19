@@ -123,6 +123,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.play.services.ads)
     implementation(libs.koin.workmanager)
+    debugImplementation(libs.compose.ui.manifest)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
@@ -132,6 +133,7 @@ dependencies {
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.compose.navigation.test)
     androidTestImplementation(libs.koin.test)
+    androidTestImplementation(libs.junit.compose)
 }
 
 dependencies {

@@ -13,7 +13,9 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":domain"))
+    debugImplementation(libs.compose.ui.manifest)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
+    testImplementation(libs.junit.compose)
 }

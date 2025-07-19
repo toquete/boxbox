@@ -14,7 +14,9 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":core:ui"))
     implementation(libs.play.services.ads)
+    debugImplementation(libs.compose.ui.manifest)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
+    testImplementation(libs.junit.compose)
 }
