@@ -2,11 +2,11 @@ package com.toquete.boxbox.core.network
 
 import com.toquete.boxbox.core.common.extension.readPath
 import com.toquete.boxbox.core.network.ktor.KtorService
-import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
-import com.toquete.boxbox.core.testing.data.driverStandingsWrapper
-import com.toquete.boxbox.core.testing.data.raceResultWrapper
-import com.toquete.boxbox.core.testing.data.racesWrapper
-import com.toquete.boxbox.core.testing.data.sprintRaceResultWrapper
+import com.toquete.boxbox.core.network.mock.constructorStandingsWrapper
+import com.toquete.boxbox.core.network.mock.driverStandingsWrapper
+import com.toquete.boxbox.core.network.mock.raceResultWrapper
+import com.toquete.boxbox.core.network.mock.racesWrapper
+import com.toquete.boxbox.core.network.mock.sprintRaceResultWrapper
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import kotlinx.coroutines.test.runTest
