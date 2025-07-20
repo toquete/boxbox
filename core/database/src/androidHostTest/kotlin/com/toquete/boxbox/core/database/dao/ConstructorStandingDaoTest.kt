@@ -4,11 +4,11 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
-import com.toquete.boxbox.core.testing.data.constructorEntities
-import com.toquete.boxbox.core.testing.data.constructorImageEntities
-import com.toquete.boxbox.core.testing.data.constructorStandingEntities
-import com.toquete.boxbox.core.testing.data.countryEntities
-import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
+import com.toquete.boxbox.core.database.mock.constructorEntities
+import com.toquete.boxbox.core.database.mock.constructorImageEntities
+import com.toquete.boxbox.core.database.mock.constructorStandingEntities
+import com.toquete.boxbox.core.database.mock.countryEntities
+import com.toquete.boxbox.core.database.mock.fullConstructorStandingEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After

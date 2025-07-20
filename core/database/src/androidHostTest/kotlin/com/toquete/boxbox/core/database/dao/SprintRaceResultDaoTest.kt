@@ -4,10 +4,10 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
-import com.toquete.boxbox.core.testing.data.constructorEntities
-import com.toquete.boxbox.core.testing.data.driverEntities
-import com.toquete.boxbox.core.testing.data.sprintRaceResultEntities
-import com.toquete.boxbox.core.testing.data.sprintRaceResultsWithDriverAndConstructor
+import com.toquete.boxbox.core.database.mock.constructorEntities
+import com.toquete.boxbox.core.database.mock.driverEntities
+import com.toquete.boxbox.core.database.mock.sprintRaceResultEntities
+import com.toquete.boxbox.core.database.mock.sprintRaceResultsWithDriverAndConstructor
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After

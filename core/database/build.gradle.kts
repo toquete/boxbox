@@ -56,6 +56,8 @@ kotlin {
         }
         getByName("androidHostTest") {
             dependencies {
+                implementation(libs.test.core)
+                implementation(libs.junit.ext)
                 implementation(libs.room.testing)
                 implementation(libs.robolectric)
             }

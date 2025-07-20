@@ -4,11 +4,11 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
-import com.toquete.boxbox.core.testing.data.circuitEntities
-import com.toquete.boxbox.core.testing.data.circuitImageEntities
-import com.toquete.boxbox.core.testing.data.countryEntities
-import com.toquete.boxbox.core.testing.data.raceEntities
-import com.toquete.boxbox.core.testing.data.racesWithCircuits
+import com.toquete.boxbox.core.database.mock.circuitEntities
+import com.toquete.boxbox.core.database.mock.circuitImageEntities
+import com.toquete.boxbox.core.database.mock.countryEntities
+import com.toquete.boxbox.core.database.mock.raceEntities
+import com.toquete.boxbox.core.database.mock.racesWithCircuits
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
