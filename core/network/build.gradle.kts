@@ -44,11 +44,6 @@ kotlin {
                 implementation(libs.slf4j.simple)
             }
         }
-        jvmTest {
-            dependencies {
-                implementation(project(":core:testing"))
-            }
-        }
         iosMain {
             dependencies {
                 implementation(libs.ktor.client.darwin)

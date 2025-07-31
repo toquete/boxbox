@@ -48,7 +48,7 @@ val appModule = module {
     single { Firebase.analytics }
     single { Firebase.crashlytics }
     single { Firebase.remoteConfig }
-    singleOf(::FirebaseRemoteConfigRepository) bind RemoteConfigRepository::class
+    single<RemoteConfigRepository> { FirebaseRemoteConfigRepository(firebaseRemoteConfig = get()) }
     singleOf(::DefaultSyncRepository) bind SyncRepository::class
     singleOf(::ImagesRepository)
     singleOf(::StandingsRepository)
