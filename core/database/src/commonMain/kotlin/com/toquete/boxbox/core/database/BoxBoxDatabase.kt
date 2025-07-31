@@ -60,7 +60,7 @@ import com.toquete.boxbox.core.database.model.SprintRaceResultEntity
 )
 @Suppress("TooManyFunctions")
 @ConstructedBy(BoxBoxDatabaseConstructor::class)
-internal abstract class BoxBoxDatabase : RoomDatabase() {
+abstract class BoxBoxDatabase : RoomDatabase() {
 
     abstract fun driverStandingDao(): DriverStandingDao
 

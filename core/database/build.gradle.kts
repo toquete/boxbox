@@ -14,7 +14,11 @@ kotlin {
         compileSdk = 35
         minSdk = 24
 
-        withHostTest {}
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
+            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
 
         compilations.configureEach {
             compilerOptions.configure {
@@ -47,6 +51,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
                 implementation(libs.coroutines.test)
+                implementation(libs.room.testing)
             }
         }
         androidMain {
@@ -54,12 +59,12 @@ kotlin {
                 implementation(libs.koin.android)
             }
         }
-        getByName("androidHostTest") {
+        getByName("androidDeviceTest") {
             dependencies {
                 implementation(libs.test.core)
                 implementation(libs.junit.ext)
-                implementation(libs.room.testing)
-                implementation(libs.robolectric)
+                implementation(libs.junit)
+                implementation(libs.test.runner)
             }
         }
     }

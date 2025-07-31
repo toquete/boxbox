@@ -1,34 +1,27 @@
 package com.toquete.boxbox.core.database.dao
 
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
+import com.toquete.boxbox.core.database.RoomDatabaseTest
 import com.toquete.boxbox.core.database.mock.circuitImageEntities
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@RunWith(AndroidJUnit4::class)
-class CircuitImageDaoTest {
+class CircuitImageDaoTest : RoomDatabaseTest() {
 
     private lateinit var dao: CircuitImageDao
     private lateinit var db: BoxBoxDatabase
 
-    @Before
+    @BeforeTest
     fun setUp() {
-        db = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            BoxBoxDatabase::class.java
-        ).build()
+        db = getInMemoryDatabaseBuilder().build()
         dao = db.circuitImageDao()
     }
 
-    @After
+    @AfterTest
     fun tearDown() {
         db.close()
     }

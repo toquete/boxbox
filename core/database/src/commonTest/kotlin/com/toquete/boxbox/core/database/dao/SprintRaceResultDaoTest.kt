@@ -1,23 +1,19 @@
 package com.toquete.boxbox.core.database.dao
 
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.database.BoxBoxDatabase
+import com.toquete.boxbox.core.database.RoomDatabaseTest
 import com.toquete.boxbox.core.database.mock.constructorEntities
 import com.toquete.boxbox.core.database.mock.driverEntities
 import com.toquete.boxbox.core.database.mock.sprintRaceResultEntities
 import com.toquete.boxbox.core.database.mock.sprintRaceResultsWithDriverAndConstructor
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
-@RunWith(AndroidJUnit4::class)
-class SprintRaceResultDaoTest {
+class SprintRaceResultDaoTest : RoomDatabaseTest() {
 
     private lateinit var dao: SprintRaceResultDao
     private lateinit var driverDao: DriverDao
@@ -27,12 +23,9 @@ class SprintRaceResultDaoTest {
     private lateinit var driverImageDao: DriverImageDao
     private lateinit var db: BoxBoxDatabase
 
-    @Before
+    @BeforeTest
     fun setUp() {
-        db = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            BoxBoxDatabase::class.java
-        ).build()
+        db = getInMemoryDatabaseBuilder().build()
         dao = db.sprintRaceResultDao()
         driverDao = db.driverDao()
         constructorDao = db.constructorDao()
@@ -41,7 +34,7 @@ class SprintRaceResultDaoTest {
         driverImageDao = db.driverImageDao()
     }
 
-    @After
+    @AfterTest
     fun tearDown() {
         db.close()
     }
