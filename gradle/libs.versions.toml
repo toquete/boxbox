@@ -21,7 +21,7 @@ room = "2.7.2"
 splashscreen = "1.0.1"
 work = "2.10.2"
 hilt-work = "1.2.0"
-mockwebserver = "4.12.0"
+mockwebserver = "5.1.0"
 mockk = "1.14.5"
 test-core = "1.6.1"
 test-runner = "1.6.2"
@@ -87,7 +87,7 @@ work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
 work-testing = { module = "androidx.work:work-testing", version.ref = "work" }
 hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
 hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-work" }
-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserver"}
+mockwebserver = { module = "com.squareup.okhttp3:mockwebserver3", version.ref = "mockwebserver"}
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines"}
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines"}
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }

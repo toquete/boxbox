@@ -9,8 +9,8 @@ import com.toquete.boxbox.core.testing.data.racesWrapper
 import com.toquete.boxbox.core.testing.data.sprintRaceResultWrapper
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
+import mockwebserver3.MockResponse
+import mockwebserver3.MockWebServer
 import org.junit.After
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -18,27 +18,20 @@ import kotlin.test.assertEquals
 class BoxBoxServiceTest {
 
     private val mockWebServer = MockWebServer()
-    private val service = NetworkModule.getRetrofitBuilder(
-        json = Json {
-            ignoreUnknownKeys = true
-            explicitNulls = false
-        },
-        baseUrl = mockWebServer.url("")
-    )
-        .build()
-        .create(BoxBoxService::class.java)
+    private lateinit var service: BoxBoxService
 
     @After
     fun tearDown() {
-        mockWebServer.shutdown()
+        mockWebServer.close()
     }
 
     @Test
     fun `getDriverStandings should return parsed data class on success`() = runTest {
         val expected = driverStandingsWrapper
-        MockResponse().apply {
-            setBody(readPath("driver_standings.json"))
-            mockWebServer.enqueue(this)
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("driver_standings.json")))
+            start()
+            setupService()
         }
 
         val result = service.getDriverStandings()
@@ -49,22 +42,24 @@ class BoxBoxServiceTest {
     @Test
     fun `getDriverStandings should send correct request path when called`() = runTest {
         val expected = "/current/driverStandings.json"
-        MockResponse().apply {
-            setBody(readPath("driver_standings.json"))
-            mockWebServer.enqueue(this)
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("driver_standings.json")))
+            start()
+            setupService()
         }
 
         service.getDriverStandings()
 
-        assertEquals(expected, mockWebServer.takeRequest().path)
+        assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }
 
     @Test
     fun `getConstructorStandings should return parsed data class on success`() = runTest {
         val expected = constructorStandingsWrapper
-        MockResponse().apply {
-            setBody(readPath("constructor_standings.json"))
-            mockWebServer.enqueue(this)
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("constructor_standings.json")))
+            start()
+            setupService()
         }
 
         val result = service.getConstructorStandings()
@@ -75,22 +70,24 @@ class BoxBoxServiceTest {
     @Test
     fun `getConstructorStandings should send correct request path when called`() = runTest {
         val expected = "/current/constructorStandings.json"
-        MockResponse().apply {
-            setBody(readPath("constructor_standings.json"))
-            mockWebServer.enqueue(this)
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("constructor_standings.json")))
+            start()
+            setupService()
         }
 
         service.getConstructorStandings()
 
-        assertEquals(expected, mockWebServer.takeRequest().path)
+        assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }
 
     @Test
     fun `getRaces should return parsed data class on success`() = runTest {
         val expected = racesWrapper
-        MockResponse().apply {
-            setBody(readPath("races.json"))
-            mockWebServer.enqueue(this)
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("races.json")))
+            start()
+            setupService()
         }
 
         val result = service.getRaces()
@@ -101,22 +98,24 @@ class BoxBoxServiceTest {
     @Test
     fun `getRaces should send correct request path when called`() = runTest {
         val expected = "/current.json"
-        MockResponse().apply {
-            setBody(readPath("races.json"))
-            mockWebServer.enqueue(this)
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("races.json")))
+            start()
+            setupService()
         }
 
         service.getRaces()
 
-        assertEquals(expected, mockWebServer.takeRequest().path)
+        assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }
 
     @Test
     fun `getRaceResults should return parsed data class on success`() = runTest {
         val expected = raceResultWrapper
-        MockResponse().apply {
-            setBody(readPath("race_results.json"))
-            mockWebServer.enqueue(this)
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("race_results.json")))
+            start()
+            setupService()
         }
 
         val result = service.getRaceResults(offset = 0)
@@ -126,23 +125,28 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getRaceResults should send correct request path when called`() = runTest {
-        val expected = "/current/results.json?offset=0&limit=100"
-        MockResponse().apply {
-            setBody(readPath("race_results.json"))
-            mockWebServer.enqueue(this)
+        val expectedPath = "/current/results.json"
+        val expectedParams = "offset=0&limit=100"
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("race_results.json")))
+            start()
+            setupService()
         }
 
         service.getRaceResults(offset = 0)
 
-        assertEquals(expected, mockWebServer.takeRequest().path)
+        val request = mockWebServer.takeRequest()
+        assertEquals(expectedPath, request.url.encodedPath)
+        assertEquals(expectedParams, request.url.encodedQuery)
     }
 
     @Test
     fun `getSprintRaceResults should return parsed data class on success`() = runTest {
         val expected = sprintRaceResultWrapper
-        MockResponse().apply {
-            setBody(readPath("sprint_results.json"))
-            mockWebServer.enqueue(this)
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("sprint_results.json")))
+            start()
+            setupService()
         }
 
         val result = service.getSprintRaceResults(offset = 0)
@@ -152,14 +156,30 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getSprintRaceResults should send correct request path when called`() = runTest {
-        val expected = "/current/sprint.json?offset=0&limit=100"
-        MockResponse().apply {
-            setBody(readPath("sprint_results.json"))
-            mockWebServer.enqueue(this)
+        val expectedPath = "/current/sprint.json"
+        val expectedParams = "offset=0&limit=100"
+        with(mockWebServer) {
+            enqueue(MockResponse(body = readPath("sprint_results.json")))
+            start()
+            setupService()
         }
 
         service.getSprintRaceResults(offset = 0)
 
-        assertEquals(expected, mockWebServer.takeRequest().path)
+        val request = mockWebServer.takeRequest()
+        assertEquals(expectedPath, request.url.encodedPath)
+        assertEquals(expectedParams, request.url.encodedQuery)
+    }
+
+    private fun setupService() {
+        service = NetworkModule.getRetrofitBuilder(
+            json = Json {
+                ignoreUnknownKeys = true
+                explicitNulls = false
+            },
+            baseUrl = mockWebServer.url("")
+        )
+            .build()
+            .create(BoxBoxService::class.java)
     }
 }
