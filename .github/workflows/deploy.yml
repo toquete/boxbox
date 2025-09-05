@@ -39,21 +39,21 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Build release APK
-        run: ./gradlew :app:assembleProdRelease
+        run: ./gradlew :app:assembleRelease
       - name: Build release bundle
-        run: ./gradlew :app:bundleProdRelease
+        run: ./gradlew :app:bundleRelease
       - name: Upload Release Build to Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: |
-            app/build/outputs/apk/prod/release/
-            app/build/outputs/bundle/prodRelease/
+            app/build/outputs/apk/release/
+            app/build/outputs/bundle/release/
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
           draft: true
-          files: app/build/outputs/apk/prod/release/app-prod-release.apk
+          files: app/build/outputs/apk/release/app-release.apk
           generate_release_notes: true
       - name: Upload app to Google Play
         uses: r0adkll/upload-google-play@v1
@@ -62,4 +62,4 @@ jobs:
           packageName: com.toquete.boxbox
           track: internal
           status: draft
-          releaseFiles: app/build/outputs/bundle/prodRelease/app-prod-release.aab
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
