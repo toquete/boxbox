@@ -27,9 +27,7 @@ jobs:
       - name: Create keystore.properties file
         run: echo $KEYSTORE_PROPERTIES | base64 -di > ${{ github.workspace }}/keystore.properties
       - name: Create Google Services JSON
-        run: |
-          mkdir ${{ github.workspace }}/app/src/prod
-          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/google-services.json
       - name: Create service account JSON
         run: echo $SERVICE_ACCOUNT_JSON | base64 -di > ${{ github.workspace }}/service-account.json
       - name: Setup Gradle
