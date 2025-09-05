@@ -37,9 +37,9 @@ import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.races.model.RacesTab
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun RacesRoute(
