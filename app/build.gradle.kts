@@ -162,7 +162,7 @@ dependencies {
 
 kover {
     reports {
-        total {
+        variant("debug") {
             html {
                 title = "BoxBox"
                 onCheck = false
