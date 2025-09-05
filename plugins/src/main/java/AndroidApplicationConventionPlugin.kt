@@ -1,7 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
-import com.toquete.boxbox.plugins.configureFirebase
-import com.toquete.boxbox.plugins.configureFlavors
 import com.toquete.boxbox.plugins.configureGradleManagedDevices
 import com.toquete.boxbox.plugins.configureKotlinAndroid
 import com.toquete.boxbox.plugins.disableUnnecessaryAndroidTests
@@ -25,8 +23,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
                 configureGradleManagedDevices(this)
-                configureFlavors(this)
-                configureFirebase(this)
                 defaultConfig {
                     targetSdk = 35
                     testInstrumentationRunner = "com.toquete.boxbox.BoxBoxTestRunner"

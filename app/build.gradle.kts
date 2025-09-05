@@ -139,8 +139,6 @@ dependencies {
 dependencies {
     kover(project(":core:model"))
     kover(project(":core:ui"))
-    kover(project(":core:preferences"))
-    kover(project(":core:database"))
     kover(project(":core:network"))
     kover(project(":core:common"))
     kover(project(":core:testing"))
@@ -164,7 +162,7 @@ dependencies {
 
 kover {
     reports {
-        variant("prodDebug") {
+        variant("debug") {
             html {
                 title = "BoxBox"
                 onCheck = false

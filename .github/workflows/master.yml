@@ -23,9 +23,7 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create Google Services JSON
-        run: |
-          mkdir ${{ github.workspace }}/app/src/prod
-          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -34,7 +32,7 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Build APK
-        run: ./gradlew :app:assembleProdDebug
+        run: ./gradlew :app:assembleDebug
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -51,9 +49,7 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create Google Services JSON
-        run: |
-          mkdir ${{ github.workspace }}/app/src/prod
-          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -61,7 +57,7 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Lint
-        run: ./gradlew lintProdDebug lintDemoDebug
+        run: ./gradlew lintDebug
       - name: Uploading lint results
         uses: actions/upload-artifact@v4
         with:
@@ -78,9 +74,7 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create Google Services JSON
-        run: |
-          mkdir ${{ github.workspace }}/app/src/prod
-          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -88,7 +82,7 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Detekt
-        run: ./gradlew detektProdDebug reportMerge --continue
+        run: ./gradlew detektDebug reportMerge --continue
       - name: Uploading detekt results
         uses: actions/upload-artifact@v4
         with:
@@ -107,9 +101,7 @@ jobs:
           distribution: zulu
           java-version: '17'
       - name: Create Google Services JSON
-        run: |
-          mkdir ${{ github.workspace }}/app/src/prod
-          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -117,13 +109,13 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Unit test and coverage
-        run: ./gradlew koverXmlReportProdDebug
+        run: ./gradlew koverXmlReportDebug
       - name: Uploading test results and coverage
         uses: actions/upload-artifact@v4
         with:
           name: test-reports-and-coverage
           path: |
-            **/reports/tests/testProdDebugUnitTest/
+            **/reports/tests/testDebugUnitTest/
             **/app/build/reports/coverage/coverage.xml
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
@@ -152,9 +144,7 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Create Google Services JSON
-        run: |
-          mkdir ${{ github.workspace }}/app/src/prod
-          echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -186,9 +176,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3.2.2
       - name: Create Google Services JSON
-        run: |
-          mkdir ${{ github.workspace }}/app/src/prod
-          echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/prod/google-services.json
+        run: echo $GOOGLE_SERVICES_JSON | base64 -d > ${{ github.workspace }}/app/src/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -206,7 +194,7 @@ jobs:
           disable-animations: true
           disk-size: 6000M
           heap-size: 600M
-          script: ./gradlew connectedProdDebugAndroidTest --no-daemon --max-workers 2
+          script: ./gradlew connectedDebugAndroidTest --no-daemon --max-workers 2
       - name: Upload Android test reports
         uses: actions/upload-artifact@v4
         with:
