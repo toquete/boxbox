@@ -8,6 +8,7 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 class CircuitImageDaoTest : RoomDatabaseTest() {
@@ -27,11 +28,20 @@ class CircuitImageDaoTest : RoomDatabaseTest() {
     }
 
     @Test
-    fun testCircuitImageInsert() = runTest {
+    fun testGetCircuitImageById() = runTest {
         dao.upsertAll(circuitImageEntities)
 
         val result = dao.getCircuitImageById(id = "bahrain").first()
 
         assertEquals(circuitImageEntities.first(), result)
+    }
+
+    @Test
+    fun testCircuitImageInsert() = runTest {
+        dao.upsertAll(circuitImageEntities)
+
+        val result = dao.getCircuitImages().first()
+
+        assertContentEquals(circuitImageEntities, result)
     }
 }

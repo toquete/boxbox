@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CircuitImageDao {
 
+    @Query("SELECT * FROM circuits_images")
+    fun getCircuitImages(): Flow<List<CircuitImageEntity>>
+
     @Query("SELECT * FROM circuits_images WHERE id =:id")
     fun getCircuitImageById(id: String): Flow<CircuitImageEntity>
 
