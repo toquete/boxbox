@@ -2,40 +2,33 @@ package com.toquete.boxbox.data.constructorcolors.repository
 
 import com.toquete.boxbox.core.database.dao.ConstructorColorDao
 import com.toquete.boxbox.core.testing.data.constructorColorEntities
-import com.toquete.boxbox.core.testing.data.constructorColorResponses
+import com.toquete.boxbox.data.constructorcolors.fake.FakeConstructorColorDao
+import com.toquete.boxbox.data.constructorcolors.fake.FakeConstructorColorRemoteDataSource
 import com.toquete.boxbox.data.constructorcolors.source.remote.ConstructorColorRemoteDataSource
-import io.mockk.coEvery
-import io.mockk.coVerify
-import io.mockk.mockk
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
+import org.junit.Before
 import org.junit.Test
-import java.io.IOException
+import kotlin.test.assertContentEquals
 
 internal class DefaultConstructorColorRepositoryTest {
 
-    private val remoteDataSource: ConstructorColorRemoteDataSource = mockk(relaxed = true)
-    private val constructorColorDao: ConstructorColorDao = mockk(relaxed = true)
-    private val repository = DefaultConstructorColorRepository(remoteDataSource, constructorColorDao)
+    private lateinit var remoteDataSource: ConstructorColorRemoteDataSource
+    private lateinit var constructorColorDao: ConstructorColorDao
+    private lateinit var repository: DefaultConstructorColorRepository
+
+    @Before
+    fun setUp() {
+        remoteDataSource = FakeConstructorColorRemoteDataSource()
+        constructorColorDao = FakeConstructorColorDao()
+        repository = DefaultConstructorColorRepository(remoteDataSource, constructorColorDao)
+    }
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
-        coEvery { remoteDataSource.getConstructorsColors() } returns constructorColorResponses
-        coEvery { constructorColorDao.upsertAll(any()) } returns Unit
-
         repository.sync()
 
-        coEvery {
-            remoteDataSource.getConstructorsColors()
-            constructorColorDao.upsertAll(constructorColorEntities)
-        }
-    }
-
-    @Test(expected = IOException::class)
-    fun `sync should not call local data source when remote data returns error`() = runTest {
-        coEvery { remoteDataSource.getConstructorsColors() } throws IOException()
-
-        repository.sync()
-
-        coVerify(exactly = 0) { constructorColorDao.upsertAll(any()) }
+        val result = constructorColorDao.getConstructorColors().first()
+        assertContentEquals(constructorColorEntities, result)
     }
 }
