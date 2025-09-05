@@ -1,14 +1,14 @@
 package com.toquete.boxbox.data.circuitimages.repository
 
 import com.toquete.boxbox.core.database.dao.CircuitImageDao
-import com.toquete.boxbox.core.testing.data.circuitImageEntities
 import com.toquete.boxbox.data.circuitimages.fake.FakeCircuitImageDao
 import com.toquete.boxbox.data.circuitimages.fake.FakeCircuitImageRemoteDataSource
+import com.toquete.boxbox.data.circuitimages.mock.circuitImageEntities
 import com.toquete.boxbox.data.circuitimages.source.remote.CircuitImageRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultCircuitImageRepositoryTest {
@@ -17,7 +17,7 @@ class DefaultCircuitImageRepositoryTest {
     private lateinit var circuitImageDao: CircuitImageDao
     private lateinit var repository: DefaultCircuitImageRepository
 
-    @Before
+    @BeforeTest
     fun setUp() {
         remoteDataSource = FakeCircuitImageRemoteDataSource()
         circuitImageDao = FakeCircuitImageDao()
