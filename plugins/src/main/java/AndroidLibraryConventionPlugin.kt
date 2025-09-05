@@ -1,6 +1,5 @@
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import com.toquete.boxbox.plugins.configureFlavors
 import com.toquete.boxbox.plugins.configureGradleManagedDevices
 import com.toquete.boxbox.plugins.configureKotlinAndroid
 import com.toquete.boxbox.plugins.disableUnnecessaryAndroidTests
@@ -21,7 +20,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 configureGradleManagedDevices(this)
-                configureFlavors(this)
                 defaultConfig.targetSdk = 35
                 testOptions {
                     unitTests {
