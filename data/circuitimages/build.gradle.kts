@@ -44,10 +44,5 @@ kotlin {
                 implementation(libs.coroutines.test)
             }
         }
-        androidMain {
-            dependencies {
-                implementation(libs.koin.android)
-            }
-        }
     }
 }

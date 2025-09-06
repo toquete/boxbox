@@ -8,6 +8,7 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 class ConstructorColorDaoTest : RoomDatabaseTest() {
@@ -28,6 +29,15 @@ class ConstructorColorDaoTest : RoomDatabaseTest() {
 
     @Test
     fun testConstructorColorInsert() = runTest {
+        dao.upsertAll(constructorColorEntities)
+
+        val result = dao.getConstructorColors().first()
+
+        assertContentEquals(constructorColorEntities, result)
+    }
+
+    @Test
+    fun testGetConstructorColorById() = runTest {
         dao.upsertAll(constructorColorEntities)
 
         val result = dao.getConstructorColorById(id = "red_bull").first()

@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ConstructorColorDao {
 
+    @Query("SELECT * FROM constructors_colors")
+    fun getConstructorColors(): Flow<List<ConstructorColorEntity>>
+
     @Query("SELECT * FROM constructors_colors WHERE id =:id")
     fun getConstructorColorById(id: String): Flow<ConstructorColorEntity>
 
