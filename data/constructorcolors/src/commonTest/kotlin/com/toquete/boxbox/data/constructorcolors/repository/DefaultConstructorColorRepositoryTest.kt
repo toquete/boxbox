@@ -1,23 +1,23 @@
 package com.toquete.boxbox.data.constructorcolors.repository
 
 import com.toquete.boxbox.core.database.dao.ConstructorColorDao
-import com.toquete.boxbox.core.testing.data.constructorColorEntities
 import com.toquete.boxbox.data.constructorcolors.fake.FakeConstructorColorDao
 import com.toquete.boxbox.data.constructorcolors.fake.FakeConstructorColorRemoteDataSource
+import com.toquete.boxbox.data.constructorcolors.mock.constructorColorEntities
 import com.toquete.boxbox.data.constructorcolors.source.remote.ConstructorColorRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
-internal class DefaultConstructorColorRepositoryTest {
+class DefaultConstructorColorRepositoryTest {
 
     private lateinit var remoteDataSource: ConstructorColorRemoteDataSource
     private lateinit var constructorColorDao: ConstructorColorDao
     private lateinit var repository: DefaultConstructorColorRepository
 
-    @Before
+    @BeforeTest
     fun setUp() {
         remoteDataSource = FakeConstructorColorRemoteDataSource()
         constructorColorDao = FakeConstructorColorDao()

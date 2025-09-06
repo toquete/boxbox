@@ -1,15 +1,48 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    id("boxbox.android.library")
-    id("boxbox.android.koin")
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kover)
 }
 
-android {
-    namespace = "com.toquete.boxbox.data.constructorcolors"
-}
+kotlin {
+    androidLibrary {
+        namespace = "com.toquete.boxbox.data.constructorcolors"
+        compileSdk = 35
+        minSdk = 24
 
-dependencies {
-    implementation(project(":core:database"))
-    implementation(project(":core:network"))
-    implementation(project(":domain"))
-    testImplementation(project(":core:testing"))
+        compilations.configureEach {
+            compilerOptions.configure {
+                jvmTarget.set(JvmTarget.JVM_17)
+            }
+        }
+    }
+    listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach {
+        it.binaries.framework {
+            baseName = "constructorColorsKit"
+        }
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation(project(":core:database"))
+                implementation(project(":core:network"))
+                implementation(project(":domain"))
+                implementation(libs.kotlin.stdlib)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.coroutines.core)
+
+                implementation(project.dependencies.platform(libs.koin.bom))
+                implementation(libs.koin.core)
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation(libs.kotlin.test)
+                implementation(libs.coroutines.test)
+            }
+        }
+    }
 }
