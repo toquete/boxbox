@@ -7,8 +7,8 @@ import com.toquete.boxbox.data.constructorimages.mock.constructorImageEntities
 import com.toquete.boxbox.data.constructorimages.source.remote.ConstructorImageRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultConstructorImageRepositoryTest {
@@ -17,7 +17,7 @@ class DefaultConstructorImageRepositoryTest {
     private lateinit var constructorImageDao: ConstructorImageDao
     private lateinit var repository: DefaultConstructorImageRepository
 
-    @Before
+    @BeforeTest
     fun setup() {
         remoteDataSource = FakeConstructorImageRemoteDataSource()
         constructorImageDao = FakeConstructorImageDao()

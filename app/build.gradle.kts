@@ -146,7 +146,6 @@ dependencies {
     kover(project(":data:driverstandings"))
     kover(project(":data:driverimages"))
     kover(project(":data:constructorstandings"))
-    kover(project(":data:constructorimages"))
     kover(project(":data:races"))
     kover(project(":data:raceresults"))
     kover(project(":data:sprintresults"))
