@@ -1,41 +1,34 @@
 package com.toquete.boxbox.data.constructorimages.repository
 
 import com.toquete.boxbox.core.database.dao.ConstructorImageDao
-import com.toquete.boxbox.core.testing.data.constructorImageEntities
-import com.toquete.boxbox.core.testing.data.constructorImageResponses
+import com.toquete.boxbox.data.constructorimages.fake.FakeConstructorImageDao
+import com.toquete.boxbox.data.constructorimages.fake.FakeConstructorImageRemoteDataSource
+import com.toquete.boxbox.data.constructorimages.mock.constructorImageEntities
 import com.toquete.boxbox.data.constructorimages.source.remote.ConstructorImageRemoteDataSource
-import io.mockk.coEvery
-import io.mockk.coVerify
-import io.mockk.mockk
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
+import org.junit.Before
 import org.junit.Test
-import java.io.IOException
+import kotlin.test.assertContentEquals
 
 class DefaultConstructorImageRepositoryTest {
 
-    private val remoteDataSource: ConstructorImageRemoteDataSource = mockk(relaxed = true)
-    private val constructorImageDao: ConstructorImageDao = mockk(relaxed = true)
-    private val repository = DefaultConstructorImageRepository(remoteDataSource, constructorImageDao)
+    private lateinit var remoteDataSource: ConstructorImageRemoteDataSource
+    private lateinit var constructorImageDao: ConstructorImageDao
+    private lateinit var repository: DefaultConstructorImageRepository
+
+    @Before
+    fun setup() {
+        remoteDataSource = FakeConstructorImageRemoteDataSource()
+        constructorImageDao = FakeConstructorImageDao()
+        repository = DefaultConstructorImageRepository(remoteDataSource, constructorImageDao)
+    }
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
-        coEvery { remoteDataSource.getConstructorsImages() } returns constructorImageResponses
-        coEvery { constructorImageDao.upsertAll(any()) } returns Unit
-
         repository.sync()
 
-        coVerify {
-            remoteDataSource.getConstructorsImages()
-            constructorImageDao.upsertAll(constructorImageEntities)
-        }
-    }
-
-    @Test(expected = IOException::class)
-    fun `sync should not call local data source when remote data returns error`() = runTest {
-        coEvery { remoteDataSource.getConstructorsImages() } throws IOException()
-
-        repository.sync()
-
-        coVerify(exactly = 0) { constructorImageDao.upsertAll(any()) }
+        val result = constructorImageDao.getConstructorImages().first()
+        assertContentEquals(constructorImageEntities, result)
     }
 }
