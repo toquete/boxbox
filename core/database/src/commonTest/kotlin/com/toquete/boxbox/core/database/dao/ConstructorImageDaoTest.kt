@@ -8,6 +8,7 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 class ConstructorImageDaoTest : RoomDatabaseTest() {
@@ -24,6 +25,15 @@ class ConstructorImageDaoTest : RoomDatabaseTest() {
     @AfterTest
     fun tearDown() {
         db.close()
+    }
+
+    @Test
+    fun testGetConstructorImages() = runTest {
+        dao.upsertAll(constructorImageEntities)
+
+        val result = dao.getConstructorImages().first()
+
+        assertContentEquals(constructorImageEntities, result)
     }
 
     @Test
