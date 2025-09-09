@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.constructorstandings.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
-import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
-import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
+import com.toquete.boxbox.data.constructorstandings.mock.constructorStandingsResponse
+import com.toquete.boxbox.data.constructorstandings.mock.constructorStandingsWrapper
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest

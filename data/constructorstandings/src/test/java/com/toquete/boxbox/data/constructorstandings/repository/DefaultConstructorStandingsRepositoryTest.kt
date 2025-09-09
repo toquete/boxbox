@@ -1,10 +1,10 @@
 package com.toquete.boxbox.data.constructorstandings.repository
 
 import com.toquete.boxbox.core.database.dao.ConstructorStandingDao
-import com.toquete.boxbox.core.testing.data.constructorStandingEntities
-import com.toquete.boxbox.core.testing.data.constructorStandings
-import com.toquete.boxbox.core.testing.data.constructorStandingsResponse
-import com.toquete.boxbox.core.testing.data.fullConstructorStandingEntities
+import com.toquete.boxbox.data.constructorstandings.mock.constructorStandingEntities
+import com.toquete.boxbox.data.constructorstandings.mock.constructorStandings
+import com.toquete.boxbox.data.constructorstandings.mock.constructorStandingsResponse
+import com.toquete.boxbox.data.constructorstandings.mock.fullConstructorStandingEntities
 import com.toquete.boxbox.data.constructorstandings.source.remote.ConstructorStandingsRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
