@@ -27,6 +27,15 @@ class CountryDaoTest : RoomDatabaseTest() {
     }
 
     @Test
+    fun testGetCountries() = runTest {
+        dao.upsertAll(countryEntities)
+
+        val result = dao.getCountries().first()
+
+        assertEquals(countryEntities, result)
+    }
+
+    @Test
     fun testCountryInsert() = runTest {
         dao.upsertAll(countryEntities)
 
