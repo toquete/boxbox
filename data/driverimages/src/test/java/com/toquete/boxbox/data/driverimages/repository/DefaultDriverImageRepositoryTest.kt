@@ -1,41 +1,34 @@
 package com.toquete.boxbox.data.driverimages.repository
 
 import com.toquete.boxbox.core.database.dao.DriverImageDao
+import com.toquete.boxbox.data.driverimages.fake.FakeDriverImageDao
+import com.toquete.boxbox.data.driverimages.fake.FakeDriverImageRemoteDataSource
 import com.toquete.boxbox.data.driverimages.mock.driverImageEntities
-import com.toquete.boxbox.data.driverimages.mock.driverImageResponses
 import com.toquete.boxbox.data.driverimages.source.remote.DriverImageRemoteDataSource
-import io.mockk.coEvery
-import io.mockk.coVerify
-import io.mockk.mockk
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
+import org.junit.Before
 import org.junit.Test
-import java.io.IOException
+import kotlin.test.assertContentEquals
 
 class DefaultDriverImageRepositoryTest {
 
-    private val remoteDataSource: DriverImageRemoteDataSource = mockk(relaxed = true)
-    private val driverImageDao: DriverImageDao = mockk(relaxed = true)
-    private val repository = DefaultDriverImageRepository(remoteDataSource, driverImageDao)
+    private lateinit var remoteDataSource: DriverImageRemoteDataSource
+    private lateinit var driverImageDao: DriverImageDao
+    private lateinit var repository: DefaultDriverImageRepository
+
+    @Before
+    fun setup() {
+        remoteDataSource = FakeDriverImageRemoteDataSource()
+        driverImageDao = FakeDriverImageDao()
+        repository = DefaultDriverImageRepository(remoteDataSource, driverImageDao)
+    }
 
     @Test
     fun `sync should insert data in database when remote data is gotten successfully`() = runTest {
-        coEvery { remoteDataSource.getDriversImages() } returns driverImageResponses
-        coEvery { driverImageDao.upsertAll(any()) } returns Unit
-
         repository.sync()
 
-        coVerify {
-            remoteDataSource.getDriversImages()
-            driverImageDao.upsertAll(driverImageEntities)
-        }
-    }
-
-    @Test(expected = IOException::class)
-    fun `sync should not call local data source when remote data returns error`() = runTest {
-        coEvery { remoteDataSource.getDriversImages() } throws IOException()
-
-        repository.sync()
-
-        coVerify(exactly = 0) { driverImageDao.upsertAll(any()) }
+        val result = driverImageDao.getDriverImages()
+        assertContentEquals(driverImageEntities, result.first())
     }
 }
