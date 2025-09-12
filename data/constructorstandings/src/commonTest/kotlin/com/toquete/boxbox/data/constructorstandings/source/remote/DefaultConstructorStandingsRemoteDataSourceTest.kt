@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.constructorstandings.fake.FakeBoxBoxService
 import com.toquete.boxbox.data.constructorstandings.mock.constructorStandingsResponse
 import com.toquete.boxbox.data.constructorstandings.mock.constructorStandingsWrapper
 import kotlinx.coroutines.test.runTest
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultConstructorStandingsRemoteDataSourceTest {

@@ -8,8 +8,8 @@ import com.toquete.boxbox.data.constructorstandings.mock.constructorStandings
 import com.toquete.boxbox.data.constructorstandings.source.remote.ConstructorStandingsRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultConstructorStandingsRepositoryTest {
@@ -18,7 +18,7 @@ class DefaultConstructorStandingsRepositoryTest {
     private lateinit var constructorStandingDao: ConstructorStandingDao
     private lateinit var repository: DefaultConstructorStandingsRepository
 
-    @Before
+    @BeforeTest
     fun setUp() {
         remoteDataSource = FakeConstructorStandingsRemoteDataSource()
         constructorStandingDao = FakeConstructorStandingDao()

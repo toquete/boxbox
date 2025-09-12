@@ -3,11 +3,6 @@ package com.toquete.boxbox.data.constructorstandings.mock
 import com.toquete.boxbox.core.database.model.ConstructorWithCountryFlagEntity
 import com.toquete.boxbox.core.database.model.FullConstructorStandingEntity
 import com.toquete.boxbox.core.model.ConstructorStanding
-import com.toquete.boxbox.core.testing.data.constructor
-import com.toquete.boxbox.core.testing.data.constructorEntities
-import com.toquete.boxbox.core.testing.data.constructorImageEntities
-import com.toquete.boxbox.core.testing.data.constructorStandingEntities
-import com.toquete.boxbox.core.testing.data.countryEntities
 
 val fullConstructorStandingEntities = listOf(
     FullConstructorStandingEntity(
