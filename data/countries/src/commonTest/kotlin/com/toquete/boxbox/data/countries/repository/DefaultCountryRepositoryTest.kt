@@ -1,14 +1,14 @@
 package com.toquete.boxbox.data.countries.repository
 
 import com.toquete.boxbox.core.database.dao.CountryDao
-import com.toquete.boxbox.core.testing.data.countryEntities
 import com.toquete.boxbox.data.countries.fake.FakeCountryDao
 import com.toquete.boxbox.data.countries.fake.FakeCountryRemoteDataSource
+import com.toquete.boxbox.data.countries.mock.countryEntities
 import com.toquete.boxbox.data.countries.source.remote.CountryRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultCountryRepositoryTest {
@@ -17,7 +17,7 @@ class DefaultCountryRepositoryTest {
     private lateinit var countryDao: CountryDao
     private lateinit var repository: DefaultCountryRepository
 
-    @Before
+    @BeforeTest
     fun setUp() {
         remoteDataSource = FakeCountryRemoteDataSource()
         countryDao = FakeCountryDao()
