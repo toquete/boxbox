@@ -7,8 +7,8 @@ import com.toquete.boxbox.data.driverimages.mock.driverImageEntities
 import com.toquete.boxbox.data.driverimages.source.remote.DriverImageRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultDriverImageRepositoryTest {
@@ -17,7 +17,7 @@ class DefaultDriverImageRepositoryTest {
     private lateinit var driverImageDao: DriverImageDao
     private lateinit var repository: DefaultDriverImageRepository
 
-    @Before
+    @BeforeTest
     fun setup() {
         remoteDataSource = FakeDriverImageRemoteDataSource()
         driverImageDao = FakeDriverImageDao()
