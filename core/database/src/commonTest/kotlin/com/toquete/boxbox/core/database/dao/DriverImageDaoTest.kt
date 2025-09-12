@@ -8,6 +8,7 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 class DriverImageDaoTest : RoomDatabaseTest() {
@@ -24,6 +25,15 @@ class DriverImageDaoTest : RoomDatabaseTest() {
     @AfterTest
     fun tearDown() {
         db.close()
+    }
+
+    @Test
+    fun testGetDriverImages() = runTest {
+        dao.upsertAll(driverImageEntities)
+
+        val result = dao.getDriverImages()
+
+        assertContentEquals(driverImageEntities, result.first())
     }
 
     @Test
