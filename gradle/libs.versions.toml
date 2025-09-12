@@ -1,6 +1,6 @@
 [versions]
 gradle = "8.11.1"
-kotlin = "2.2.0"
+kotlin = "2.2.20"
 hilt = "2.57.1"
 compose-bom = "2025.08.01"
 core-ktx = "1.16.0"
