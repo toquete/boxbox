@@ -2,21 +2,25 @@ package com.toquete.boxbox.data.countries.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
 import com.toquete.boxbox.core.testing.data.countryResponses
-import io.mockk.coEvery
-import io.mockk.mockk
+import com.toquete.boxbox.data.countries.fake.FakeBoxBoxRemoteDatabase
 import kotlinx.coroutines.test.runTest
+import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertContentEquals
 
 class DefaultCountryRemoteDataSourceTest {
 
-    private val remoteDatabase: BoxBoxRemoteDatabase = mockk(relaxed = true)
-    private val dataSource = DefaultCountryRemoteDataSource(remoteDatabase)
+    private lateinit var remoteDatabase: BoxBoxRemoteDatabase
+    private lateinit var dataSource: DefaultCountryRemoteDataSource
+
+    @Before
+    fun setUp() {
+        remoteDatabase = FakeBoxBoxRemoteDatabase()
+        dataSource = DefaultCountryRemoteDataSource(remoteDatabase)
+    }
 
     @Test
     fun `getCountries should return all countries from remote when called`() = runTest {
-        coEvery { remoteDatabase.getCountries() } returns countryResponses
-
         val result = dataSource.getCountries()
 
         assertContentEquals(countryResponses, result)
