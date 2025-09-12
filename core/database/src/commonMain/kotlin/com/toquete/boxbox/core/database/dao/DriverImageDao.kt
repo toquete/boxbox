@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DriverImageDao {
 
+    @Query("SELECT * FROM drivers_images")
+    fun getDriverImages(): Flow<List<DriverImageEntity>>
+
     @Query("SELECT * FROM drivers_images WHERE id = :id")
     fun getDriverImageById(id: String): Flow<DriverImageEntity>
 
