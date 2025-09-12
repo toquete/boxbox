@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.driverimages.repository
 
 import com.toquete.boxbox.core.database.dao.DriverImageDao
-import com.toquete.boxbox.core.testing.data.driverImageEntities
-import com.toquete.boxbox.core.testing.data.driverImageResponses
+import com.toquete.boxbox.data.driverimages.mock.driverImageEntities
+import com.toquete.boxbox.data.driverimages.mock.driverImageResponses
 import com.toquete.boxbox.data.driverimages.source.remote.DriverImageRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify

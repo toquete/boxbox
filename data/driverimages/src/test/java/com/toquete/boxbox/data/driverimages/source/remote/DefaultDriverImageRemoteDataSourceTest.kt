@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.driverimages.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
-import com.toquete.boxbox.core.testing.data.driverImageResponses
+import com.toquete.boxbox.data.driverimages.mock.driverImageResponses
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
