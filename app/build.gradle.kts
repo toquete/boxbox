@@ -142,7 +142,6 @@ dependencies {
     kover(project(":core:network"))
     kover(project(":core:common"))
     kover(project(":core:testing"))
-    kover(project(":data:countries"))
     kover(project(":data:driverstandings"))
     kover(project(":data:driverimages"))
     kover(project(":data:races"))

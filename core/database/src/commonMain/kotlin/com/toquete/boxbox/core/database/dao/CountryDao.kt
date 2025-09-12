@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CountryDao {
 
+    @Query("SELECT * FROM countries")
+    fun getCountries(): Flow<List<CountryEntity>>
+
     @Query("SELECT * FROM countries WHERE id = :id")
     fun getCountryById(id: String): Flow<CountryEntity>
 
