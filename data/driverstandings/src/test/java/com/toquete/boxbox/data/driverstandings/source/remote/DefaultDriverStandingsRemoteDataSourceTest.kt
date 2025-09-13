@@ -1,8 +1,8 @@
 package com.toquete.boxbox.data.driverstandings.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
-import com.toquete.boxbox.core.testing.data.driverStandingsResponse
-import com.toquete.boxbox.core.testing.data.driverStandingsWrapper
+import com.toquete.boxbox.data.driverstandings.mock.driverStandingsResponse
+import com.toquete.boxbox.data.driverstandings.mock.driverStandingsWrapper
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
