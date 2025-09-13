@@ -14,8 +14,8 @@ import com.toquete.boxbox.data.driverstandings.mock.driverStandings
 import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultDriverStandingsRepositoryTest {
@@ -26,7 +26,7 @@ class DefaultDriverStandingsRepositoryTest {
     private lateinit var constructorDao: ConstructorDao
     private lateinit var repository: DefaultDriverStandingsRepository
 
-    @Before
+    @BeforeTest
     fun setUp() {
         remoteDataSource = FakeDriverStandingsRemoteDataSource()
         driverStandingDao = FakeDriverStandingDao()

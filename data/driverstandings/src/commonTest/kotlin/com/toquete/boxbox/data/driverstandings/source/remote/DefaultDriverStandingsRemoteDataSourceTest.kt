@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.driverstandings.fake.FakeBoxBoxService
 import com.toquete.boxbox.data.driverstandings.mock.driverStandingsResponse
 import com.toquete.boxbox.data.driverstandings.mock.driverStandingsWrapper
 import kotlinx.coroutines.test.runTest
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultDriverStandingsRemoteDataSourceTest {
