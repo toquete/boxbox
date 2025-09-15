@@ -3,7 +3,6 @@ package com.toquete.boxbox.data.raceresults.mock
 import com.toquete.boxbox.core.network.model.RaceDataResponse
 import com.toquete.boxbox.core.network.model.RaceTableResponse
 import com.toquete.boxbox.core.network.model.RacesWrapper
-import com.toquete.boxbox.core.testing.data.raceResultsResponse
 
 val raceResultWrapper = RacesWrapper(
     data = RaceTableResponse(

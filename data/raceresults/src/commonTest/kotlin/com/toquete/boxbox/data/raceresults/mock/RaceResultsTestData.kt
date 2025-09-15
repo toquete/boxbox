@@ -7,9 +7,6 @@ import com.toquete.boxbox.core.network.model.DriverResponse
 import com.toquete.boxbox.core.network.model.RaceResponse
 import com.toquete.boxbox.core.network.model.RaceResultResponse
 import com.toquete.boxbox.core.network.model.TimeResponse
-import com.toquete.boxbox.core.testing.data.circuitResponse
-import com.toquete.boxbox.core.testing.data.constructor
-import com.toquete.boxbox.core.testing.data.driver
 
 val raceResultsResponse = listOf(
     RaceResponse(

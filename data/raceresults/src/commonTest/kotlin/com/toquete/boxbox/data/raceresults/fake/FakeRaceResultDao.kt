@@ -4,7 +4,7 @@ import com.toquete.boxbox.core.database.dao.RaceResultDao
 import com.toquete.boxbox.core.database.model.RaceResultEntity
 import com.toquete.boxbox.core.database.model.RaceResultWithCircuitAndDriverEntity
 import com.toquete.boxbox.core.database.model.RaceResultWithDriverAndConstructorEntity
-import com.toquete.boxbox.core.testing.data.raceResultsWithCircuitAndDriverEntity
+import com.toquete.boxbox.data.raceresults.mock.raceResultsWithCircuitAndDriverEntity
 import com.toquete.boxbox.data.raceresults.mock.raceResultsWithDriverAndConstructor
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

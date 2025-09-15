@@ -8,8 +8,8 @@ import com.toquete.boxbox.data.raceresults.mock.raceResults
 import com.toquete.boxbox.data.raceresults.source.remote.RaceResultRemoteDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class DefaultRaceResultRepositoryTest {
@@ -18,7 +18,7 @@ class DefaultRaceResultRepositoryTest {
     private lateinit var raceResultDao: RaceResultDao
     private lateinit var repository: DefaultRaceResultRepository
 
-    @Before
+    @BeforeTest
     fun setUp() {
         remoteDataSource = FakeRaceResultRemoteDataSource()
         raceResultDao = FakeRaceResultDao()
