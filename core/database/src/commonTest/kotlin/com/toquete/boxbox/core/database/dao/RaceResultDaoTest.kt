@@ -44,6 +44,15 @@ class RaceResultDaoTest : RoomDatabaseTest() {
     }
 
     @Test
+    fun testGetRaceResults() = runTest {
+        dao.upsertAll(raceResultEntities)
+
+        val result = dao.getRaceResults()
+
+        assertContentEquals(raceResultEntities, result.first())
+    }
+
+    @Test
     fun testRaceResultInsert() = runTest {
         driverDao.upsertAll(driverEntities)
         constructorDao.upsertAll(constructorEntities)

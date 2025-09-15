@@ -143,7 +143,6 @@ dependencies {
     kover(project(":core:common"))
     kover(project(":core:testing"))
     kover(project(":data:races"))
-    kover(project(":data:raceresults"))
     kover(project(":data:sprintresults"))
     kover(project(":feature:standings"))
     kover(project(":feature:settings"))
