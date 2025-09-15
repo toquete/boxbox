@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RaceResultDao {
 
+    @Query("SELECT * FROM race_results")
+    fun getRaceResults(): Flow<List<RaceResultEntity>>
+
     @Transaction
     @Query(
         "SELECT * FROM race_results " +
