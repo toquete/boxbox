@@ -1,7 +1,7 @@
 package com.toquete.boxbox.data.raceresults.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxService
-import com.toquete.boxbox.core.testing.data.raceResultWrapper
+import com.toquete.boxbox.data.raceresults.mock.raceResultWrapper
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest

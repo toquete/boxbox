@@ -3,11 +3,11 @@ package com.toquete.boxbox.data.raceresults.repository
 import com.toquete.boxbox.core.database.dao.RaceResultDao
 import com.toquete.boxbox.core.network.model.RaceDataResponse
 import com.toquete.boxbox.core.network.model.RaceTableResponse
-import com.toquete.boxbox.core.testing.data.raceResultEntities
-import com.toquete.boxbox.core.testing.data.raceResultWrapper
-import com.toquete.boxbox.core.testing.data.raceResults
-import com.toquete.boxbox.core.testing.data.raceResultsResponse
-import com.toquete.boxbox.core.testing.data.raceResultsWithDriverAndConstructor
+import com.toquete.boxbox.data.raceresults.mock.raceResultEntities
+import com.toquete.boxbox.data.raceresults.mock.raceResultWrapper
+import com.toquete.boxbox.data.raceresults.mock.raceResults
+import com.toquete.boxbox.data.raceresults.mock.raceResultsResponse
+import com.toquete.boxbox.data.raceresults.mock.raceResultsWithDriverAndConstructor
 import com.toquete.boxbox.data.raceresults.source.remote.RaceResultRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
