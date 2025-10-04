@@ -38,7 +38,7 @@ timber = "5.0.1"
 navigation = "2.9.3"
 hilt-navigation = "1.2.0"
 sonarqube = "6.3.1.5724"
-robolectric = "4.15.1"
+robolectric = "4.16"
 play-services-ads = "24.6.0"
 
 [libraries]
