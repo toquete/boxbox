@@ -31,7 +31,7 @@ internal fun HomeTopAppBar(
     val title = homeViewState.currentHomeDestination?.titleTextId
     CenterAlignedTopAppBar(
         scrollBehavior = scrollBehavior,
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+        colors = TopAppBarDefaults.topAppBarColors(
             scrolledContainerColor = MaterialTheme.colorScheme.surface
         ),
         title = {
