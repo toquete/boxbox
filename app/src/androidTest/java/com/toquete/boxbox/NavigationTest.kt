@@ -18,7 +18,6 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.NoActivityResumedException
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.domain.repository.RaceRepository
-import com.toquete.boxbox.feature.home.navigation.HOME_ROUTE
 import com.toquete.boxbox.feature.raceresults.navigation.RACE_RESULT_ROUTE
 import com.toquete.boxbox.feature.settings.navigation.SETTINGS_ROUTE
 import com.toquete.boxbox.ui.MainActivity
@@ -159,15 +158,15 @@ class NavigationTest {
         composeTestRule.apply {
             onNodeWithText(races).performClick()
 
-            val races = runBlocking {
+            val racesList = runBlocking {
                 raceRepository.getPastRacesBySeason(season = "2023", today = "2023-01-01T01:00:00Z").first()
             }
-            val race = races.first()
+            val race = racesList.first()
 
             onNodeWithText(race.circuit.country).performClick()
             onNodeWithTag("Back Button").performClick()
 
-            assertEquals(HOME_ROUTE, navController.currentBackStackEntry?.destination?.route)
+            onNodeWithTag("Home AppBar Title").assertTextEquals(races)
         }
     }
 }
