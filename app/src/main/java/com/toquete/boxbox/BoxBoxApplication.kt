@@ -21,8 +21,8 @@ import com.google.firebase.initialize
 import com.google.firebase.remoteconfig.ConfigUpdate
 import com.google.firebase.remoteconfig.ConfigUpdateListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
-import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.firebase.remoteconfig.remoteConfig
+import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import com.toquete.boxbox.worker.SyncWorker

@@ -1,8 +1,8 @@
 package com.toquete.boxbox.core.network.di
 
+import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.firestore
 import com.toquete.boxbox.core.network.BoxBoxService
 import dagger.Module
 import dagger.Provides
