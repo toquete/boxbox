@@ -19,7 +19,6 @@ import androidx.test.espresso.NoActivityResumedException
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.domain.repository.RaceRepository
 import com.toquete.boxbox.feature.raceresults.navigation.RACE_RESULT_ROUTE
-import com.toquete.boxbox.feature.settings.navigation.SETTINGS_ROUTE
 import com.toquete.boxbox.ui.MainActivity
 import com.toquete.boxbox.ui.MainScreen
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -32,6 +31,7 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 import com.toquete.boxbox.feature.home.R as homeR
+import com.toquete.boxbox.feature.settings.R as settingsR
 import com.toquete.boxbox.feature.standings.R as standingsR
 
 @HiltAndroidTest
@@ -52,6 +52,7 @@ class NavigationTest {
     private val constructors by composeTestRule.stringResource(standingsR.string.standings_constructors)
     private val drivers by composeTestRule.stringResource(standingsR.string.standings_drivers)
     private val races by composeTestRule.stringResource(homeR.string.home_races)
+    private val settings by composeTestRule.stringResource(settingsR.string.settings)
 
     @Before
     fun setupAppNavHost() {
@@ -115,7 +116,7 @@ class NavigationTest {
         composeTestRule.apply {
             onNodeWithTag("Home Settings Button").performClick()
 
-            assertEquals(SETTINGS_ROUTE, navController.currentBackStackEntry?.destination?.route)
+            onNodeWithText(settings).assertIsDisplayed()
         }
     }
 

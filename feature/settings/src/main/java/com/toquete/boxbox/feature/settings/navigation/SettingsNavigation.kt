@@ -4,15 +4,16 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.dialog
 import com.toquete.boxbox.feature.settings.ui.SettingsScreen
+import kotlinx.serialization.Serializable
 
-const val SETTINGS_ROUTE = "settings"
+@Serializable data object Settings
 
 fun NavController.navigateToSettings() {
-    navigate(SETTINGS_ROUTE)
+    navigate(Settings)
 }
 
 fun NavGraphBuilder.settingsScreen(onDismiss: () -> Unit = { }) {
-    dialog(route = SETTINGS_ROUTE) {
+    dialog<Settings> {
         SettingsScreen(onDismiss = onDismiss)
     }
 }
