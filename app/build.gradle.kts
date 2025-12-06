@@ -133,7 +133,31 @@ dependencies {
 
 kover {
     merge {
-        subprojects()
+        projects(
+            ":core:model",
+            ":core:ui",
+            ":core:preferences",
+            ":core:database",
+            ":core:network",
+            ":core:common",
+            ":core:testing",
+            ":data:countries",
+            ":data:driverstandings",
+            ":data:driverimages",
+            ":data:constructorstandings",
+            ":data:constructorimages",
+            ":data:constructorcolors",
+            ":data:races",
+            ":data:circuitimages",
+            ":data:raceresults",
+            ":data:sprintresults",
+            ":feature:standings",
+            ":feature:settings",
+            ":feature:races",
+            ":feature:raceresults",
+            ":feature:home",
+            ":domain"
+        )
     }
     reports {
         variant("prodDebug") {
