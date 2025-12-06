@@ -28,7 +28,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureFlavors(this)
                 configureFirebase(this)
                 defaultConfig {
-                    targetSdk = 35
+                    targetSdk = 36
                     testInstrumentationRunner = "com.toquete.boxbox.BoxBoxTestRunner"
                 }
                 packaging {
