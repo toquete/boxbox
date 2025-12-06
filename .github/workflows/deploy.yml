@@ -16,12 +16,12 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Java
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: '17'
+          java-version: '21'
       - name: Create keystore file
         run: echo $KEYSTORE_FILE | base64 -di > ${{ github.workspace }}/app/release.jks
       - name: Create keystore.properties file

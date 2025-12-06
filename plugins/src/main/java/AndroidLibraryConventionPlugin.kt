@@ -22,7 +22,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 configureGradleManagedDevices(this)
                 configureFlavors(this)
-                defaultConfig.targetSdk = 35
+                defaultConfig.targetSdk = 36
                 testOptions {
                     unitTests {
                         isIncludeAndroidResources = true
