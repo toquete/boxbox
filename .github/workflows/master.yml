@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: '17'
+          java-version: '21'
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
@@ -49,7 +49,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: '17'
+          java-version: '21'
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
@@ -76,7 +76,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: '17'
+          java-version: '21'
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
@@ -105,7 +105,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: '17'
+          java-version: '21'
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
@@ -144,7 +144,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: '17'
+          java-version: '21'
       - name: Cache SonarQube Cloud packages
         uses: actions/cache@v4
         with:
@@ -182,7 +182,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: '17'
+          java-version: '21'
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3.2.2
       - name: Create Google Services JSON

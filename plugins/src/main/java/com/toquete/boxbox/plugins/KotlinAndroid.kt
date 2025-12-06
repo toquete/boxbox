@@ -16,7 +16,7 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     commonExtension.apply {
-        compileSdk = 35
+        compileSdk = 36
 
         defaultConfig {
             minSdk = 24
@@ -24,8 +24,8 @@ internal fun Project.configureKotlinAndroid(
 
         compileOptions {
             isCoreLibraryDesugaringEnabled = true
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            sourceCompatibility = JavaVersion.VERSION_21
+            targetCompatibility = JavaVersion.VERSION_21
         }
 
         with(extensions.getByType<KotlinAndroidProjectExtension>()) {
@@ -38,8 +38,8 @@ internal fun Project.configureKotlinAndroid(
                     "-opt-in=kotlin.Experimental",
                 )
 
-                // Set JVM target to 17
-                jvmTarget.set(JvmTarget.JVM_17)
+                // Set JVM target to 21
+                jvmTarget.set(JvmTarget.JVM_21)
             }
         }
 
