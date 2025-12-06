@@ -131,35 +131,40 @@ dependencies {
     kspAndroidTest(libs.hilt.android.compiler)
 }
 
-dependencies {
-    kover(project(":core:model"))
-    kover(project(":core:ui"))
-    kover(project(":core:preferences"))
-    kover(project(":core:database"))
-    kover(project(":core:network"))
-    kover(project(":core:common"))
-    kover(project(":core:testing"))
-    kover(project(":data:countries"))
-    kover(project(":data:driverstandings"))
-    kover(project(":data:driverimages"))
-    kover(project(":data:constructorstandings"))
-    kover(project(":data:constructorimages"))
-    kover(project(":data:constructorcolors"))
-    kover(project(":data:races"))
-    kover(project(":data:circuitimages"))
-    kover(project(":data:raceresults"))
-    kover(project(":data:sprintresults"))
-    kover(project(":feature:standings"))
-    kover(project(":feature:settings"))
-    kover(project(":feature:races"))
-    kover(project(":feature:raceresults"))
-    kover(project(":feature:home"))
-    kover(project(":domain"))
-}
-
 kover {
+    merge {
+        subprojects()
+    }
     reports {
         variant("prodDebug") {
+            filters {
+                excludes {
+                    androidGeneratedClasses()
+                    annotatedBy(
+                        "*Composable",
+                        "*Preview",
+                        "*Stable",
+                        "*Module",
+                        "*Generated"
+                    )
+                    classes(
+                        "*Hilt*",
+                        "*Factory*",
+                        "*Injector",
+                        "*Module*",
+                        "*Application",
+                        "*Composable*",
+                        "*Navigation*",
+                        "*FirebaseDatabase*",
+                        "*MainActivity*"
+                    )
+                    packages(
+                        "*.di",
+                        "com.toquete.boxbox.util",
+                        "com.toquete.boxbox.core.ui.theme"
+                    )
+                }
+            }
             html {
                 title = "BoxBox"
                 onCheck = false
@@ -168,34 +173,6 @@ kover {
             xml {
                 onCheck = false
                 xmlFile = layout.buildDirectory.file("reports/coverage/coverage.xml")
-            }
-        }
-        filters {
-            excludes {
-                androidGeneratedClasses()
-                classes(
-                    "*Hilt*",
-                    "*Factory*",
-                    "*Injector",
-                    "*Module*",
-                    "*Application",
-                    "*Composable*",
-                    "*Navigation*",
-                    "*FirebaseDatabase*",
-                    "*MainActivity*"
-                )
-                packages(
-                    "*.di",
-                    "com.toquete.boxbox.util",
-                    "com.toquete.boxbox.core.ui.theme"
-                )
-                annotatedBy(
-                    "*Composable",
-                    "*Preview",
-                    "*Stable",
-                    "*Module",
-                    "*Generated"
-                )
             }
         }
     }
