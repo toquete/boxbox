@@ -131,35 +131,64 @@ dependencies {
     kspAndroidTest(libs.hilt.android.compiler)
 }
 
-dependencies {
-    kover(project(":core:model"))
-    kover(project(":core:ui"))
-    kover(project(":core:preferences"))
-    kover(project(":core:database"))
-    kover(project(":core:network"))
-    kover(project(":core:common"))
-    kover(project(":core:testing"))
-    kover(project(":data:countries"))
-    kover(project(":data:driverstandings"))
-    kover(project(":data:driverimages"))
-    kover(project(":data:constructorstandings"))
-    kover(project(":data:constructorimages"))
-    kover(project(":data:constructorcolors"))
-    kover(project(":data:races"))
-    kover(project(":data:circuitimages"))
-    kover(project(":data:raceresults"))
-    kover(project(":data:sprintresults"))
-    kover(project(":feature:standings"))
-    kover(project(":feature:settings"))
-    kover(project(":feature:races"))
-    kover(project(":feature:raceresults"))
-    kover(project(":feature:home"))
-    kover(project(":domain"))
-}
-
 kover {
+    merge {
+        projects(
+            ":core:model",
+            ":core:ui",
+            ":core:preferences",
+            ":core:database",
+            ":core:network",
+            ":core:common",
+            ":core:testing",
+            ":data:countries",
+            ":data:driverstandings",
+            ":data:driverimages",
+            ":data:constructorstandings",
+            ":data:constructorimages",
+            ":data:constructorcolors",
+            ":data:races",
+            ":data:circuitimages",
+            ":data:raceresults",
+            ":data:sprintresults",
+            ":feature:standings",
+            ":feature:settings",
+            ":feature:races",
+            ":feature:raceresults",
+            ":feature:home",
+            ":domain"
+        )
+    }
     reports {
         variant("prodDebug") {
+            filters {
+                excludes {
+                    androidGeneratedClasses()
+                    annotatedBy(
+                        "*Composable",
+                        "*Preview",
+                        "*Stable",
+                        "*Module",
+                        "*Generated"
+                    )
+                    classes(
+                        "*Hilt*",
+                        "*Factory*",
+                        "*Injector",
+                        "*Module*",
+                        "*Application",
+                        "*Composable*",
+                        "*Navigation*",
+                        "*FirebaseDatabase*",
+                        "*MainActivity*"
+                    )
+                    packages(
+                        "*.di",
+                        "com.toquete.boxbox.util",
+                        "com.toquete.boxbox.core.ui.theme"
+                    )
+                }
+            }
             html {
                 title = "BoxBox"
                 onCheck = false
@@ -168,34 +197,6 @@ kover {
             xml {
                 onCheck = false
                 xmlFile = layout.buildDirectory.file("reports/coverage/coverage.xml")
-            }
-        }
-        filters {
-            excludes {
-                androidGeneratedClasses()
-                classes(
-                    "*Hilt*",
-                    "*Factory*",
-                    "*Injector",
-                    "*Module*",
-                    "*Application",
-                    "*Composable*",
-                    "*Navigation*",
-                    "*FirebaseDatabase*",
-                    "*MainActivity*"
-                )
-                packages(
-                    "*.di",
-                    "com.toquete.boxbox.util",
-                    "com.toquete.boxbox.core.ui.theme"
-                )
-                annotatedBy(
-                    "*Composable",
-                    "*Preview",
-                    "*Stable",
-                    "*Module",
-                    "*Generated"
-                )
             }
         }
     }
