@@ -6,7 +6,7 @@ import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.SportsScore
 import androidx.compose.material.icons.outlined.EmojiEvents
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.toquete.boxbox.core.ui.BoxBoxRoute
+import com.toquete.boxbox.core.navigation.BoxBoxRoute
 import com.toquete.boxbox.feature.home.R
 
 internal enum class HomeDestination(

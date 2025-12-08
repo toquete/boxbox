@@ -1,4 +1,4 @@
-package com.toquete.boxbox.core.ui
+package com.toquete.boxbox.core.navigation
 
 import kotlinx.serialization.Serializable
 

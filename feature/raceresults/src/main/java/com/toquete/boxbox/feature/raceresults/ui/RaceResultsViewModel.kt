@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
-import com.toquete.boxbox.core.ui.BoxBoxRoute
+import com.toquete.boxbox.core.navigation.BoxBoxRoute
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonSprintResultsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

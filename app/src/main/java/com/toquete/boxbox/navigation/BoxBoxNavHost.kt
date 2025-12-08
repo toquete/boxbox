@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.toquete.boxbox.core.ui.BoxBoxRoute
+import com.toquete.boxbox.core.navigation.BoxBoxRoute
 import com.toquete.boxbox.feature.home.navigation.homeScreen
 import com.toquete.boxbox.feature.raceresults.navigation.navigateToRaceResult
 import com.toquete.boxbox.feature.raceresults.navigation.raceResultScreen
