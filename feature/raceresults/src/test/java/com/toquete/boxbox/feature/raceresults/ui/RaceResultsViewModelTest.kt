@@ -1,14 +1,13 @@
 package com.toquete.boxbox.feature.raceresults.ui
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.core.testing.data.raceResults
 import com.toquete.boxbox.core.testing.data.sprintRaceResults
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonSprintResultsUseCase
-import com.toquete.boxbox.feature.raceresults.navigation.RACE_ARGUMENT
-import com.toquete.boxbox.feature.raceresults.navigation.ROUND_ARGUMENT
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
@@ -19,8 +18,10 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import kotlin.test.assertEquals
 
+@RunWith(AndroidJUnit4::class)
 class RaceResultsViewModelTest {
 
     @get:Rule
@@ -29,10 +30,7 @@ class RaceResultsViewModelTest {
     private val getCurrentSeasonRaceResultsUseCase: GetCurrentSeasonRaceResultsUseCase = mockk()
     private val getCurrentSeasonSprintResultsUseCase: GetCurrentSeasonSprintResultsUseCase = mockk()
     private val savedStateHandle = SavedStateHandle(
-        mapOf(
-            RACE_ARGUMENT to "Bahrain",
-            ROUND_ARGUMENT to 1
-        )
+        mapOf("round" to 1, "race" to "Bahrain")
     )
 
     private lateinit var viewModel: RaceResultsViewModel
