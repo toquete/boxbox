@@ -1,11 +1,13 @@
 package com.toquete.boxbox.feature.raceresults.ui
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.navigation.testing.invoke
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.core.testing.data.raceResults
 import com.toquete.boxbox.core.testing.data.sprintRaceResults
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
+import com.toquete.boxbox.core.ui.BoxBoxRoute
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonSprintResultsUseCase
 import io.mockk.every
@@ -29,9 +31,7 @@ class RaceResultsViewModelTest {
 
     private val getCurrentSeasonRaceResultsUseCase: GetCurrentSeasonRaceResultsUseCase = mockk()
     private val getCurrentSeasonSprintResultsUseCase: GetCurrentSeasonSprintResultsUseCase = mockk()
-    private val savedStateHandle = SavedStateHandle(
-        mapOf("round" to 1, "race" to "Bahrain")
-    )
+    private val savedStateHandle = SavedStateHandle(route = BoxBoxRoute.RaceResult(round = 1, race = "Bahrain"))
 
     private lateinit var viewModel: RaceResultsViewModel
 

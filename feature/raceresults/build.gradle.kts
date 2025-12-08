@@ -16,4 +16,5 @@ dependencies {
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
+    testImplementation(libs.compose.navigation.test)
 }
