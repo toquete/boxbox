@@ -141,6 +141,7 @@ kover {
             ":core:network",
             ":core:common",
             ":core:testing",
+            ":core:navigation",
             ":data:countries",
             ":data:driverstandings",
             ":data:driverimages",
