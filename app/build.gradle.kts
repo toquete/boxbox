@@ -54,6 +54,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             isDebuggable = false
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -64,6 +65,7 @@ android {
             versionNameSuffix = BoxBoxBuildType.MINIFIED.versionNameSuffix
             matchingFallbacks.add("debug")
             isMinifyEnabled = true
+            isShrinkResources = true
             enableUnitTestCoverage = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
