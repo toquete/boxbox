@@ -1,5 +1,3 @@
-import com.toquete.boxbox.plugins.configureFlavors
-
 plugins {
     alias(libs.plugins.android.test)
     alias(libs.plugins.kotlin.android)
@@ -10,13 +8,31 @@ android {
     namespace = "com.toquete.boxbox.baselineprofile"
     compileSdk = 36
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = "21"
+    }
+
     defaultConfig {
         minSdk = 28
         targetSdk = 36
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    configureFlavors(this)
+    // Match the app module's flavor dimensions
+    flavorDimensions += "version"
+    productFlavors {
+        create("demo") {
+            dimension = "version"
+        }
+        create("prod") {
+            dimension = "version"
+        }
+    }
 
     targetProjectPath = ":app"
 
