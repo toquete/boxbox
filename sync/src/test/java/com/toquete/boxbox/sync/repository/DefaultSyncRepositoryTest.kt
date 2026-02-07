@@ -1,4 +1,4 @@
-package com.toquete.boxbox.worker.repository
+package com.toquete.boxbox.sync.repository
 
 import com.toquete.boxbox.domain.repository.RaceRepository
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
