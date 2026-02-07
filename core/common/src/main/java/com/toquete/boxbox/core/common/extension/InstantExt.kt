@@ -2,25 +2,28 @@
 
 package com.toquete.boxbox.core.common.extension
 
+import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toJavaLocalDateTime
+import kotlinx.datetime.format
+import kotlinx.datetime.format.MonthNames
 import kotlinx.datetime.toLocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
-private const val SHORT_MONTH_PATTERN = "MMM"
-private const val DAY_PATTERN = "dd"
+private val shortMonthFormat = LocalDateTime.Format {
+    monthName(MonthNames.ENGLISH_ABBREVIATED)
+}
+
+private val dayFormat = LocalDateTime.Format {
+    dayOfMonth()
+}
 
 fun Instant?.toShortMonthString(): String {
-    val formatter = DateTimeFormatter.ofPattern(SHORT_MONTH_PATTERN, Locale.US)
-    val date = this?.toLocalDateTime(TimeZone.currentSystemDefault())?.toJavaLocalDateTime()
-    return formatter.format(date).uppercase()
+    val date = this?.toLocalDateTime(TimeZone.currentSystemDefault()) ?: return ""
+    return date.format(shortMonthFormat).uppercase()
 }
 
 fun Instant.toDayString(): String {
-    val formatter = DateTimeFormatter.ofPattern(DAY_PATTERN, Locale.US)
-    val date = this.toLocalDateTime(TimeZone.currentSystemDefault()).toJavaLocalDateTime()
-    return formatter.format(date)
+    val date = this.toLocalDateTime(TimeZone.currentSystemDefault())
+    return date.format(dayFormat)
 }
