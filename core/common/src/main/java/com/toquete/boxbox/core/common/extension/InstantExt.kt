@@ -15,7 +15,7 @@ private val shortMonthFormat = LocalDateTime.Format {
 }
 
 private val dayFormat = LocalDateTime.Format {
-    dayOfMonth()
+    day()
 }
 
 fun Instant?.toShortMonthString(): String {
