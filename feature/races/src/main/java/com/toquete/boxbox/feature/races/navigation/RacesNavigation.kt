@@ -4,16 +4,15 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.toquete.boxbox.feature.races.ui.RacesRoute
-
-const val RACES_ROUTE = "races"
+import com.toquete.boxbox.core.navigation.RacesRoute
+import com.toquete.boxbox.feature.races.ui.RacesRoute as RacesScreen
 
 fun NavController.navigateToRaces(navOptions: NavOptions? = null) {
-    navigate(RACES_ROUTE, navOptions)
+    navigate(RacesRoute, navOptions)
 }
 
 fun NavGraphBuilder.racesScreen(onRaceClick: (Int, String) -> Unit = { _, _ -> }) {
-    composable(route = RACES_ROUTE) {
-        RacesRoute(onRaceClick = onRaceClick)
+    composable<RacesRoute> {
+        RacesScreen(onRaceClick = onRaceClick)
     }
 }

@@ -7,8 +7,6 @@ import com.toquete.boxbox.core.testing.data.sprintRaceResults
 import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonSprintResultsUseCase
-import com.toquete.boxbox.feature.raceresults.navigation.RACE_ARGUMENT
-import com.toquete.boxbox.feature.raceresults.navigation.ROUND_ARGUMENT
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.cancel
@@ -19,8 +17,11 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 import kotlin.test.assertEquals
 
+@RunWith(RobolectricTestRunner::class)
 class RaceResultsViewModelTest {
 
     @get:Rule
@@ -30,8 +31,8 @@ class RaceResultsViewModelTest {
     private val getCurrentSeasonSprintResultsUseCase: GetCurrentSeasonSprintResultsUseCase = mockk()
     private val savedStateHandle = SavedStateHandle(
         mapOf(
-            RACE_ARGUMENT to "Bahrain",
-            ROUND_ARGUMENT to 1
+            "race" to "Bahrain",
+            "round" to 1
         )
     )
 

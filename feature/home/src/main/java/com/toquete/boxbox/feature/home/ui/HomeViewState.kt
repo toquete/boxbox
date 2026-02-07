@@ -10,6 +10,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -67,7 +68,7 @@ internal class HomeViewState(
 
     val currentHomeDestination: HomeDestination?
         @Composable get() = currentDestination?.let { destination ->
-            homeDestinations.find { it.name.equals(destination.route, ignoreCase = true) }
+            homeDestinations.find { destination.hasRoute(it.routeClass) }
         }
 
     fun navigateToHomeDestination(destination: HomeDestination) {
@@ -85,7 +86,7 @@ internal class HomeViewState(
             restoreState = true
         }
 
-        navController.navigate(destination.name.lowercase(), topLevelNavOptions)
+        navController.navigate(destination.route, topLevelNavOptions)
     }
 }
 

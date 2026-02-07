@@ -6,6 +6,7 @@ plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
     id("boxbox.android.hilt")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -112,6 +113,7 @@ dependencies {
     implementation(project(":feature:races"))
     implementation(project(":feature:raceresults"))
     implementation(project(":feature:home"))
+    implementation(project(":core:navigation"))
     implementation(project(":domain"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
@@ -140,6 +142,7 @@ kover {
             ":core:database",
             ":core:network",
             ":core:common",
+            ":core:navigation",
             ":core:testing",
             ":data:countries",
             ":data:driverstandings",

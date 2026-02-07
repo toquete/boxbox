@@ -11,16 +11,17 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.compose.DialogNavigator
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.NoActivityResumedException
+import com.toquete.boxbox.core.navigation.HomeRoute
+import com.toquete.boxbox.core.navigation.RaceResultRoute
+import com.toquete.boxbox.core.navigation.SettingsRoute
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.domain.repository.RaceRepository
-import com.toquete.boxbox.feature.home.navigation.HOME_ROUTE
-import com.toquete.boxbox.feature.raceresults.navigation.RACE_RESULT_ROUTE
-import com.toquete.boxbox.feature.settings.navigation.SETTINGS_ROUTE
 import com.toquete.boxbox.ui.MainActivity
 import com.toquete.boxbox.ui.MainScreen
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -31,7 +32,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import com.toquete.boxbox.feature.home.R as homeR
 import com.toquete.boxbox.feature.standings.R as standingsR
 
@@ -116,7 +117,7 @@ class NavigationTest {
         composeTestRule.apply {
             onNodeWithTag("Home Settings Button").performClick()
 
-            assertEquals(SETTINGS_ROUTE, navController.currentBackStackEntry?.destination?.route)
+            assertTrue(navController.currentBackStackEntry?.destination?.hasRoute<SettingsRoute>() == true)
         }
     }
 
@@ -150,7 +151,7 @@ class NavigationTest {
 
             onNodeWithText(race.circuit.country).performClick()
 
-            assertEquals(RACE_RESULT_ROUTE, navController.currentBackStackEntry?.destination?.route)
+            assertTrue(navController.currentBackStackEntry?.destination?.hasRoute<RaceResultRoute>() == true)
         }
     }
 
@@ -167,7 +168,7 @@ class NavigationTest {
             onNodeWithText(race.circuit.country).performClick()
             onNodeWithTag("Back Button").performClick()
 
-            assertEquals(HOME_ROUTE, navController.currentBackStackEntry?.destination?.route)
+            assertTrue(navController.currentBackStackEntry?.destination?.hasRoute<HomeRoute>() == true)
         }
     }
 }

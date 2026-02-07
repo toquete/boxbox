@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.toquete.boxbox.feature.home.navigation.HomeDestination
 
@@ -41,5 +42,5 @@ internal fun HomeNavigationBar(
 
 private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: HomeDestination) =
     this?.hierarchy?.any {
-        it.route?.contains(destination.name, ignoreCase = true) ?: false
+        it.hasRoute(destination.routeClass)
     } ?: false

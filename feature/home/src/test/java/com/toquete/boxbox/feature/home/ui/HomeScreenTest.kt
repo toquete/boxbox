@@ -10,6 +10,8 @@ import androidx.compose.ui.test.performClick
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.toquete.boxbox.core.navigation.RacesRoute
+import com.toquete.boxbox.core.navigation.StandingsRoute
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import org.junit.Rule
 import org.junit.Test
@@ -97,10 +99,10 @@ class HomeScreenTest {
     }
 
     private fun NavGraphBuilder.testNavGraph() {
-        composable(route = "standings") {
+        composable<StandingsRoute> {
             Text("Standings")
         }
-        composable(route = "races") {
+        composable<RacesRoute> {
             Text("Races")
         }
     }

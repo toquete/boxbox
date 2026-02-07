@@ -13,6 +13,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("boxbox.android.library")
                 apply("boxbox.android.hilt")
+                apply("org.jetbrains.kotlin.plugin.serialization")
             }
 
             extensions.configure<LibraryExtension> {
@@ -25,6 +26,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             dependencies {
                 add("implementation", libs.findLibrary("core.ktx").get())
                 add("implementation", libs.findBundle("coil").get())
+                add("implementation", project(":core:navigation"))
             }
         }
     }
