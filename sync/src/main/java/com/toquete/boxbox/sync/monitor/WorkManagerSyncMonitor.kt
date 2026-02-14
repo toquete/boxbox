@@ -1,10 +1,10 @@
-package com.toquete.boxbox.util.monitor
+package com.toquete.boxbox.sync.monitor
 
 import android.content.Context
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import com.toquete.boxbox.SYNC_WORK_NAME
 import com.toquete.boxbox.core.common.util.SyncMonitor
+import com.toquete.boxbox.sync.worker.SYNC_WORK_NAME
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

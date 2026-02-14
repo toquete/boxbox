@@ -3,16 +3,15 @@ package com.toquete.boxbox.feature.settings.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.dialog
+import com.toquete.boxbox.core.navigation.BoxBoxRoute
 import com.toquete.boxbox.feature.settings.ui.SettingsScreen
 
-const val SETTINGS_ROUTE = "settings"
-
 fun NavController.navigateToSettings() {
-    navigate(SETTINGS_ROUTE)
+    navigate(BoxBoxRoute.Settings)
 }
 
 fun NavGraphBuilder.settingsScreen(onDismiss: () -> Unit = { }) {
-    dialog(route = SETTINGS_ROUTE) {
+    dialog<BoxBoxRoute.Settings> {
         SettingsScreen(onDismiss = onDismiss)
     }
 }

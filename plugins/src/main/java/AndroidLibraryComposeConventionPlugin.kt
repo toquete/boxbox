@@ -10,6 +10,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply("com.android.library")
             pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
+            pluginManager.apply("org.jetbrains.kotlin.plugin.serialization")
             val extension = extensions.getByType<LibraryExtension>()
             configureAndroidCompose(extension)
         }

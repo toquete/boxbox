@@ -55,6 +55,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             isDebuggable = false
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -65,6 +66,7 @@ android {
             versionNameSuffix = BoxBoxBuildType.MINIFIED.versionNameSuffix
             matchingFallbacks.add("debug")
             isMinifyEnabled = true
+            isShrinkResources = true
             enableUnitTestCoverage = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -98,6 +100,7 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:preferences"))
+    implementation(project(":core:navigation"))
     implementation(project(":data:driverimages"))
     implementation(project(":data:constructorimages"))
     implementation(project(":data:circuitimages"))
@@ -114,6 +117,7 @@ dependencies {
     implementation(project(":feature:raceresults"))
     implementation(project(":feature:home"))
     implementation(project(":domain"))
+    implementation(project(":sync"))
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
     implementation(libs.splashscreen)
@@ -144,6 +148,7 @@ kover {
             ":core:network",
             ":core:common",
             ":core:testing",
+            ":core:navigation",
             ":data:countries",
             ":data:driverstandings",
             ":data:driverimages",
@@ -159,7 +164,8 @@ kover {
             ":feature:races",
             ":feature:raceresults",
             ":feature:home",
-            ":domain"
+            ":domain",
+            ":sync"
         )
     }
     reports {

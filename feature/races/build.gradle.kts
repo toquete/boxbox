@@ -12,6 +12,7 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
     implementation(project(":domain"))
 
     testImplementation(project(":core:testing"))

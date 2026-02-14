@@ -13,6 +13,7 @@ android {
 dependencies {
     implementation(project(":domain"))
     implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
     implementation(libs.play.services.ads)
 
     testImplementation(project(":core:testing"))

@@ -1,7 +1,7 @@
-package com.toquete.boxbox.di
+package com.toquete.boxbox.sync.di
 
 import com.toquete.boxbox.domain.repository.SyncRepository
-import com.toquete.boxbox.worker.repository.DefaultSyncRepository
+import com.toquete.boxbox.sync.repository.DefaultSyncRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
