@@ -3,10 +3,10 @@ package com.toquete.boxbox.feature.raceresults.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
+import com.toquete.boxbox.core.navigation.BoxBoxRoute
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonSprintResultsUseCase
-import com.toquete.boxbox.feature.raceresults.navigation.RACE_ARGUMENT
-import com.toquete.boxbox.feature.raceresults.navigation.ROUND_ARGUMENT
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -20,14 +20,13 @@ internal class RaceResultsViewModel @Inject constructor(
     getCurrentSprintResultsUseCase: GetCurrentSeasonSprintResultsUseCase
 ) : ViewModel() {
 
-    private val round: Int = checkNotNull(savedStateHandle[ROUND_ARGUMENT])
-    private val raceName: String = checkNotNull(savedStateHandle[RACE_ARGUMENT])
+    private val route: BoxBoxRoute.RaceResult = checkNotNull(savedStateHandle.toRoute())
 
     val state = combine(
-        getCurrentSeasonRaceResultsUseCase(round),
-        getCurrentSprintResultsUseCase(round)
+        getCurrentSeasonRaceResultsUseCase(route.round),
+        getCurrentSprintResultsUseCase(route.round)
     ) { raceResults, sprintResults ->
-        RaceResultsState(raceName, raceResults, sprintResults)
+        RaceResultsState(route.race, raceResults, sprintResults)
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),

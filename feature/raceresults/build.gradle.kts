@@ -12,8 +12,10 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
     implementation(project(":domain"))
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
+    testImplementation(libs.compose.navigation.test)
 }

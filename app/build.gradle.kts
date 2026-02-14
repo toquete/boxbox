@@ -97,6 +97,7 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:preferences"))
+    implementation(project(":core:navigation"))
     implementation(project(":data:driverimages"))
     implementation(project(":data:constructorimages"))
     implementation(project(":data:circuitimages"))
@@ -141,6 +142,7 @@ kover {
             ":core:network",
             ":core:common",
             ":core:testing",
+            ":core:navigation",
             ":data:countries",
             ":data:driverstandings",
             ":data:driverimages",

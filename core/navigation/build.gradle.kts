@@ -1,0 +1,8 @@
+plugins {
+    id("boxbox.android.library")
+    id("boxbox.android.library.compose")
+}
+
+android {
+    namespace = "com.toquete.boxbox.core.navigation"
+}

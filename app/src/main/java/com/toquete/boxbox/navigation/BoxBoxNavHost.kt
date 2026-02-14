@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.toquete.boxbox.feature.home.navigation.HOME_ROUTE
+import com.toquete.boxbox.core.navigation.BoxBoxRoute
 import com.toquete.boxbox.feature.home.navigation.homeScreen
 import com.toquete.boxbox.feature.raceresults.navigation.navigateToRaceResult
 import com.toquete.boxbox.feature.raceresults.navigation.raceResultScreen
@@ -17,7 +17,7 @@ import com.toquete.boxbox.feature.standings.navigation.standingsScreen
 fun BoxBoxNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = HOME_ROUTE
+    startDestination: BoxBoxRoute = BoxBoxRoute.Home
 ) {
     NavHost(
         navController = navController,
