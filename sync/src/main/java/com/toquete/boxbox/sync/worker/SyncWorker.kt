@@ -1,4 +1,4 @@
-package com.toquete.boxbox.worker
+package com.toquete.boxbox.sync.worker
 
 import android.content.Context
 import androidx.hilt.work.HiltWorker
@@ -20,6 +20,8 @@ import java.util.concurrent.TimeUnit
 private val syncConstraints = Constraints.Builder()
     .setRequiredNetworkType(NetworkType.CONNECTED)
     .build()
+
+const val SYNC_WORK_NAME = "SYNC_WORK_NAME"
 
 @HiltWorker
 class SyncWorker @AssistedInject constructor(

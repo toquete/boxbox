@@ -1,4 +1,4 @@
-package com.toquete.boxbox.worker
+package com.toquete.boxbox.sync.worker
 
 import android.content.Context
 import android.util.Log

@@ -4,6 +4,7 @@ import com.toquete.boxbox.core.common.util.NetworkMonitor
 import com.toquete.boxbox.core.common.util.SyncMonitor
 import com.toquete.boxbox.core.preferences.di.UserPreferencesRepositoryModule
 import com.toquete.boxbox.data.circuitimages.di.CircuitImageRepositoryModule
+import com.toquete.boxbox.sync.di.SyncMonitorModule
 import com.toquete.boxbox.data.constructorcolors.di.ConstructorColorRepositoryModule
 import com.toquete.boxbox.data.constructorimages.di.ConstructorImageRepositoryModule
 import com.toquete.boxbox.data.constructorstandings.di.ConstructorStandingsRepositoryModule
@@ -58,6 +59,7 @@ import javax.inject.Singleton
         RaceRepositoryModule::class,
         SprintResultRepositoryModule::class,
         MonitorModule::class,
+        SyncMonitorModule::class,
         UserPreferencesRepositoryModule::class
     ]
 )

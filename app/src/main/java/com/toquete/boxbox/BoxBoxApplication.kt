@@ -24,8 +24,9 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
+import com.toquete.boxbox.sync.worker.SYNC_WORK_NAME
+import com.toquete.boxbox.sync.worker.SyncWorker
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
-import com.toquete.boxbox.worker.SyncWorker
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -38,7 +39,6 @@ private const val APP_CHECK_DEBUG_TOKEN_KEY = "com.google.firebase.appcheck.debu
 private const val MEMORY_CACHE_PERCENT = 0.1
 private const val DISK_CACHE_PERCENT = 0.03
 private const val MINIMUM_REMOTE_CONFIG_FETCH_INTERVAL = 0L
-const val SYNC_WORK_NAME = "SYNC_WORK_NAME"
 
 @HiltAndroidApp
 class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFactory {
