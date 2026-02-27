@@ -52,7 +52,7 @@ jobs:
       - name: Build release bundle
         run: ./gradlew :app:bundleProdRelease
       - name: Upload Release Build to Artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: release-artifacts
           path: |
