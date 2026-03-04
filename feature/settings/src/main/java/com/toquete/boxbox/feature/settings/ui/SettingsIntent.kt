@@ -4,6 +4,6 @@ import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 
 sealed interface SettingsIntent {
-    data class SelectTheme(val config: DarkThemeConfig) : SettingsIntent
-    data class SelectColor(val config: ColorConfig) : SettingsIntent
+    data class SelectTheme(val darkThemeConfig: DarkThemeConfig) : SettingsIntent
+    data class SelectColor(val colorConfig: ColorConfig) : SettingsIntent
 }
