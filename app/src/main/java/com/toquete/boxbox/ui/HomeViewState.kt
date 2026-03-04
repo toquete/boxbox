@@ -71,6 +71,9 @@ internal class HomeViewState(
             currentDestination?.hasRoute(destination.route::class) ?: false
         }
 
+    val isHomeDestination: Boolean
+        @Composable get() = currentHomeDestination != null
+
     fun navigateToHomeDestination(destination: HomeDestination) {
         val topLevelNavOptions = navOptions {
             // Pop up to the start destination of the graph to

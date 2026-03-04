@@ -8,7 +8,6 @@ import com.toquete.boxbox.core.navigation.BoxBoxRoute
 import com.toquete.boxbox.feature.raceresults.navigation.navigateToRaceResult
 import com.toquete.boxbox.feature.raceresults.navigation.raceResultScreen
 import com.toquete.boxbox.feature.races.navigation.racesScreen
-import com.toquete.boxbox.feature.settings.navigation.settingsScreen
 import com.toquete.boxbox.feature.standings.navigation.standingsScreen
 
 @Composable
@@ -24,7 +23,6 @@ fun BoxBoxNavHost(
     ) {
         standingsScreen()
         racesScreen(onRaceClick = navController::navigateToRaceResult)
-        settingsScreen(onDismiss = navController::navigateUp)
         raceResultScreen(onNavigateUp = navController::navigateUp)
     }
 }

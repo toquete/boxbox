@@ -22,7 +22,7 @@ import kotlin.time.Instant
 
 @OptIn(ExperimentalTime::class)
 @HiltViewModel
-internal class SettingsViewModel @Inject constructor(
+class SettingsViewModel @Inject constructor(
     private val preferencesRepository: UserPreferencesRepository,
     private val timeZone: TimeZone
 ) : ViewModel() {

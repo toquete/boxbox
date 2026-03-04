@@ -49,9 +49,9 @@ fun RaceAndSprintResult(
         }
     }
 
-    Column {
+    Column(modifier = modifier) {
         SingleChoiceSegmentedButtonRow(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
         ) {

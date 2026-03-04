@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.BottomAppBarDefaults
+import androidx.compose.material3.BottomAppBarScrollBehavior
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
@@ -38,7 +39,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
-import com.toquete.boxbox.feature.settings.navigation.navigateToSettings
+import com.toquete.boxbox.feature.settings.ui.SettingsScreen
 import com.toquete.boxbox.navigation.BoxBoxNavHost
 
 private const val SNACKBAR_OFFSET = -64
@@ -72,6 +73,13 @@ internal fun HomeScreen(
         }
     }
     var isAdLoaded by remember { mutableStateOf(false) }
+    var isSettingsDialogVisible by remember { mutableStateOf(false) }
+
+    if (isSettingsDialogVisible) {
+        SettingsScreen {
+            isSettingsDialogVisible = false
+        }
+    }
 
     Scaffold(
         modifier = Modifier
@@ -79,33 +87,17 @@ internal fun HomeScreen(
             .nestedScroll(topAppBarScrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets.safeDrawing,
         topBar = {
-            HomeTopAppBar(
-                homeViewState = homeViewState,
-                isOffline = state.isOffline,
-                scrollBehavior = topAppBarScrollBehavior,
-                onSettingsButtonClick = homeViewState.navController::navigateToSettings
-            )
-        },
-        bottomBar = {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentSize()
-            ) {
-                if (isBottomAppBarVisible) {
-                    HomeNavigationBar(
-                        homeViewState = homeViewState,
-                        scrollBehavior = bottomAppBarScrollBehavior
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .windowInsetsBottomHeight(WindowInsets.navigationBars)
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter)
-                        .background(Color.Transparent)
+            if (homeViewState.isHomeDestination) {
+                HomeTopAppBar(
+                    homeViewState = homeViewState,
+                    isOffline = state.isOffline,
+                    scrollBehavior = topAppBarScrollBehavior,
+                    onSettingsButtonClick = { isSettingsDialogVisible = true }
                 )
             }
+        },
+        bottomBar = {
+            HomeBottomBar(homeViewState, isBottomAppBarVisible, bottomAppBarScrollBehavior)
         },
         snackbarHost = {
             SnackbarHost(
@@ -135,6 +127,36 @@ internal fun HomeScreen(
                         .height(4.dp)
                 )
             }
+        }
+    }
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun HomeBottomBar(
+    homeViewState: HomeViewState,
+    isBottomAppBarVisible: Boolean,
+    bottomAppBarScrollBehavior: BottomAppBarScrollBehavior
+) {
+    if (homeViewState.isHomeDestination) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentSize()
+        ) {
+            if (isBottomAppBarVisible) {
+                HomeNavigationBar(
+                    homeViewState = homeViewState,
+                    scrollBehavior = bottomAppBarScrollBehavior
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .windowInsetsBottomHeight(WindowInsets.navigationBars)
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .background(Color.Transparent)
+            )
         }
     }
 }

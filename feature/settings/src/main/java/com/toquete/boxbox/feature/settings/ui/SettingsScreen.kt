@@ -35,7 +35,7 @@ import com.toquete.boxbox.core.ui.theme.supportsDynamicTheming
 import com.toquete.boxbox.feature.settings.R
 
 @Composable
-internal fun SettingsScreen(
+fun SettingsScreen(
     viewModel: SettingsViewModel = hiltViewModel(),
     onDismiss: () -> Unit
 ) {
