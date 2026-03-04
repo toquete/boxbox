@@ -53,7 +53,6 @@ class MainActivity : ComponentActivity() {
             val isDynamicColors = shouldUseDynamicColors(uiState)
             val navController = rememberNavController()
 
-
             LaunchedEffect(isDarkTheme) {
                 enableEdgeToEdge(
                     statusBarStyle = SystemBarStyle.auto(
