@@ -25,8 +25,8 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.toquete.boxbox.R
 import com.toquete.boxbox.core.common.annotation.Generated
-import com.toquete.boxbox.feature.home.R
 import timber.log.Timber
 
 @Composable
