@@ -85,21 +85,21 @@ class SettingsViewModelTest {
     }
 
     @Test
-    fun `onThemeSettingsItemClick should set selected dark theme config`() = runTest {
+    fun `onIntent SelectTheme should set selected dark theme config`() = runTest {
         val config = DarkThemeConfig.DARK
         setupViewModel()
 
-        viewModel.onThemeSettingsItemClick(config)
+        viewModel.onIntent(SettingsIntent.SelectTheme(config))
 
         coVerify { userPreferencesRepository.setDarkThemeConfig(config) }
     }
 
     @Test
-    fun `onColorSettingsItemClick should set selected color config`() = runTest {
+    fun `onIntent SelectColor should set selected color config`() = runTest {
         val config = ColorConfig.DEFAULT
         setupViewModel()
 
-        viewModel.onColorSettingsItemClick(config)
+        viewModel.onIntent(SettingsIntent.SelectColor(config))
 
         coVerify { userPreferencesRepository.setColorConfig(config) }
     }
