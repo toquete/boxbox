@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.home.ui
+package com.toquete.boxbox.ui
 
 internal data class HomeState(
     val isOffline: Boolean = false,

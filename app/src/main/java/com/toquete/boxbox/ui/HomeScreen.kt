@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.home.ui
+package com.toquete.boxbox.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.BottomAppBarDefaults
+import androidx.compose.material3.BottomAppBarScrollBehavior
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
@@ -34,25 +35,25 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
-import com.toquete.boxbox.feature.home.navigation.HomeNavHost
+import com.toquete.boxbox.feature.settings.ui.SettingsScreen
+import com.toquete.boxbox.navigation.BoxBoxNavHost
 
 private const val SNACKBAR_OFFSET = -64
 
 @Composable
 internal fun HomeRoute(
-    viewModel: HomeViewModel = hiltViewModel(),
-    onSettingsButtonClick: () -> Unit,
-    builder: NavGraphBuilder.() -> Unit
+    navController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     HomeScreen(
         state = state,
-        onSettingsButtonClick = onSettingsButtonClick,
+        navController = navController,
         onRefresh = viewModel::refresh,
-        builder = builder
     )
 }
 
@@ -60,11 +61,10 @@ internal fun HomeRoute(
 @Composable
 internal fun HomeScreen(
     state: HomeState,
-    onSettingsButtonClick: () -> Unit = { },
-    onRefresh: () -> Unit = { },
-    builder: NavGraphBuilder.() -> Unit = { }
+    navController: NavHostController = rememberNavController(),
+    onRefresh: () -> Unit = { }
 ) {
-    val homeViewState = rememberHomeViewState()
+    val homeViewState = rememberHomeViewState(navController = navController)
     val topAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val bottomAppBarScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
     val isBottomAppBarVisible by remember {
@@ -73,6 +73,13 @@ internal fun HomeScreen(
         }
     }
     var isAdLoaded by remember { mutableStateOf(false) }
+    var isSettingsDialogVisible by remember { mutableStateOf(false) }
+
+    if (isSettingsDialogVisible) {
+        SettingsScreen {
+            isSettingsDialogVisible = false
+        }
+    }
 
     Scaffold(
         modifier = Modifier
@@ -80,33 +87,17 @@ internal fun HomeScreen(
             .nestedScroll(topAppBarScrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets.safeDrawing,
         topBar = {
-            HomeTopAppBar(
-                homeViewState = homeViewState,
-                isOffline = state.isOffline,
-                scrollBehavior = topAppBarScrollBehavior,
-                onSettingsButtonClick = onSettingsButtonClick
-            )
-        },
-        bottomBar = {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentSize()
-            ) {
-                if (isBottomAppBarVisible) {
-                    HomeNavigationBar(
-                        homeViewState = homeViewState,
-                        scrollBehavior = bottomAppBarScrollBehavior
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .windowInsetsBottomHeight(WindowInsets.navigationBars)
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter)
-                        .background(Color.Transparent)
+            if (homeViewState.isHomeDestination) {
+                HomeTopAppBar(
+                    homeViewState = homeViewState,
+                    isOffline = state.isOffline,
+                    scrollBehavior = topAppBarScrollBehavior,
+                    onSettingsButtonClick = { isSettingsDialogVisible = true }
                 )
             }
+        },
+        bottomBar = {
+            HomeBottomBar(homeViewState, isBottomAppBarVisible, bottomAppBarScrollBehavior)
         },
         snackbarHost = {
             SnackbarHost(
@@ -124,11 +115,7 @@ internal fun HomeScreen(
             modifier = Modifier.padding(paddingValues)
         ) {
             Column {
-                HomeNavHost(
-                    modifier = Modifier.weight(1f),
-                    homeViewState = homeViewState,
-                    builder = builder
-                )
+                BoxBoxNavHost(navController = homeViewState.navController)
                 if (state.isAdBannerVisible) {
                     AdBanner(onAdLoaded = { isAdLoaded = true })
                 }
@@ -140,6 +127,36 @@ internal fun HomeScreen(
                         .height(4.dp)
                 )
             }
+        }
+    }
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun HomeBottomBar(
+    homeViewState: HomeViewState,
+    isBottomAppBarVisible: Boolean,
+    bottomAppBarScrollBehavior: BottomAppBarScrollBehavior
+) {
+    if (homeViewState.isHomeDestination) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentSize()
+        ) {
+            if (isBottomAppBarVisible) {
+                HomeNavigationBar(
+                    homeViewState = homeViewState,
+                    scrollBehavior = bottomAppBarScrollBehavior
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .windowInsetsBottomHeight(WindowInsets.navigationBars)
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .background(Color.Transparent)
+            )
         }
     }
 }

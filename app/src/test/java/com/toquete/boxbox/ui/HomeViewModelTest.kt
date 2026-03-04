@@ -1,6 +1,7 @@
-package com.toquete.boxbox.feature.home.ui
+package com.toquete.boxbox.ui
 
 import androidx.compose.material3.SnackbarDuration
+import com.toquete.boxbox.R
 import com.toquete.boxbox.core.common.util.NetworkMonitor
 import com.toquete.boxbox.core.common.util.SyncMonitor
 import com.toquete.boxbox.core.model.RemoteConfigs
@@ -8,7 +9,6 @@ import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.core.ui.custom.SnackbarManager
 import com.toquete.boxbox.domain.repository.RemoteConfigRepository
 import com.toquete.boxbox.domain.repository.SyncRepository
-import com.toquete.boxbox.feature.home.R
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -109,7 +109,7 @@ class HomeViewModelTest {
         networkFlow.emit(false)
         remoteConfigFlow.emit(RemoteConfigs())
 
-        verify { SnackbarManager.showMessage(R.string.home_not_connected, duration = SnackbarDuration.Long) }
+        verify { SnackbarManager.showMessage(R.string.not_connected, duration = SnackbarDuration.Long) }
 
         backgroundScope.cancel()
     }
@@ -136,7 +136,7 @@ class HomeViewModelTest {
         networkFlow.emit(true)
         remoteConfigFlow.emit(RemoteConfigs())
 
-        verify { SnackbarManager.showMessage(R.string.home_fail_message, duration = SnackbarDuration.Long) }
+        verify { SnackbarManager.showMessage(R.string.fail_message, duration = SnackbarDuration.Long) }
 
         backgroundScope.cancel()
     }
@@ -150,7 +150,7 @@ class HomeViewModelTest {
 
         verify {
             SnackbarManager.showMessage(
-                R.string.home_fail_refresh,
+                R.string.fail_refresh,
                 duration = SnackbarDuration.Long,
                 withDismissAction = true
             )

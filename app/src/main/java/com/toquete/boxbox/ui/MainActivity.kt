@@ -8,25 +8,19 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
-import com.toquete.boxbox.navigation.BoxBoxNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -77,20 +71,10 @@ class MainActivity : ComponentActivity() {
                 dynamicColors = isDynamicColors
             ) {
                 if (!uiState.isLoading) {
-                    MainScreen(navController = navController)
+                    HomeRoute(navController)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun MainScreen(navController: NavHostController) {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        BoxBoxNavHost(navController = navController)
     }
 }
 

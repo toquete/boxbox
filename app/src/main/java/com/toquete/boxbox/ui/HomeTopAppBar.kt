@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.home.ui
+package com.toquete.boxbox.ui
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.toquete.boxbox.R
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -28,7 +29,7 @@ internal fun HomeTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior,
     onSettingsButtonClick: () -> Unit = { }
 ) {
-    val title = homeViewState.currentHomeDestination?.titleTextId
+    val title = homeViewState.currentHomeDestination?.titleTextId ?: R.string.app_name
     CenterAlignedTopAppBar(
         scrollBehavior = scrollBehavior,
         colors = TopAppBarDefaults.topAppBarColors(
@@ -37,7 +38,7 @@ internal fun HomeTopAppBar(
         title = {
             Text(
                 modifier = Modifier.testTag("Home AppBar Title"),
-                text = title?.let { stringResource(title) }.orEmpty(),
+                text = stringResource(title),
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontFamily = FormulaOne,
                     fontWeight = FontWeight.Bold
