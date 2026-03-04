@@ -53,7 +53,7 @@ internal fun HomeRoute(
     HomeScreen(
         state = state,
         navController = navController,
-        onRefresh = viewModel::refresh,
+        onRefresh = { viewModel.onIntent(HomeIntent.Refresh) },
     )
 }
 
