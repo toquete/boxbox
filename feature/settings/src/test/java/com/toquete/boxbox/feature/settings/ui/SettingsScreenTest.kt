@@ -1,7 +1,6 @@
 package com.toquete.boxbox.feature.settings.ui
 
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -34,7 +33,7 @@ class SettingsScreenTest {
                             lastUpdatedTime = null
                         ),
                         onDismiss = {},
-                        onThemeOptionSelected = {}
+                        onIntent = {}
                     )
                 }
             }
@@ -50,7 +49,7 @@ class SettingsScreenTest {
             onNodeWithText("Follow system")
                 .assertIsDisplayed()
                 .assertIsSelected()
-            onNodeWithTag("last_updated_time").assertIsNotDisplayed()
+            onNodeWithTag("last_updated_time").assertDoesNotExist()
             onNodeWithText("Cancel").assertIsDisplayed()
             onNodeWithText("OK").assertIsDisplayed()
         }
@@ -69,7 +68,7 @@ class SettingsScreenTest {
                             lastUpdatedTime = "2021-09-01 12:00:00"
                         ),
                         onDismiss = {},
-                        onThemeOptionSelected = {}
+                        onIntent = {}
                     )
                 }
             }
@@ -93,7 +92,7 @@ class SettingsScreenTest {
                             lastUpdatedTime = "2021-09-01 12:00:00"
                         ),
                         onDismiss = {},
-                        onThemeOptionSelected = {}
+                        onIntent = {}
                     )
                 }
             }
