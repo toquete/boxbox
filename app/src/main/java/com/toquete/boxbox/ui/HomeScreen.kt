@@ -34,6 +34,8 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.settings.navigation.navigateToSettings
@@ -42,10 +44,14 @@ import com.toquete.boxbox.navigation.BoxBoxNavHost
 private const val SNACKBAR_OFFSET = -64
 
 @Composable
-internal fun HomeRoute(viewModel: HomeViewModel = hiltViewModel()) {
+internal fun HomeRoute(
+    navController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     HomeScreen(
         state = state,
+        navController = navController,
         onRefresh = viewModel::refresh,
     )
 }
@@ -54,9 +60,10 @@ internal fun HomeRoute(viewModel: HomeViewModel = hiltViewModel()) {
 @Composable
 internal fun HomeScreen(
     state: HomeState,
+    navController: NavHostController = rememberNavController(),
     onRefresh: () -> Unit = { }
 ) {
-    val homeViewState = rememberHomeViewState()
+    val homeViewState = rememberHomeViewState(navController = navController)
     val topAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val bottomAppBarScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
     val isBottomAppBarVisible by remember {

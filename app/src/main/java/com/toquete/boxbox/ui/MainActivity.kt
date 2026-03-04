@@ -17,6 +17,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.compose.rememberNavController
 import com.toquete.boxbox.core.model.ColorConfig
 import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
@@ -50,6 +51,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val isDarkTheme = shouldUseDarkTheme(uiState)
             val isDynamicColors = shouldUseDynamicColors(uiState)
+            val navController = rememberNavController()
+
 
             LaunchedEffect(isDarkTheme) {
                 enableEdgeToEdge(
@@ -69,7 +72,7 @@ class MainActivity : ComponentActivity() {
                 dynamicColors = isDynamicColors
             ) {
                 if (!uiState.isLoading) {
-                    HomeRoute()
+                    HomeRoute(navController)
                 }
             }
         }
