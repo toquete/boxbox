@@ -61,7 +61,13 @@ internal class HomeViewModel @Inject constructor(
         initialValue = HomeState()
     )
 
-    fun refresh() {
+    fun onIntent(intent: HomeIntent) {
+        when (intent) {
+            HomeIntent.Refresh -> refresh()
+        }
+    }
+
+    private fun refresh() {
         _isRefreshing.update { true }
         viewModelScope.launch {
             runCatching {

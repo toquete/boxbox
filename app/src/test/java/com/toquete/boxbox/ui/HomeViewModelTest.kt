@@ -142,11 +142,11 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `refresh should show snackbar when sync failed`() = runTest {
+    fun `onIntent Refresh should show snackbar when sync failed`() = runTest {
         coEvery { syncRepository.sync() } throws Exception()
 
         setupViewModel()
-        homeViewModel.refresh()
+        homeViewModel.onIntent(HomeIntent.Refresh)
 
         verify {
             SnackbarManager.showMessage(
@@ -155,14 +155,18 @@ class HomeViewModelTest {
                 withDismissAction = true
             )
         }
+        assertEquals(
+            HomeState(isRefreshing = false),
+            homeViewModel.state.value
+        )
     }
 
     @Test
-    fun `refresh should call sync`() = runTest {
+    fun `onIntent Refresh should call sync`() = runTest {
         coEvery { syncRepository.sync() } returns Unit
 
         setupViewModel()
-        homeViewModel.refresh()
+        homeViewModel.onIntent(HomeIntent.Refresh)
 
         coVerify { syncRepository.sync() }
         assertEquals(

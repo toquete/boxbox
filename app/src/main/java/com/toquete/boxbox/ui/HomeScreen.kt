@@ -53,7 +53,7 @@ internal fun HomeRoute(
     HomeScreen(
         state = state,
         navController = navController,
-        onRefresh = viewModel::refresh,
+        onIntent = viewModel::onIntent,
     )
 }
 
@@ -62,7 +62,7 @@ internal fun HomeRoute(
 internal fun HomeScreen(
     state: HomeState,
     navController: NavHostController = rememberNavController(),
-    onRefresh: () -> Unit = { }
+    onIntent: (HomeIntent) -> Unit = { }
 ) {
     val homeViewState = rememberHomeViewState(navController = navController)
     val topAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -111,7 +111,7 @@ internal fun HomeScreen(
     ) { paddingValues ->
         PullToRefreshBox(
             isRefreshing = state.isRefreshing,
-            onRefresh = onRefresh,
+            onRefresh = { onIntent(HomeIntent.Refresh) },
             modifier = Modifier.padding(paddingValues)
         ) {
             Column {
