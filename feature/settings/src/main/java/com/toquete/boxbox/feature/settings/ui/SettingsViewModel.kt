@@ -2,8 +2,6 @@ package com.toquete.boxbox.feature.settings.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toquete.boxbox.core.model.ColorConfig
-import com.toquete.boxbox.core.model.DarkThemeConfig
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -42,15 +40,12 @@ class SettingsViewModel @Inject constructor(
             initialValue = SettingsState()
         )
 
-    fun onThemeSettingsItemClick(darkThemeConfig: DarkThemeConfig) {
+    fun onIntent(intent: SettingsIntent) {
         viewModelScope.launch {
-            preferencesRepository.setDarkThemeConfig(darkThemeConfig)
-        }
-    }
-
-    fun onColorSettingsItemClick(colorConfig: ColorConfig) {
-        viewModelScope.launch {
-            preferencesRepository.setColorConfig(colorConfig)
+            when (intent) {
+                is SettingsIntent.SelectTheme -> preferencesRepository.setDarkThemeConfig(intent.darkThemeConfig)
+                is SettingsIntent.SelectColor -> preferencesRepository.setColorConfig(intent.colorConfig)
+            }
         }
     }
 
