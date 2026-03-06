@@ -25,8 +25,9 @@ interface BoxBoxService {
         @Path("season") season: String = "current"
     ): RacesWrapper
 
-    @GET("current/results.json")
+    @GET("{season}/results.json")
     suspend fun getRaceResults(
+        @Path("season") season: String = "current",
         @Query("offset") offset: Int,
         @Query("limit") limit: Int = MAX_RESPONSE_LIMIT
     ): RacesWrapper

@@ -133,7 +133,7 @@ class BoxBoxServiceTest {
             setupService()
         }
 
-        service.getRaceResults(offset = 0)
+        service.getRaceResults(season = "current", offset = 0)
 
         val request = mockWebServer.takeRequest()
         assertEquals(expectedPath, request.url.encodedPath)
