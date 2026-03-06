@@ -97,14 +97,14 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getRaces should send correct request path when called`() = runTest {
-        val expected = "/current.json"
+        val expected = "/current/races.json"
         with(mockWebServer) {
             enqueue(MockResponse(body = readPath("races.json")))
             start()
             setupService()
         }
 
-        service.getRaces()
+        service.getRaces(season = "current")
 
         assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }
