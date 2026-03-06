@@ -5,12 +5,15 @@ import com.toquete.boxbox.core.network.model.ConstructorStandingsWrapper
 import com.toquete.boxbox.core.network.model.DriverStandingsWrapper
 import com.toquete.boxbox.core.network.model.RacesWrapper
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface BoxBoxService {
 
-    @GET("current/driverStandings.json")
-    suspend fun getDriverStandings(): DriverStandingsWrapper
+    @GET("{season}/driverStandings.json")
+    suspend fun getDriverStandings(
+        @Path("season") season: String = "current"
+    ): DriverStandingsWrapper
 
     @GET("current/constructorStandings.json")
     suspend fun getConstructorStandings(): ConstructorStandingsWrapper

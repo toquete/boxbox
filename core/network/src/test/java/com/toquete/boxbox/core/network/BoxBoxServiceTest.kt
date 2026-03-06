@@ -48,7 +48,7 @@ class BoxBoxServiceTest {
             setupService()
         }
 
-        service.getDriverStandings()
+        service.getDriverStandings(season = "current")
 
         assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }
