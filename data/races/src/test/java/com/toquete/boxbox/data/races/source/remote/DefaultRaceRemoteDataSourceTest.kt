@@ -3,7 +3,6 @@ package com.toquete.boxbox.data.races.source.remote
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.testing.data.racesResponse
 import com.toquete.boxbox.core.testing.data.racesWrapper
-import com.toquete.boxbox.data.races.source.remote.DefaultRaceRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
