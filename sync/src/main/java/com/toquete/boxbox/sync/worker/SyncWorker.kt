@@ -13,6 +13,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.cancellation.CancellationException
 
 private val syncConstraints = Constraints.Builder()
     .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -36,15 +37,17 @@ class SyncWorker @AssistedInject constructor(
         }
     }
 
+    @Suppress("TooGenericExceptionCaught")
     private suspend fun sync(): Result {
-        return runCatching {
+        return try {
             syncRepository.sync()
-        }.onFailure { error ->
-            Timber.e(error)
-        }.fold(
-            onSuccess = { Result.success() },
-            onFailure = { Result.retry() }
-        )
+            Result.success()
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            Timber.e(e)
+            Result.retry()
+        }
     }
 
     companion object {
