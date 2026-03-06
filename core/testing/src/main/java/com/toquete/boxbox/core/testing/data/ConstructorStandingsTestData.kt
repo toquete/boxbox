@@ -25,6 +25,7 @@ val constructorStandingsResponse = listOf(
 val constructorStandingsWrapper = ConstructorStandingsWrapper(
     data = StandingsTableResponse(
         standingTable = StandingsLists(
+            season = "2023",
             standingsLists = listOf(
                 ConstructorStandingsResponse(
                     constructorStandings = constructorStandingsResponse
