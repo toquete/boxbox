@@ -16,7 +16,7 @@ class DefaultRaceResultRemoteDataSourceTest {
     @Test
     fun `getRaceResults should return race results`() = runTest {
         val offset = 0
-        coEvery { service.getRaceResults(offset) } returns raceResultWrapper
+        coEvery { service.getRaceResults(offset = offset) } returns raceResultWrapper
 
         val result = dataSource.getRaceResults(offset)
 
