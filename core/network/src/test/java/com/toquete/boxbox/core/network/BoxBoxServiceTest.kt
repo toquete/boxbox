@@ -76,7 +76,7 @@ class BoxBoxServiceTest {
             setupService()
         }
 
-        service.getConstructorStandings()
+        service.getConstructorStandings(season = "current")
 
         assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }

@@ -15,8 +15,10 @@ interface BoxBoxService {
         @Path("season") season: String = "current"
     ): DriverStandingsWrapper
 
-    @GET("current/constructorStandings.json")
-    suspend fun getConstructorStandings(): ConstructorStandingsWrapper
+    @GET("{season}/constructorStandings.json")
+    suspend fun getConstructorStandings(
+        @Path("season") season: String = "current"
+    ): ConstructorStandingsWrapper
 
     @GET("current.json")
     suspend fun getRaces(): RacesWrapper
