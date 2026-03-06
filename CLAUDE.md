@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-BoxBox is an offline-first Android Formula 1 companion app that fetches data from the Ergast API and stores it locally in Room. It uses Jetpack Compose, Hilt, ViewModel, WorkManager, and DataStore.
+BoxBox is an offline-first Android Formula 1 companion app that fetches data from the jolpica API (successor to Ergast) and stores it locally in Room. It uses Jetpack Compose, Hilt, ViewModel, WorkManager, and DataStore.
 
 ## Build Commands
 
@@ -70,7 +70,7 @@ Routes are defined as a `@Serializable sealed interface BoxBoxRoute` in `:core:n
 ## Data Flow (offline-first)
 
 1. On app start, `SyncWorker` is enqueued via WorkManager.
-2. `SyncWorker` calls `sync()` on each repository (defined in `:domain`), which fetches from the Ergast API and upserts into Room.
+2. `SyncWorker` calls `sync()` on each repository (defined in `:domain`), which fetches from the jolpica API and upserts into Room.
 3. Feature ViewModels observe `Flow`s from repository interfaces (`:domain`) which read from Room DAOs.
 4. ViewModels use `stateIn(SharingStarted.WhileSubscribed(5_000))` pattern uniformly.
 
@@ -93,6 +93,14 @@ Instead of per-module Gradle boilerplate, convention plugins in `:plugins` confi
 ## Static Analysis
 
 **Detekt** runs on all subprojects (ignores `release` and `minified` build types). Config is at `detekt/config.yml`. Auto-correct is enabled. Merged report outputs to `build/reports/detekt-results.xml`.
+
+## Network / API Layer
+
+- Base URL: `https://api.jolpi.ca/ergast/f1/` (defined in `core/network/.../di/NetworkModule.kt`).
+- Endpoint path reference: https://github.com/jolpica/jolpica-f1/tree/main/docs/endpoints/
+- All endpoints follow `{season}/<resource>.json` pattern (e.g., `{season}/driverStandings.json`).
+- The old Ergast shorthand `current.json` (races) is not valid in jolpica; use `{season}/races.json`.
+- When adding `@Path` params to existing no-arg service functions, use default values (`= "current"`) to avoid breaking callers.
 
 ## Key Property Files
 
