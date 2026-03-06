@@ -38,6 +38,7 @@ val driverStandingsResponse = listOf(
 val driverStandingsWrapper = DriverStandingsWrapper(
     data = StandingsTableResponse(
         standingTable = StandingsLists(
+            season = "2023",
             standingsLists = listOf(
                 DriverStandingsResponse(
                     driverStandings = driverStandingsResponse

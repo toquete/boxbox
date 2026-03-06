@@ -11,6 +11,8 @@ data class StandingsTableResponse<T>(
 
 @Serializable
 data class StandingsLists<T>(
+    @SerialName("season")
+    val season: String,
     @SerialName("StandingsLists")
     val standingsLists: List<T>
 )

@@ -48,7 +48,7 @@ class BoxBoxServiceTest {
             setupService()
         }
 
-        service.getDriverStandings()
+        service.getDriverStandings(season = "current")
 
         assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }
@@ -76,7 +76,7 @@ class BoxBoxServiceTest {
             setupService()
         }
 
-        service.getConstructorStandings()
+        service.getConstructorStandings(season = "current")
 
         assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }
@@ -97,14 +97,14 @@ class BoxBoxServiceTest {
 
     @Test
     fun `getRaces should send correct request path when called`() = runTest {
-        val expected = "/current.json"
+        val expected = "/current/races.json"
         with(mockWebServer) {
             enqueue(MockResponse(body = readPath("races.json")))
             start()
             setupService()
         }
 
-        service.getRaces()
+        service.getRaces(season = "current")
 
         assertEquals(expected, mockWebServer.takeRequest().url.encodedPath)
     }
@@ -133,7 +133,7 @@ class BoxBoxServiceTest {
             setupService()
         }
 
-        service.getRaceResults(offset = 0)
+        service.getRaceResults(season = "current", offset = 0)
 
         val request = mockWebServer.takeRequest()
         assertEquals(expectedPath, request.url.encodedPath)
@@ -164,7 +164,7 @@ class BoxBoxServiceTest {
             setupService()
         }
 
-        service.getSprintRaceResults(offset = 0)
+        service.getSprintRaceResults(season = "current", offset = 0)
 
         val request = mockWebServer.takeRequest()
         assertEquals(expectedPath, request.url.encodedPath)

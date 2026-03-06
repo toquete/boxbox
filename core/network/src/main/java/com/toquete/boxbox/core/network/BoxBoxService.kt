@@ -5,27 +5,36 @@ import com.toquete.boxbox.core.network.model.ConstructorStandingsWrapper
 import com.toquete.boxbox.core.network.model.DriverStandingsWrapper
 import com.toquete.boxbox.core.network.model.RacesWrapper
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface BoxBoxService {
 
-    @GET("current/driverStandings.json")
-    suspend fun getDriverStandings(): DriverStandingsWrapper
+    @GET("{season}/driverStandings.json")
+    suspend fun getDriverStandings(
+        @Path("season") season: String = "current"
+    ): DriverStandingsWrapper
 
-    @GET("current/constructorStandings.json")
-    suspend fun getConstructorStandings(): ConstructorStandingsWrapper
+    @GET("{season}/constructorStandings.json")
+    suspend fun getConstructorStandings(
+        @Path("season") season: String = "current"
+    ): ConstructorStandingsWrapper
 
-    @GET("current.json")
-    suspend fun getRaces(): RacesWrapper
+    @GET("{season}/races.json")
+    suspend fun getRaces(
+        @Path("season") season: String = "current"
+    ): RacesWrapper
 
-    @GET("current/results.json")
+    @GET("{season}/results.json")
     suspend fun getRaceResults(
+        @Path("season") season: String = "current",
         @Query("offset") offset: Int,
         @Query("limit") limit: Int = MAX_RESPONSE_LIMIT
     ): RacesWrapper
 
-    @GET("current/sprint.json")
+    @GET("{season}/sprint.json")
     suspend fun getSprintRaceResults(
+        @Path("season") season: String = "current",
         @Query("offset") offset: Int,
         @Query("limit") limit: Int = MAX_RESPONSE_LIMIT
     ): RacesWrapper

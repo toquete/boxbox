@@ -9,6 +9,6 @@ internal class DefaultSprintResultRemoteDataSource @Inject constructor(
 ) : SprintResultRemoteDataSource {
 
     override suspend fun getSprintResults(offset: Int): RacesWrapper {
-        return service.getSprintRaceResults(offset)
+        return service.getSprintRaceResults(offset = offset)
     }
 }
