@@ -46,14 +46,14 @@ internal fun RaceResultItem(
             modifier = Modifier
                 .width(150.dp)
                 .padding(end = 4.dp),
-            text = raceResult.constructor.name,
+            text = raceResult.constructor?.name.orEmpty(),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne)
         )
         Text(
             modifier = Modifier
                 .width(60.dp)
                 .padding(end = 4.dp),
-            text = raceResult.laps,
+            text = raceResult.laps.orEmpty(),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne)
         )
         Text(
@@ -67,7 +67,7 @@ internal fun RaceResultItem(
             modifier = Modifier
                 .width(125.dp)
                 .padding(end = 4.dp),
-            text = raceResult.status,
+            text = raceResult.status.orEmpty(),
             style = MaterialTheme.typography.bodyLarge.copy(fontFamily = FormulaOne)
         )
         Text(

@@ -12,10 +12,10 @@ data class RaceResultEntity(
     @ColumnInfo(name = "driver_id")
     val driverId: String,
     @ColumnInfo(name = "constructor_id")
-    val constructorId: String,
+    val constructorId: String?,
     @ColumnInfo(name = "grid_position")
-    val gridPosition: Int,
-    val laps: String,
-    val status: String,
+    val gridPosition: Int?,
+    val laps: String?,
+    val status: String?,
     val time: String?
 )

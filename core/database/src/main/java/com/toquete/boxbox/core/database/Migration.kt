@@ -39,6 +39,25 @@ val MIGRATION_11_12 = object : Migration(11, 12) {
     }
 }
 
+val MIGRATION_12_13 = object : Migration(12, 13) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("DROP TABLE race_results")
+        db.execSQL(
+            "CREATE TABLE `race_results` (`season` TEXT NOT NULL, `round` INTEGER NOT NULL, " +
+                "`position` INTEGER NOT NULL, `points` INTEGER NOT NULL, `driver_id` TEXT NOT NULL, " +
+                "`constructor_id` TEXT, `grid_position` INTEGER, `laps` TEXT, " +
+                "`status` TEXT, `time` TEXT, PRIMARY KEY(`season`, `round`, `position`))"
+        )
+        db.execSQL("DROP TABLE sprint_race_results")
+        db.execSQL(
+            "CREATE TABLE `sprint_race_results` (`season` TEXT NOT NULL, `round` INTEGER NOT NULL, " +
+                "`position` INTEGER NOT NULL, `points` INTEGER NOT NULL, `driver_id` TEXT NOT NULL, " +
+                "`constructor_id` TEXT, `grid_position` INTEGER, `laps` TEXT, " +
+                "`status` TEXT, `time` TEXT, PRIMARY KEY(`season`, `round`, `position`))"
+        )
+    }
+}
+
 val MIGRATION_8_9 = object : Migration(8, 9) {
     override fun migrate(db: SupportSQLiteDatabase) {
         db.execSQL("DROP TABLE race_results")

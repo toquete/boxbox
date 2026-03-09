@@ -14,5 +14,5 @@ data class SprintRaceResultWithDriverAndConstructorEntity(
         parentColumn = "constructor_id",
         entityColumn = "id"
     )
-    val constructor: ConstructorEntity
+    val constructor: ConstructorEntity?
 )

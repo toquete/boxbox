@@ -12,13 +12,13 @@ data class RaceResultResponse(
     @SerialName("Driver")
     val driver: DriverResponse,
     @SerialName("Constructor")
-    val constructor: ConstructorResponse,
+    val constructor: ConstructorResponse?,
     @SerialName("grid")
-    val gridPosition: String,
+    val gridPosition: String?,
     @SerialName("laps")
-    val laps: String,
+    val laps: String?,
     @SerialName("status")
-    val status: String,
+    val status: String?,
     @SerialName("Time")
     val time: TimeResponse?
 )
