@@ -89,10 +89,12 @@ Instead of per-module Gradle boilerplate, convention plugins in `:plugins` confi
 - Shared test data objects live in `:core:testing` (e.g. `driverStandings`, `constructorStandings`).
 - All modules use Robolectric for unit tests that require Android resources (`isIncludeAndroidResources = true`).
 - Coverage is measured via **Kover** on the `prodDebug` variant, excluding Hilt/DI, Composable, Navigation, and generated classes.
+- `FixedClock` (in `domain/src/test/.../domain/util/`) is available for use case tests that depend on `Clock`/date — no need to create a new fake.
 
 ## Static Analysis
 
 **Detekt** runs on all subprojects (ignores `release` and `minified` build types). Config is at `detekt/config.yml`. Auto-correct is enabled. Merged report outputs to `build/reports/detekt-results.xml`.
+- Max line length enforced by detekt is **120 characters**.
 
 ## Network / API Layer
 
@@ -101,6 +103,8 @@ Instead of per-module Gradle boilerplate, convention plugins in `:plugins` confi
 - All endpoints follow `{season}/<resource>.json` pattern (e.g., `{season}/driverStandings.json`).
 - The old Ergast shorthand `current.json` (races) is not valid in jolpica; use `{season}/races.json`.
 - When adding `@Path` params to existing no-arg service functions, use default values (`= "current"`) to avoid breaking callers.
+- Each `:data:*` remote data source has both `prod/` and `demo/` source sets — check both when modifying service method signatures.
+- When inserting a new `@Path` param before existing `@Query` params, positional callers break; use named arguments at call sites (e.g., `service.getFoo(offset = offset)`).
 
 ## Database Migrations
 

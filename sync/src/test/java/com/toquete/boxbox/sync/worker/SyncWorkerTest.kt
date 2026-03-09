@@ -13,24 +13,17 @@ import androidx.work.WorkerParameters
 import androidx.work.testing.SynchronousExecutor
 import androidx.work.testing.TestListenableWorkerBuilder
 import androidx.work.testing.WorkManagerTestInitHelper
-import com.toquete.boxbox.core.model.ColorConfig
-import com.toquete.boxbox.core.model.DarkThemeConfig
-import com.toquete.boxbox.core.model.UserPreferences
 import com.toquete.boxbox.domain.repository.SyncRepository
-import com.toquete.boxbox.domain.repository.UserPreferencesRepository
-import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
+import com.toquete.boxbox.domain.usecase.IsSyncAllowedUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.runs
 import io.mockk.unmockkObject
 import io.mockk.verify
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import kotlinx.datetime.LocalDate
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -43,13 +36,8 @@ import kotlin.test.assertEquals
 class SyncWorkerTest {
 
     private val syncRepository: SyncRepository = mockk()
-    private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase = mockk()
-    private val userPreferencesRepository: UserPreferencesRepository = mockk()
-    private val testWorkerFactory = TestWorkerFactory(
-        syncRepository,
-        getTodayLocalDateUseCase,
-        userPreferencesRepository
-    )
+    private val isSyncAllowedUseCase: IsSyncAllowedUseCase = mockk()
+    private val testWorkerFactory = TestWorkerFactory(syncRepository, isSyncAllowedUseCase)
     private lateinit var context: Context
 
     @Before
@@ -76,19 +64,8 @@ class SyncWorkerTest {
             .setWorkerFactory(testWorkerFactory)
             .build()
 
+        coEvery { isSyncAllowedUseCase() } returns true
         coEvery { syncRepository.sync() } just runs
-        every { getTodayLocalDateUseCase() } returns LocalDate(
-            year = 2024,
-            month = 12,
-            day = 1 // Sunday
-        )
-        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
-            UserPreferences(
-                darkThemeConfig = DarkThemeConfig.DARK,
-                colorConfig = ColorConfig.DEFAULT,
-                lastUpdatedDateInMillis = 1000
-            )
-        )
 
         runTest {
             val result = worker.doWork()
@@ -98,56 +75,17 @@ class SyncWorkerTest {
     }
 
     @Test
-    fun `doWork returns success when day of week is not Sunday or Monday and last updated data is not null`() {
+    fun `doWork returns success without syncing when sync is not allowed`() {
         val worker = TestListenableWorkerBuilder<SyncWorker>(context)
             .setWorkerFactory(testWorkerFactory)
             .build()
 
-        coEvery { syncRepository.sync() } just runs
-        every { getTodayLocalDateUseCase() } returns LocalDate(
-            year = 2024,
-            month = 12,
-            day = 3 // Tuesday
-        )
-        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
-            UserPreferences(
-                darkThemeConfig = DarkThemeConfig.DARK,
-                colorConfig = ColorConfig.DEFAULT,
-                lastUpdatedDateInMillis = 1000
-            )
-        )
+        coEvery { isSyncAllowedUseCase() } returns false
 
         runTest {
             val result = worker.doWork()
             assertEquals(ListenableWorker.Result.success(), result)
             coVerify(inverse = true) { syncRepository.sync() }
-        }
-    }
-
-    @Test
-    fun `doWork returns success when day of week is not Sunday or Monday and last updated data is null`() {
-        val worker = TestListenableWorkerBuilder<SyncWorker>(context)
-            .setWorkerFactory(testWorkerFactory)
-            .build()
-
-        coEvery { syncRepository.sync() } just runs
-        every { getTodayLocalDateUseCase() } returns LocalDate(
-            year = 2024,
-            month = 12,
-            day = 3 // Tuesday
-        )
-        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
-            UserPreferences(
-                darkThemeConfig = DarkThemeConfig.DARK,
-                colorConfig = ColorConfig.DEFAULT,
-                lastUpdatedDateInMillis = null
-            )
-        )
-
-        runTest {
-            val result = worker.doWork()
-            assertEquals(ListenableWorker.Result.success(), result)
-            coVerify { syncRepository.sync() }
         }
     }
 
@@ -158,19 +96,8 @@ class SyncWorkerTest {
             .setWorkerFactory(testWorkerFactory)
             .build()
 
+        coEvery { isSyncAllowedUseCase() } returns true
         coEvery { syncRepository.sync() } throws exception
-        every { getTodayLocalDateUseCase() } returns LocalDate(
-            year = 2024,
-            month = 12,
-            day = 2 // Monday
-        )
-        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
-            UserPreferences(
-                darkThemeConfig = DarkThemeConfig.DARK,
-                colorConfig = ColorConfig.DEFAULT,
-                lastUpdatedDateInMillis = 1000
-            )
-        )
         mockkObject(Timber)
 
         try {
@@ -192,15 +119,8 @@ class SyncWorkerTest {
             enqueue(request).result.get()
         }
 
+        coEvery { isSyncAllowedUseCase() } returns true
         coEvery { syncRepository.sync() } just runs
-        every { getTodayLocalDateUseCase() } returns LocalDate(year = 2024, month = 12, day = 1)
-        coEvery { userPreferencesRepository.userPreferences } returns flowOf(
-            UserPreferences(
-                darkThemeConfig = DarkThemeConfig.DARK,
-                colorConfig = ColorConfig.DEFAULT,
-                lastUpdatedDateInMillis = 1000
-            )
-        )
         testDriver?.setAllConstraintsMet(request.id)
         testDriver?.setPeriodDelayMet(request.id)
 
@@ -210,8 +130,7 @@ class SyncWorkerTest {
 
     private class TestWorkerFactory(
         private val syncRepository: SyncRepository,
-        private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
-        private val userPreferencesRepository: UserPreferencesRepository
+        private val isSyncAllowedUseCase: IsSyncAllowedUseCase
     ) : WorkerFactory() {
         override fun createWorker(
             appContext: Context,
@@ -222,8 +141,7 @@ class SyncWorkerTest {
                 appContext = appContext,
                 workerParameters = workerParameters,
                 syncRepository = syncRepository,
-                getTodayLocalDateUseCase = getTodayLocalDateUseCase,
-                userPreferencesRepository = userPreferencesRepository
+                isSyncAllowedUseCase = isSyncAllowedUseCase
             )
         }
     }

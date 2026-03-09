@@ -8,14 +8,12 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.toquete.boxbox.domain.repository.SyncRepository
-import com.toquete.boxbox.domain.repository.UserPreferencesRepository
-import com.toquete.boxbox.domain.usecase.GetTodayLocalDateUseCase
+import com.toquete.boxbox.domain.usecase.IsSyncAllowedUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.datetime.DayOfWeek
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.cancellation.CancellationException
 
 private val syncConstraints = Constraints.Builder()
     .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -28,34 +26,28 @@ class SyncWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParameters: WorkerParameters,
     private val syncRepository: SyncRepository,
-    private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
-    private val userPreferencesRepository: UserPreferencesRepository
+    private val isSyncAllowedUseCase: IsSyncAllowedUseCase
 ) : CoroutineWorker(appContext, workerParameters) {
 
     override suspend fun doWork(): Result {
-        val dayOfWeek = getTodayLocalDateUseCase().dayOfWeek
-        val lastUpdatedDate = userPreferencesRepository.userPreferences.firstOrNull()?.lastUpdatedDateInMillis
-
-        return if (!isDayOfWeekAllowed(dayOfWeek) && lastUpdatedDate != null) {
-            Result.success()
-        } else {
+        return if (isSyncAllowedUseCase()) {
             sync()
+        } else {
+            Result.success()
         }
     }
 
-    private fun isDayOfWeekAllowed(dayOfWeek: DayOfWeek): Boolean {
-        return dayOfWeek in setOf(DayOfWeek.SUNDAY, DayOfWeek.MONDAY)
-    }
-
+    @Suppress("TooGenericExceptionCaught")
     private suspend fun sync(): Result {
-        return runCatching {
+        return try {
             syncRepository.sync()
-        }.onFailure { error ->
-            Timber.e(error)
-        }.fold(
-            onSuccess = { Result.success() },
-            onFailure = { Result.retry() }
-        )
+            Result.success()
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            Timber.e(e)
+            Result.retry()
+        }
     }
 
     companion object {

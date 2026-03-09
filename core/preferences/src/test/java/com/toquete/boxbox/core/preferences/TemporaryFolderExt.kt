@@ -8,7 +8,7 @@ import org.junit.rules.TemporaryFolder
 
 internal fun TemporaryFolder.testUserPreferencesDataStore(
     coroutineScope: CoroutineScope
-) : DataStore<Preferences> {
+): DataStore<Preferences> {
     return PreferenceDataStoreFactory.create(scope = coroutineScope) {
         newFile("user_preferences_test.preferences_pb")
     }
