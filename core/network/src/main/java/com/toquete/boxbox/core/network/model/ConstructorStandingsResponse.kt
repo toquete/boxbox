@@ -14,7 +14,7 @@ data class ConstructorStandingsResponse(
 
 @Serializable
 data class ConstructorStandingResponse(
-    @SerialName("position")
+    @SerialName("positionText")
     val position: String,
     @SerialName("points")
     val points: String,
