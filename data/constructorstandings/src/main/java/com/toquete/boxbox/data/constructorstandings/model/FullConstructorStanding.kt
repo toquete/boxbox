@@ -6,9 +6,9 @@ import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
 
-internal fun ConstructorStandingResponse.toEntity(): ConstructorStandingEntity {
+internal fun ConstructorStandingResponse.toEntity(index: Int): ConstructorStandingEntity {
     return ConstructorStandingEntity(
-        position = position.toInt(),
+        position = position.toIntOrNull() ?: (index + 1),
         points = points,
         wins = wins,
         constructorId = constructor.id
