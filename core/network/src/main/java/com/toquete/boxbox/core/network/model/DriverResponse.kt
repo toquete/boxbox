@@ -8,17 +8,17 @@ data class DriverResponse(
     @SerialName("driverId")
     val id: String,
     @SerialName("permanentNumber")
-    val number: String,
+    val number: String?,
     @SerialName("code")
     val code: String?,
     @SerialName("url")
-    val url: String,
+    val url: String?,
     @SerialName("givenName")
     val givenName: String,
     @SerialName("familyName")
     val familyName: String,
     @SerialName("dateOfBirth")
-    val dateOfBirth: String,
+    val dateOfBirth: String?,
     @SerialName("nationality")
-    val nationality: String
+    val nationality: String?
 )

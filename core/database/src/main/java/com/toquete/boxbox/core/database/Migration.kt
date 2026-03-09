@@ -28,6 +28,17 @@ val MIGRATION_6_7 = object : Migration(6, 7) {
     }
 }
 
+val MIGRATION_11_12 = object : Migration(11, 12) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("DROP TABLE drivers")
+        db.execSQL(
+            "CREATE TABLE `drivers` (`id` TEXT NOT NULL, `number` TEXT, `code` TEXT, " +
+                "`url` TEXT, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL, " +
+                "`date_of_birth` TEXT, `nationality` TEXT, PRIMARY KEY(`id`))"
+        )
+    }
+}
+
 val MIGRATION_8_9 = object : Migration(8, 9) {
     override fun migrate(db: SupportSQLiteDatabase) {
         db.execSQL("DROP TABLE race_results")
