@@ -102,6 +102,19 @@ Instead of per-module Gradle boilerplate, convention plugins in `:plugins` confi
 - The old Ergast shorthand `current.json` (races) is not valid in jolpica; use `{season}/races.json`.
 - When adding `@Path` params to existing no-arg service functions, use default values (`= "current"`) to avoid breaking callers.
 
+## Database Migrations
+
+When adding a new `Migration` object in `Migration.kt`, it must be registered in **two places**:
+1. `core/database/src/main/java/.../di/DatabaseModule.kt` — `addMigrations(...)` call (runtime)
+2. `core/database/src/test/.../migration/MigrationTest.kt` — `allMigrations` array (tests)
+
+Forgetting `DatabaseModule.kt` causes a runtime crash: "A migration from X to Y was required but not found."
+
+- Making columns nullable requires DROP + CREATE TABLE (SQLite has no ALTER COLUMN).
+- `SprintRaceResultEntity` mirrors `RaceResultEntity` — field changes to one typically apply to both.
+- When a `@Relation` parent column becomes nullable, the relation field in the joined entity must also be nullable.
+- jolpica `positionText` values: `"E"` (excluded), `"D"` (disqualified), `"-"` (ineligible), or numeric string. Use `toIntOrNull() ?: (index + 1)` — see `DriverStanding.kt` and `FullConstructorStanding.kt`.
+
 ## Key Property Files
 
 - `keystore.properties` — signing config for release builds (not committed).
