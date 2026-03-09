@@ -123,3 +123,9 @@ Forgetting `DatabaseModule.kt` causes a runtime crash: "A migration from X to Y 
 
 - `keystore.properties` — signing config for release builds (not committed).
 - `build.properties` — contains `APP_CHECK_DEBUG_TOKEN` for Firebase App Check in debug.
+
+## Release Versioning
+
+Before creating a release tag, update both:
+- `build.gradle.kts` (root, line 28): `projectVersion` → new version string (e.g. `"1.4.2"`)
+- `app/build.gradle.kts` (line 33): `versionCode` → increment by 1
