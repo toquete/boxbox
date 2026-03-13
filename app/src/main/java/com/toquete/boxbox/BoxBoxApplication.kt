@@ -6,11 +6,12 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
-import coil.ImageLoader
-import coil.ImageLoaderFactory
-import coil.disk.DiskCache
-import coil.memory.MemoryCache
-import coil.request.CachePolicy
+import coil3.ImageLoader
+import coil3.PlatformContext
+import coil3.SingletonImageLoader
+import coil3.disk.DiskCache
+import coil3.memory.MemoryCache
+import coil3.request.CachePolicy
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
@@ -30,6 +31,7 @@ import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import okio.Path.Companion.toOkioPath
 import timber.log.Timber
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -41,7 +43,7 @@ private const val DISK_CACHE_PERCENT = 0.03
 private const val MINIMUM_REMOTE_CONFIG_FETCH_INTERVAL = 0L
 
 @HiltAndroidApp
-class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFactory {
+class BoxBoxApplication : Application(), Configuration.Provider, SingletonImageLoader.Factory {
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
@@ -70,12 +72,12 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
         setupRemoteConfig()
     }
 
-    override fun newImageLoader(): ImageLoader {
-        return ImageLoader.Builder(this)
+    override fun newImageLoader(context: PlatformContext): ImageLoader {
+        return ImageLoader.Builder(context)
             .memoryCachePolicy(CachePolicy.ENABLED)
             .memoryCache {
-                MemoryCache.Builder(this)
-                    .maxSizePercent(MEMORY_CACHE_PERCENT)
+                MemoryCache.Builder()
+                    .maxSizePercent(context, MEMORY_CACHE_PERCENT)
                     .strongReferencesEnabled(enable = true)
                     .build()
             }
@@ -83,11 +85,9 @@ class BoxBoxApplication : Application(), Configuration.Provider, ImageLoaderFact
             .diskCache {
                 DiskCache.Builder()
                     .maxSizePercent(DISK_CACHE_PERCENT)
-                    .directory(cacheDir)
+                    .directory(cacheDir.toOkioPath())
                     .build()
             }
-            .respectCacheHeaders(enable = false)
-            .networkObserverEnabled(enable = true)
             .build()
     }
 
