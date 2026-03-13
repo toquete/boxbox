@@ -3,6 +3,8 @@ package com.toquete.boxbox.core.ui.custom
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
@@ -39,7 +41,8 @@ fun BoxBoxAsyncImage(
     )
     context.imageLoader.enqueue(request)
 
-    val fallback = when (painter.state) {
+    val painterState by painter.state.collectAsState()
+    val fallback = when (painterState) {
         is AsyncImagePainter.State.Loading -> placeholder
         is AsyncImagePainter.State.Error -> error
         else -> null
