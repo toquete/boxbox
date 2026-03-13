@@ -34,8 +34,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
-import coil.compose.AsyncImagePainter
-import coil.decode.SvgDecoder
+import coil3.compose.AsyncImagePainter
+import coil3.svg.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.DriverStanding

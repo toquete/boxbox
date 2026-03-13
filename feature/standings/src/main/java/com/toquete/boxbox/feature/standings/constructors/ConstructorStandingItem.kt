@@ -25,7 +25,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.decode.SvgDecoder
+import coil3.svg.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
