@@ -132,7 +132,7 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                         placeholder = uiR.drawable.ic_public,
                         error = uiR.drawable.ic_public,
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
-)
+                    )
                 }
             )
         }

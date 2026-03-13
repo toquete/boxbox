@@ -159,7 +159,7 @@ fun DriverStandingItem(standing: DriverStanding) {
                         placeholder = uiR.drawable.ic_public,
                         error = uiR.drawable.ic_public,
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
-)
+                    )
                 }
             )
         }

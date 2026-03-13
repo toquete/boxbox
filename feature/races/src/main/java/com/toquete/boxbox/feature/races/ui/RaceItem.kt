@@ -79,7 +79,7 @@ internal fun RaceItem(race: Race, onClick: (Int, String) -> Unit = { _, _ -> }) 
                     placeholder = uiR.drawable.ic_public,
                     error = uiR.drawable.ic_public,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
-)
+                )
             }
         }
         Row(
