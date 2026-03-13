@@ -28,7 +28,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil3.svg.SvgDecoder
 import com.toquete.boxbox.core.common.extension.toDayString
 import com.toquete.boxbox.core.common.extension.toShortMonthString
 import com.toquete.boxbox.core.model.Circuit
@@ -80,8 +79,7 @@ internal fun RaceItem(race: Race, onClick: (Int, String) -> Unit = { _, _ -> }) 
                     placeholder = uiR.drawable.ic_public,
                     error = uiR.drawable.ic_public,
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
-                    decoder = SvgDecoder.Factory()
-                )
+)
             }
         }
         Row(

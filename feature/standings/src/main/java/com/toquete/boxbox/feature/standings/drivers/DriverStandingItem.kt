@@ -35,7 +35,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import coil3.compose.AsyncImagePainter
-import coil3.svg.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.DriverStanding
@@ -160,8 +159,7 @@ fun DriverStandingItem(standing: DriverStanding) {
                         placeholder = uiR.drawable.ic_public,
                         error = uiR.drawable.ic_public,
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
-                        decoder = SvgDecoder.Factory()
-                    )
+)
                 }
             )
         }

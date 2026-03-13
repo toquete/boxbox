@@ -25,7 +25,6 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil3.svg.SvgDecoder
 import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
@@ -133,8 +132,7 @@ internal fun ConstructorStandingItem(standing: ConstructorStanding) {
                         placeholder = uiR.drawable.ic_public,
                         error = uiR.drawable.ic_public,
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
-                        decoder = SvgDecoder.Factory()
-                    )
+)
                 }
             )
         }
