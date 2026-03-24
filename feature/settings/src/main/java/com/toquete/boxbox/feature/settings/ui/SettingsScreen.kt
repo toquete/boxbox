@@ -35,7 +35,7 @@ import com.toquete.boxbox.core.ui.theme.supportsDynamicTheming
 import com.toquete.boxbox.feature.settings.R
 
 @Composable
-internal fun SettingsScreen(
+fun SettingsScreen(
     viewModel: SettingsViewModel = hiltViewModel(),
     onDismiss: () -> Unit
 ) {
@@ -43,8 +43,7 @@ internal fun SettingsScreen(
     SettingsContent(
         state = state,
         onDismiss = onDismiss,
-        onThemeOptionSelected = viewModel::onThemeSettingsItemClick,
-        onColorOptionSelected = viewModel::onColorSettingsItemClick
+        onIntent = viewModel::onIntent
     )
 }
 
@@ -52,8 +51,7 @@ internal fun SettingsScreen(
 internal fun SettingsContent(
     state: SettingsState,
     onDismiss: () -> Unit = { },
-    onThemeOptionSelected: (DarkThemeConfig) -> Unit = { },
-    onColorOptionSelected: (ColorConfig) -> Unit = { }
+    onIntent: (SettingsIntent) -> Unit = { }
 ) {
     val configuration = LocalConfiguration.current
     AlertDialog(
@@ -77,17 +75,17 @@ internal fun SettingsContent(
                         SettingsRow(
                             text = stringResource(R.string.settings_light),
                             isSelected = state.darkThemeConfig == DarkThemeConfig.LIGHT,
-                            onClick = { onThemeOptionSelected(DarkThemeConfig.LIGHT) }
+                            onClick = { onIntent(SettingsIntent.SelectTheme(DarkThemeConfig.LIGHT)) }
                         )
                         SettingsRow(
                             text = stringResource(R.string.settings_dark),
                             isSelected = state.darkThemeConfig == DarkThemeConfig.DARK,
-                            onClick = { onThemeOptionSelected(DarkThemeConfig.DARK) }
+                            onClick = { onIntent(SettingsIntent.SelectTheme(DarkThemeConfig.DARK)) }
                         )
                         SettingsRow(
                             text = stringResource(R.string.settings_follow_system),
                             isSelected = state.darkThemeConfig == DarkThemeConfig.FOLLOW_SYSTEM,
-                            onClick = { onThemeOptionSelected(DarkThemeConfig.FOLLOW_SYSTEM) }
+                            onClick = { onIntent(SettingsIntent.SelectTheme(DarkThemeConfig.FOLLOW_SYSTEM)) }
                         )
                     }
                     if (supportsDynamicTheming()) {
@@ -104,12 +102,12 @@ internal fun SettingsContent(
                             SettingsRow(
                                 text = stringResource(R.string.settings_default),
                                 isSelected = state.colorConfig == ColorConfig.DEFAULT,
-                                onClick = { onColorOptionSelected(ColorConfig.DEFAULT) }
+                                onClick = { onIntent(SettingsIntent.SelectColor(ColorConfig.DEFAULT)) }
                             )
                             SettingsRow(
                                 text = stringResource(R.string.settings_dynamic),
                                 isSelected = state.colorConfig == ColorConfig.DYNAMIC,
-                                onClick = { onColorOptionSelected(ColorConfig.DYNAMIC) }
+                                onClick = { onIntent(SettingsIntent.SelectColor(ColorConfig.DYNAMIC)) }
                             )
                         }
                     }

@@ -15,7 +15,4 @@ sealed interface BoxBoxRoute {
 
     @Serializable
     data class RaceResult(val round: Int, val race: String) : BoxBoxRoute
-
-    @Serializable
-    data object Settings : BoxBoxRoute
 }

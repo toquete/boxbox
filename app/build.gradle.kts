@@ -30,7 +30,7 @@ android {
 
     defaultConfig {
         applicationId = "com.toquete.boxbox"
-        versionCode = 19
+        versionCode = 20
         versionName = projectVersion
 
         buildConfigField(
@@ -115,7 +115,6 @@ dependencies {
     implementation(project(":feature:settings"))
     implementation(project(":feature:races"))
     implementation(project(":feature:raceresults"))
-    implementation(project(":feature:home"))
     implementation(project(":domain"))
     implementation(project(":sync"))
     implementation(libs.core.ktx)
@@ -163,7 +162,6 @@ kover {
             ":feature:settings",
             ":feature:races",
             ":feature:raceresults",
-            ":feature:home",
             ":domain",
             ":sync"
         )

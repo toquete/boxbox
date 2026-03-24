@@ -18,8 +18,8 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.NoActivityResumedException
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.domain.repository.RaceRepository
+import com.toquete.boxbox.ui.HomeRoute
 import com.toquete.boxbox.ui.MainActivity
-import com.toquete.boxbox.ui.MainScreen
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import jakarta.inject.Inject
@@ -28,7 +28,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import com.toquete.boxbox.feature.home.R as homeR
 import com.toquete.boxbox.feature.settings.R as settingsR
 import com.toquete.boxbox.feature.standings.R as standingsR
 
@@ -46,10 +45,10 @@ class NavigationTest {
 
     private lateinit var navController: TestNavHostController
     private val appName by composeTestRule.stringResource(R.string.app_name)
-    private val standings by composeTestRule.stringResource(homeR.string.home_standings)
+    private val standings by composeTestRule.stringResource(R.string.standings)
     private val constructors by composeTestRule.stringResource(standingsR.string.standings_constructors)
     private val drivers by composeTestRule.stringResource(standingsR.string.standings_drivers)
-    private val races by composeTestRule.stringResource(homeR.string.home_races)
+    private val races by composeTestRule.stringResource(R.string.races)
     private val settings by composeTestRule.stringResource(settingsR.string.settings)
 
     @Before
@@ -64,7 +63,7 @@ class NavigationTest {
                 darkTheme = false,
                 dynamicColors = false
             ) {
-                MainScreen(navController)
+                HomeRoute(navController)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.home.ui
+package com.toquete.boxbox.ui
 
 import android.content.res.Resources
 import androidx.compose.material3.SnackbarHostState
@@ -17,7 +17,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.toquete.boxbox.core.ui.custom.SnackbarManager
-import com.toquete.boxbox.feature.home.navigation.HomeDestination
+import com.toquete.boxbox.navigation.HomeDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -70,6 +70,9 @@ internal class HomeViewState(
         @Composable get() = homeDestinations.firstOrNull { destination ->
             currentDestination?.hasRoute(destination.route::class) ?: false
         }
+
+    val isHomeDestination: Boolean
+        @Composable get() = currentHomeDestination != null
 
     fun navigateToHomeDestination(destination: HomeDestination) {
         val topLevelNavOptions = navOptions {

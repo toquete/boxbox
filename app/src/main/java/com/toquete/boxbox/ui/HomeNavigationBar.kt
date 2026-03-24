@@ -1,4 +1,4 @@
-package com.toquete.boxbox.feature.home.ui
+package com.toquete.boxbox.ui
 
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarScrollBehavior
@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.toquete.boxbox.feature.home.navigation.HomeDestination
+import com.toquete.boxbox.navigation.HomeDestination
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

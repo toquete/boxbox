@@ -8,14 +8,14 @@ import androidx.room.PrimaryKey
 data class DriverEntity(
     @PrimaryKey
     val id: String,
-    val number: String,
+    val number: String?,
     val code: String?,
-    val url: String,
+    val url: String?,
     @ColumnInfo(name = "first_name")
     val firstName: String,
     @ColumnInfo(name = "last_name")
     val lastName: String,
     @ColumnInfo(name = "date_of_birth")
-    val dateOfBirth: String,
-    val nationality: String
+    val dateOfBirth: String?,
+    val nationality: String?
 )

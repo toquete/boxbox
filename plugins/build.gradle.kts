@@ -55,5 +55,21 @@ gradlePlugin {
             id = "boxbox.android.firebase"
             implementationClass = "AndroidFirebaseConventionPlugin"
         }
+        register("kmpMultiplatform") {
+            id = "boxbox.kotlin.multiplatform"
+            implementationClass = "KmpMultiplatformConventionPlugin"
+        }
+        register("kmpFeature") {
+            id = "boxbox.kmp.feature"
+            implementationClass = "KmpFeatureConventionPlugin"
+        }
+        register("kmpRoom") {
+            id = "boxbox.kmp.room"
+            implementationClass = "KmpRoomConventionPlugin"
+        }
+        register("kmpRemote") {
+            id = "boxbox.kmp.remote"
+            implementationClass = "KmpRemoteConventionPlugin"
+        }
     }
 }
