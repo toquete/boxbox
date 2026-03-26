@@ -1,4 +1,4 @@
-package com.toquete.boxbox.util.monitor
+package com.toquete.boxbox.core.common.util.monitor
 
 import android.content.Context
 import android.net.ConnectivityManager
