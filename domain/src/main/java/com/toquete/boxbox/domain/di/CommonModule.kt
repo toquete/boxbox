@@ -22,6 +22,7 @@ internal object CommonModule {
     @Provides
     fun provideTimeZone(): TimeZone = TimeZone.currentSystemDefault()
 
+    @Suppress("InjectDispatcher")
     @Provides
     @IoDispatcher
     fun provideIoDispatcher(): CoroutineContext = Dispatchers.IO
