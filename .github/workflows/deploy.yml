@@ -28,7 +28,7 @@ jobs:
           distribution: zulu
           java-version: '21'
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3.2.2
+        uses: android-actions/setup-android@v4.0.0
       - name: Create keystore file
         run: echo $KEYSTORE_FILE | base64 -di > ${{ github.workspace }}/app/release.jks
       - name: Create keystore.properties file
