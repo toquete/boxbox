@@ -4,4 +4,4 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention
-actual annotation class IoDispatcher()
+annotation class IoDispatcher
