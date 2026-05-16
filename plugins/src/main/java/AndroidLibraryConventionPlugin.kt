@@ -1,5 +1,5 @@
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import com.toquete.boxbox.plugins.configureFlavors
 import com.toquete.boxbox.plugins.configureGradleManagedDevices
 import com.toquete.boxbox.plugins.configureKotlinAndroid
@@ -14,7 +14,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
-                apply("org.jetbrains.kotlin.android")
                 apply("org.jetbrains.kotlinx.kover")
             }
 
@@ -22,11 +21,9 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 configureGradleManagedDevices(this)
                 configureFlavors(this)
-                defaultConfig.targetSdk = 36
-                testOptions {
-                    unitTests {
-                        isIncludeAndroidResources = true
-                    }
+                testOptions.unitTests {
+                    isIncludeAndroidResources = true
+                    all { it.failOnNoDiscoveredTests.set(false) }
                 }
                 packaging {
                     resources {

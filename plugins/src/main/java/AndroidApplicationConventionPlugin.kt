@@ -15,7 +15,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.application")
-                apply("org.jetbrains.kotlin.android")
                 apply("org.jetbrains.kotlinx.kover")
                 apply("com.google.gms.google-services")
                 apply("com.google.firebase.crashlytics")
@@ -27,10 +26,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureGradleManagedDevices(this)
                 configureFlavors(this)
                 configureFirebase(this)
-                defaultConfig {
-                    targetSdk = 36
-                    testInstrumentationRunner = "com.toquete.boxbox.BoxBoxTestRunner"
-                }
+                defaultConfig.targetSdk = 36
+                defaultConfig.testInstrumentationRunner = "com.toquete.boxbox.BoxBoxTestRunner"
                 packaging {
                     resources {
                         excludes += listOf(
@@ -40,10 +37,10 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                         )
                     }
                 }
+            }
 
-                extensions.configure<ApplicationAndroidComponentsExtension> {
-                    disableUnnecessaryAndroidTests(target)
-                }
+            extensions.configure<ApplicationAndroidComponentsExtension> {
+                disableUnnecessaryAndroidTests(target)
             }
         }
     }

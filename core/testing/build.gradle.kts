@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:network"))
 
+    api(platform(libs.compose.bom))
     api(libs.junit)
     api(libs.junit.ext)
     api(kotlin("test"))
