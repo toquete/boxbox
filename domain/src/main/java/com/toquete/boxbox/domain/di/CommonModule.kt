@@ -1,10 +1,13 @@
 package com.toquete.boxbox.domain.di
 
+import com.toquete.boxbox.core.common.annotation.IoDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
 import kotlinx.datetime.TimeZone
+import kotlin.coroutines.CoroutineContext
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
@@ -18,4 +21,9 @@ internal object CommonModule {
 
     @Provides
     fun provideTimeZone(): TimeZone = TimeZone.currentSystemDefault()
+
+    @Suppress("InjectDispatcher")
+    @Provides
+    @IoDispatcher
+    fun provideIoDispatcher(): CoroutineContext = Dispatchers.IO
 }
