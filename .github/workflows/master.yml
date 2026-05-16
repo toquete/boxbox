@@ -88,7 +88,7 @@ jobs:
           build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
           build-scan-terms-of-use-agree: "yes"
       - name: Detekt
-        run: ./gradlew detektProdDebug reportMerge --continue
+        run: ./gradlew detekt reportMerge --continue
       - name: Uploading detekt results
         uses: actions/upload-artifact@v7
         with:
