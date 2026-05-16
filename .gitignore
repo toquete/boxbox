@@ -194,3 +194,10 @@ fabric.properties
 
 # Git worktrees
 .worktrees/
+
+# Kotlin compiler generated files
+.kotlin/
+
+# Claude Code local files
+docs/
+memory/
