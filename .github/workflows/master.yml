@@ -126,7 +126,7 @@ jobs:
             **/reports/tests/testProdDebugUnitTest/
             **/app/build/reports/coverage/coverage.xml
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           fail_ci_if_error: true
           files: '**/app/build/reports/coverage/coverage.xml'
@@ -184,7 +184,7 @@ jobs:
           distribution: zulu
           java-version: '21'
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3.2.2
+        uses: android-actions/setup-android@v4.0.1
       - name: Create Google Services JSON
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
