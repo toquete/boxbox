@@ -4,6 +4,12 @@ plugins {
     alias(libs.plugins.baselineprofile)
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+    }
+}
+
 android {
     namespace = "com.toquete.boxbox.baselineprofile"
     compileSdk = 36
@@ -11,10 +17,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
-    }
-
-    kotlinOptions {
-        jvmTarget = "21"
     }
 
     defaultConfig {
