@@ -155,6 +155,8 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/app/src/prod
           echo $GOOGLE_SERVICES_JSON | base64 -di > ${{ github.workspace }}/app/src/prod/google-services.json
+          mkdir ${{ github.workspace }}/app/src/demo
+          cp ${{ github.workspace }}/app/src/prod/google-services.json ${{ github.workspace }}/app/src/demo/google-services.json
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
@@ -166,7 +168,7 @@ jobs:
         with:
           merge-multiple: true
       - name: Sonar analysis
-        run: ./gradlew sonar
+        run: ./gradlew processDemoDebugGoogleServices injectCrashlyticsVersionControlInfoDemoDebug injectCrashlyticsMappingFileIdDemoDebug sonar
   android-test:
     runs-on: ubuntu-latest
     timeout-minutes: 60
