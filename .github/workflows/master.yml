@@ -4,9 +4,6 @@ name: CI
     branches:
       - master
   pull_request:
-permissions:
-  contents: write
-  security-events: write
 env:
   GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -14,6 +11,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
