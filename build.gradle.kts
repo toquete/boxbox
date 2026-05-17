@@ -1,6 +1,19 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 
+buildscript {
+    configurations.classpath {
+        resolutionStrategy {
+            force(
+                "org.bouncycastle:bcpkix-jdk18on:1.84",
+                "org.bouncycastle:bcutil-jdk18on:1.84",
+                "org.bitbucket.b_c:jose4j:0.9.6",
+                "org.jdom:jdom2:2.0.6.1"
+            )
+        }
+    }
+}
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
