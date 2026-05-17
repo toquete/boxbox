@@ -25,10 +25,6 @@ tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
 
-// Android Studio requests this task during Assemble; register a no-op so configuration cache
-// doesn't fail with "task was never scheduled for execution".
-tasks.register("testClasses")
-
 val projectVersion by extra("1.4.2")
 
 val reportMerge by tasks.registering(ReportMergeTask::class) {
