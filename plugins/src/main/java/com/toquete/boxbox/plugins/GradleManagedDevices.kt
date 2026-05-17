@@ -5,9 +5,9 @@ import com.android.build.api.dsl.ManagedVirtualDevice
 import org.gradle.kotlin.dsl.invoke
 
 internal fun configureGradleManagedDevices(
-    commonExtension: CommonExtension<*, *, *, *, *, *>
+    commonExtension: CommonExtension
 ) {
-    commonExtension.testOptions {
+    commonExtension.testOptions.apply {
         animationsDisabled = true
         managedDevices {
             allDevices {

@@ -1,6 +1,6 @@
 package com.toquete.boxbox.plugins
 
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -45,7 +45,6 @@ internal fun Project.configureKotlinMultiplatform(
     extensions.configure<LibraryExtension> {
         compileSdk = 36
         defaultConfig.minSdk = 24
-        defaultConfig.targetSdk = 36
         compileOptions {
             isCoreLibraryDesugaringEnabled = true
             sourceCompatibility = JavaVersion.VERSION_21
@@ -54,6 +53,7 @@ internal fun Project.configureKotlinMultiplatform(
         testOptions {
             unitTests {
                 isIncludeAndroidResources = true
+                all { it.failOnNoDiscoveredTests.set(false) }
             }
         }
         packaging {

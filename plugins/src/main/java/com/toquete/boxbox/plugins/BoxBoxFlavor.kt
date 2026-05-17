@@ -18,21 +18,19 @@ enum class BoxBoxFlavor(
     PROD(isDefault = true)
 }
 
-internal fun configureFlavors(commonExtension: CommonExtension<*, *, *, *, *, *>) {
+internal fun configureFlavors(commonExtension: CommonExtension) {
     commonExtension.apply {
         flavorDimensions += "version"
-        productFlavors {
-            BoxBoxFlavor.values().forEach {
-                create(it.name.lowercase(Locale.US)) {
-                    dimension = "version"
-                    if (this is LibraryProductFlavor) {
-                        isDefault = it.isDefault
-                    }
-                    if (commonExtension is ApplicationExtension && this is ApplicationProductFlavor) {
-                        applicationIdSuffix = it.applicationIdSuffix
-                        versionNameSuffix = it.versionNameSuffix
-                        isDefault = it.isDefault
-                    }
+        BoxBoxFlavor.values().forEach { flavor ->
+            productFlavors.create(flavor.name.lowercase(Locale.US)) {
+                dimension = "version"
+                if (this is LibraryProductFlavor) {
+                    isDefault = flavor.isDefault
+                }
+                if (commonExtension is ApplicationExtension && this is ApplicationProductFlavor) {
+                    applicationIdSuffix = flavor.applicationIdSuffix
+                    versionNameSuffix = flavor.versionNameSuffix
+                    isDefault = flavor.isDefault
                 }
             }
         }
