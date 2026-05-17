@@ -168,7 +168,7 @@ jobs:
         with:
           merge-multiple: true
       - name: Sonar analysis
-        run: ./gradlew processDemoDebugGoogleServices injectCrashlyticsVersionControlInfoDemoDebug injectCrashlyticsMappingFileIdDemoDebug sonar
+        run: ./gradlew processDemoDebugGoogleServices injectCrashlyticsVersionControlInfoDemoDebug injectCrashlyticsMappingFileIdDemoDebug sonar --no-configuration-cache
   android-test:
     runs-on: ubuntu-latest
     timeout-minutes: 60

@@ -14,7 +14,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "BoxBox"
-gradle.startParameter.excludedTaskNames.addAll(listOf(":plugins:testClasses"))
 include(":app")
 include(":core:model")
 include(":core:ui")
