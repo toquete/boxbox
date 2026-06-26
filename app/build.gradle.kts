@@ -124,6 +124,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.hilt.work)
     ksp(libs.hilt.work.compiler)
+    implementation(libs.napier)
     implementation(libs.play.services.ads)
     implementation(libs.profileinstaller)
     baselineProfile(project(":baselineprofile"))

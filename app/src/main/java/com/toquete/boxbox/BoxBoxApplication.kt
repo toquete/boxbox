@@ -18,6 +18,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.appcheck.AppCheckProviderFactory
 import com.google.firebase.appcheck.appCheck
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.initialize
 import com.google.firebase.remoteconfig.ConfigUpdate
 import com.google.firebase.remoteconfig.ConfigUpdateListener
@@ -25,14 +26,17 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.toquete.boxbox.core.common.annotation.IoDispatcher
+import com.toquete.boxbox.core.common.log.AppLogger
+import com.toquete.boxbox.core.common.log.AppLoggerInitializer
+import com.toquete.boxbox.log.CrashlyticsAntilog
 import com.toquete.boxbox.sync.worker.SYNC_WORK_NAME
 import com.toquete.boxbox.sync.worker.SyncWorker
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
 import dagger.hilt.android.HiltAndroidApp
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import okio.Path.Companion.toOkioPath
-import timber.log.Timber
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -47,9 +51,6 @@ class BoxBoxApplication : Application(), Configuration.Provider, SingletonImageL
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
-
-    @Inject
-    lateinit var timberTree: Timber.Tree
 
     @Inject
     lateinit var appCheckProviderFactory: AppCheckProviderFactory
@@ -67,7 +68,7 @@ class BoxBoxApplication : Application(), Configuration.Provider, SingletonImageL
         super.onCreate()
         setupAppCheck()
         setupSyncWork()
-        setupTimber()
+        setupNapier()
         setupMobileAds()
         setupRemoteConfig()
     }
@@ -100,8 +101,12 @@ class BoxBoxApplication : Application(), Configuration.Provider, SingletonImageL
             )
     }
 
-    private fun setupTimber() {
-        Timber.plant(timberTree)
+    private fun setupNapier() {
+        AppLoggerInitializer.init()
+        if (!BuildConfig.DEBUG) {
+            val crashlytics = FirebaseCrashlytics.getInstance()
+            Napier.base(CrashlyticsAntilog(crashlytics))
+        }
     }
 
     private fun setupAppCheck() {
@@ -136,15 +141,15 @@ class BoxBoxApplication : Application(), Configuration.Provider, SingletonImageL
                 override fun onUpdate(configUpdate: ConfigUpdate) {
                     activate().addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Timber.d("Remote config activated")
+                            AppLogger.d("Remote config activated")
                         } else {
-                            Timber.e(task.exception, "Failed to activate remote config")
+                            AppLogger.e(task.exception, "Failed to activate remote config")
                         }
                     }
                 }
 
                 override fun onError(error: FirebaseRemoteConfigException) {
-                    Timber.e(error, "Failed to update remote config")
+                    AppLogger.e(error, "Failed to update remote config")
                 }
             })
         }

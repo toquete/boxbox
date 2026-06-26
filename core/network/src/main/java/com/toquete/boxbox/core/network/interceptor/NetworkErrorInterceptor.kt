@@ -1,8 +1,8 @@
 package com.toquete.boxbox.core.network.interceptor
 
+import com.toquete.boxbox.core.common.log.AppLogger
 import okhttp3.Interceptor
 import okhttp3.Response
-import timber.log.Timber
 
 internal class NetworkErrorInterceptor : Interceptor {
 
@@ -17,6 +17,6 @@ internal class NetworkErrorInterceptor : Interceptor {
     }
 
     private fun sendError(response: Response) {
-        Timber.e(NetworkException(response))
+        AppLogger.e(NetworkException(response))
     }
 }

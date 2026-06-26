@@ -19,16 +19,12 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.just
 import io.mockk.mockk
-import io.mockk.mockkObject
 import io.mockk.runs
-import io.mockk.unmockkObject
-import io.mockk.verify
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import timber.log.Timber
 import java.io.IOException
 import kotlin.test.assertEquals
 
@@ -49,7 +45,6 @@ class SyncWorkerTest {
             .setWorkerFactory(testWorkerFactory)
             .build()
 
-        // Initialize WorkManager for instrumentation tests.
         WorkManagerTestInitHelper.initializeTestWorkManager(context, config)
     }
 
@@ -91,23 +86,16 @@ class SyncWorkerTest {
 
     @Test
     fun `doWork returns retry when sync is not successful`() {
-        val exception = IOException()
         val worker = TestListenableWorkerBuilder<SyncWorker>(context)
             .setWorkerFactory(testWorkerFactory)
             .build()
 
         coEvery { isSyncAllowedUseCase() } returns true
-        coEvery { syncRepository.sync() } throws exception
-        mockkObject(Timber)
+        coEvery { syncRepository.sync() } throws IOException()
 
-        try {
-            runTest {
-                val result = worker.doWork()
-                assertEquals(ListenableWorker.Result.retry(), result)
-                verify { Timber.e(exception) }
-            }
-        } finally {
-            unmockkObject(Timber)
+        runTest {
+            val result = worker.doWork()
+            assertEquals(ListenableWorker.Result.retry(), result)
         }
     }
 

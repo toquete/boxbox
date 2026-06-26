@@ -27,7 +27,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.toquete.boxbox.R
 import com.toquete.boxbox.core.common.annotation.Generated
-import timber.log.Timber
+import com.toquete.boxbox.core.common.log.AppLogger
 
 @Composable
 fun AdBanner(
@@ -91,7 +91,7 @@ private fun getAdView(
         setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, width))
         adListener = object : AdListener() {
             override fun onAdFailedToLoad(error: LoadAdError) {
-                Timber.w("Ad failed to load: $error")
+                AppLogger.w("Ad failed to load: $error")
             }
 
             override fun onAdLoaded() {

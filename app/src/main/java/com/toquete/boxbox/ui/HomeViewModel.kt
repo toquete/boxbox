@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.R
 import com.toquete.boxbox.core.common.STATE_FLOW_STOP_TIMEOUT
+import com.toquete.boxbox.core.common.log.AppLogger
 import com.toquete.boxbox.core.common.util.NetworkMonitor
 import com.toquete.boxbox.core.common.util.SyncMonitor
 import com.toquete.boxbox.core.ui.custom.SnackbarManager
@@ -19,7 +20,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -73,7 +73,7 @@ internal class HomeViewModel @Inject constructor(
             runCatching {
                 syncRepository.sync()
             }.onFailure {
-                Timber.e(it)
+                AppLogger.e(it)
                 SnackbarManager.showMessage(
                     messageTextId = R.string.fail_refresh,
                     duration = SnackbarDuration.Long,

@@ -7,11 +7,11 @@ import androidx.work.CoroutineWorker
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkerParameters
+import com.toquete.boxbox.core.common.log.AppLogger
 import com.toquete.boxbox.domain.repository.SyncRepository
 import com.toquete.boxbox.domain.usecase.IsSyncAllowedUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.cancellation.CancellationException
 
@@ -45,7 +45,7 @@ class SyncWorker @AssistedInject constructor(
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            Timber.e(e)
+            AppLogger.e(e)
             Result.retry()
         }
     }
