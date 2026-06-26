@@ -1,19 +1,34 @@
 plugins {
-    id("boxbox.android.library")
-    id("boxbox.android.hilt")
-    id("boxbox.android.remote")
+    alias(libs.plugins.boxbox.kotlin.multiplatform)
+    alias(libs.plugins.boxbox.kmp.remote)
 }
 
-android {
-    namespace = "com.toquete.boxbox.core.network"
+kotlin {
+    android {
+        namespace = "com.toquete.boxbox.core.network"
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            api(project(":core:model"))
+            api(project(":core:common"))
+            implementation(libs.koin.core)
+        }
+        androidMain.dependencies {
+            implementation(libs.firebase.firestore)
+            // TODO Step 12: remove — BoxBoxService (Retrofit) kept for Hilt shim in :app
+            implementation(libs.retrofit)
+            implementation(libs.serialization.converter)
+        }
+        commonTest.dependencies {
+            implementation(libs.ktor.client.mock)
+            implementation(libs.coroutines.test)
+            implementation(kotlin("test"))
+        }
+    }
 }
 
+// Firebase BOM must be at project level for KMP modules.
 dependencies {
-    implementation(project(":core:model"))
-    implementation(project(":core:common"))
-    implementation(libs.mockwebserver)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.firestore)
-
-    testImplementation(project(":core:testing"))
+    add("androidMainImplementation", platform(libs.firebase.bom))
 }

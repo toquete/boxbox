@@ -100,6 +100,9 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:preferences"))
+    // TODO Step 12: remove — HiltNetworkShimModule needs BoxBoxService and FirebaseFirestore
+    implementation(project(":core:network"))
+    implementation(libs.firebase.firestore)
     implementation(project(":core:navigation"))
     implementation(project(":data:driverimages"))
     implementation(project(":data:constructorimages"))
@@ -124,6 +127,11 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.hilt.work)
     ksp(libs.hilt.work.compiler)
+    // TODO Step 12: remove — Hilt network shim, replaced by Koin networkModule
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.logging)
+    implementation(libs.serialization.converter)
     implementation(libs.play.services.ads)
     implementation(libs.profileinstaller)
     baselineProfile(project(":baselineprofile"))
