@@ -1,15 +1,28 @@
 plugins {
-    id("boxbox.android.library")
-    id("boxbox.android.hilt")
+    id("boxbox.kotlin.multiplatform")
 }
 
-android {
-    namespace = "com.toquete.boxbox.domain"
-}
+kotlin {
+    android {
+        namespace = "com.toquete.boxbox.domain"
 
-dependencies {
-    api(project(":core:model"))
-    api(project(":core:common"))
+        // core:testing still has prod/demo flavors; select prod variant for host tests.
+        // Remove after Task 20 migrates core:testing to KMP (no more flavors).
+        localDependencySelection {
+            productFlavorDimension("version") {
+                selectFrom.set(listOf("prod"))
+            }
+        }
+    }
 
-    testImplementation(project(":core:testing"))
+    sourceSets {
+        commonMain.dependencies {
+            api(project(":core:model"))
+            api(project(":core:common"))
+        }
+        // core:testing is still Android-only; move to commonTest after Task 20 migrates it to KMP
+        named("androidHostTest").dependencies {
+            implementation(project(":core:testing"))
+        }
+    }
 }

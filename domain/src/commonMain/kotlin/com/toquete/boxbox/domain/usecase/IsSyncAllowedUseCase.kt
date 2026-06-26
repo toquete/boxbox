@@ -3,9 +3,8 @@ package com.toquete.boxbox.domain.usecase
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.datetime.DayOfWeek
-import javax.inject.Inject
 
-class IsSyncAllowedUseCase @Inject constructor(
+class IsSyncAllowedUseCase(
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
     private val userPreferencesRepository: UserPreferencesRepository
 ) {
