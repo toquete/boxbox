@@ -1,8 +1,19 @@
 plugins {
-    id("boxbox.android.library")
-    id("boxbox.android.hilt")
+    id("boxbox.kotlin.multiplatform")
 }
 
-android {
-    namespace = "com.toquete.boxbox.core.common"
+kotlin {
+    android {
+        namespace = "com.toquete.boxbox.core.common"
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.napier)
+        }
+        androidMain.dependencies {
+            implementation(libs.core.ktx)
+            implementation(libs.hilt)
+        }
+    }
 }
