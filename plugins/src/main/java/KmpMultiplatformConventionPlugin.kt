@@ -9,7 +9,7 @@ class KmpMultiplatformConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("org.jetbrains.kotlin.multiplatform")
-                apply("com.android.library")
+                apply("com.android.kotlin.multiplatform.library")
                 apply("org.jetbrains.kotlinx.kover")
             }
             extensions.configure<KotlinMultiplatformExtension> {
