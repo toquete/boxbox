@@ -1,5 +1,5 @@
 [versions]
-gradle = "9.1.0"
+gradle = "9.2.1"
 kotlin = "2.3.21"
 hilt = "2.59.2"
 compose-bom = "2026.03.00"
