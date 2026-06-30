@@ -11,5 +11,6 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:network"))
     implementation(project(":domain"))
+    implementation(libs.koin.android)
     testImplementation(project(":core:testing"))
 }
