@@ -12,4 +12,6 @@ dependencies {
     implementation(libs.datastore.preferences)
 
     testImplementation(project(":core:testing"))
+
+    implementation(libs.koin.android)
 }
