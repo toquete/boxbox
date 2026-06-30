@@ -14,6 +14,8 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
     implementation(project(":domain"))
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.robolectric)
