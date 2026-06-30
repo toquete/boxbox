@@ -1,16 +1,8 @@
 plugins {
-    id("boxbox.kotlin.multiplatform")
-    id("org.jetbrains.kotlin.plugin.serialization")
+    id("boxbox.android.library")
+    id("boxbox.android.library.compose")
 }
 
-kotlin {
-    android {
-        namespace = "com.toquete.boxbox.core.navigation"
-    }
-
-    sourceSets {
-        commonMain.dependencies {
-            implementation(libs.serialization)
-        }
-    }
+android {
+    namespace = "com.toquete.boxbox.core.navigation"
 }
