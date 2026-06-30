@@ -157,8 +157,6 @@ crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyti
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "gradle" }
-boxbox-kotlin-multiplatform = { id = "boxbox.kotlin.multiplatform" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 android-test = { id = "com.android.test", version.ref = "gradle" }

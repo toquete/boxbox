@@ -1,8 +1,10 @@
 package com.toquete.boxbox.plugins
 
-import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
+import com.android.build.api.dsl.LibraryExtension
+import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -14,11 +16,7 @@ internal fun Project.configureKotlinMultiplatform(
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
     kotlinExtension.apply {
-        // Android target — configured via the KMP Android library DSL (AGP 9+)
-        targets.withType(KotlinMultiplatformAndroidLibraryTarget::class.java).configureEach {
-            compileSdk = 36
-            minSdk = 24
-
+        androidTarget {
             compilerOptions {
                 jvmTarget.set(JvmTarget.JVM_21)
                 freeCompilerArgs.addAll(
@@ -28,11 +26,6 @@ internal fun Project.configureKotlinMultiplatform(
                     "-opt-in=kotlin.Experimental",
                 )
             }
-
-            // Enable host (unit) tests with Android resources support
-            withHostTestBuilder {}.configure {
-                isIncludeAndroidResources = true
-            }
         }
 
         iosArm64()
@@ -40,7 +33,7 @@ internal fun Project.configureKotlinMultiplatform(
         iosX64()
 
         // Default hierarchy template (Kotlin 2.x) creates iosMain automatically
-        // when all three iOS targets are declared.
+        // when all three iOS targets are declared — no explicit applyDefaultHierarchyTemplate() needed.
 
         sourceSets.commonMain.dependencies {
             implementation(libs.findLibrary("kotlinx.datetime").get())
@@ -48,6 +41,37 @@ internal fun Project.configureKotlinMultiplatform(
         }
     }
 
-    // desugar_jdk_libs: coreLibraryDesugaring is not applicable to the new KMP android plugin.
-    // Core library desugaring is handled automatically by the KMP Android library plugin.
+    // Configure Android Gradle Plugin extension (flavors, compile SDK, desugar, etc.)
+    extensions.configure<LibraryExtension> {
+        compileSdk = 36
+        defaultConfig.minSdk = 24
+        compileOptions {
+            isCoreLibraryDesugaringEnabled = true
+            sourceCompatibility = JavaVersion.VERSION_21
+            targetCompatibility = JavaVersion.VERSION_21
+        }
+        testOptions {
+            unitTests {
+                isIncludeAndroidResources = true
+                all { it.failOnNoDiscoveredTests.set(false) }
+            }
+        }
+        packaging {
+            resources {
+                excludes += listOf(
+                    "/META-INF/{AL2.0,LGPL2.1}",
+                    "META-INF/LICENSE.md",
+                    "META-INF/LICENSE-notice.md",
+                )
+            }
+        }
+        configureFlavors(this)
+        configureGradleManagedDevices(this)
+    }
+
+    // desugar_jdk_libs must be added via the project-level dependencies block,
+    // not inside a KMP source set, because it uses the coreLibraryDesugaring configuration.
+    dependencies {
+        add("coreLibraryDesugaring", libs.findLibrary("desugar.jdk.libs").get())
+    }
 }
