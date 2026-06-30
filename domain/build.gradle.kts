@@ -12,4 +12,6 @@ dependencies {
     api(project(":core:common"))
 
     testImplementation(project(":core:testing"))
+
+    implementation(libs.koin.android)
 }
