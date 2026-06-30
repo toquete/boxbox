@@ -12,6 +12,8 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -49,5 +51,5 @@ val networkModule = module {
 
     single<FirebaseFirestore> { Firebase.firestore }
 
-    single<BoxBoxRemoteDatabase> { FirebaseDatabase(get()) }
+    singleOf(::FirebaseDatabase) bind BoxBoxRemoteDatabase::class
 }
