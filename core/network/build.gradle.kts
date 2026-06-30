@@ -16,4 +16,6 @@ dependencies {
     implementation(libs.firebase.firestore)
 
     testImplementation(project(":core:testing"))
+
+    implementation(libs.koin.android)
 }
