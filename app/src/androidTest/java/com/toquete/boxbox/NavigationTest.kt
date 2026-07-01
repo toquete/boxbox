@@ -20,28 +20,21 @@ import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.domain.repository.RaceRepository
 import com.toquete.boxbox.ui.HomeRoute
 import com.toquete.boxbox.ui.MainActivity
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import jakarta.inject.Inject
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.koin.java.KoinJavaComponent.get
 import com.toquete.boxbox.feature.settings.R as settingsR
 import com.toquete.boxbox.feature.standings.R as standingsR
 
-@HiltAndroidTest
 class NavigationTest {
 
-    @get:Rule(order = 0)
-    val hiltRule = HiltAndroidRule(this)
-
-    @get:Rule(order = 1)
+    @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
-    @Inject
-    lateinit var raceRepository: RaceRepository
+    private val raceRepository: RaceRepository = get(RaceRepository::class.java)
 
     private lateinit var navController: TestNavHostController
     private val appName by composeTestRule.stringResource(R.string.app_name)
@@ -53,7 +46,6 @@ class NavigationTest {
 
     @Before
     fun setupAppNavHost() {
-        hiltRule.inject()
         composeTestRule.activity.setContent {
             navController = TestNavHostController(LocalContext.current).apply {
                 navigatorProvider.addNavigator(ComposeNavigator())
