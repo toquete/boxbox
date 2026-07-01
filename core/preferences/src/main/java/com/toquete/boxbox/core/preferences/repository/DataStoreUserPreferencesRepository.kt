@@ -13,7 +13,7 @@ import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-internal class DataStoreUserPreferencesRepository constructor(
+internal class DataStoreUserPreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) : UserPreferencesRepository {
 

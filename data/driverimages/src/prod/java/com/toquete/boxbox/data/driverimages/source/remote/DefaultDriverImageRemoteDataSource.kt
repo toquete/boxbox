@@ -5,7 +5,7 @@ import com.toquete.boxbox.core.network.model.DriverImageResponse
 
 private const val COLLECTION = "driver_image"
 
-internal class DefaultDriverImageRemoteDataSource constructor(
+internal class DefaultDriverImageRemoteDataSource(
     private val remoteDatabase: BoxBoxRemoteDatabase
 ) : DriverImageRemoteDataSource {
 

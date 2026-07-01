@@ -12,7 +12,7 @@ import com.toquete.boxbox.domain.repository.DriverStandingsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-internal class DefaultDriverStandingsRepository constructor(
+internal class DefaultDriverStandingsRepository(
     private val remoteDataSource: DriverStandingsRemoteDataSource,
     private val driverStandingDao: DriverStandingDao,
     private val driverDao: DriverDao,

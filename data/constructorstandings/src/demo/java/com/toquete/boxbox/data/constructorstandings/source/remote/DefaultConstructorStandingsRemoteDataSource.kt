@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 
 private const val CONSTRUCTOR_STANDINGS_JSON = "constructor_standings.json"
 
-internal class DefaultConstructorStandingsRemoteDataSource constructor(
+internal class DefaultConstructorStandingsRemoteDataSource(
     private val json: Json
 ) : ConstructorStandingsRemoteDataSource {
 

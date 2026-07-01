@@ -6,7 +6,7 @@ import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
-class GetTodayLocalDateUseCase constructor(private val clock: Clock) {
+class GetTodayLocalDateUseCase(private val clock: Clock) {
 
     operator fun invoke() = clock.todayIn(TimeZone.currentSystemDefault())
 }

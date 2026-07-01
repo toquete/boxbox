@@ -5,7 +5,7 @@ import com.toquete.boxbox.core.network.model.CircuitImageResponse
 
 private const val COLLECTION = "circuit_image"
 
-internal class DefaultCircuitImageRemoteDataSource constructor(
+internal class DefaultCircuitImageRemoteDataSource(
     private val remoteDatabase: BoxBoxRemoteDatabase
 ) : CircuitImageRemoteDataSource {
 

@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 
 private const val DRIVER_STANDINGS_JSON = "driver_standings.json"
 
-internal class DefaultDriverStandingsRemoteDataSource constructor(
+internal class DefaultDriverStandingsRemoteDataSource(
     private val json: Json
 ) : DriverStandingsRemoteDataSource {
 

@@ -5,7 +5,7 @@ import com.toquete.boxbox.core.network.model.ConstructorColorResponse
 
 private const val COLLECTION = "constructor_color"
 
-internal class DefaultConstructorColorRemoteDataSource constructor(
+internal class DefaultConstructorColorRemoteDataSource(
     private val remoteDatabase: BoxBoxRemoteDatabase
 ) : ConstructorColorRemoteDataSource {
 

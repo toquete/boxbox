@@ -10,7 +10,7 @@ import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
-class DefaultSyncRepository constructor(
+class DefaultSyncRepository(
     private val standingsRepository: StandingsRepository,
     private val imagesRepository: ImagesRepository,
     private val raceRepository: RaceRepository,

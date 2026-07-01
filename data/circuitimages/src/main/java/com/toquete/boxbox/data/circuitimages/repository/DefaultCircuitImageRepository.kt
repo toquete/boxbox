@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.circuitimages.model.toEntity
 import com.toquete.boxbox.data.circuitimages.source.remote.CircuitImageRemoteDataSource
 import com.toquete.boxbox.domain.repository.CircuitImageRepository
 
-internal class DefaultCircuitImageRepository constructor(
+internal class DefaultCircuitImageRepository(
     private val remoteDataSource: CircuitImageRemoteDataSource,
     private val circuitImageDao: CircuitImageDao
 ) : CircuitImageRepository {

@@ -2,7 +2,7 @@ package com.toquete.boxbox.data.driverimages.source.remote
 
 import com.toquete.boxbox.core.network.model.DriverImageResponse
 
-internal class DefaultDriverImageRemoteDataSource constructor() : DriverImageRemoteDataSource {
+internal class DefaultDriverImageRemoteDataSource() : DriverImageRemoteDataSource {
 
     override suspend fun getDriversImages(): List<DriverImageResponse> {
         return listOf(

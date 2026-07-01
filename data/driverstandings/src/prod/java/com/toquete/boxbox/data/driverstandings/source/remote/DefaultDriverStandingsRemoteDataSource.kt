@@ -3,7 +3,7 @@ package com.toquete.boxbox.data.driverstandings.source.remote
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.network.model.DriverStandingResponse
 
-internal class DefaultDriverStandingsRemoteDataSource constructor(
+internal class DefaultDriverStandingsRemoteDataSource(
     private val service: BoxBoxService
 ) : DriverStandingsRemoteDataSource {
 

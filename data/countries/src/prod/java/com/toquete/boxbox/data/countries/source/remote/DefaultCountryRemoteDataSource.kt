@@ -5,7 +5,7 @@ import com.toquete.boxbox.core.network.model.CountryResponse
 
 private const val COLLECTION = "country"
 
-internal class DefaultCountryRemoteDataSource constructor(
+internal class DefaultCountryRemoteDataSource(
     private val remoteDatabase: BoxBoxRemoteDatabase
 ) : CountryRemoteDataSource {
 

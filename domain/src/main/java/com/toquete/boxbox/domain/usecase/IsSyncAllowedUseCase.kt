@@ -4,7 +4,7 @@ import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.datetime.DayOfWeek
 
-class IsSyncAllowedUseCase constructor(
+class IsSyncAllowedUseCase(
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase,
     private val userPreferencesRepository: UserPreferencesRepository
 ) {

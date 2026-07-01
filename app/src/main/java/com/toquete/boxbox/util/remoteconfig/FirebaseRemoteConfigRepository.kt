@@ -15,7 +15,7 @@ import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
 @Generated
-class FirebaseRemoteConfigRepository constructor(
+class FirebaseRemoteConfigRepository(
     private val firebaseRemoteConfig: FirebaseRemoteConfig,
     private val dispatcher: CoroutineContext
 ) : RemoteConfigRepository {

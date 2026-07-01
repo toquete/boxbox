@@ -17,7 +17,7 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
 @OptIn(ExperimentalTime::class)
-class SettingsViewModel constructor(
+class SettingsViewModel(
     private val preferencesRepository: UserPreferencesRepository,
     private val timeZone: TimeZone
 ) : ViewModel() {

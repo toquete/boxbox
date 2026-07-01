@@ -3,7 +3,7 @@ package com.toquete.boxbox.data.constructorstandings.source.remote
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.network.model.ConstructorStandingResponse
 
-internal class DefaultConstructorStandingsRemoteDataSource constructor(
+internal class DefaultConstructorStandingsRemoteDataSource(
     private val service: BoxBoxService
 ) : ConstructorStandingsRemoteDataSource {
 

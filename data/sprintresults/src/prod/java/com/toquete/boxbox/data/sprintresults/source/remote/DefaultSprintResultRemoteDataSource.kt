@@ -3,7 +3,7 @@ package com.toquete.boxbox.data.sprintresults.source.remote
 import com.toquete.boxbox.core.network.BoxBoxService
 import com.toquete.boxbox.core.network.model.RacesWrapper
 
-internal class DefaultSprintResultRemoteDataSource constructor(
+internal class DefaultSprintResultRemoteDataSource(
     private val service: BoxBoxService
 ) : SprintResultRemoteDataSource {
 

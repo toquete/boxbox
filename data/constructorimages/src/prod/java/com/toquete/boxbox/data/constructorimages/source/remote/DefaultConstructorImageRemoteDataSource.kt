@@ -5,7 +5,7 @@ import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 
 private const val COLLECTION = "constructor_image"
 
-internal class DefaultConstructorImageRemoteDataSource constructor(
+internal class DefaultConstructorImageRemoteDataSource(
     private val remoteDatabase: BoxBoxRemoteDatabase
 ) : ConstructorImageRemoteDataSource {
 

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-internal class ConstructorStandingsViewModel constructor(
+internal class ConstructorStandingsViewModel(
     repository: ConstructorStandingsRepository
 ) : ViewModel() {
 

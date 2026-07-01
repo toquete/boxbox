@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.constructorcolors.model.toEntity
 import com.toquete.boxbox.data.constructorcolors.source.remote.ConstructorColorRemoteDataSource
 import com.toquete.boxbox.domain.repository.ConstructorColorRepository
 
-internal class DefaultConstructorColorRepository constructor(
+internal class DefaultConstructorColorRepository(
     private val remoteDataSource: ConstructorColorRemoteDataSource,
     private val constructorColorDao: ConstructorColorDao
 ) : ConstructorColorRepository {

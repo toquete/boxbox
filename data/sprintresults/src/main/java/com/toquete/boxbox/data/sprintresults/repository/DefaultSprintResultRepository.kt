@@ -11,7 +11,7 @@ import com.toquete.boxbox.domain.repository.SprintResultRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-internal class DefaultSprintResultRepository constructor(
+internal class DefaultSprintResultRepository(
     private val remoteDataSource: SprintResultRemoteDataSource,
     private val sprintRaceResultDao: SprintRaceResultDao
 ) : SprintResultRepository {

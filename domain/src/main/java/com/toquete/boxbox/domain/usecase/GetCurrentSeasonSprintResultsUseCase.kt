@@ -4,7 +4,7 @@ import com.toquete.boxbox.core.model.RaceResult
 import com.toquete.boxbox.domain.repository.SprintResultRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetCurrentSeasonSprintResultsUseCase constructor(
+class GetCurrentSeasonSprintResultsUseCase(
     private val sprintResultRepository: SprintResultRepository,
     private val getTodayLocalDateUseCase: GetTodayLocalDateUseCase
 ) {

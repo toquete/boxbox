@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 
-class MainViewModel constructor(
+class MainViewModel(
     preferencesRepository: UserPreferencesRepository,
     remoteConfigRepository: RemoteConfigRepository
 ) : ViewModel() {

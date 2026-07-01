@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 
-internal class RaceResultsViewModel constructor(
+internal class RaceResultsViewModel(
     savedStateHandle: SavedStateHandle,
     getCurrentSeasonRaceResultsUseCase: GetCurrentSeasonRaceResultsUseCase,
     getCurrentSprintResultsUseCase: GetCurrentSeasonSprintResultsUseCase

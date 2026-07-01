@@ -3,7 +3,7 @@ package com.toquete.boxbox.data.constructorimages.source.remote
 import com.toquete.boxbox.core.network.model.ConstructorImageResponse
 
 @Suppress("MaxLineLength")
-internal class DefaultConstructorImageRemoteDataSource constructor() : ConstructorImageRemoteDataSource {
+internal class DefaultConstructorImageRemoteDataSource() : ConstructorImageRemoteDataSource {
 
     override suspend fun getConstructorsImages(): List<ConstructorImageResponse> {
         return listOf(

@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 
 private const val SPRINT_RESULTS_JSON = "sprint_results.json"
 
-internal class DefaultSprintResultRemoteDataSource constructor(
+internal class DefaultSprintResultRemoteDataSource(
     private val json: Json
 ) : SprintResultRemoteDataSource {
 

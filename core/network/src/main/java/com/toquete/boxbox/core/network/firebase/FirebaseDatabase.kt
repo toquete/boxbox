@@ -4,7 +4,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
 import kotlinx.coroutines.tasks.await
 
-internal class FirebaseDatabase constructor(
+internal class FirebaseDatabase(
     private val firestore: FirebaseFirestore
 ) : BoxBoxRemoteDatabase {
 

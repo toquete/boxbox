@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 
 private const val RACES_JSON = "races.json"
 
-internal class DefaultRaceRemoteDataSource constructor(
+internal class DefaultRaceRemoteDataSource(
     private val json: Json
 ) : RaceRemoteDataSource {
 

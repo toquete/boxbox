@@ -6,7 +6,7 @@ import com.toquete.boxbox.data.constructorimages.model.toEntity
 import com.toquete.boxbox.data.constructorimages.source.remote.ConstructorImageRemoteDataSource
 import com.toquete.boxbox.domain.repository.ConstructorImageRepository
 
-internal class DefaultConstructorImageRepository constructor(
+internal class DefaultConstructorImageRepository(
     private val remoteDataSource: ConstructorImageRemoteDataSource,
     private val constructorImageDao: ConstructorImageDao
 ) : ConstructorImageRepository {
