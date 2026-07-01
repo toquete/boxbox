@@ -1,7 +1,6 @@
 package com.toquete.boxbox.core.network
 
 import com.toquete.boxbox.core.common.extension.readPath
-import com.toquete.boxbox.core.network.di.NetworkModule
 import com.toquete.boxbox.core.testing.data.constructorStandingsWrapper
 import com.toquete.boxbox.core.testing.data.driverStandingsWrapper
 import com.toquete.boxbox.core.testing.data.raceResultWrapper
@@ -11,8 +10,11 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import mockwebserver3.MockResponse
 import mockwebserver3.MockWebServer
+import okhttp3.MediaType.Companion.toMediaType
 import org.junit.After
 import org.junit.Test
+import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlin.test.assertEquals
 
 class BoxBoxServiceTest {
@@ -172,13 +174,13 @@ class BoxBoxServiceTest {
     }
 
     private fun setupService() {
-        service = NetworkModule.getRetrofitBuilder(
-            json = Json {
-                ignoreUnknownKeys = true
-                explicitNulls = false
-            },
-            baseUrl = mockWebServer.url("")
-        )
+        val json = Json {
+            ignoreUnknownKeys = true
+            explicitNulls = false
+        }
+        service = Retrofit.Builder()
+            .baseUrl(mockWebServer.url(""))
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
             .create(BoxBoxService::class.java)
     }
