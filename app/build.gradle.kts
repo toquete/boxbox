@@ -128,6 +128,7 @@ dependencies {
     implementation(libs.hilt.work)
     ksp(libs.hilt.work.compiler)
     implementation(libs.koin.android)
+    implementation(libs.koin.compose)
     implementation(libs.koin.workmanager)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
