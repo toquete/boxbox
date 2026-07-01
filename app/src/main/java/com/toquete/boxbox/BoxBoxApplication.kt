@@ -2,8 +2,6 @@ package com.toquete.boxbox
 
 import android.app.Application
 import androidx.core.content.edit
-import androidx.hilt.work.HiltWorkerFactory
-import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
 import coil3.ImageLoader
@@ -24,16 +22,40 @@ import com.google.firebase.remoteconfig.ConfigUpdateListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
-import com.toquete.boxbox.core.common.annotation.IoDispatcher
+import com.toquete.boxbox.core.common.di.commonModule
+import com.toquete.boxbox.core.database.di.databaseModule
+import com.toquete.boxbox.core.network.di.networkModule
+import com.toquete.boxbox.core.preferences.di.preferencesModule
+import com.toquete.boxbox.data.circuitimages.di.circuitImagesModule
+import com.toquete.boxbox.data.constructorcolors.di.constructorColorsModule
+import com.toquete.boxbox.data.constructorimages.di.constructorImagesModule
+import com.toquete.boxbox.data.constructorstandings.di.constructorStandingsModule
+import com.toquete.boxbox.data.countries.di.countriesModule
+import com.toquete.boxbox.data.driverimages.di.driverImagesModule
+import com.toquete.boxbox.data.driverstandings.di.driverStandingsModule
+import com.toquete.boxbox.data.raceresults.di.raceResultsModule
+import com.toquete.boxbox.data.races.di.racesModule
+import com.toquete.boxbox.data.sprintresults.di.sprintResultsModule
+import com.toquete.boxbox.di.appCheckModule
+import com.toquete.boxbox.di.appModule
+import com.toquete.boxbox.di.treeModule
+import com.toquete.boxbox.domain.di.domainModule
+import com.toquete.boxbox.feature.raceresults.di.raceResultsFeatureModule
+import com.toquete.boxbox.feature.races.di.racesFeatureModule
+import com.toquete.boxbox.feature.settings.di.settingsModule
+import com.toquete.boxbox.feature.standings.di.standingsModule
+import com.toquete.boxbox.sync.di.syncModule
 import com.toquete.boxbox.sync.worker.SYNC_WORK_NAME
 import com.toquete.boxbox.sync.worker.SyncWorker
 import com.toquete.boxbox.util.remoteconfig.remoteConfigDefaults
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import okio.Path.Companion.toOkioPath
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.workmanager.koin.workManagerFactory
+import org.koin.core.context.startKoin
 import timber.log.Timber
-import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 private const val APP_CHECK_DEBUG_STORE = "com.google.firebase.appcheck.debug.store.%s"
@@ -42,29 +64,43 @@ private const val MEMORY_CACHE_PERCENT = 0.1
 private const val DISK_CACHE_PERCENT = 0.03
 private const val MINIMUM_REMOTE_CONFIG_FETCH_INTERVAL = 0L
 
-@HiltAndroidApp
-class BoxBoxApplication : Application(), Configuration.Provider, SingletonImageLoader.Factory {
+class BoxBoxApplication : Application(), SingletonImageLoader.Factory {
 
-    @Inject
-    lateinit var workerFactory: HiltWorkerFactory
-
-    @Inject
-    lateinit var timberTree: Timber.Tree
-
-    @Inject
-    lateinit var appCheckProviderFactory: AppCheckProviderFactory
-
-    @Inject
-    @IoDispatcher
-    lateinit var ioDispatcher: CoroutineContext
-
-    override val workManagerConfiguration: Configuration
-        get() = Configuration.Builder()
-            .setWorkerFactory(workerFactory)
-            .build()
+    private val timberTree: Timber.Tree by inject()
+    private val appCheckProviderFactory: AppCheckProviderFactory by inject()
+    private val ioDispatcher: CoroutineContext by inject()
 
     override fun onCreate() {
         super.onCreate()
+        startKoin {
+            androidContext(this@BoxBoxApplication)
+            workManagerFactory()
+            modules(
+                commonModule,
+                networkModule,
+                databaseModule,
+                preferencesModule,
+                domainModule,
+                driverStandingsModule,
+                constructorStandingsModule,
+                driverImagesModule,
+                constructorImagesModule,
+                constructorColorsModule,
+                circuitImagesModule,
+                racesModule,
+                raceResultsModule,
+                sprintResultsModule,
+                countriesModule,
+                syncModule,
+                standingsModule,
+                racesFeatureModule,
+                raceResultsFeatureModule,
+                settingsModule,
+                appCheckModule,
+                treeModule,
+                appModule
+            )
+        }
         setupAppCheck()
         setupSyncWork()
         setupTimber()
