@@ -12,7 +12,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("boxbox.android.library")
-                apply("boxbox.android.hilt")
             }
 
             extensions.configure<LibraryExtension> {
@@ -23,6 +22,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             dependencies {
                 add("implementation", libs.findLibrary("core.ktx").get())
                 add("implementation", libs.findBundle("coil").get())
+                add("implementation", libs.findLibrary("kotlinx.collections.immutable").get())
             }
         }
     }

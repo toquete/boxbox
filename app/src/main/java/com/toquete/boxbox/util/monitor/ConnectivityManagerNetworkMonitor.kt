@@ -7,14 +7,13 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import androidx.core.content.getSystemService
 import com.toquete.boxbox.core.common.util.NetworkMonitor
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.conflate
 
 class ConnectivityManagerNetworkMonitor(
-    @ApplicationContext private val context: Context
+    private val context: Context
 ) : NetworkMonitor {
 
     override val isOnline: Flow<Boolean> = callbackFlow {
