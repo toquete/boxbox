@@ -23,7 +23,6 @@ internal fun Project.configureAndroidCompose(
             add("implementation", libs.findBundle("lifecycle").get())
             add("implementation", libs.findBundle("compose").get())
             add("implementation", libs.findLibrary("compose.navigation").get())
-            add("implementation", libs.findLibrary("hilt.navigation").get())
             add("implementation", libs.findLibrary("compose.material3").get())
             add("implementation", libs.findLibrary("compose.preview").get())
             add("implementation", libs.findLibrary("compose.material.icons").get())
