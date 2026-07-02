@@ -5,7 +5,7 @@ import com.toquete.boxbox.feature.standings.drivers.DriverStandingsViewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
-internal val standingsModule = module {
+val standingsModule = module {
     viewModelOf(::DriverStandingsViewModel)
     viewModelOf(::ConstructorStandingsViewModel)
 }

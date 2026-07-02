@@ -7,14 +7,11 @@ import androidx.navigation.toRoute
 import com.toquete.boxbox.core.navigation.BoxBoxRoute
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonSprintResultsUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import javax.inject.Inject
 
-@HiltViewModel
-internal class RaceResultsViewModel @Inject constructor(
+internal class RaceResultsViewModel(
     savedStateHandle: SavedStateHandle,
     getCurrentSeasonRaceResultsUseCase: GetCurrentSeasonRaceResultsUseCase,
     getCurrentSprintResultsUseCase: GetCurrentSeasonSprintResultsUseCase

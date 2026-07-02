@@ -99,6 +99,9 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:common"))
+    implementation(project(":core:network"))
+    implementation(project(":core:database"))
     implementation(project(":core:preferences"))
     implementation(project(":core:navigation"))
     implementation(project(":data:driverimages"))
@@ -125,6 +128,7 @@ dependencies {
     implementation(libs.hilt.work)
     ksp(libs.hilt.work.compiler)
     implementation(libs.koin.android)
+    implementation(libs.koin.compose)
     implementation(libs.koin.workmanager)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
@@ -137,8 +141,9 @@ dependencies {
     testImplementation(libs.work.testing)
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.compose.navigation.test)
-    androidTestImplementation(libs.hilt.android.testing)
-    kspAndroidTest(libs.hilt.android.compiler)
+    androidTestImplementation(libs.koin.android)
+    androidTestImplementation(libs.koin.test)
+    androidTestImplementation(libs.koin.test.junit4)
 }
 
 kover {
