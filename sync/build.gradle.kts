@@ -1,6 +1,5 @@
 plugins {
     id("boxbox.android.library")
-    id("boxbox.android.hilt")
 }
 
 android {
@@ -13,8 +12,6 @@ dependencies {
     implementation(libs.work.runtime)
     implementation(libs.koin.android)
     implementation(libs.koin.workmanager)
-    implementation(libs.hilt.work)
-    ksp(libs.hilt.work.compiler)
     implementation(libs.timber)
     implementation(libs.kotlinx.datetime)
 

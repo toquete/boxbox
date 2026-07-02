@@ -9,12 +9,11 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
 
 private const val DELAY = 1
 
-class StandingsRepository @Inject constructor(
+class StandingsRepository(
     private val driverStandingsRepository: DriverStandingsRepository,
     private val constructorStandingsRepository: ConstructorStandingsRepository,
     private val constructorColorRepository: ConstructorColorRepository,

@@ -7,9 +7,8 @@ import com.toquete.boxbox.domain.repository.DriverImageRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import javax.inject.Inject
 
-class ImagesRepository @Inject constructor(
+class ImagesRepository(
     private val countryRepository: CountryRepository,
     private val driverImageRepository: DriverImageRepository,
     private val constructorImageRepository: ConstructorImageRepository,
