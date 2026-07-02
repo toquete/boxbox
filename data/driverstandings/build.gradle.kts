@@ -1,6 +1,5 @@
 plugins {
     id("boxbox.android.library")
-    id("boxbox.android.hilt")
     alias(libs.plugins.kotlin.serialization)
 }
 

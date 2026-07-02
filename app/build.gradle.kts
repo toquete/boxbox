@@ -5,7 +5,6 @@ import java.util.Properties
 plugins {
     id("boxbox.android.application")
     id("boxbox.android.application.compose")
-    id("boxbox.android.hilt")
     alias(libs.plugins.baselineprofile)
 }
 
@@ -125,8 +124,6 @@ dependencies {
     implementation(libs.splashscreen)
     implementation(libs.work.runtime)
     implementation(libs.coil)
-    implementation(libs.hilt.work)
-    ksp(libs.hilt.work.compiler)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.workmanager)

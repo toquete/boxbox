@@ -3,9 +3,8 @@ package com.toquete.boxbox.util.log
 import android.util.Log
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import timber.log.Timber
-import javax.inject.Inject
 
-class CrashlyticsReportingTree @Inject constructor(
+class CrashlyticsReportingTree(
     private val crashlytics: FirebaseCrashlytics
 ) : Timber.Tree() {
 

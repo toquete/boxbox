@@ -12,9 +12,8 @@ import com.toquete.boxbox.core.preferences.PreferencesKeys.LAST_UPDATED_DATE_IN_
 import com.toquete.boxbox.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-internal class DataStoreUserPreferencesRepository @Inject constructor(
+internal class DataStoreUserPreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) : UserPreferencesRepository {
 

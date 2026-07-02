@@ -3,9 +3,8 @@ package com.toquete.boxbox.core.network.firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
 import kotlinx.coroutines.tasks.await
-import javax.inject.Inject
 
-internal class FirebaseDatabase @Inject constructor(
+internal class FirebaseDatabase(
     private val firestore: FirebaseFirestore
 ) : BoxBoxRemoteDatabase {
 

@@ -2,11 +2,10 @@ package com.toquete.boxbox.data.driverimages.source.remote
 
 import com.toquete.boxbox.core.network.BoxBoxRemoteDatabase
 import com.toquete.boxbox.core.network.model.DriverImageResponse
-import javax.inject.Inject
 
 private const val COLLECTION = "driver_image"
 
-internal class DefaultDriverImageRemoteDataSource @Inject constructor(
+internal class DefaultDriverImageRemoteDataSource(
     private val remoteDatabase: BoxBoxRemoteDatabase
 ) : DriverImageRemoteDataSource {
 

@@ -5,9 +5,8 @@ import com.toquete.boxbox.core.network.model.CountryResponse
 import com.toquete.boxbox.data.countries.model.toEntity
 import com.toquete.boxbox.data.countries.source.remote.CountryRemoteDataSource
 import com.toquete.boxbox.domain.repository.CountryRepository
-import javax.inject.Inject
 
-internal class DefaultCountryRepository @Inject constructor(
+internal class DefaultCountryRepository(
     private val remoteDataSource: CountryRemoteDataSource,
     private val countryDao: CountryDao
 ) : CountryRepository {

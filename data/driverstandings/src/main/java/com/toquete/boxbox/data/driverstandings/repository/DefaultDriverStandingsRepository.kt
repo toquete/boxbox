@@ -11,9 +11,8 @@ import com.toquete.boxbox.data.driverstandings.source.remote.DriverStandingsRemo
 import com.toquete.boxbox.domain.repository.DriverStandingsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-internal class DefaultDriverStandingsRepository @Inject constructor(
+internal class DefaultDriverStandingsRepository(
     private val remoteDataSource: DriverStandingsRemoteDataSource,
     private val driverStandingDao: DriverStandingDao,
     private val driverDao: DriverDao,
