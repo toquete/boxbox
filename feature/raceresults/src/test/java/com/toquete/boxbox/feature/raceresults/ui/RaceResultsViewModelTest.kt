@@ -12,6 +12,7 @@ import com.toquete.boxbox.domain.usecase.GetCurrentSeasonRaceResultsUseCase
 import com.toquete.boxbox.domain.usecase.GetCurrentSeasonSprintResultsUseCase
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
@@ -52,7 +53,7 @@ class RaceResultsViewModelTest {
 
         raceResultsFlow.emit(raceResults)
         sprintResultsFlow.emit(sprintRaceResults)
-        assertEquals(RaceResultsState(raceName = "Bahrain", raceResults, sprintRaceResults), viewModel.state.value)
+        assertEquals(RaceResultsState(raceName = "Bahrain", raceResults.toImmutableList(), sprintRaceResults.toImmutableList()), viewModel.state.value)
 
         backgroundScope.cancel()
     }

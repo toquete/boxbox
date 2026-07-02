@@ -20,6 +20,7 @@ import com.toquete.boxbox.core.model.Driver
 import com.toquete.boxbox.core.model.DriverStanding
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import kotlinx.collections.immutable.persistentListOf
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -56,7 +57,7 @@ internal fun FullDriverStandingsScreenPreview() {
         Surface(color = MaterialTheme.colorScheme.background) {
             DriverStandingsScreen(
                 state = DriverStandingsState(
-                    standings = listOf(
+                    standings = persistentListOf(
                         DriverStanding(
                             position = 1,
                             points = "258",

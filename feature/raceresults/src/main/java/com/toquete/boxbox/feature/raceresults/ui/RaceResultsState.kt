@@ -1,9 +1,11 @@
 package com.toquete.boxbox.feature.raceresults.ui
 
 import com.toquete.boxbox.core.model.RaceResult
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 internal data class RaceResultsState(
     val raceName: String = "",
-    val results: List<RaceResult> = emptyList(),
-    val sprintResults: List<RaceResult> = emptyList()
+    val results: ImmutableList<RaceResult> = persistentListOf(),
+    val sprintResults: ImmutableList<RaceResult> = persistentListOf()
 )

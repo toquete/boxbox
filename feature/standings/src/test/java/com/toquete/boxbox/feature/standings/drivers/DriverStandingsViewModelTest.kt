@@ -6,6 +6,7 @@ import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.domain.repository.DriverStandingsRepository
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
@@ -39,7 +40,7 @@ class DriverStandingsViewModelTest {
         assertEquals(DriverStandingsState(), viewModel.state.value)
 
         driversFlow.emit(driverStandings)
-        assertEquals(DriverStandingsState(driverStandings), viewModel.state.value)
+        assertEquals(DriverStandingsState(driverStandings.toImmutableList()), viewModel.state.value)
 
         backgroundScope.cancel()
     }

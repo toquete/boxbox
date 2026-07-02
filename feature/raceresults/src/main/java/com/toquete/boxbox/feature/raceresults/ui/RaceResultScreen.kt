@@ -30,6 +30,7 @@ import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.core.ui.theme.FormulaOne
 import com.toquete.boxbox.feature.raceresults.R
+import kotlinx.collections.immutable.persistentListOf
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -109,7 +110,7 @@ internal fun RaceResultPreview() {
             RaceResultScreen(
                 state = RaceResultsState(
                     raceName = "Bahrain",
-                    results = listOf(
+                    results = persistentListOf(
                         RaceResult(
                             season = "2021",
                             round = 1,
@@ -163,7 +164,7 @@ internal fun EmptyStatePreview() {
             RaceResultScreen(
                 state = RaceResultsState(
                     raceName = "Bahrain",
-                    results = emptyList()
+                    results = persistentListOf()
                 )
             )
         }

@@ -19,6 +19,7 @@ import com.toquete.boxbox.core.model.Constructor
 import com.toquete.boxbox.core.model.ConstructorStanding
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import kotlinx.collections.immutable.persistentListOf
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -55,7 +56,7 @@ internal fun FullConstructorStandingsScreenPreview() {
         Surface(color = MaterialTheme.colorScheme.background) {
             ConstructorStandingsScreen(
                 state = ConstructorStandingsState(
-                    standings = listOf(
+                    standings = persistentListOf(
                         ConstructorStanding(
                             position = 1,
                             points = "258",

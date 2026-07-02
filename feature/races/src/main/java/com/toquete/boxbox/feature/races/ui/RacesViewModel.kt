@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.domain.usecase.GetPastRacesInCurrentSeasonUseCase
 import com.toquete.boxbox.domain.usecase.GetUpcomingRacesInCurrentSeasonUseCase
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
@@ -18,8 +19,8 @@ internal class RacesViewModel(
         getPastRacesUseCase()
     ) { upcomingRaces, pastRaces ->
         RacesState(
-            upcomingRaces,
-            pastRaces
+            upcomingRaces.toImmutableList(),
+            pastRaces.toImmutableList()
         )
     }.stateIn(
         scope = viewModelScope,
