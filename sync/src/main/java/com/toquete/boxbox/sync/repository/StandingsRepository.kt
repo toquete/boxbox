@@ -13,7 +13,7 @@ import kotlin.time.Duration.Companion.seconds
 
 private const val DELAY = 1
 
-class StandingsRepository constructor(
+class StandingsRepository(
     private val driverStandingsRepository: DriverStandingsRepository,
     private val constructorStandingsRepository: ConstructorStandingsRepository,
     private val constructorColorRepository: ConstructorColorRepository,

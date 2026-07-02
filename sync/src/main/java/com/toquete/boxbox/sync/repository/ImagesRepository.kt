@@ -8,7 +8,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 
-class ImagesRepository constructor(
+class ImagesRepository(
     private val countryRepository: CountryRepository,
     private val driverImageRepository: DriverImageRepository,
     private val constructorImageRepository: ConstructorImageRepository,

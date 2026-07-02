@@ -8,7 +8,7 @@ import com.toquete.boxbox.sync.worker.SYNC_WORK_NAME
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class WorkManagerSyncMonitor constructor(
+class WorkManagerSyncMonitor(
     context: Context
 ) : SyncMonitor {
 
