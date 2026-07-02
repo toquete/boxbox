@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 
-internal class RacesViewModel constructor(
+internal class RacesViewModel(
     getUpcomingRacesUseCase: GetUpcomingRacesInCurrentSeasonUseCase,
     getPastRacesUseCase: GetPastRacesInCurrentSeasonUseCase
 ) : ViewModel() {

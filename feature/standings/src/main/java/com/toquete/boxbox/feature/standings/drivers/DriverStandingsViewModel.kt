@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-internal class DriverStandingsViewModel constructor(
+internal class DriverStandingsViewModel(
     repository: DriverStandingsRepository
 ) : ViewModel() {
 

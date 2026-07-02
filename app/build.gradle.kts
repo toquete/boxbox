@@ -141,8 +141,9 @@ dependencies {
     testImplementation(libs.work.testing)
     androidTestImplementation(project(":core:testing"))
     androidTestImplementation(libs.compose.navigation.test)
-    androidTestImplementation(libs.hilt.android.testing)
-    kspAndroidTest(libs.hilt.android.compiler)
+    androidTestImplementation(libs.koin.android)
+    androidTestImplementation(libs.koin.test)
+    androidTestImplementation(libs.koin.test.junit4)
 }
 
 kover {

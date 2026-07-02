@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-internal class HomeViewModel constructor(
+internal class HomeViewModel(
     syncMonitor: SyncMonitor,
     networkMonitor: NetworkMonitor,
     private val syncRepository: SyncRepository,
