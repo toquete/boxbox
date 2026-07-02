@@ -3,6 +3,7 @@ package com.toquete.boxbox.feature.standings.drivers
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.toquete.boxbox.domain.repository.DriverStandingsRepository
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -12,7 +13,7 @@ internal class DriverStandingsViewModel(
 ) : ViewModel() {
 
     val state = repository.getDriverStandings()
-        .map { DriverStandingsState(it) }
+        .map { DriverStandingsState(it.toImmutableList()) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),

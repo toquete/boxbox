@@ -36,6 +36,7 @@ import com.toquete.boxbox.core.model.Race
 import com.toquete.boxbox.core.ui.annotation.UiModePreviews
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
 import com.toquete.boxbox.feature.races.model.RacesTab
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import kotlin.time.ExperimentalTime
@@ -123,7 +124,7 @@ internal fun RacesContentPreview() {
         Surface(color = MaterialTheme.colorScheme.background) {
             RacesScreen(
                 state = RacesState(
-                    upcomingRaces = listOf(
+                    upcomingRaces = persistentListOf(
                         Race(
                             season = "2023",
                             round = 1,

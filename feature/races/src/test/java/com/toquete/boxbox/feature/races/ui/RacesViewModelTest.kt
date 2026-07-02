@@ -7,6 +7,7 @@ import com.toquete.boxbox.domain.usecase.GetPastRacesInCurrentSeasonUseCase
 import com.toquete.boxbox.domain.usecase.GetUpcomingRacesInCurrentSeasonUseCase
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
@@ -44,7 +45,7 @@ class RacesViewModelTest {
 
         upcomingRacesFlow.emit(races)
         pastRacesFlow.emit(races)
-        assertEquals(RacesState(races, races), viewModel.state.value)
+        assertEquals(RacesState(races.toImmutableList(), races.toImmutableList()), viewModel.state.value)
 
         backgroundScope.cancel()
     }

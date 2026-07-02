@@ -7,6 +7,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.toquete.boxbox.core.testing.data.raceResults
 import com.toquete.boxbox.core.ui.theme.BoxBoxTheme
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,7 +27,7 @@ class RaceResultScreenTest {
                     RaceResultScreen(
                         state = RaceResultsState(
                             raceName = "Bahrain",
-                            results = raceResults
+                            results = raceResults.toImmutableList()
                         )
                     )
                 }
@@ -46,7 +48,7 @@ class RaceResultScreenTest {
                     RaceResultScreen(
                         state = RaceResultsState(
                             raceName = "Bahrain",
-                            results = emptyList()
+                            results = persistentListOf()
                         )
                     )
                 }

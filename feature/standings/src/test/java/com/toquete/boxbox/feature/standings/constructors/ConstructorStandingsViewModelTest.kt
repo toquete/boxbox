@@ -6,6 +6,7 @@ import com.toquete.boxbox.core.testing.util.MainDispatcherRule
 import com.toquete.boxbox.domain.repository.ConstructorStandingsRepository
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
@@ -39,7 +40,7 @@ class ConstructorStandingsViewModelTest {
         assertEquals(ConstructorStandingsState(), viewModel.state.value)
 
         constructorsFlow.emit(constructorStandings)
-        assertEquals(ConstructorStandingsState(constructorStandings), viewModel.state.value)
+        assertEquals(ConstructorStandingsState(constructorStandings.toImmutableList()), viewModel.state.value)
 
         backgroundScope.cancel()
     }
